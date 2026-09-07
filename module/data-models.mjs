@@ -92,6 +92,15 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     }
     return ['immune', 'mostlyIneffective', 'notVeryEffective', 'effective', 'superEffective', 'extremelyEffective'][result];
   }
+
+  takeDamage(amount, resistAbility) {
+    const totalDamage = Math.max(amount - this.abilities[resistAbility].mod, 0);
+    const newHP = Math.max(this.hp.raw - totalDamage, 0);
+    this.parent.update({ "system.hp.raw": newHP });
+    ChatMessage.create({
+      flavor: `${this.parent.name} took ${totalDamage > 0 ? totalDamage : "no"} damage.${newHP === 0 ? `\n${this.parent.name} fainted!`: ""}`
+    });
+  }
 }
 
 export class PlayerDataModel extends CharacterDataModel {

@@ -92,11 +92,6 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static async rollMoveDie(event, target) {
     const move = this.actor.items.get(target.dataset.id);
     new MoveRollDialog({ user: this.actor, move }).render({ force: true });
-    // const { sides, modifier } = getMoveDie(this, move);
-    // new Roll(`${sides}d6x${toModString(modifier)}`).toMessage({
-    //   speaker: ChatMessage.implementation.getSpeaker({ actor: this.document }),
-    //   flavor: `${move.name}${move.system.description ? ` - ${move.system.description}` : ""}`
-    // });
   }
 
   static async removeItem(event, target) {

@@ -1,5 +1,5 @@
 import { filePath, getSkillDie, getMoveDie, getStatusDie, getDieString } from '../constants.mjs';
-import { ExplorersRoll } from './explorers-roll.mjs';
+import { DamageRoll, ExplorersRoll } from './explorers-roll.mjs';
 import { advantage, effects, skills, typeMatchups } from './types.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -228,7 +228,8 @@ export class MoveRollDialog extends RollDialog {
         } else die.advantage = 'normal';
       };
 
-      this.toChatMessage(new ExplorersRoll(getDieString(die), {}, { dc: this.getDC() }), {
+      const resistAbility = this.move.system.isPhysical ? 'def' : 'spdef';
+      this.toChatMessage(new DamageRoll(getDieString(die), {}, { dc: this.getDC(), resistAbility, targetId: target.parent.uuid }), {
         flavor: `${additionString}${this.move.name}${target ? ` (${target.parent.name})` : ""} - Power`,
       });
     }

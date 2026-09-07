@@ -1,3 +1,6 @@
+import { filePath, getSelectedActors } from '../constants.mjs';
+import { abilities } from './types.mjs';
+
 const { Roll, terms: { Die } } = foundry.dice;
 
 // options.dc: The DC set for this roll. Can be undefined.
@@ -7,6 +10,41 @@ export class ExplorersRoll extends Roll {
   constructor(formula, data, options={}) {
     super(formula, data, options);
     if (options.dc === undefined) options.dc = null;
+  }
+}
+
+export class DamageRoll extends ExplorersRoll {
+  static CHAT_TEMPLATE = filePath("templates/roll/roll-chat-damage.hbs");
+
+  get resistAbility() { return this.options.resistAbility; } // physical or special defense
+  get targetId() { return this.options.targetId; } // target will take damage
+  
+  constructor(formula, data, options={}) {
+    super(formula, data, options);
+    if (options.resistAbility === undefined) options.resistAbility = null;
+    if (options.targetId === undefined) options.targetId = null;
+  }
+
+  async _prepareChatRenderContext(options) {
+    const context = await super._prepareChatRenderContext(options);
+    context.resistAbility = this.resistAbility;
+    context.resistText = abilities[this.resistAbility];
+    context.damagePermission = fromUuidSync(this.targetId)?.isOwner ?? true;
+    context.damage = this.total;
+    context.targetId = this.targetId;
+    return context;
+  }
+
+  static applyDamageCallback(event) {
+    const { resist, damage, targetid } = event.target.dataset;
+    const actors = targetid ? [fromUuidSync(targetid)] : getSelectedActors();
+    if (!actors.length) {
+      ui.notifications.error("No character is selected!");
+    }
+    for (const actor of actors) {
+      // TODO: remove duck typing and just check for character actor
+      actor.system.takeDamage?.(Number(damage), resist);
+    }
   }
 }
 

@@ -61,3 +61,11 @@ export function isStatCondition(effectName) {
 export function isEffect(effectName) {
   return !!effects[effectName];
 }
+export function getSelectedActors() {
+  return canvas?.tokens?.controlled.map(token => token.actor).filter(_ => _);
+}
+export function tokensToActors(tokens) { // from Draw Steel
+  tokens ??= canvas?.tokens?.controlled ?? [];
+  const actors = tokens.map(token => token.actor).filter(_ => _);
+  return new Set(actors);
+}

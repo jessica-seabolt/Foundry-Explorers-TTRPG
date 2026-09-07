@@ -1,3 +1,13 @@
+/* Chat Messages */
+
+.damage-button {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  width: 100%;
+}
+
+/* Dialog */
+
 .roll-btn.selected {
   background: var(--control-active-border-color);
 }

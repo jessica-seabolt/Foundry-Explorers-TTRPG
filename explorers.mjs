@@ -2,9 +2,10 @@ import { filePath, toModString, toMoveString, hasEffectCount, SYSTEM_ID, toSkill
 import { CharacterSheet, PlayerSheet } from './module/actor-sheet.mjs';
 import { CharacterDataModel, ItemDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
 import { SystemToken } from './module/documents.mjs';
-import { ExplorersDie, ExplorersRoll } from './module/explorers-roll.mjs';
+import { DamageRoll, ExplorersDie, ExplorersRoll } from './module/explorers-roll.mjs';
 import { ItemSheet } from './module/item-sheet.mjs';
 import macros from './module/macros.mjs';
+import BaseMessageModel from './module/message-model.mjs';
 import { MoveSheet } from './module/move-sheet.mjs';
 import { conditions } from './module/types.mjs';
 
@@ -14,8 +15,8 @@ const { Item, Macro } = foundry.documents;
 const { Actors, Items } = foundry.documents.collections;
 
 globalThis.explorers = {
-  macros
-}
+  macros,
+};
 
 Hooks.once("init", () => {
   // Configure custom Document implementations.
@@ -32,8 +33,9 @@ Hooks.once("init", () => {
     Item: ItemDataModel,
     Move: MoveDataModel
   };
-  CONFIG.Dice.rolls = [ExplorersRoll];
+  CONFIG.Dice.rolls = [ExplorersRoll, DamageRoll];
   CONFIG.Dice.terms.d = ExplorersDie;
+  CONFIG.ChatMessage.dataModels.base = BaseMessageModel;
 
   // Configure Sheets.
   Actors.registerSheet(SYSTEM_ID, PlayerSheet, { types: ["Player"], makeDefault: true });
@@ -113,3 +115,15 @@ async function assignItemMacro(itemData, slot) {
   }
   game.user.assignHotbarMacro(macro, slot);
 }
+
+async function renderChatMessageHTML(message, html, context) {
+  if (!message.isContentVisible) return;
+  // if (typeof message.system.alterMessageHTML === "function") {
+  //   await message.system.alterMessageHTML(html);
+  // }
+  if (typeof message.system.addListeners === "function") {
+    await message.system.addListeners(html);
+  }
+}
+
+Hooks.on("renderChatMessageHTML", renderChatMessageHTML)
