@@ -1,5 +1,5 @@
-import { filePath, getSkillDie, toModString, toFormGroup, getMoveDie, getStatusDie, getDieString } from '../constants.mjs';
-import { CharacterDataModel } from './data-models.mjs';
+import { filePath, getSkillDie, getMoveDie, getStatusDie, getDieString } from '../constants.mjs';
+import { ExplorersRoll } from './explorers-roll.mjs';
 import { advantage, effects, skills, typeMatchups } from './types.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -29,7 +29,8 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       extraModifier: 0,
       multiplier: 1,
       advantage: 'normal',
-      highCrit: false
+      highCrit: false,
+      dc: null
     };
   }
 
@@ -45,7 +46,7 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     super._onChangeForm(config, event);
     const inputName = event.target.dataset.name;
     if (this.dialogState[inputName] !== undefined) {
-      if (typeof this.dialogState[inputName] == 'number') {
+      if (typeof this.dialogState[inputName] == 'number' || inputName === 'dc') {
         this.dialogState[inputName] = Number(event.target.value);
       }
       else if (typeof this.dialogState[inputName] == 'boolean') {
@@ -55,19 +56,37 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     }
   }
 
-  static getDialogDie(dialog) {
+  getDialogDie() {
     return {
-      sides: dialog.dialogState.extraDie,
-      modifier: dialog.dialogState.extraModifier,
-      advantage: dialog.dialogState.advantage,
-      multiplier: dialog.dialogState.multiplier,
-      highCrit: dialog.dialogState.highCrit
+      sides: this.dialogState.extraDie,
+      modifier: this.dialogState.extraModifier,
+      advantage: this.dialogState.advantage,
+      multiplier: this.dialogState.multiplier,
+      highCrit: this.dialogState.highCrit
     }
+  }
+
+  getDC() {
+    return this.dialogState.dc;
   }
 
   static #setMessageMode(event, target) {
     this.messageMode = target.dataset.messagemode;
     this.render();
+  }
+
+  async toChatMessage(roll, chatData) {
+    await roll.evaluate();
+    const dcFlavor = roll.success === null ? "" :
+      roll.success ? '<br><span style="color:green;font-weight:bold;">Success</span>' : '<br><span style="color:red;font-weight:bold;">Failure</span>';
+    chatData = {
+      ...chatData,
+      rolls: [roll],
+      speaker: ChatMessage.implementation.getSpeaker({ actor: this.user }),
+    }
+    chatData.flavor = `${chatData.flavor}${dcFlavor}`;
+    ChatMessage.applyRollMode(chatData, this.messageMode);
+    ChatMessage.create(chatData)
   }
 }
 
@@ -95,19 +114,25 @@ export class SkillRollDialog extends RollDialog {
     this.skill = skill;
   }
 
-  static #rollSkill() {
-    const die = RollDialog.getDialogDie(this);
+  static async #rollSkill() {
+    const die = this.getDialogDie();
     const { sides, modifier } = getSkillDie(this.user, this.skill);
     die.sides += sides;
     die.modifier += modifier;
     const targetRolls = game.user.targets.size > 0 ? game.user.targets.map(target => target.actor.system) : [null];
     for (const target of targetRolls) {
-      new Roll(getDieString(die))
-        .toMessage({
-          speaker: ChatMessage.implementation.getSpeaker({ actor: this.user }),
-          flavor: `${game.i18n.localize(skills[this.skill])}${target ? ` (${target.parent.name})` : ""}`
-        }, { rollMode: this.messageMode });
+      this.toChatMessage(new ExplorersRoll(getDieString(die), {}, { dc: this.getDC() }), {
+        flavor: `${game.i18n.localize(skills[this.skill])}${target ? ` (${target.parent.name})` : ""}`,
+      });
     }
+  }
+}
+
+export class SavingThrowDialog extends SkillRollDialog {
+  constructor(options={}) {
+    const { dc, effects } = options;
+    if (!dc) throw new Error("No DC given.");
+    super(options);
   }
 }
 
@@ -161,7 +186,7 @@ export class MoveRollDialog extends RollDialog {
       }
     }
     const userSystem = this.user.system;
-    const die = RollDialog.getDialogDie(this);
+    const die = this.getDialogDie();
     let { sides, modifier } = getMoveDie(this.user, this.move);
     die.sides += sides;
     die.modifier += modifier;
@@ -203,18 +228,16 @@ export class MoveRollDialog extends RollDialog {
         } else die.advantage = 'normal';
       };
 
-      new Roll(getDieString(die))
-      .toMessage({
-        speaker: ChatMessage.implementation.getSpeaker({ actor: this.user }),
-        flavor: `${additionString}${this.move.name}${target ? ` (${target.parent.name})` : ""} - Power`
-      }, { rollMode: this.messageMode });
+      this.toChatMessage(new ExplorersRoll(getDieString(die), {}, { dc: this.getDC() }), {
+        flavor: `${additionString}${this.move.name}${target ? ` (${target.parent.name})` : ""} - Power`,
+      });
     }
   }
 
   static async #rollStatus() {
     const statusDie = getStatusDie(this.user, this.move);
     if (this.move.system.power == 0) {
-      const { sides, modifier } = RollDialog.getDialogDie(this);
+      const { sides, modifier } = this.getDialogDie();
       statusDie.sides += sides;
       statusDie.modifier += modifier;
     }
@@ -225,11 +248,9 @@ export class MoveRollDialog extends RollDialog {
         hitEffects.push(game.i18n.localize(effects[effect.effect]))
       });
 
-      new Roll(getDieString(statusDie)) // not including adv/mult for status checks
-      .toMessage({
-        speaker: ChatMessage.implementation.getSpeaker({ actor: this.user }),
-        flavor: `${this.move.name}${target ? ` (${target.parent.name})` : ""} - Status (${hitEffects.join()})`
-      }, { rollMode: this.messageMode });
+      this.toChatMessage(new ExplorersRoll(getDieString(statusDie), {}, { dc: this.getDC() }), { // not including adv/mult for status checks
+        flavor: `${this.move.name}${target ? ` (${target.parent.name})` : ""} - Status (${hitEffects.join()})`,
+      });
     }
   }
 } 

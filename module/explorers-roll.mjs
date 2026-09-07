@@ -1,6 +1,13 @@
 const { Roll, terms: { Die } } = foundry.dice;
 
+// options.dc: The DC set for this roll. Can be undefined.
 export class ExplorersRoll extends Roll {
+  get success() { return this.options.dc !== null ? this.total >= this.options.dc : null; }
+
+  constructor(formula, data, options={}) {
+    super(formula, data, options);
+    if (options.dc === undefined) options.dc = null;
+  }
 }
 
 export class ExplorersDie extends Die {

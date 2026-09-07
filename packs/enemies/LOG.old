@@ -1,7 +1,1 @@
-2026/08/30-23:11:51.665 349c Recovering log #287
-2026/08/30-23:11:51.673 349c Delete type=0 #287
-2026/08/30-23:11:51.673 349c Delete type=3 #286
-2026/08/31-00:16:41.882 4bc0 Level-0 table #291: started
-2026/08/31-00:16:41.882 4bc0 Level-0 table #291: 0 bytes OK
-2026/08/31-00:16:41.887 4bc0 Delete type=0 #289
-2026/08/31-00:16:41.914 4bc0 Manual compaction at level-0 from '!actors!4WbOKcWBvT5RWNN7' @ 72057594037927935 : 1 .. '!items!ztPW7z6DrbMegPOB' @ 0 : 0; will stop at (end)
+2026/09/05-14:10:11.011 143c Delete type=3 #1
