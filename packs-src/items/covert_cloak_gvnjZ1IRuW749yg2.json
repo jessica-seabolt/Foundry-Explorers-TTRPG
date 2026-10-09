@@ -1,0 +1,31 @@
+{
+  "name": "Covert Cloak",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "You do not suffer additional effects of Physical and Special Moves.",
+    "category": "scarvesAndBands",
+    "price": null
+  },
+  "effects": [],
+  "folder": "flTbL5r9BQOlCHFW",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787036425775,
+    "modifiedTime": 1787036731372,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "gvnjZ1IRuW749yg2",
+  "sort": 2500000,
+  "_key": "!items!gvnjZ1IRuW749yg2"
+}

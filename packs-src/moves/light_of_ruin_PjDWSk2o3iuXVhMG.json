@@ -1,0 +1,44 @@
+{
+  "name": "Light of Ruin",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fairy.png",
+  "system": {
+    "description": "Deals half the damage dealt back to the User as Recoil.",
+    "type": "fairy",
+    "category": "special",
+    "power": 7,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "5jg0FxKZmtNN6b6w": "recoil"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 10,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "3Xjugd7wb0pfAayG",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787887317834,
+    "modifiedTime": 1787887873683,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "PjDWSk2o3iuXVhMG",
+  "sort": 1600000,
+  "_key": "!items!PjDWSk2o3iuXVhMG"
+}

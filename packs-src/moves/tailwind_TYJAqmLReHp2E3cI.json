@@ -1,0 +1,55 @@
+{
+  "name": "Tailwind",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/flying.png",
+  "system": {
+    "description": "Lasts for 5 rounds.",
+    "type": "flying",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "V0fFJN5AOmf6E6xV": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "0oTHOHW7KHl5HWv1": {
+            "affectsUser": false,
+            "effect": "speUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "efDWGm5Cyk8DrqFT": "wind"
+    },
+    "target": "selfAllies",
+    "range": "room",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "a0R9kRJnoJMgYQdT",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787038459085,
+    "modifiedTime": 1787945788030,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "TYJAqmLReHp2E3cI",
+  "sort": 100000,
+  "_key": "!items!TYJAqmLReHp2E3cI"
+}

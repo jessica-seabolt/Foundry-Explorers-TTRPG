@@ -1,0 +1,31 @@
+{
+  "folder": "AR8CkbQgJHBqmhQ6",
+  "name": "Upgrade",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Evolves Porygon into Porygon2.",
+    "category": "evolutionItems",
+    "price": 1000
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.2",
+    "createdTime": 1788126340245,
+    "modifiedTime": 1788126369233,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "AJzQDKE2yG9yCE2u",
+  "sort": 700000,
+  "_key": "!items!AJzQDKE2yG9yCE2u"
+}

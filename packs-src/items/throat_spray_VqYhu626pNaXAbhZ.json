@@ -1,0 +1,31 @@
+{
+  "name": "Throat Spray",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "After using a Sound-Based Move, you use this Item as a Reaction, and gain Sp.Atk Up 2. You can only use this Item once per Battle, and it has 10 total uses before it is consumed.",
+    "category": "battleItems",
+    "price": 2000
+  },
+  "effects": [],
+  "folder": "Isb1KUmSvCXlrJwp",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787040211082,
+    "modifiedTime": 1787040211147,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "VqYhu626pNaXAbhZ",
+  "sort": 400000,
+  "_key": "!items!VqYhu626pNaXAbhZ"
+}

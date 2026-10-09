@@ -1,0 +1,44 @@
+{
+  "name": "Dragon Claw",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dragon.png",
+  "system": {
+    "description": "Scores a Critical Hit on a 5-6.",
+    "type": "dragon",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "hUPese8Qr9nVMOpN": "highCritRatio"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "gP3mTYHLybwN5ySr",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786664349415,
+    "modifiedTime": 1786669091988,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "jL76qPym838sG69R",
+  "sort": 3800000,
+  "_key": "!items!jL76qPym838sG69R"
+}

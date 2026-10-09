@@ -1,0 +1,55 @@
+{
+  "name": "Misty Explosion",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fairy.png",
+  "system": {
+    "description": "User is KO'd after using this Move.",
+    "type": "fairy",
+    "category": "special",
+    "power": 7,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "LwiycD5HQ2U65ZMD": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "l3d3Yv4EUqtvhU6y": {
+            "affectsUser": true,
+            "effect": "instantKO",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "ypKyKWpw10eIZvxF": "explosive"
+    },
+    "target": "foes",
+    "range": "room",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "3Xjugd7wb0pfAayG",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787887382162,
+    "modifiedTime": 1787944947770,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "NqSsIF99uIJfEgZW",
+  "sort": 1500000,
+  "_key": "!items!NqSsIF99uIJfEgZW"
+}

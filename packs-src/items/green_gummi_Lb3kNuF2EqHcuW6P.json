@@ -1,0 +1,31 @@
+{
+  "name": "Green Gummi",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Permanently raises IQ of Grass types by 5. Can be used to fill half your belly for today.",
+    "category": "gummies",
+    "price": 250
+  },
+  "effects": [],
+  "folder": "M4nON8JhXkGxExxT",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787022931145,
+    "modifiedTime": 1787022931145,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "Lb3kNuF2EqHcuW6P",
+  "sort": 0,
+  "_key": "!items!Lb3kNuF2EqHcuW6P"
+}

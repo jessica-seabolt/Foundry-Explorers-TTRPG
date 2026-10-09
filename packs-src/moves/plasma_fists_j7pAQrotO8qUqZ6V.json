@@ -1,0 +1,44 @@
+{
+  "name": "Plasma Fists",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/electric.png",
+  "system": {
+    "description": "For the remainder of this round, all Normal-type Moves become Electric-Type.",
+    "type": "electric",
+    "category": "physical",
+    "power": 4,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "HChq4ypo3fFL7WVd": "punch"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "aTItPw7LQBLJ3V5v",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787770216333,
+    "modifiedTime": 1787945140716,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "j7pAQrotO8qUqZ6V",
+  "sort": 2600000,
+  "_key": "!items!j7pAQrotO8qUqZ6V"
+}

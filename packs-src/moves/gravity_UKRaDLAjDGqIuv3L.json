@@ -1,0 +1,42 @@
+{
+  "name": "Gravity",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/psychic.png",
+  "system": {
+    "description": "Flying-type or Levitating PokÃƒÆ’Ã‚Â©mon can be hit by Ground-type moves. Moves that cause the User to fly can't be used. Fall damage increases by 2d6.",
+    "type": "psychic",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "all",
+    "range": "room",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "a0R9kRJnoJMgYQdT",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787039038107,
+    "modifiedTime": 1787039038107,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "UKRaDLAjDGqIuv3L",
+  "sort": 0,
+  "_key": "!items!UKRaDLAjDGqIuv3L"
+}

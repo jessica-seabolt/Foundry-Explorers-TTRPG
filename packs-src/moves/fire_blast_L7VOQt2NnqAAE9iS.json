@@ -1,0 +1,53 @@
+{
+  "name": "Fire Blast",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fire.png",
+  "system": {
+    "description": "Choose a location within 6 tiles. This move deals damage to Foes in a 1-tile range of that location.",
+    "type": "fire",
+    "category": "special",
+    "power": 3,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "P2FE0Hv13L7PFNkB": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "LMwBxKnjQAAEU6mc": {
+            "affectsUser": true,
+            "effect": "burned",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": null,
+    "range": "special",
+    "rangeCount": null,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "uP1U4IGXPrACdhAH",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787783555617,
+    "modifiedTime": 1787784347863,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "L7VOQt2NnqAAE9iS",
+  "sort": 1900000,
+  "_key": "!items!L7VOQt2NnqAAE9iS"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Air Slash",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/flying.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 6, the target is Flinched.",
+    "type": "flying",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "ueSltLQFLNeVfWLf": {
+        "triggerType": "d6",
+        "appliedEffects": {
+          "zjeDdsjTUmloJ97T": {
+            "affectsUser": false,
+            "effect": "flinched",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "tznRPpE8eFPVziFe": "slice"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786669091928,
+    "modifiedTime": 1787945490352,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "j5EAPSabxeR13xPR",
+  "sort": 1300000,
+  "_key": "!items!j5EAPSabxeR13xPR"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Ice Punch",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ice.png",
+  "system": {
+    "description": "",
+    "type": "ice",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "Eeu1flVl1eKZr9mj": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "TS3X5OWppBJAfw7N": {
+            "affectsUser": false,
+            "effect": "frozen",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "37w8tnbEnIazLhhw": "punch"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786954749485,
+    "modifiedTime": 1787945207350,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "OVT3Zi2I8mrpWelm",
+  "sort": 3300000,
+  "_key": "!items!OVT3Zi2I8mrpWelm"
+}

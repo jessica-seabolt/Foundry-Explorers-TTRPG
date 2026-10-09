@@ -1,0 +1,31 @@
+{
+  "name": "Heavy-Duty Boots",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "You cannot be affected by Spikes, Toxic Spikes, Stealth Rocks, or Traps.",
+    "category": "battleItems",
+    "price": 2500
+  },
+  "effects": [],
+  "folder": "Isb1KUmSvCXlrJwp",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787040025076,
+    "modifiedTime": 1787040211147,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "A8K2oGoxcoIzz445",
+  "sort": 1600000,
+  "_key": "!items!A8K2oGoxcoIzz445"
+}

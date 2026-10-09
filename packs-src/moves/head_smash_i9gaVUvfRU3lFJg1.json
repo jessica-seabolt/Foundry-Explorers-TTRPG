@@ -1,0 +1,44 @@
+{
+  "name": "Head Smash",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/rock.png",
+  "system": {
+    "description": "Deals half the damage dealt back to the User as Recoil.",
+    "type": "rock",
+    "category": "physical",
+    "power": 7,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "e5fQicznYwtd3i2i": "recoil"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "jGTHOTqt8TX69djw",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787886724367,
+    "modifiedTime": 1787886735949,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "i9gaVUvfRU3lFJg1",
+  "sort": 700000,
+  "_key": "!items!i9gaVUvfRU3lFJg1"
+}

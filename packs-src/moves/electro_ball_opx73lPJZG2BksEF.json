@@ -1,0 +1,44 @@
+{
+  "name": "Electro Ball",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/electric.png",
+  "system": {
+    "description": "Move power increases by 1 if faster than the target.",
+    "type": "electric",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "uQwleh5pAPf28sJT": "ballBomb"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786668416568,
+    "modifiedTime": 1787944281549,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "opx73lPJZG2BksEF",
+  "sort": 2700000,
+  "_key": "!items!opx73lPJZG2BksEF"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Headlong Rush",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ground.png",
+  "system": {
+    "description": "If the User attacks from 2-tiles away, they move 1 tile toward the target.",
+    "type": "ground",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "Sx7ThMUNlJHSivpK": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "F6y1REuVwNh33A6l": {
+            "affectsUser": false,
+            "effect": "defDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "tPCtniWMgHmIz0hZ": "punch"
+    },
+    "target": "foe",
+    "range": "away",
+    "rangeCount": 2,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "aTItPw7LQBLJ3V5v",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787781396962,
+    "modifiedTime": 1787945307682,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "TCD3dIPm2bolFqvf",
+  "sort": 1700000,
+  "_key": "!items!TCD3dIPm2bolFqvf"
+}

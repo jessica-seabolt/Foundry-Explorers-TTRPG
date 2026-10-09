@@ -1,0 +1,44 @@
+{
+  "name": "Stone Axe",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/rock.png",
+  "system": {
+    "description": "After damage is dealt, choose 3 tiles within 1-tile range of the target. Stealth Rocks are scattered at the chosen location(s).",
+    "type": "rock",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "tW1GGzDMKmIzGPot": "slice"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "aTItPw7LQBLJ3V5v",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787781929119,
+    "modifiedTime": 1787945590936,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "BZUYLHxzI3dOKPFI",
+  "sort": 1400000,
+  "_key": "!items!BZUYLHxzI3dOKPFI"
+}

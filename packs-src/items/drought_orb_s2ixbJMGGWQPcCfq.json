@@ -1,0 +1,31 @@
+{
+  "name": "Drought Orb",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Dries up all water and magma on floor.",
+    "category": "orbs",
+    "price": 200
+  },
+  "effects": [],
+  "folder": "nslHbFL6H8zczPA6",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787023667796,
+    "modifiedTime": 1787024347583,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "s2ixbJMGGWQPcCfq",
+  "sort": 2600000,
+  "_key": "!items!s2ixbJMGGWQPcCfq"
+}

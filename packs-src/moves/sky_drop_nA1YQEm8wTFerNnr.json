@@ -1,0 +1,58 @@
+{
+  "name": "Sky Drop",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/flying.png",
+  "system": {
+    "description": "User and target become Invulnerable for 1 turn, and then damages the target on the 2nd turn.",
+    "type": "flying",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "B2Sd9diFORgDwLm8": {
+        "triggerType": "flexible",
+        "appliedEffects": {
+          "iDcohL887mnvKt8x": {
+            "affectsUser": false,
+            "effect": "invulnerable",
+            "effectCount": null
+          },
+          "jLFAuSJCmJMo6I9R": {
+            "affectsUser": true,
+            "effect": "invulnerable",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786954271844,
+    "modifiedTime": 1787036850366,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "nA1YQEm8wTFerNnr",
+  "sort": 4500000,
+  "_key": "!items!nA1YQEm8wTFerNnr"
+}

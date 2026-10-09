@@ -1,0 +1,65 @@
+{
+  "name": "Jaw Lock",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dark.png",
+  "system": {
+    "description": "If the target is successfully Trapped, the User is also Restrained.",
+    "type": "dark",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "9BNWUsB8OJZva09p": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "uSoVqdNyCVVGimGp": {
+            "affectsUser": false,
+            "effect": "trapped",
+            "effectCount": null
+          }
+        }
+      },
+      "ImGe6Bhj5bsnw6Ew": {
+        "triggerType": "autoApplyOnStatus",
+        "appliedEffects": {
+          "BqiPdgeN1uPS7Xul": {
+            "affectsUser": true,
+            "effect": "restrained",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "JGgbxBo0mzve0752": "biting"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.2",
+    "createdTime": 1786952691206,
+    "modifiedTime": 1788124230470,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "OqH8hcziQEHL9tIB",
+  "sort": 7100000,
+  "_key": "!items!OqH8hcziQEHL9tIB"
+}

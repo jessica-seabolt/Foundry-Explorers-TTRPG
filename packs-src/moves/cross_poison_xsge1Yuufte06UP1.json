@@ -1,0 +1,45 @@
+{
+  "name": "Cross Poison",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/poison.png",
+  "system": {
+    "description": "Scores a Critical Hit on a 5-6.",
+    "type": "poison",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "hJLwqxzQRlHubhRf": "highCritRatio",
+      "Z7DiV9bF3QyOFVQA": "slice"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786955063161,
+    "modifiedTime": 1787945571261,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "xsge1Yuufte06UP1",
+  "sort": 2300000,
+  "_key": "!items!xsge1Yuufte06UP1"
+}

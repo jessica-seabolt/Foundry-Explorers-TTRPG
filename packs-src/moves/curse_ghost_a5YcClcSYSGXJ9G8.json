@@ -1,0 +1,53 @@
+{
+  "name": "Curse (Ghost)",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ghost.png",
+  "system": {
+    "description": "If User is Non-Ghost Type, Spe Down 2, Atk Up 2, Def Up 2. If User is Ghost Type, lose 1d6 health, but the target takes 1d6 damage per turn.",
+    "type": "ghost",
+    "category": "physicalStatus",
+    "power": 1,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "oMxlHPiV0Q3saywb": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "cTBUOPlbvaOIPWS2": {
+            "affectsUser": false,
+            "effect": "cursed",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "XcbyKlqd66doOyos",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786666904806,
+    "modifiedTime": 1786667928527,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "a5YcClcSYSGXJ9G8",
+  "sort": 1800000,
+  "_key": "!items!a5YcClcSYSGXJ9G8"
+}

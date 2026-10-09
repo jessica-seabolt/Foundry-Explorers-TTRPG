@@ -1,0 +1,31 @@
+{
+  "name": "Warp Scarf",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Every 10 steps, warps the bearer to elsewhere on the same floor.",
+    "category": "scarvesAndBands",
+    "price": null
+  },
+  "effects": [],
+  "folder": "flTbL5r9BQOlCHFW",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787036718376,
+    "modifiedTime": 1787036731372,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "Y5Xhsn7DRYYZqDGt",
+  "sort": 1700000,
+  "_key": "!items!Y5Xhsn7DRYYZqDGt"
+}

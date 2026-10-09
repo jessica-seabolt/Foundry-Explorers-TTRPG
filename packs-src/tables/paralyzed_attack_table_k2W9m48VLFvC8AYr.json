@@ -1,0 +1,84 @@
+{
+  "name": "Paralyzed Attack Table",
+  "_id": "k2W9m48VLFvC8AYr",
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "type": "text",
+      "weight": 2,
+      "range": [
+        1,
+        2
+      ],
+      "_id": "gP8dgGSFARgHtsmT",
+      "name": "The Pokémon does not use the move.",
+      "img": "icons/svg/d20-black.svg",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.2",
+        "createdTime": 1788125476625,
+        "modifiedTime": 1788125500975,
+        "lastModifiedBy": "MCdTXLOC9oShsYaY"
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!k2W9m48VLFvC8AYr.gP8dgGSFARgHtsmT"
+    },
+    {
+      "type": "text",
+      "weight": 4,
+      "range": [
+        3,
+        6
+      ],
+      "_id": "5ngRhgyQOulZ4VV7",
+      "name": "The Pokémon uses the move successfully.",
+      "img": "icons/svg/d20-black.svg",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.2",
+        "createdTime": 1788125477361,
+        "modifiedTime": 1788125525371,
+        "lastModifiedBy": "MCdTXLOC9oShsYaY"
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!k2W9m48VLFvC8AYr.5ngRhgyQOulZ4VV7"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.2",
+    "createdTime": 1788125474481,
+    "modifiedTime": 1788125515160,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "formula": "1d6",
+  "_key": "!tables!k2W9m48VLFvC8AYr"
+}

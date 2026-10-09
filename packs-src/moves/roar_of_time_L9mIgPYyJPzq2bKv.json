@@ -1,0 +1,53 @@
+{
+  "name": "Roar of Time",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dragon.png",
+  "system": {
+    "description": "",
+    "type": "dragon",
+    "category": "special",
+    "power": 4,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "T8oqGS24t7YeUcNG": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "G8k66iXaVJhv3X55": {
+            "affectsUser": false,
+            "effect": "restrained",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foes",
+    "range": "room",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "3Xjugd7wb0pfAayG",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787886888984,
+    "modifiedTime": 1787887873683,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "L9mIgPYyJPzq2bKv",
+  "sort": 2200000,
+  "_key": "!items!L9mIgPYyJPzq2bKv"
+}

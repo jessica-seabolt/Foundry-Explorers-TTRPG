@@ -1,0 +1,53 @@
+{
+  "name": "Charge Beam",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/electric.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 5-6, Sp.Atk Up 2.",
+    "type": "electric",
+    "category": "special",
+    "power": 1,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "HdB5CYSclWPKyJVc": {
+        "triggerType": "d56",
+        "appliedEffects": {
+          "udu9jeru6bHv5xFw": {
+            "affectsUser": true,
+            "effect": "spatkUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786668435510,
+    "modifiedTime": 1791559464859,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "pAx9FNOIlrR8cHc6",
+  "sort": 2400000,
+  "_key": "!items!pAx9FNOIlrR8cHc6"
+}

@@ -1,0 +1,31 @@
+{
+  "folder": "AR8CkbQgJHBqmhQ6",
+  "name": "Cracked Pot",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Evolves Phony Form Sinistea into Cracked Pot Polteageist.",
+    "category": "evolutionItems",
+    "price": 1000
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.2",
+    "createdTime": 1788126052279,
+    "modifiedTime": 1788126369233,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "7C1Y6X8HDV07Itmb",
+  "sort": 4200000,
+  "_key": "!items!7C1Y6X8HDV07Itmb"
+}

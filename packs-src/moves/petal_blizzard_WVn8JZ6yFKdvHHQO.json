@@ -1,0 +1,55 @@
+{
+  "name": "Petal Blizzard",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "",
+    "type": "grass",
+    "category": "physical",
+    "power": 4,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "tBq87L2KLZxX6tvC": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "5m0854PUD4E22IZQ": {
+            "affectsUser": false,
+            "effect": "blinded",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "UXyKT5i3f54Vi0GY": "wind"
+    },
+    "target": "foes",
+    "range": "room",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "jGTHOTqt8TX69djw",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787886057331,
+    "modifiedTime": 1787945798209,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "WVn8JZ6yFKdvHHQO",
+  "sort": 1300000,
+  "_key": "!items!WVn8JZ6yFKdvHHQO"
+}

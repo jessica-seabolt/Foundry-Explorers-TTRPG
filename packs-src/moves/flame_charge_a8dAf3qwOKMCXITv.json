@@ -1,0 +1,53 @@
+{
+  "name": "Flame Charge",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fire.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 5-6, Spe Up 2.",
+    "type": "fire",
+    "category": "physical",
+    "power": 1,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "hJ1g7erQzq1y4r27": {
+        "triggerType": "d56",
+        "appliedEffects": {
+          "Gb6cNc3oZ2Ecddrh": {
+            "affectsUser": true,
+            "effect": "speUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "lnwdZ55miiw6eO0F",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786620746772,
+    "modifiedTime": 1791559464858,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "a8dAf3qwOKMCXITv",
+  "sort": 700000,
+  "_key": "!items!a8dAf3qwOKMCXITv"
+}

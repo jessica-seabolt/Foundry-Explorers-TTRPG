@@ -1,0 +1,42 @@
+{
+  "name": "Flip Turn",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/water.png",
+  "system": {
+    "description": "User switches place with an ally within 2 tiles.",
+    "type": "water",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "gP3mTYHLybwN5ySr",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786665837712,
+    "modifiedTime": 1786669091988,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "KGNVMcvpyLrSYxHD",
+  "sort": 100000,
+  "_key": "!items!KGNVMcvpyLrSYxHD"
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Absorb",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "User heals for half the damage taken by the target.",
+    "type": "grass",
+    "category": "special",
+    "power": 1,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "GiFCB9AVSDGljpEV": "healHalf"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "BOw4zvVanVX05Dsh",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786623411279,
+    "modifiedTime": 1786623474913,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "eP0RHPPaCv81kkzi",
+  "sort": 300000,
+  "_key": "!items!eP0RHPPaCv81kkzi"
+}

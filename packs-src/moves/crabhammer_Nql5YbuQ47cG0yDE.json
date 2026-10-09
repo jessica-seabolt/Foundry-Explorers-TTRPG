@@ -1,0 +1,45 @@
+{
+  "name": "Crabhammer",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/water.png",
+  "system": {
+    "description": "Scores a Critical Hit on a 5-6.",
+    "type": "water",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "3QMYtyne7oDyNeOu": "highCritRatio",
+      "LbuS4Qh5C44Sp5ss": "punch"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786955857088,
+    "modifiedTime": 1787945341207,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "Nql5YbuQ47cG0yDE",
+  "sort": 600000,
+  "_key": "!items!Nql5YbuQ47cG0yDE"
+}

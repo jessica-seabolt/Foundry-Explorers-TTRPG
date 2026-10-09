@@ -1,0 +1,55 @@
+{
+  "name": "Self-Destruct",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "User is KO'd after using this Move.",
+    "type": "normal",
+    "category": "physical",
+    "power": 6,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "yvL3RIiIUj7USJpH": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "ovf4onqUHaJKzBg6": {
+            "affectsUser": true,
+            "effect": "instantKO",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "UoQHUzFFVVg3QSyw": "explosive"
+    },
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 1,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "aTItPw7LQBLJ3V5v",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787781684350,
+    "modifiedTime": 1787944941694,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "1M8uCeAsWkNqdyLb",
+  "sort": 1000000,
+  "_key": "!items!1M8uCeAsWkNqdyLb"
+}

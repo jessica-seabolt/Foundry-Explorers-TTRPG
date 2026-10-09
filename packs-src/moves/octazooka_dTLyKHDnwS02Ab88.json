@@ -1,0 +1,55 @@
+{
+  "name": "Octazooka",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/water.png",
+  "system": {
+    "description": "",
+    "type": "water",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "YUULAPsq0xNeuVn8": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "qb8uwulpvpZPMMWW": {
+            "affectsUser": false,
+            "effect": "blinded",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "Fx24H6ndgY6id23F": "ballBomb"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786669991722,
+    "modifiedTime": 1787944513596,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "dTLyKHDnwS02Ab88",
+  "sort": 0,
+  "_key": "!items!dTLyKHDnwS02Ab88"
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Mighty Cleave",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/rock.png",
+  "system": {
+    "description": "",
+    "type": "rock",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "ezcodsdcchsCjRGj": "slice"
+    },
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 1,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "aTItPw7LQBLJ3V5v",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787781877432,
+    "modifiedTime": 1787945596429,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "CFSNKn2XPMf50c3N",
+  "sort": 1300000,
+  "_key": "!items!CFSNKn2XPMf50c3N"
+}

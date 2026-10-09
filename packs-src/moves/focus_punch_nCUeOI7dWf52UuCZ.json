@@ -1,0 +1,44 @@
+{
+  "name": "Focus Punch",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fighting.png",
+  "system": {
+    "description": "Always goes last. This move fails if User is hit before using the move.",
+    "type": "fighting",
+    "category": "physical",
+    "power": 7,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "CMzoZmafq2ga0n2o": "punch"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "jGTHOTqt8TX69djw",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787885702149,
+    "modifiedTime": 1787945188275,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "nCUeOI7dWf52UuCZ",
+  "sort": 1600000,
+  "_key": "!items!nCUeOI7dWf52UuCZ"
+}

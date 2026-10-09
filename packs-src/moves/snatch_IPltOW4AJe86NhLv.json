@@ -1,0 +1,58 @@
+{
+  "name": "Snatch",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dark.png",
+  "system": {
+    "description": "Has Priority. Whenever a Pokemon in the Room heals or changes their Stats this turn, you steal it for yourself.",
+    "type": "dark",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "YUULAPsq0xNeuVn8": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "95zHb1eLIZLUqxoZ": {
+            "affectsUser": false,
+            "effect": "spatkUp",
+            "effectCount": 4
+          },
+          "0yia3Kb7sJx17Z8q": {
+            "affectsUser": false,
+            "effect": "snatch",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "rNRJ6uDlYy8UxN3I",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786670457601,
+    "modifiedTime": 1786671268496,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "IPltOW4AJe86NhLv",
+  "sort": 1300000,
+  "_key": "!items!IPltOW4AJe86NhLv"
+}

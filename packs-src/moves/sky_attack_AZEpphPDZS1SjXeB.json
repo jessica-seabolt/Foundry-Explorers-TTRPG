@@ -1,0 +1,65 @@
+{
+  "name": "Sky Attack",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/flying.png",
+  "system": {
+    "description": "Charges on the first turn, Restraining the User for 1 round. Attacks on the second turn. Scores a Critical Hit on a 5-6. Roll a d6 after damage has been dealt. On a 6, the target is Flinched.",
+    "type": "flying",
+    "category": "physical",
+    "power": 5,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "tBq87L2KLZxX6tvC": {
+        "triggerType": "flexible",
+        "appliedEffects": {
+          "5m0854PUD4E22IZQ": {
+            "affectsUser": true,
+            "effect": "restrained",
+            "effectCount": null
+          }
+        }
+      },
+      "um0tvRH8MT3sESKV": {
+        "triggerType": "d6",
+        "appliedEffects": {
+          "rebqlJG6OnTKmQtn": {
+            "affectsUser": false,
+            "effect": "flinched",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "iXXNAUvUjkkNrMjZ": "highCritRatio"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 6,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "jGTHOTqt8TX69djw",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787885799381,
+    "modifiedTime": 1787886735949,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "AZEpphPDZS1SjXeB",
+  "sort": 1000000,
+  "_key": "!items!AZEpphPDZS1SjXeB"
+}

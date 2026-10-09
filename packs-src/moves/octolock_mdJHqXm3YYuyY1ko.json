@@ -1,0 +1,73 @@
+{
+  "name": "Octolock",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fighting.png",
+  "system": {
+    "description": "User is also Restrained. At the beginning of each turn the target takes whilst Restrained, Def Down 2, Sp. Def Down 2.",
+    "type": "fighting",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "NXa1oJXMlrZBj1Hx": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "AouZoK3o9tOKEvSo": {
+            "affectsUser": false,
+            "effect": "restrained",
+            "effectCount": null
+          },
+          "U1lJfJvpUADY8ijO": {
+            "affectsUser": true,
+            "effect": "restrained",
+            "effectCount": null
+          }
+        }
+      },
+      "cK9Hq4WZ0TylSVdj": {
+        "triggerType": "flexible",
+        "appliedEffects": {
+          "rgMmrpbsrXGy2x1O": {
+            "affectsUser": false,
+            "effect": "defDown",
+            "effectCount": 2
+          },
+          "6lpu2ng7GyItutxZ": {
+            "affectsUser": false,
+            "effect": "spdefDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786956498803,
+    "modifiedTime": 1786957163947,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "mdJHqXm3YYuyY1ko",
+  "sort": 1600000,
+  "_key": "!items!mdJHqXm3YYuyY1ko"
+}

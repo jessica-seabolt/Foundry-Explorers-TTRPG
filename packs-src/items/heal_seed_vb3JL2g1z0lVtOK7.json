@@ -1,0 +1,31 @@
+{
+  "name": "Heal Seed",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Heals all Status Conditions, fills Belly by 20.",
+    "category": "seeds",
+    "price": 50
+  },
+  "effects": [],
+  "folder": "uePSqJtUuLeN0nr5",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787023174764,
+    "modifiedTime": 1787023343900,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "vb3JL2g1z0lVtOK7",
+  "sort": 1100000,
+  "_key": "!items!vb3JL2g1z0lVtOK7"
+}

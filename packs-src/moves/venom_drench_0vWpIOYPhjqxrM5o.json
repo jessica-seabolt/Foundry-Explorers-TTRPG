@@ -1,0 +1,63 @@
+{
+  "name": "Venom Drench",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/poison.png",
+  "system": {
+    "description": "Target must be Poisoned.",
+    "type": "poison",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "j4kNF5oxijOylLgw": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "PHsSbQwsXiCrjW1a": {
+            "affectsUser": false,
+            "effect": "atkDown",
+            "effectCount": 2
+          },
+          "JwMWD1uVJRsVNF9F": {
+            "affectsUser": false,
+            "effect": "spatkDown",
+            "effectCount": 2
+          },
+          "3GV8mmPARiSkeQu3": {
+            "affectsUser": false,
+            "effect": "speDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "a0R9kRJnoJMgYQdT",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787038986574,
+    "modifiedTime": 1787038986574,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "0vWpIOYPhjqxrM5o",
+  "sort": 0,
+  "_key": "!items!0vWpIOYPhjqxrM5o"
+}

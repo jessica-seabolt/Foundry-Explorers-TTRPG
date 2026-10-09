@@ -1,0 +1,53 @@
+{
+  "name": "Waterfall",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/water.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 6, the target is Flinched.",
+    "type": "water",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "wYvHJlw5nf9aS2Pk": {
+        "triggerType": "d6",
+        "appliedEffects": {
+          "VankqE3QsHX7exz3": {
+            "affectsUser": false,
+            "effect": "flinched",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "JG9Oc4qLAwpQ1qKO",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786955634556,
+    "modifiedTime": 1786955634556,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "yDtAmpZ97AgmLF5F",
+  "sort": 0,
+  "_key": "!items!yDtAmpZ97AgmLF5F"
+}

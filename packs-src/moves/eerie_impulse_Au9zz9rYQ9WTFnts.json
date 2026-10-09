@@ -1,0 +1,53 @@
+{
+  "name": "Eerie Impulse",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/electric.png",
+  "system": {
+    "description": "",
+    "type": "electric",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "NXa1oJXMlrZBj1Hx": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "AouZoK3o9tOKEvSo": {
+            "affectsUser": false,
+            "effect": "spatkDown",
+            "effectCount": 6
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "away",
+    "rangeCount": 2,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786956197226,
+    "modifiedTime": 1786957163947,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "Au9zz9rYQ9WTFnts",
+  "sort": 2200000,
+  "_key": "!items!Au9zz9rYQ9WTFnts"
+}

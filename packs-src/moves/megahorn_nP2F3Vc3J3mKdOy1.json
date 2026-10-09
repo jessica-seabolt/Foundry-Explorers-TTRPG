@@ -1,0 +1,53 @@
+{
+  "name": "Megahorn",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/bug.png",
+  "system": {
+    "description": "Target is pushed 6 tiles away. If they collide with a wall or a PokÃ©mon, they take 1d6 damage.",
+    "type": "bug",
+    "category": "physical",
+    "power": 4,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "mjwc17iMkCI2MBY0": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "GdEAVUsxC1qJK9BR": {
+            "affectsUser": false,
+            "effect": "push",
+            "effectCount": 6
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "aTItPw7LQBLJ3V5v",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787769176668,
+    "modifiedTime": 1787782036189,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "nP2F3Vc3J3mKdOy1",
+  "sort": 2900000,
+  "_key": "!items!nP2F3Vc3J3mKdOy1"
+}

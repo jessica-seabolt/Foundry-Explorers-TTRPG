@@ -1,0 +1,53 @@
+{
+  "name": "Water Sport",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/water.png",
+  "system": {
+    "description": "Fire type moves deal half damage for 5 turns.",
+    "type": "water",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "rKhQQcuvB9Zr563c": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "ULwaKwONeYfLx7eR": {
+            "affectsUser": false,
+            "effect": "waterSport",
+            "effectCount": 5
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "all",
+    "range": "room",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "j0b94qoNZhbif16j",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786624969343,
+    "modifiedTime": 1786663626180,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "dscXaNJ8lyUG2foe",
+  "sort": 0,
+  "_key": "!items!dscXaNJ8lyUG2foe"
+}

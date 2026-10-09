@@ -1,0 +1,65 @@
+{
+  "name": "Quiver Dance",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/bug.png",
+  "system": {
+    "description": "",
+    "type": "bug",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "pkgrqDedeRMSzACN": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "QdSrCuT6e4N1ZE04": {
+            "affectsUser": false,
+            "effect": "spatkUp",
+            "effectCount": 2
+          },
+          "T0wSmzDGuVulsRFu": {
+            "affectsUser": false,
+            "effect": "spdefUp",
+            "effectCount": 2
+          },
+          "Frt19uz6g8ICo0QZ": {
+            "affectsUser": false,
+            "effect": "speUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "z9Xx6IEO8XVq33wE": "dance"
+    },
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "a0R9kRJnoJMgYQdT",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787038274936,
+    "modifiedTime": 1787944640671,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "7F76HFoF40JGtlJQ",
+  "sort": 1700000,
+  "_key": "!items!7F76HFoF40JGtlJQ"
+}

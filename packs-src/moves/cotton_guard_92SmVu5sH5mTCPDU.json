@@ -1,0 +1,53 @@
+{
+  "name": "Cotton Guard",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "",
+    "type": "grass",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "oMxlHPiV0Q3saywb": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "cTBUOPlbvaOIPWS2": {
+            "affectsUser": false,
+            "effect": "defUp",
+            "effectCount": 4
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "XcbyKlqd66doOyos",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786667016098,
+    "modifiedTime": 1786667928527,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "92SmVu5sH5mTCPDU",
+  "sort": 1900000,
+  "_key": "!items!92SmVu5sH5mTCPDU"
+}

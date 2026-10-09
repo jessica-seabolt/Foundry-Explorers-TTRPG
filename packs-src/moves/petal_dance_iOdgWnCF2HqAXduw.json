@@ -1,0 +1,55 @@
+{
+  "name": "Petal Dance",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "Roll a d6. On a 1-2, the target is hit 1 time. On a 3-4, the target is hit 2 times. On a 5-6, the target is hit 3 times. User is Confused for 1 turn afterwards.",
+    "type": "grass",
+    "category": "special",
+    "power": 5,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "l3MXuTHGSYanW4r9": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "QcYaGtQhk5Qui15t": {
+            "affectsUser": true,
+            "effect": "confused",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "1W29d2FfX2VT45mi": "dance"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "uP1U4IGXPrACdhAH",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787783703840,
+    "modifiedTime": 1787944690204,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "iOdgWnCF2HqAXduw",
+  "sort": 1000000,
+  "_key": "!items!iOdgWnCF2HqAXduw"
+}

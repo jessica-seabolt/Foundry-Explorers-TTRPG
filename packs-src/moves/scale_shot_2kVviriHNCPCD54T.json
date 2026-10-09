@@ -1,0 +1,44 @@
+{
+  "name": "Scale Shot",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dragon.png",
+  "system": {
+    "description": "Roll a d6. This move attacks that many times. Reroll 6's.",
+    "type": "dragon",
+    "category": "physical",
+    "power": 1,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "jBuEZaAtPon5CFq5": "multihit"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786953364991,
+    "modifiedTime": 1787036850366,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "2kVviriHNCPCD54T",
+  "sort": 6800000,
+  "_key": "!items!2kVviriHNCPCD54T"
+}

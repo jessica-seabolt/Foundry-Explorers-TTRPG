@@ -1,0 +1,55 @@
+{
+  "name": "Quick Guard",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fighting.png",
+  "system": {
+    "description": "The user protects itself and its allies from priority moves this turn.",
+    "type": "fighting",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "NXa1oJXMlrZBj1Hx": {
+        "triggerType": "flexible",
+        "appliedEffects": {
+          "AouZoK3o9tOKEvSo": {
+            "affectsUser": false,
+            "effect": "quickGuarded",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "qMBrcxvSk7zxSx3l": "priority"
+    },
+    "target": "selfAllies",
+    "range": "away",
+    "rangeCount": 2,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786956405201,
+    "modifiedTime": 1786957163947,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "6ArFgsfcbRVUadJ4",
+  "sort": 1500000,
+  "_key": "!items!6ArFgsfcbRVUadJ4"
+}

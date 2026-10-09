@@ -1,0 +1,31 @@
+{
+  "name": "Gravelerock",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Arcs and hits target for 2d6 damage Deals damage as Rock Type.",
+    "category": "thrownItems",
+    "price": 10
+  },
+  "effects": [],
+  "folder": "Gyv3hr6CX8Rs1589",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787040770784,
+    "modifiedTime": 1787040833496,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "GCfEmZ0flcpHP9Hu",
+  "sort": 700000,
+  "_key": "!items!GCfEmZ0flcpHP9Hu"
+}

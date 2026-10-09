@@ -1,0 +1,63 @@
+{
+  "name": "V-Create",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fire.png",
+  "system": {
+    "description": "After damage has been dealt, User's Def Down 4, Sp. Def Down 4, Spe Down 4.",
+    "type": "fire",
+    "category": "physical",
+    "power": 7,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "tBq87L2KLZxX6tvC": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "kg5Y2WfES8X5bGIv": {
+            "affectsUser": true,
+            "effect": "defDown",
+            "effectCount": 4
+          },
+          "L43r9rclUcvfKy5k": {
+            "affectsUser": true,
+            "effect": "spdefDown",
+            "effectCount": 4
+          },
+          "5m0854PUD4E22IZQ": {
+            "affectsUser": true,
+            "effect": "speDown",
+            "effectCount": 4
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "jGTHOTqt8TX69djw",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787885739938,
+    "modifiedTime": 1787886735949,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "0p6IRRkpuusaIvWK",
+  "sort": 800000,
+  "_key": "!items!0p6IRRkpuusaIvWK"
+}

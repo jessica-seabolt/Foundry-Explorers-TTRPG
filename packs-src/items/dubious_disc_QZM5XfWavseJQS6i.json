@@ -1,0 +1,31 @@
+{
+  "folder": "AR8CkbQgJHBqmhQ6",
+  "name": "Dubious Disc",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Evolves Porygon2 into Porygon-Z.",
+    "category": "evolutionItems",
+    "price": 1000
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.2",
+    "createdTime": 1788126091597,
+    "modifiedTime": 1788126369233,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "QZM5XfWavseJQS6i",
+  "sort": 3500000,
+  "_key": "!items!QZM5XfWavseJQS6i"
+}

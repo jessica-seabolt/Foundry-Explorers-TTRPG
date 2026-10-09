@@ -1,0 +1,42 @@
+{
+  "name": "Rollout",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/rock.png",
+  "system": {
+    "description": "Roll in a direction until you hit a wall, hitting any target in the path. This move must be used for 4 turns consecutively. Move power increases by 1 for each use until it ends. This move ends if you do not hit a PokÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©mon.",
+    "type": "rock",
+    "category": "physical",
+    "power": 1,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "all",
+    "range": "path",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786955408761,
+    "modifiedTime": 1787036850366,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "X2QMUkFxT5UwrXft",
+  "sort": 800000,
+  "_key": "!items!X2QMUkFxT5UwrXft"
+}

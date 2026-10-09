@@ -1,0 +1,31 @@
+{
+  "name": "Scope Lens",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "All your Moves score a Critical Hit on a 5-6.",
+    "category": "scopes",
+    "price": 5000
+  },
+  "effects": [],
+  "folder": "Ur1Tb7VuUE9rPmbA",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787039735402,
+    "modifiedTime": 1787039763535,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "YI4rTv7wFXi9JRmN",
+  "sort": 100000,
+  "_key": "!items!YI4rTv7wFXi9JRmN"
+}

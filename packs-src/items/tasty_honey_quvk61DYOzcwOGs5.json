@@ -1,0 +1,31 @@
+{
+  "name": "Tasty Honey",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Can be used to fill half your belly for today.",
+    "category": "foods",
+    "price": 25
+  },
+  "effects": [],
+  "folder": "XJqLVT4pGPp0Z0xQ",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787021916659,
+    "modifiedTime": 1787022720179,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "quvk61DYOzcwOGs5",
+  "sort": 600000,
+  "_key": "!items!quvk61DYOzcwOGs5"
+}

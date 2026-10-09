@@ -1,0 +1,44 @@
+{
+  "name": "Shadow Punch",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ghost.png",
+  "system": {
+    "description": "Has Priority.",
+    "type": "ghost",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "UiNgC3X97E5KUGUy": "punch"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786954331749,
+    "modifiedTime": 1787945200987,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "HJiW7RpcvD70WuMZ",
+  "sort": 4700000,
+  "_key": "!items!HJiW7RpcvD70WuMZ"
+}

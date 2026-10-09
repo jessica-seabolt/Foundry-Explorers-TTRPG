@@ -1,0 +1,53 @@
+{
+  "name": "Mud-Slap",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ground.png",
+  "system": {
+    "description": "",
+    "type": "ground",
+    "category": "special",
+    "power": 1,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "x3OLb7fn7KxuZME2": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "DpKqZPk68QofdBPz": {
+            "affectsUser": false,
+            "effect": "blinded",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "BOw4zvVanVX05Dsh",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786623474874,
+    "modifiedTime": 1786623474913,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "4igNoIbvgq7toHWi",
+  "sort": 200000,
+  "_key": "!items!4igNoIbvgq7toHWi"
+}

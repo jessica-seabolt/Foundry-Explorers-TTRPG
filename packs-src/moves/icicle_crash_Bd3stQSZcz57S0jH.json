@@ -1,0 +1,53 @@
+{
+  "name": "Icicle Crash",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ice.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 6, the target is Flinched.",
+    "type": "ice",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "ZN8wO9wfowYV5Rii": {
+        "triggerType": "d6",
+        "appliedEffects": {
+          "1s8O3pgjMrrFKCzR": {
+            "affectsUser": false,
+            "effect": "flinched",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786954771499,
+    "modifiedTime": 1787036850366,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "Bd3stQSZcz57S0jH",
+  "sort": 3400000,
+  "_key": "!items!Bd3stQSZcz57S0jH"
+}

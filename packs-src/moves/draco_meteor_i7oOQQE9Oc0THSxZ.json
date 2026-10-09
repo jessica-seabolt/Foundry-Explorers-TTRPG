@@ -1,0 +1,53 @@
+{
+  "name": "Draco Meteor",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dragon.png",
+  "system": {
+    "description": "After damage has been dealt, User's Sp.Atk Down 4.",
+    "type": "dragon",
+    "category": "special",
+    "power": 5,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "s9zV9LO5RS36ee8t": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "ArV1C1gkRLivJpab": {
+            "affectsUser": true,
+            "effect": "spatkDown",
+            "effectCount": 4
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "away",
+    "rangeCount": 6,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "uP1U4IGXPrACdhAH",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787782480861,
+    "modifiedTime": 1787784347863,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "i7oOQQE9Oc0THSxZ",
+  "sort": 1300000,
+  "_key": "!items!i7oOQQE9Oc0THSxZ"
+}

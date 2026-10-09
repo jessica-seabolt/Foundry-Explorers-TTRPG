@@ -1,0 +1,55 @@
+{
+  "name": "Psychic Noise",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/psychic.png",
+  "system": {
+    "description": "",
+    "type": "psychic",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "gcEGgnWlfV15pKFF": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "u8v8zLafkGgigLfr": {
+            "affectsUser": false,
+            "effect": "silenced",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "9gmj6HXV2bgQhd98": "sound"
+    },
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 1,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786955200970,
+    "modifiedTime": 1787944927377,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "i0atcO3l9nWUyje6",
+  "sort": 2500000,
+  "_key": "!items!i0atcO3l9nWUyje6"
+}

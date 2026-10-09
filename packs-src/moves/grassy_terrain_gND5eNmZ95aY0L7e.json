@@ -1,0 +1,53 @@
+{
+  "name": "Grassy Terrain",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "Alliies heal 1d6 at the start of their turn, and Grass type-moves increase in Move Power by 1.",
+    "type": "grass",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "QVxhmqbUq76hnjMp": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "gGsuwFL9qjB72JXg": {
+            "affectsUser": false,
+            "effect": "grassyTerrain",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "allies",
+    "range": "room",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "a0R9kRJnoJMgYQdT",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.3",
+    "createdTime": 1787038605777,
+    "modifiedTime": 1788149332119,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "gND5eNmZ95aY0L7e",
+  "sort": 300000,
+  "_key": "!items!gND5eNmZ95aY0L7e"
+}

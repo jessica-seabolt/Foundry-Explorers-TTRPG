@@ -1,0 +1,31 @@
+{
+  "name": "Silver Spike",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Hits target for 3d6 damage. Deals damage as Steel Type. Thrown in a straight line.",
+    "category": "thrownItems",
+    "price": 25
+  },
+  "effects": [],
+  "folder": "Gyv3hr6CX8Rs1589",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787040843673,
+    "modifiedTime": 1787040843673,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "KrJRvYfgs20N3CeK",
+  "sort": 0,
+  "_key": "!items!KrJRvYfgs20N3CeK"
+}

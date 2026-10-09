@@ -1,0 +1,42 @@
+{
+  "name": "Stealth Rock",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/rock.png",
+  "system": {
+    "description": "The user places rocks on 3 tiles in a 2-tile radius that damages if the Pokemon occupies the same tile. Can deal supereffective/not very effective damage.",
+    "type": "rock",
+    "category": "physicalStatus",
+    "power": 1,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": null,
+    "range": "special",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "ip7KRqxa5gYu2yTu",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786622997562,
+    "modifiedTime": 1786622997562,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "KpDNlx7wJCRyQ5OH",
+  "sort": 0,
+  "_key": "!items!KpDNlx7wJCRyQ5OH"
+}

@@ -1,0 +1,53 @@
+{
+  "name": "Rock Smash",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fighting.png",
+  "system": {
+    "description": "Breaks Walls.",
+    "type": "fighting",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "dHXbRMCU2CENJ5n6": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "HKZnUkcHOy6wmz2T": {
+            "affectsUser": false,
+            "effect": "defDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "gP3mTYHLybwN5ySr",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786664496708,
+    "modifiedTime": 1786669091988,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "nwcXw7N420s1t5AF",
+  "sort": 3100000,
+  "_key": "!items!nwcXw7N420s1t5AF"
+}

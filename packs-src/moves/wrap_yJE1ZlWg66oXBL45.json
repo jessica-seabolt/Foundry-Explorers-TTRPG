@@ -1,0 +1,63 @@
+{
+  "name": "Wrap",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "If the target is successfully Trapped, the User is also Restrained.",
+    "type": "normal",
+    "category": "physical",
+    "power": 1,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "DWebGztdJ6e0GeZ1": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "VPWBcPbNTtnOossn": {
+            "affectsUser": false,
+            "effect": "trapped",
+            "effectCount": null
+          }
+        }
+      },
+      "7jNecoNT5ktbvJQx": {
+        "triggerType": "autoApplyOnStatus",
+        "appliedEffects": {
+          "JmFVk1OrIpTlpX8r": {
+            "affectsUser": true,
+            "effect": "restrained",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "lnwdZ55miiw6eO0F",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.2",
+    "createdTime": 1786621119925,
+    "modifiedTime": 1788124248940,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "yJE1ZlWg66oXBL45",
+  "sort": 600000,
+  "_key": "!items!yJE1ZlWg66oXBL45"
+}

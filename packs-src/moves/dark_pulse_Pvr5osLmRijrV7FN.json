@@ -1,0 +1,55 @@
+{
+  "name": "Dark Pulse",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dark.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 6, the target(s) is Flinched.",
+    "type": "dark",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "txwJCEHp1SUx4cBJ": {
+        "triggerType": "d6",
+        "appliedEffects": {
+          "2ncZ6paJutT6UW4N": {
+            "affectsUser": false,
+            "effect": "flinched",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "CE4U6pftjMVHshXv": "pulse"
+    },
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 1,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786668354308,
+    "modifiedTime": 1787945061033,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "Pvr5osLmRijrV7FN",
+  "sort": 2900000,
+  "_key": "!items!Pvr5osLmRijrV7FN"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Zap Cannon",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/electric.png",
+  "system": {
+    "description": "",
+    "type": "electric",
+    "category": "special",
+    "power": 4,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "s9zV9LO5RS36ee8t": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "ArV1C1gkRLivJpab": {
+            "affectsUser": false,
+            "effect": "paralyzed",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "Fx7D9ZiNPWTTxZIn": "ballBomb"
+    },
+    "target": "foe",
+    "range": "away",
+    "rangeCount": 6,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "uP1U4IGXPrACdhAH",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787782502936,
+    "modifiedTime": 1787944291073,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "jTPVmhVsSBKsP3Ue",
+  "sort": 1400000,
+  "_key": "!items!jTPVmhVsSBKsP3Ue"
+}

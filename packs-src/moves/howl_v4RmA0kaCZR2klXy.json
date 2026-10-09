@@ -1,0 +1,55 @@
+{
+  "name": "Howl",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "",
+    "type": "normal",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "T3zsjtbtGkXxyCIH": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "g2HLKqqDmcDMVINT": {
+            "affectsUser": false,
+            "effect": "atkUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "jxB6jVYlywUy74MY": "sound"
+    },
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "ip7KRqxa5gYu2yTu",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786622835957,
+    "modifiedTime": 1787944859773,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "v4RmA0kaCZR2klXy",
+  "sort": 500000,
+  "_key": "!items!v4RmA0kaCZR2klXy"
+}

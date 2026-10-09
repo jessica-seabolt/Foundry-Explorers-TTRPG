@@ -1,0 +1,31 @@
+{
+  "name": "Eyedrop Seed",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Gives Eyedrop status.",
+    "category": "seeds",
+    "price": 75
+  },
+  "effects": [],
+  "folder": "uePSqJtUuLeN0nr5",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787023125538,
+    "modifiedTime": 1787023343900,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "lZrgg7JWKpEYSo05",
+  "sort": 900000,
+  "_key": "!items!lZrgg7JWKpEYSo05"
+}

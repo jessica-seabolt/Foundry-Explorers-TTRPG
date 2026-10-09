@@ -1,0 +1,55 @@
+{
+  "name": "Blizzard",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ice.png",
+  "system": {
+    "description": "Move Power increases by 1 in a Snowstorm.",
+    "type": "ice",
+    "category": "special",
+    "power": 4,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "tSuL3MNagVnj7uNT": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "Fqhc78uu1rQRyMCI": {
+            "affectsUser": false,
+            "effect": "frozen",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "UAyJvqJUsVZ2cCuz": "wind"
+    },
+    "target": "foes",
+    "range": "room",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "3Xjugd7wb0pfAayG",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787887956862,
+    "modifiedTime": 1787945802504,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "Yq3Mio4ghBSBeCWb",
+  "sort": 0,
+  "_key": "!items!Yq3Mio4ghBSBeCWb"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "X-Ray Specs",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Enables Pokémon to see through walls.",
+    "category": "scopes",
+    "price": 5000
+  },
+  "effects": [],
+  "folder": "Ur1Tb7VuUE9rPmbA",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787039774411,
+    "modifiedTime": 1787039774411,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "WP68qJgfuwPUgPZl",
+  "sort": 0,
+  "_key": "!items!WP68qJgfuwPUgPZl"
+}

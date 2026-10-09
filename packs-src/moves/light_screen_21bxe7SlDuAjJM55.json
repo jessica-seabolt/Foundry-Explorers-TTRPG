@@ -1,0 +1,42 @@
+{
+  "name": "Light Screen",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/psychic.png",
+  "system": {
+    "description": "Conjure a Light Screen in front of you that is 5 tiles long and 1 tile wide for 5 turns. Special Moves from foes that pass through this barrier deal half damage.",
+    "type": "psychic",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": null,
+    "range": "special",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "a0R9kRJnoJMgYQdT",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787039100893,
+    "modifiedTime": 1787039100893,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "21bxe7SlDuAjJM55",
+  "sort": 0,
+  "_key": "!items!21bxe7SlDuAjJM55"
+}

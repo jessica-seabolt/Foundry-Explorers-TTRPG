@@ -1,0 +1,53 @@
+{
+  "name": "Magnet Rise",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/electric.png",
+  "system": {
+    "description": "User gains Levitate for 5 turns.",
+    "type": "electric",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "YUULAPsq0xNeuVn8": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "95zHb1eLIZLUqxoZ": {
+            "affectsUser": false,
+            "effect": "levitating",
+            "effectCount": 5
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "rNRJ6uDlYy8UxN3I",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786670480236,
+    "modifiedTime": 1786671268496,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "7ggCorh3EElwPI0J",
+  "sort": 1400000,
+  "_key": "!items!7ggCorh3EElwPI0J"
+}

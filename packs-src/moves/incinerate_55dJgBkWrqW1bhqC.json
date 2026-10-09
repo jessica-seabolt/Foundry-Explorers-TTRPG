@@ -1,0 +1,42 @@
+{
+  "name": "Incinerate",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fire.png",
+  "system": {
+    "description": "Burns up the target's held Berry.",
+    "type": "fire",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786669073882,
+    "modifiedTime": 1786669983852,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "55dJgBkWrqW1bhqC",
+  "sort": 2000000,
+  "_key": "!items!55dJgBkWrqW1bhqC"
+}

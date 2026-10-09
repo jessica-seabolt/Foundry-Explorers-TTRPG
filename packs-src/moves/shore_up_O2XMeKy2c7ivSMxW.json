@@ -1,0 +1,44 @@
+{
+  "name": "Shore Up",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ground.png",
+  "system": {
+    "description": "User heals for the amount rolled. Healing increases by 2d6 in Sandstorm.",
+    "type": "ground",
+    "category": "physicalStatus",
+    "power": 3,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "EG4hqUCG1wEYHmid": "healPower"
+    },
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786956642728,
+    "modifiedTime": 1786957163947,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "O2XMeKy2c7ivSMxW",
+  "sort": 600000,
+  "_key": "!items!O2XMeKy2c7ivSMxW"
+}

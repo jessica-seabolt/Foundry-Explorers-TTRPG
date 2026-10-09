@@ -1,0 +1,44 @@
+{
+  "name": "Ceaseless Edge",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dark.png",
+  "system": {
+    "description": "After damage is dealt, choose 3 tiles within 1-tile range of the target. Spikes are scattered at the chosen location(s).",
+    "type": "dark",
+    "category": "physical",
+    "power": 4,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "xgOtpr7ZKhLaJOdu": "slice"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "aTItPw7LQBLJ3V5v",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787769232116,
+    "modifiedTime": 1787945450050,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "ZfwVa1JTkm2XblIH",
+  "sort": 3100000,
+  "_key": "!items!ZfwVa1JTkm2XblIH"
+}

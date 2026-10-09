@@ -1,0 +1,53 @@
+{
+  "name": "Glaive Rush",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dragon.png",
+  "system": {
+    "description": "User moves 6 tiles ahead, taking any Foe in their path with them. Any Foe hit in the charge takes the damage rolled. User takes double damage from Moves afterwards for 1 round.",
+    "type": "dragon",
+    "category": "physical",
+    "power": 6,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "GbPPCehBWrA2n0aM": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "F9omUbgYXT8wY74E": {
+            "affectsUser": true,
+            "effect": "doubleDamage",
+            "effectCount": 1
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "all",
+    "range": "path",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "jGTHOTqt8TX69djw",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787885594549,
+    "modifiedTime": 1787886735949,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "dfCugFeG27NcnKil",
+  "sort": 1800000,
+  "_key": "!items!dfCugFeG27NcnKil"
+}

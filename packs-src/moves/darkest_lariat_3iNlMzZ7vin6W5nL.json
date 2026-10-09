@@ -1,0 +1,42 @@
+{
+  "name": "Darkest Lariat",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dark.png",
+  "system": {
+    "description": "Ignores changes to the target's Defense.",
+    "type": "dark",
+    "category": "physical",
+    "power": 4,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "aTItPw7LQBLJ3V5v",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787769294392,
+    "modifiedTime": 1787782036189,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "3iNlMzZ7vin6W5nL",
+  "sort": 3200000,
+  "_key": "!items!3iNlMzZ7vin6W5nL"
+}

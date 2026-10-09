@@ -1,0 +1,31 @@
+{
+  "name": "Storage Orb",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Allows you to access your Storage.",
+    "category": "orbs",
+    "price": 150
+  },
+  "effects": [],
+  "folder": "nslHbFL6H8zczPA6",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787024259268,
+    "modifiedTime": 1787024347583,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "rOe4UTO3EybOdhQ6",
+  "sort": 700000,
+  "_key": "!items!rOe4UTO3EybOdhQ6"
+}

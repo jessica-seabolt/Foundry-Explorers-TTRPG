@@ -1,0 +1,42 @@
+{
+  "name": "Reflect",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/psychic.png",
+  "system": {
+    "description": "Conjure a Reflect Screen in front of you that is 5 tiles long and 1 tile wide for 5 turns. Physical Moves from foes that pass through this barrier deal half damage.",
+    "type": "psychic",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": null,
+    "range": "special",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786957347816,
+    "modifiedTime": 1786957347816,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "bP4S0TnuAR2Xbepd",
+  "sort": 0,
+  "_key": "!items!bP4S0TnuAR2Xbepd"
+}

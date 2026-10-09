@@ -1,0 +1,81 @@
+{
+  "name": "Clangorous Soul",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dragon.png",
+  "system": {
+    "description": "Deals damage to User based on the number rolled.",
+    "type": "dragon",
+    "category": "physicalStatus",
+    "power": 3,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "dctkl3HXx2ywr9An": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "xkV1QZXSBbkvepOy": {
+            "affectsUser": false,
+            "effect": "atkUp",
+            "effectCount": 2
+          },
+          "gYzZcoBA5Wzcb7Bq": {
+            "affectsUser": false,
+            "effect": "defUp",
+            "effectCount": 2
+          },
+          "BpslL7xwYXy7Kfyq": {
+            "affectsUser": false,
+            "effect": "spatkUp",
+            "effectCount": 2
+          },
+          "xZb6lJm4bYUyPxTJ": {
+            "affectsUser": false,
+            "effect": "spdefUp",
+            "effectCount": 2
+          },
+          "QRntxnqIulSwJYQF": {
+            "affectsUser": false,
+            "effect": "speUp",
+            "effectCount": 2
+          },
+          "kRY8p6bvmFcUrDSj": {
+            "affectsUser": false,
+            "effect": "iqUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "NM0XxV91ExXcukuo": "dance",
+      "WScJI9o3kuGkqWgV": "sound"
+    },
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786956154652,
+    "modifiedTime": 1787944784508,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "GQBsiW9gdGdJsu0D",
+  "sort": 2000000,
+  "_key": "!items!GQBsiW9gdGdJsu0D"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Custap Berry",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "When held, you can eat the Berry as a Reaction when a Round of Battle begins. For this round, your Moves have Priority.",
+    "category": "berries",
+    "price": 250
+  },
+  "effects": [],
+  "folder": "74Pg5VCRPbJ17HpK",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787022641886,
+    "modifiedTime": 1787022667093,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "Uq6faar1hLk5Wvtz",
+  "sort": 125000,
+  "_key": "!items!Uq6faar1hLk5Wvtz"
+}

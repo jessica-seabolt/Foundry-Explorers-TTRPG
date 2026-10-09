@@ -1,0 +1,42 @@
+{
+  "name": "Power Whip",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "Target is pulled up to 3 tiles to the User.",
+    "type": "grass",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "aTItPw7LQBLJ3V5v",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787781084298,
+    "modifiedTime": 1787782036189,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "pQDwlHuKUywUt4VZ",
+  "sort": 1900000,
+  "_key": "!items!pQDwlHuKUywUt4VZ"
+}

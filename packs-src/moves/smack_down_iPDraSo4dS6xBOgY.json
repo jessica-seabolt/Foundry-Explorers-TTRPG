@@ -1,0 +1,53 @@
+{
+  "name": "Smack Down",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/rock.png",
+  "system": {
+    "description": "Target does not gain any benefit from Flying or Levitate for 1 round.",
+    "type": "rock",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "Xol4brq8njI9qH6t": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "ahQD5IMjFnolOF8E": {
+            "affectsUser": false,
+            "effect": "flyingDisabled",
+            "effectCount": 1
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "gP3mTYHLybwN5ySr",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786665592118,
+    "modifiedTime": 1786669091988,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "iPDraSo4dS6xBOgY",
+  "sort": 1200000,
+  "_key": "!items!iPDraSo4dS6xBOgY"
+}

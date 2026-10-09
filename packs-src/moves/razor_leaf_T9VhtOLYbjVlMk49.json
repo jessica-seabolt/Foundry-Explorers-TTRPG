@@ -1,0 +1,45 @@
+{
+  "name": "Razor Leaf",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "Scores a Critical Hit on a 5-6.",
+    "type": "grass",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "c2k1GEEFxS9ZeTXB": "highCritRatio",
+      "5p3e05c3y7AadtMj": "slice"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "gP3mTYHLybwN5ySr",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786664702156,
+    "modifiedTime": 1787945543646,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "T9VhtOLYbjVlMk49",
+  "sort": 2100000,
+  "_key": "!items!T9VhtOLYbjVlMk49"
+}

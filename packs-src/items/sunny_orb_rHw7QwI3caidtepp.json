@@ -1,0 +1,31 @@
+{
+  "name": "Sunny Orb",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Starts Sunny weather on the current floor",
+    "category": "orbs",
+    "price": 200
+  },
+  "effects": [],
+  "folder": "nslHbFL6H8zczPA6",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787024269027,
+    "modifiedTime": 1787024347583,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "rHw7QwI3caidtepp",
+  "sort": 800000,
+  "_key": "!items!rHw7QwI3caidtepp"
+}

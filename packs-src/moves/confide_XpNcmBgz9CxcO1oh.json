@@ -1,0 +1,55 @@
+{
+  "name": "Confide",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "Uses Influence vs Intuition.",
+    "type": "normal",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "KduFemQ9oDOG4uXA": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "sSeorlfjjs7RBZKz": {
+            "affectsUser": false,
+            "effect": "spatkDown",
+            "effectCount": 4
+          }
+        }
+      }
+    },
+    "offensiveCheck": "influence",
+    "defensiveCheck": "intuition",
+    "tags": {
+      "uxN1tdKSDs7qQrP6": "sound"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "rNRJ6uDlYy8UxN3I",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786671173145,
+    "modifiedTime": 1787944832434,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "XpNcmBgz9CxcO1oh",
+  "sort": 700000,
+  "_key": "!items!XpNcmBgz9CxcO1oh"
+}

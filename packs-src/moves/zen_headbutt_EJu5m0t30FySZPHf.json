@@ -1,0 +1,53 @@
+{
+  "name": "Zen Headbutt",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/psychic.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 6, the target is Flinched.",
+    "type": "psychic",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "lTF7d82DUG2k8mlT": {
+        "triggerType": "d6",
+        "appliedEffects": {
+          "ZT97OqAYjZiIiyJc": {
+            "affectsUser": false,
+            "effect": "flinched",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786955272940,
+    "modifiedTime": 1787036850366,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "EJu5m0t30FySZPHf",
+  "sort": 1700000,
+  "_key": "!items!EJu5m0t30FySZPHf"
+}

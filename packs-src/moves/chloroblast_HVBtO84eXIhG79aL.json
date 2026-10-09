@@ -1,0 +1,44 @@
+{
+  "name": "Chloroblast",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "Deals half the damage dealt back to the User as Recoil.",
+    "type": "grass",
+    "category": "special",
+    "power": 7,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "0VETQRJYtIdPN352": "recoil"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 10,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "3Xjugd7wb0pfAayG",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787887889882,
+    "modifiedTime": 1787887889882,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "HVBtO84eXIhG79aL",
+  "sort": 0,
+  "_key": "!items!HVBtO84eXIhG79aL"
+}

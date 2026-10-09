@@ -1,0 +1,58 @@
+{
+  "name": "Tidy Up",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "Clears the room of Spikes, Stealth Rock, Sticky Web, Toxic Spikes, and Substitute. User gains Atk Up 2, Spe Up 2.",
+    "type": "normal",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "YPVpBkwmvX9n6r74": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "961j0bHbjwJODmQG": {
+            "affectsUser": false,
+            "effect": "atkUp",
+            "effectCount": 2
+          },
+          "R44qy5HwbTBrvqwA": {
+            "affectsUser": false,
+            "effect": "speUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "all",
+    "range": "room",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786957316211,
+    "modifiedTime": 1786957316211,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "dOYF092hAY7SlAbE",
+  "sort": 0,
+  "_key": "!items!dOYF092hAY7SlAbE"
+}

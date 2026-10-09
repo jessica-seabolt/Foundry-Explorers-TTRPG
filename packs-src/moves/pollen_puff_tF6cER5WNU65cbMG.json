@@ -1,0 +1,44 @@
+{
+  "name": "Pollen Puff",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/bug.png",
+  "system": {
+    "description": "Can be targeted at an ally to heal them instead of dealing damage.",
+    "type": "bug",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "18gRWVtrAchhrblM": "ballBomb"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "2uN51SBXPRy0kVta",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787037021471,
+    "modifiedTime": 1787944249592,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "tF6cER5WNU65cbMG",
+  "sort": 3800000,
+  "_key": "!items!tF6cER5WNU65cbMG"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Calcium",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Increases Special Attack permanently by 5. Can be used to fill half your belly for today.",
+    "category": "medicines",
+    "price": 2000
+  },
+  "effects": [],
+  "folder": "a6e2kWEJCnlOPoA2",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787023400876,
+    "modifiedTime": 1787023436893,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "anoERvi54PPa2hje",
+  "sort": 400000,
+  "_key": "!items!anoERvi54PPa2hje"
+}

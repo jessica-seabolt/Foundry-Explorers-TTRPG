@@ -1,0 +1,31 @@
+{
+  "name": "Assault Vest",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Your Sp.Def modifier increases by 3, but you cannot use Status Moves.",
+    "category": "battleItems",
+    "price": 2500
+  },
+  "effects": [],
+  "folder": "Isb1KUmSvCXlrJwp",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787039847190,
+    "modifiedTime": 1787040211147,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "hd9lPsgKS4BfDgGC",
+  "sort": 2200000,
+  "_key": "!items!hd9lPsgKS4BfDgGC"
+}

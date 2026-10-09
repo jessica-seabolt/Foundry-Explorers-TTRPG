@@ -1,0 +1,53 @@
+{
+  "name": "Rock Slide",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/rock.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 6, the target is Flinched.",
+    "type": "rock",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "drkg64JctRpYFl8b": {
+        "triggerType": "d6",
+        "appliedEffects": {
+          "pymwypy6vlUkadJs": {
+            "affectsUser": false,
+            "effect": "flinched",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 1,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786955329642,
+    "modifiedTime": 1787036850366,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "aqwlEJ6khcrHHpB8",
+  "sort": 1600000,
+  "_key": "!items!aqwlEJ6khcrHHpB8"
+}

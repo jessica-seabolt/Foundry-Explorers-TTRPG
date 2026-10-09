@@ -1,0 +1,55 @@
+{
+  "name": "Snarl",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dark.png",
+  "system": {
+    "description": "",
+    "type": "dark",
+    "category": "special",
+    "power": 1,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "uD5wKrq5ueTQHKAe": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "UPxTOfTOyIvIDxi1": {
+            "affectsUser": false,
+            "effect": "spatkDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "NK4K3pOKx6qmeOuy": "sound"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "BOw4zvVanVX05Dsh",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786623193997,
+    "modifiedTime": 1787944775745,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "cvIEowlJddYH0253",
+  "sort": 1000000,
+  "_key": "!items!cvIEowlJddYH0253"
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Heal Order",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/bug.png",
+  "system": {
+    "description": "User heals for the amount rolled.",
+    "type": "bug",
+    "category": "physicalStatus",
+    "power": 3,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "3QMYtyne7oDyNeOu": "healPower"
+    },
+    "target": "selfOrAlly",
+    "range": "away",
+    "rangeCount": 2,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786955970750,
+    "modifiedTime": 1786957163947,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "zAoVwIk1jvMefpv2",
+  "sort": 1800000,
+  "_key": "!items!zAoVwIk1jvMefpv2"
+}

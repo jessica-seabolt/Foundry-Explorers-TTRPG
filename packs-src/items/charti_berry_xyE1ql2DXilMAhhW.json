@@ -1,0 +1,31 @@
+{
+  "name": "Charti Berry",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "When held, you eat the Berry as a Reaction to taking damage from a Rock-Type Move. It deals half of the damage it would normally do instead.",
+    "category": "berries",
+    "price": 50
+  },
+  "effects": [],
+  "folder": "74Pg5VCRPbJ17HpK",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787022382227,
+    "modifiedTime": 1787022663612,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "xyE1ql2DXilMAhhW",
+  "sort": 400000,
+  "_key": "!items!xyE1ql2DXilMAhhW"
+}

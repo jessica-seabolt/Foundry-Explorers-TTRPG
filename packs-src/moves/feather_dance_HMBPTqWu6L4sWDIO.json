@@ -1,0 +1,55 @@
+{
+  "name": "Feather Dance",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/flying.png",
+  "system": {
+    "description": "",
+    "type": "flying",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "oMxlHPiV0Q3saywb": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "hvwrZJMUYVy2dr1Q": {
+            "affectsUser": false,
+            "effect": "atkDown",
+            "effectCount": 4
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "OZfOQNlpiy5NPlzd": "dance"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "XcbyKlqd66doOyos",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786666762856,
+    "modifiedTime": 1787944658262,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "HMBPTqWu6L4sWDIO",
+  "sort": 1600000,
+  "_key": "!items!HMBPTqWu6L4sWDIO"
+}

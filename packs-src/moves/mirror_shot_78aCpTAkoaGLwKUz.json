@@ -1,0 +1,53 @@
+{
+  "name": "Mirror Shot",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/steel.png",
+  "system": {
+    "description": "",
+    "type": "steel",
+    "category": "special",
+    "power": 1,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "0PHlLk4OwI8hUnp2": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "D5K4M76EY3dZt7y7": {
+            "affectsUser": false,
+            "effect": "blinded",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "BOw4zvVanVX05Dsh",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786623580755,
+    "modifiedTime": 1786623580755,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "78aCpTAkoaGLwKUz",
+  "sort": 0,
+  "_key": "!items!78aCpTAkoaGLwKUz"
+}

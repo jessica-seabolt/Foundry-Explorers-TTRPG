@@ -1,0 +1,55 @@
+{
+  "name": "Ice Hammer",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ice.png",
+  "system": {
+    "description": "",
+    "type": "ice",
+    "category": "physical",
+    "power": 4,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "52z89KHpGpGDu81y": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "peLQSbLOQuoWxsHB": {
+            "affectsUser": false,
+            "effect": "speDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "AfqveZw3tE8FIReJ": "punch"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "aTItPw7LQBLJ3V5v",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787781479398,
+    "modifiedTime": 1787945336205,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "m15wg3N9PDKYQupw",
+  "sort": 200000,
+  "_key": "!items!m15wg3N9PDKYQupw"
+}

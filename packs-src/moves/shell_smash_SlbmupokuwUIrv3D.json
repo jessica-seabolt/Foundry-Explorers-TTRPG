@@ -1,0 +1,73 @@
+{
+  "name": "Shell Smash",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "",
+    "type": "normal",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "9qKCzJ2ef8v21MaE": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "kMg1hbqkPGtBR3Vt": {
+            "affectsUser": false,
+            "effect": "defDown",
+            "effectCount": 4
+          },
+          "5E5XzUBZXJMSHeb6": {
+            "affectsUser": false,
+            "effect": "spdefDown",
+            "effectCount": 4
+          },
+          "P4XHwCvDz4kdsoOf": {
+            "affectsUser": false,
+            "effect": "atkUp",
+            "effectCount": 4
+          },
+          "tXTIF1babHQxh37S": {
+            "affectsUser": false,
+            "effect": "spatkUp",
+            "effectCount": 4
+          },
+          "qwPzhs7c8WriCL1v": {
+            "affectsUser": false,
+            "effect": "speUp",
+            "effectCount": 4
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786956976196,
+    "modifiedTime": 1786957163947,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "SlbmupokuwUIrv3D",
+  "sort": 100000,
+  "_key": "!items!SlbmupokuwUIrv3D"
+}

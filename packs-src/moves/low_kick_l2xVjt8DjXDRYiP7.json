@@ -1,0 +1,42 @@
+{
+  "name": "Low Kick",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fighting.png",
+  "system": {
+    "description": "Power varies based on size. Power is 1d6 to Tiny, 2d6 to Small and Medium, 3d6 to Large, and 4d6 to Huge.",
+    "type": "fighting",
+    "category": "physical",
+    "power": 1,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "gP3mTYHLybwN5ySr",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786664470455,
+    "modifiedTime": 1786669091988,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "l2xVjt8DjXDRYiP7",
+  "sort": 3000000,
+  "_key": "!items!l2xVjt8DjXDRYiP7"
+}

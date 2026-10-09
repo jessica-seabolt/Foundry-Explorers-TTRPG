@@ -1,0 +1,31 @@
+{
+  "name": "Grip Claw",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Whenever you inflict the Trapped Condition, the target cannot make a Status Resist Check for the first turn they are Trapped.",
+    "category": "battleItems",
+    "price": 2000
+  },
+  "effects": [],
+  "folder": "Isb1KUmSvCXlrJwp",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787040006862,
+    "modifiedTime": 1787040211147,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "rCxtuC6SSidbKVAY",
+  "sort": 1500000,
+  "_key": "!items!rCxtuC6SSidbKVAY"
+}

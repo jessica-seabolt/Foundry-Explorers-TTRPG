@@ -1,0 +1,55 @@
+{
+  "name": "Power-Up Punch",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fighting.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 5-6, Atk Up 2.",
+    "type": "fighting",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "dHXbRMCU2CENJ5n6": {
+        "triggerType": "d56",
+        "appliedEffects": {
+          "HKZnUkcHOy6wmz2T": {
+            "affectsUser": true,
+            "effect": "atkUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "InYhwC4Lojtmt3Qc": "punch"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "gP3mTYHLybwN5ySr",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786664514799,
+    "modifiedTime": 1791559464858,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "TA8DiU7lYuJm0sm1",
+  "sort": 3200000,
+  "_key": "!items!TA8DiU7lYuJm0sm1"
+}

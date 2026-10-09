@@ -1,0 +1,55 @@
+{
+  "name": "Dynamic Punch",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fighting.png",
+  "system": {
+    "description": "",
+    "type": "fighting",
+    "category": "physical",
+    "power": 4,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "2MAzcPmH6PD3UFKa": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "6aHln2OSQudhEo3n": {
+            "affectsUser": false,
+            "effect": "confused",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "sEUpASSC9lTcqCKf": "punch"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "aTItPw7LQBLJ3V5v",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787770576809,
+    "modifiedTime": 1787945195322,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "7FFfjv35A94x1kdf",
+  "sort": 2200000,
+  "_key": "!items!7FFfjv35A94x1kdf"
+}

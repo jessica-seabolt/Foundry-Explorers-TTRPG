@@ -1,0 +1,42 @@
+{
+  "name": "Gigaton Hammer",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/steel.png",
+  "system": {
+    "description": "This move can't be used twice in a row.",
+    "type": "steel",
+    "category": "physical",
+    "power": 7,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "jGTHOTqt8TX69djw",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787886735836,
+    "modifiedTime": 1787886735949,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "5xtGyc7Vba3iuZBK",
+  "sort": 500000,
+  "_key": "!items!5xtGyc7Vba3iuZBK"
+}

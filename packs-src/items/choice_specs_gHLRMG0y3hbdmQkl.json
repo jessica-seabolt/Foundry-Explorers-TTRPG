@@ -1,0 +1,31 @@
+{
+  "name": "Choice Specs",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Your first Special Move in a Battle has its Move Power increased by 1, but you cannot use any other Move for the rest of the Battle.",
+    "category": "scopes",
+    "price": null
+  },
+  "effects": [],
+  "folder": "Ur1Tb7VuUE9rPmbA",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787039688922,
+    "modifiedTime": 1787039763535,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "gHLRMG0y3hbdmQkl",
+  "sort": 400000,
+  "_key": "!items!gHLRMG0y3hbdmQkl"
+}

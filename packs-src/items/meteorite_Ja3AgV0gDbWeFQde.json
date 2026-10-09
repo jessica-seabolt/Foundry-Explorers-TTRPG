@@ -1,0 +1,31 @@
+{
+  "folder": "9uLQfkGWNVf70Sxz",
+  "name": "Meteorite",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Acts as a Mega Stone for Rayquaza. Changes Deoxys between its Normal, Attack, Defense and Speed Formes.",
+    "category": "formChangingItems",
+    "price": null
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.2",
+    "createdTime": 1788126459572,
+    "modifiedTime": 1788126483005,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "Ja3AgV0gDbWeFQde",
+  "sort": 300000,
+  "_key": "!items!Ja3AgV0gDbWeFQde"
+}

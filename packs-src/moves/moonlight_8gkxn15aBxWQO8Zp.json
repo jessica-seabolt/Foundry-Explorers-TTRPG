@@ -1,0 +1,44 @@
+{
+  "name": "Moonlight",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fairy.png",
+  "system": {
+    "description": "User heals for the amount rolled. Loses 1d6 healing in Weather.",
+    "type": "fairy",
+    "category": "specialStatus",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "ZSrFgtagHj8Ysm2Z": "healPower"
+    },
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "a0R9kRJnoJMgYQdT",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787038415416,
+    "modifiedTime": 1787038845277,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "8gkxn15aBxWQO8Zp",
+  "sort": 1500000,
+  "_key": "!items!8gkxn15aBxWQO8Zp"
+}

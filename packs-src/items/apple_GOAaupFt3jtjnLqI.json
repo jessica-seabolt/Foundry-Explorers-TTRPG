@@ -1,0 +1,31 @@
+{
+  "name": "Apple",
+  "type": "Item",
+  "_id": "GOAaupFt3jtjnLqI",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Can be used to fill half your belly for today.",
+    "category": "foods",
+    "price": 25
+  },
+  "effects": [],
+  "folder": "XJqLVT4pGPp0Z0xQ",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787021813369,
+    "modifiedTime": 1787022714884,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_key": "!items!GOAaupFt3jtjnLqI"
+}

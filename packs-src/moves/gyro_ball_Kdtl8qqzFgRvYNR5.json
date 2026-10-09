@@ -1,0 +1,44 @@
+{
+  "name": "Gyro Ball",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/steel.png",
+  "system": {
+    "description": "Increase move power by 1 if the target is faster.",
+    "type": "steel",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "KhK2QV16sst4Ct83": "ballBomb"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786955539300,
+    "modifiedTime": 1787944375946,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "Kdtl8qqzFgRvYNR5",
+  "sort": 500000,
+  "_key": "!items!Kdtl8qqzFgRvYNR5"
+}

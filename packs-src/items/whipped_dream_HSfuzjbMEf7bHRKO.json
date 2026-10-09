@@ -1,0 +1,31 @@
+{
+  "folder": "AR8CkbQgJHBqmhQ6",
+  "name": "Whipped Dream",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Evolves Swirlix into Slurpuff.",
+    "category": "evolutionItems",
+    "price": 1000
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.2",
+    "createdTime": 1788126369207,
+    "modifiedTime": 1788126369233,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "HSfuzjbMEf7bHRKO",
+  "sort": 600000,
+  "_key": "!items!HSfuzjbMEf7bHRKO"
+}

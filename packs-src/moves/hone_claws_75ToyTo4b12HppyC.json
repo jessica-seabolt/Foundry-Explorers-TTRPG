@@ -1,0 +1,53 @@
+{
+  "name": "Hone Claws",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dark.png",
+  "system": {
+    "description": "The user's next Physical Move increases its range by 1 tile.",
+    "type": "dark",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "oMxlHPiV0Q3saywb": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "hvwrZJMUYVy2dr1Q": {
+            "affectsUser": false,
+            "effect": "atkUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "XcbyKlqd66doOyos",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786666459424,
+    "modifiedTime": 1786667928527,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "75ToyTo4b12HppyC",
+  "sort": 2100000,
+  "_key": "!items!75ToyTo4b12HppyC"
+}

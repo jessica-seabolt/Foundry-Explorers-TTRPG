@@ -1,0 +1,42 @@
+{
+  "name": "Power Trick",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/psychic.png",
+  "system": {
+    "description": "User's Attack and Defense stats swap.",
+    "type": "psychic",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "a0R9kRJnoJMgYQdT",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787039163183,
+    "modifiedTime": 1787039163183,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "3pVH7aB7Oy2xF4KN",
+  "sort": 0,
+  "_key": "!items!3pVH7aB7Oy2xF4KN"
+}

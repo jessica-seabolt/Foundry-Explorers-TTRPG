@@ -1,0 +1,53 @@
+{
+  "name": "Needle Arm",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 6, the target is Flinched.",
+    "type": "grass",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "mL8AiRzQilWAIl24": {
+        "triggerType": "d6",
+        "appliedEffects": {
+          "HejmUP3YHn5bbnQA": {
+            "affectsUser": false,
+            "effect": "flinched",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "gP3mTYHLybwN5ySr",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786664828276,
+    "modifiedTime": 1786669091988,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "DAedGmg8ONHW4hLC",
+  "sort": 2300000,
+  "_key": "!items!DAedGmg8ONHW4hLC"
+}

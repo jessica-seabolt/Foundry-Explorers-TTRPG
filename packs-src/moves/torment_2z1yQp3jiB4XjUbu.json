@@ -1,0 +1,53 @@
+{
+  "name": "Torment",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dark.png",
+  "system": {
+    "description": "Target cannot use the same Move twice in a row. Uses Influence vs Intuition.",
+    "type": "dark",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "oMxlHPiV0Q3saywb": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "hvwrZJMUYVy2dr1Q": {
+            "affectsUser": false,
+            "effect": "tormented",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": "influence",
+    "defensiveCheck": "intuition",
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "XcbyKlqd66doOyos",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786666565017,
+    "modifiedTime": 1786667928527,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "2z1yQp3jiB4XjUbu",
+  "sort": 2300000,
+  "_key": "!items!2z1yQp3jiB4XjUbu"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Golden Apple",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "You do not need to eat for the next week, and you gain 1 Minor Skill of your choice.",
+    "category": "foods",
+    "price": 2000
+  },
+  "effects": [],
+  "folder": "XJqLVT4pGPp0Z0xQ",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787021881508,
+    "modifiedTime": 1787022716756,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "KQ7Jdn8wo1wW0vNW",
+  "sort": 300000,
+  "_key": "!items!KQ7Jdn8wo1wW0vNW"
+}

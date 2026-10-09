@@ -1,0 +1,55 @@
+{
+  "name": "Razor Shell",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/water.png",
+  "system": {
+    "description": "",
+    "type": "water",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "Ah2OZc9PQpvx7IYe": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "wRuJEzl0yUWzQpPD": {
+            "affectsUser": false,
+            "effect": "defDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "h7Qwl4eWouZtKcYK": "slice"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "lnwdZ55miiw6eO0F",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786621327433,
+    "modifiedTime": 1787945549437,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "8XmPSO1kSRzNMMpo",
+  "sort": 0,
+  "_key": "!items!8XmPSO1kSRzNMMpo"
+}

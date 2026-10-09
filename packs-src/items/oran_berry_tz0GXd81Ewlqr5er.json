@@ -1,0 +1,31 @@
+{
+  "name": "Oran Berry",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Restores HP by 100. When held, and you fall below 50% HP, you can use a Reaction to regain 25% of your HP. Can be used to fill half your belly for today.",
+    "category": "berries",
+    "price": 50
+  },
+  "effects": [],
+  "folder": "74Pg5VCRPbJ17HpK",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787022074724,
+    "modifiedTime": 1787022672229,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "tz0GXd81Ewlqr5er",
+  "sort": 1700000,
+  "_key": "!items!tz0GXd81Ewlqr5er"
+}

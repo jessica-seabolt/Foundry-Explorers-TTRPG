@@ -1,0 +1,55 @@
+{
+  "name": "Hurricane",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/flying.png",
+  "system": {
+    "description": "",
+    "type": "flying",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "tHkaTpI2m6tlXCyy": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "LeL7EP5xRFNe5qj6": {
+            "affectsUser": false,
+            "effect": "confused",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "EMos3tbKVmGn76ie": "wind"
+    },
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 1,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "2uN51SBXPRy0kVta",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787037274692,
+    "modifiedTime": 1787945780095,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "Toy9vLNCrdPM8syV",
+  "sort": 3000000,
+  "_key": "!items!Toy9vLNCrdPM8syV"
+}

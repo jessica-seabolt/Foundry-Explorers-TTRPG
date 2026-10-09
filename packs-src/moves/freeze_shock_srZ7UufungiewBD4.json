@@ -1,0 +1,68 @@
+{
+  "name": "Freeze Shock",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ice.png",
+  "system": {
+    "description": "Charges on the first turn, Restraining the User for 1 round, and gives User Atk Up 2. Attacks on the second turn.",
+    "type": "ice",
+    "category": "physical",
+    "power": 7,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "FZfBTaKqMao8AriX": {
+        "triggerType": "flexible",
+        "appliedEffects": {
+          "vo8TvDWVQ5jLTlw2": {
+            "affectsUser": true,
+            "effect": "restrained",
+            "effectCount": null
+          },
+          "ZVwlgcPBhwU4g8Op": {
+            "affectsUser": true,
+            "effect": "atkUp",
+            "effectCount": 2
+          }
+        }
+      },
+      "2AySTMtu2xUqJWqP": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "EKAwr6cSoaWtHA6i": {
+            "affectsUser": false,
+            "effect": "paralyzed",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "jGTHOTqt8TX69djw",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787886383473,
+    "modifiedTime": 1787886735949,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "srZ7UufungiewBD4",
+  "sort": 100000,
+  "_key": "!items!srZ7UufungiewBD4"
+}

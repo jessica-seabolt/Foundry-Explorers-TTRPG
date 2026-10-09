@@ -1,0 +1,55 @@
+{
+  "name": "Roost",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/flying.png",
+  "system": {
+    "description": "Heal for number rolled. User loses Flying type and/or Levitate status for 1 round.",
+    "type": "flying",
+    "category": "physicalStatus",
+    "power": 1,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "wrovLd6WUeBa808j": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "6jXhpGJDT3cOlJuL": {
+            "affectsUser": false,
+            "effect": "flyingDisabled",
+            "effectCount": 1
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "W3StmAKUJHS5tGTj": "healPower"
+    },
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "ip7KRqxa5gYu2yTu",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786621617352,
+    "modifiedTime": 1786663333272,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "vChCscQyzV57GAqs",
+  "sort": 1200000,
+  "_key": "!items!vChCscQyzV57GAqs"
+}

@@ -1,0 +1,53 @@
+{
+  "name": "Destiny Bond",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ghost.png",
+  "system": {
+    "description": "After using this move, if the user faints, the PokÃƒÆ’Ã‚Â©mon that landed the knockout hit also faints.  If used in succession, roll a d6. On a 1-4, the move fails to activate. Using a third time in succession always fails.",
+    "type": "ghost",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "V0fFJN5AOmf6E6xV": {
+        "triggerType": "flexible",
+        "appliedEffects": {
+          "Ne3mtXu49XgyKRyW": {
+            "affectsUser": false,
+            "effect": "destinyBonded",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "a0R9kRJnoJMgYQdT",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787038585650,
+    "modifiedTime": 1787038845277,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "DSUgMk9n62No5Zko",
+  "sort": 200000,
+  "_key": "!items!DSUgMk9n62No5Zko"
+}

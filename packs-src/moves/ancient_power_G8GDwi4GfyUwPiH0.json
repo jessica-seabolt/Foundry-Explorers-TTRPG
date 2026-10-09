@@ -1,0 +1,73 @@
+{
+  "name": "Ancient Power",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/rock.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 6, Atk Up 2, Sp.Atk Up 2, Def Up 2, Sp.Def Up 2, Spe Up 2.",
+    "type": "rock",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "jixpeFxYkeeQSWEj": {
+        "triggerType": "d6",
+        "appliedEffects": {
+          "PzClhHD9GbJPkLCC": {
+            "affectsUser": true,
+            "effect": "atkUp",
+            "effectCount": 2
+          },
+          "LYOZLya0KGP2g0Z9": {
+            "affectsUser": true,
+            "effect": "spatkUp",
+            "effectCount": 2
+          },
+          "BE29CK6UMAoI1l9B": {
+            "affectsUser": true,
+            "effect": "defUp",
+            "effectCount": 2
+          },
+          "32bgRafKGBIR17hp": {
+            "affectsUser": true,
+            "effect": "spdefUp",
+            "effectCount": 2
+          },
+          "3wWqQ7IhIbrUyiPE": {
+            "affectsUser": true,
+            "effect": "speUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786669944344,
+    "modifiedTime": 1786669983852,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "G8GDwi4GfyUwPiH0",
+  "sort": 1000000,
+  "_key": "!items!G8GDwi4GfyUwPiH0"
+}

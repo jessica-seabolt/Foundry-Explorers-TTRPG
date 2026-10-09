@@ -1,0 +1,31 @@
+{
+  "folder": "9uLQfkGWNVf70Sxz",
+  "name": "DNA Splicers",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Fuses Reshiram or Zekrom with Kyurem.",
+    "category": "formChangingItems",
+    "price": null
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.2",
+    "createdTime": 1788126415083,
+    "modifiedTime": 1788126483005,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "Dm0oZeea8p1H1IV6",
+  "sort": 200000,
+  "_key": "!items!Dm0oZeea8p1H1IV6"
+}

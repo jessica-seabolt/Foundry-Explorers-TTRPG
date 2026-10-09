@@ -1,0 +1,31 @@
+{
+  "name": "Elixir",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Recovers all PP of one Move. Can be used to fill half your belly for today.",
+    "category": "medicines",
+    "price": 150
+  },
+  "effects": [],
+  "folder": "a6e2kWEJCnlOPoA2",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787023499297,
+    "modifiedTime": 1787023499297,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "rO3WKV84YW6p1pqT",
+  "sort": 0,
+  "_key": "!items!rO3WKV84YW6p1pqT"
+}

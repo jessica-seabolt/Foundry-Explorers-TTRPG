@@ -1,0 +1,53 @@
+{
+  "name": "Frenzy Plant",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "User cannot use a Move for 1 round after this Move.",
+    "type": "grass",
+    "category": "special",
+    "power": 7,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "BauhvAM4lhq2LSRQ": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "hKO7Lw4YVNZ8xtte": {
+            "affectsUser": true,
+            "effect": "recharging",
+            "effectCount": 1
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 10,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "3Xjugd7wb0pfAayG",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787887873623,
+    "modifiedTime": 1787887873683,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "fgAZ7JkilF6OBYWz",
+  "sort": 800000,
+  "_key": "!items!fgAZ7JkilF6OBYWz"
+}

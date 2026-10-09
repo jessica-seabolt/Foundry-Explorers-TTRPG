@@ -1,0 +1,31 @@
+{
+  "name": "Bright Powder",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Whenever you are targeted by a Move, roll a d6. On a 5-6, the attacker is Blinded. Has 10 uses, before it is consumed. \"Pocket Sand!\".",
+    "category": "battleItems",
+    "price": 2500
+  },
+  "effects": [],
+  "folder": "Isb1KUmSvCXlrJwp",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787039898065,
+    "modifiedTime": 1787040211147,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "BN9h6pfZ8wZ7PERX",
+  "sort": 2600000,
+  "_key": "!items!BN9h6pfZ8wZ7PERX"
+}

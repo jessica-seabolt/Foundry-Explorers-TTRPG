@@ -1,0 +1,53 @@
+{
+  "name": "Withdraw",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/water.png",
+  "system": {
+    "description": "",
+    "type": "water",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "uD5wKrq5ueTQHKAe": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "UPxTOfTOyIvIDxi1": {
+            "affectsUser": false,
+            "effect": "defUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "ip7KRqxa5gYu2yTu",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786623029642,
+    "modifiedTime": 1786623029642,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "nsSJj0kKkBY6jXLA",
+  "sort": 0,
+  "_key": "!items!nsSJj0kKkBY6jXLA"
+}

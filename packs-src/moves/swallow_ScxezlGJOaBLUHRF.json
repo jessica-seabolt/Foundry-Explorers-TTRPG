@@ -1,0 +1,44 @@
+{
+  "name": "Swallow",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "User expends their Stockpile, and heals 2d6 for each Stockpile they have.",
+    "type": "normal",
+    "category": "physicalStatus",
+    "power": 1,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "Wj4dJEGS8Eie75CR": "healPower"
+    },
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786957195516,
+    "modifiedTime": 1786957195516,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "ScxezlGJOaBLUHRF",
+  "sort": 0,
+  "_key": "!items!ScxezlGJOaBLUHRF"
+}

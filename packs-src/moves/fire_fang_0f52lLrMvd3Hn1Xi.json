@@ -1,0 +1,55 @@
+{
+  "name": "Fire Fang",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fire.png",
+  "system": {
+    "description": "",
+    "type": "fire",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "dHXbRMCU2CENJ5n6": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "HKZnUkcHOy6wmz2T": {
+            "affectsUser": false,
+            "effect": "burned",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "twlsAINjNdA8nQsC": "biting"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "gP3mTYHLybwN5ySr",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786664561527,
+    "modifiedTime": 1787944598786,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "0f52lLrMvd3Hn1Xi",
+  "sort": 3400000,
+  "_key": "!items!0f52lLrMvd3Hn1Xi"
+}

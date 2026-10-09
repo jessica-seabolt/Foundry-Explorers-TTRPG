@@ -1,0 +1,53 @@
+{
+  "name": "Solar Beam",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "Charges on the first turn, Restraining the User for 1 round. Attacks on the second turn. Attacks on the first turn in Harsh Sunlight.",
+    "type": "grass",
+    "category": "special",
+    "power": 5,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "l3MXuTHGSYanW4r9": {
+        "triggerType": "flexible",
+        "appliedEffects": {
+          "QcYaGtQhk5Qui15t": {
+            "affectsUser": true,
+            "effect": "restrained",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "away",
+    "rangeCount": 6,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "uP1U4IGXPrACdhAH",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787783681051,
+    "modifiedTime": 1787886429999,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "II3XbO5fN6x1PvEN",
+  "sort": 800000,
+  "_key": "!items!II3XbO5fN6x1PvEN"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Screech",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "",
+    "type": "normal",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "txwJCEHp1SUx4cBJ": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "LfL7QeVJBlSWWCSt": {
+            "affectsUser": false,
+            "effect": "defDown",
+            "effectCount": 4
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "DbsxRfYwH4PmOucu": "sound"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "XcbyKlqd66doOyos",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786667348903,
+    "modifiedTime": 1787944909603,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "697HDUBnhvj8IUbG",
+  "sort": 1000000,
+  "_key": "!items!697HDUBnhvj8IUbG"
+}

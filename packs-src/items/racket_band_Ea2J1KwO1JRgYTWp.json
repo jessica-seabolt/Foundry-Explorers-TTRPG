@@ -1,0 +1,31 @@
+{
+  "name": "Racket Band",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Prevents Asleep condition.",
+    "category": "scarvesAndBands",
+    "price": null
+  },
+  "effects": [],
+  "folder": "flTbL5r9BQOlCHFW",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787036665710,
+    "modifiedTime": 1787036731372,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "Ea2J1KwO1JRgYTWp",
+  "sort": 900000,
+  "_key": "!items!Ea2J1KwO1JRgYTWp"
+}

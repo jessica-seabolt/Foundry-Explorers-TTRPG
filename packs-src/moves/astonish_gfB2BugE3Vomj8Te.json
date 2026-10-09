@@ -1,0 +1,53 @@
+{
+  "name": "Astonish",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ghost.png",
+  "system": {
+    "description": "",
+    "type": "ghost",
+    "category": "special",
+    "power": 1,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "Q864NaHRWvbgPSvR": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "W2sH88jgvtO5XD1H": {
+            "affectsUser": false,
+            "effect": "flinched",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "BOw4zvVanVX05Dsh",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786623387600,
+    "modifiedTime": 1786623474913,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "gfB2BugE3Vomj8Te",
+  "sort": 100000,
+  "_key": "!items!gfB2BugE3Vomj8Te"
+}

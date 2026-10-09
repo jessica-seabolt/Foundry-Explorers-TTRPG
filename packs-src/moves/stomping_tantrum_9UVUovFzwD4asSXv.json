@@ -1,0 +1,42 @@
+{
+  "name": "Stomping Tantrum",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ground.png",
+  "system": {
+    "description": "Increase move power by 1 if the user did not score a Critical Hit on their previous Move.",
+    "type": "ground",
+    "category": "physical",
+    "power": 1,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 1,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "gP3mTYHLybwN5ySr",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786664940584,
+    "modifiedTime": 1786669091988,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "9UVUovFzwD4asSXv",
+  "sort": 2500000,
+  "_key": "!items!9UVUovFzwD4asSXv"
+}

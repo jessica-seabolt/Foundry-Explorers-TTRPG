@@ -1,0 +1,45 @@
+{
+  "name": "Mind Blown",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fire.png",
+  "system": {
+    "description": "Choose a location within 4 tiles. This move deals damage to Foes in a 1-tile range of that location. Deals half the damage dealt back to the User as Recoil.",
+    "type": "fire",
+    "category": "special",
+    "power": 8,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "3wRha60jr9tzJMWI": "recoil",
+      "UknRhzPhJBVrOjYK": "explosive"
+    },
+    "target": null,
+    "range": "special",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "3Xjugd7wb0pfAayG",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787887680637,
+    "modifiedTime": 1787944956530,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "wCiLXBZjpNf1JUbm",
+  "sort": 200000,
+  "_key": "!items!wCiLXBZjpNf1JUbm"
+}

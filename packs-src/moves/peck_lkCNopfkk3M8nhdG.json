@@ -1,0 +1,53 @@
+{
+  "name": "Peck",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/flying.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 6, the target is Flinched.",
+    "type": "flying",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "hJ1g7erQzq1y4r27": {
+        "triggerType": "d6",
+        "appliedEffects": {
+          "Gb6cNc3oZ2Ecddrh": {
+            "affectsUser": false,
+            "effect": "flinched",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "lnwdZ55miiw6eO0F",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786620790976,
+    "modifiedTime": 1786621163914,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "lkCNopfkk3M8nhdG",
+  "sort": 900000,
+  "_key": "!items!lkCNopfkk3M8nhdG"
+}

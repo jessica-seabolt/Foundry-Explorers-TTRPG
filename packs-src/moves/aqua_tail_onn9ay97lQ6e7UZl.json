@@ -1,0 +1,53 @@
+{
+  "name": "Aqua Tail",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/water.png",
+  "system": {
+    "description": "Target is pushed 4 tiles away. If they collide with a wall or a Pokemon, they take 1d6 damage.",
+    "type": "water",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "YSzgSCQ4tJsjCj1k": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "L3fO7qMldJQXXpb5": {
+            "affectsUser": false,
+            "effect": "push",
+            "effectCount": 4
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786955844970,
+    "modifiedTime": 1787036850366,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "onn9ay97lQ6e7UZl",
+  "sort": 1400000,
+  "_key": "!items!onn9ay97lQ6e7UZl"
+}

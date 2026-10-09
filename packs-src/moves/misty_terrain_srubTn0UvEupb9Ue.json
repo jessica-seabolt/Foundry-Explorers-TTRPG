@@ -1,0 +1,53 @@
+{
+  "name": "Misty Terrain",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fairy.png",
+  "system": {
+    "description": "This protects Pokémon on the ground from status conditions and halves damage from Dragon-type moves for five turns.",
+    "type": "fairy",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "hMyqOeEQh7WLMxUX": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "u37ExJLM2AeHL7r9": {
+            "affectsUser": false,
+            "effect": "mistyTerrain",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "all",
+    "range": "room",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "a0R9kRJnoJMgYQdT",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.4",
+    "createdTime": 1787038393905,
+    "modifiedTime": 1788477195385,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "srubTn0UvEupb9Ue",
+  "sort": 1400000,
+  "_key": "!items!srubTn0UvEupb9Ue"
+}

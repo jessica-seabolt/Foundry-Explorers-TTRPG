@@ -1,0 +1,55 @@
+{
+  "name": "Baby-Doll Eyes",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fairy.png",
+  "system": {
+    "description": "Has Priority. Uses Influence vs Intutition.",
+    "type": "fairy",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "0PHlLk4OwI8hUnp2": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "D5K4M76EY3dZt7y7": {
+            "affectsUser": false,
+            "effect": "atkDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": "influence",
+    "defensiveCheck": "intuition",
+    "tags": {
+      "1oohXpDcB46J7AN3": "priority"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "j0b94qoNZhbif16j",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786624229601,
+    "modifiedTime": 1786624764148,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "wCzoZljusp94lKKG",
+  "sort": 1300000,
+  "_key": "!items!wCzoZljusp94lKKG"
+}

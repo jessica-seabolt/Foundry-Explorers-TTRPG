@@ -1,0 +1,42 @@
+{
+  "name": "Assist",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "The user performs the same Move as an Ally that is up to 2 tiles away's last move.",
+    "type": "normal",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "ally",
+    "range": "away",
+    "rangeCount": 2,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "ip7KRqxa5gYu2yTu",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786622206289,
+    "modifiedTime": 1786622891526,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "zLWo0s8DX5KxZBtQ",
+  "sort": 100000,
+  "_key": "!items!zLWo0s8DX5KxZBtQ"
+}

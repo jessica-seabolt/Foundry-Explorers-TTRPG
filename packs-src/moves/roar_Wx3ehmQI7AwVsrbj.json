@@ -1,0 +1,55 @@
+{
+  "name": "Roar",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "Pushes target up to your Influence modifier in tiles. Target takes 1d6 damage if they collide with a Pokemon or wall.",
+    "type": "normal",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "o7Gsu0UtzbstcnMv": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "PgSR8gYlEx10ayIz": {
+            "affectsUser": false,
+            "effect": "push",
+            "effectCount": 0
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "XvuNpCctuO1ICPst": "sound"
+    },
+    "target": "foes",
+    "range": "front",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "j0b94qoNZhbif16j",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786624700392,
+    "modifiedTime": 1791557199808,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "Wx3ehmQI7AwVsrbj",
+  "sort": 700000,
+  "_key": "!items!Wx3ehmQI7AwVsrbj"
+}

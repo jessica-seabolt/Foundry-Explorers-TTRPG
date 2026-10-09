@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Berries",
+  "color": null,
+  "sorting": "a",
+  "_id": "74Pg5VCRPbJ17HpK",
+  "description": "",
+  "sort": 1400000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787022652506,
+    "modifiedTime": 1788126867939,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_key": "!folders!74Pg5VCRPbJ17HpK"
+}

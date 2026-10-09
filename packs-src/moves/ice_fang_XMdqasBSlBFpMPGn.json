@@ -1,0 +1,55 @@
+{
+  "name": "Ice Fang",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ice.png",
+  "system": {
+    "description": "",
+    "type": "ice",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "Tel1h2AQnKqieqY1": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "dgmQV08z3qeAS3HH": {
+            "affectsUser": false,
+            "effect": "frozen",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "bYaplh8d7WaB7uQ1": "biting"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "gP3mTYHLybwN5ySr",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786664964290,
+    "modifiedTime": 1787944603130,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "XMdqasBSlBFpMPGn",
+  "sort": 2200000,
+  "_key": "!items!XMdqasBSlBFpMPGn"
+}

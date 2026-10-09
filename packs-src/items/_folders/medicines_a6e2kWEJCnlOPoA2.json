@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Medicines",
+  "color": null,
+  "sorting": "a",
+  "_id": "a6e2kWEJCnlOPoA2",
+  "description": "",
+  "sort": 800000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787023352566,
+    "modifiedTime": 1788126867939,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_key": "!folders!a6e2kWEJCnlOPoA2"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Cacnea Spike",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Hits target for 3d6 Damage. Deals damage as Grass Type. Thrown in a straight line.",
+    "category": "thrownItems",
+    "price": 10
+  },
+  "effects": [],
+  "folder": "Gyv3hr6CX8Rs1589",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787040800505,
+    "modifiedTime": 1787040833496,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "4uRDYNQmukxWHSQi",
+  "sort": 200000,
+  "_key": "!items!4uRDYNQmukxWHSQi"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Swords Dance",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "",
+    "type": "normal",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "Anyiugso8AwjnhM7": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "Tj5FuJeT7maXxvE2": {
+            "affectsUser": false,
+            "effect": "atkUp",
+            "effectCount": 4
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "2ucYMJThnxq67lvM": "dance"
+    },
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "XcbyKlqd66doOyos",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786667097776,
+    "modifiedTime": 1787944660949,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "CnvFF1jZWOWIvKkC",
+  "sort": 1100000,
+  "_key": "!items!CnvFF1jZWOWIvKkC"
+}

@@ -1,0 +1,53 @@
+{
+  "name": "Blue Flare",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fire.png",
+  "system": {
+    "description": "Choose a location within 6 tiles. This move deals damage to Foes in a 1-tile range of that location.",
+    "type": "fire",
+    "category": "special",
+    "power": 6,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "cv0SSz841jJogZKc": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "Hyab65CNZqCApMkx": {
+            "affectsUser": false,
+            "effect": "burned",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": null,
+    "range": "special",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "3Xjugd7wb0pfAayG",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787887726859,
+    "modifiedTime": 1787887873683,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "QVlyvAqybElXiaSL",
+  "sort": 400000,
+  "_key": "!items!QVlyvAqybElXiaSL"
+}

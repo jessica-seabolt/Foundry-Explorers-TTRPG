@@ -1,0 +1,45 @@
+{
+  "name": "Bullet Punch",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/steel.png",
+  "system": {
+    "description": "Has Priority.",
+    "type": "steel",
+    "category": "physical",
+    "power": 1,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "dh74WaD85n6B1vYy": "priority",
+      "WcANttrdFYU6SFsJ": "punch"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "lnwdZ55miiw6eO0F",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786621300019,
+    "modifiedTime": 1787945229834,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "yyT1jQcT1EaIYWOl",
+  "sort": 0,
+  "_key": "!items!yyT1jQcT1EaIYWOl"
+}

@@ -1,0 +1,58 @@
+{
+  "name": "Dragon Ascent",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/flying.png",
+  "system": {
+    "description": "After damage has been dealt, User's Def Down 4, Sp. Def Down 4.",
+    "type": "flying",
+    "category": "physical",
+    "power": 7,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "tBq87L2KLZxX6tvC": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "5m0854PUD4E22IZQ": {
+            "affectsUser": true,
+            "effect": "defDown",
+            "effectCount": 4
+          },
+          "XeGbkoKsBqWoduCW": {
+            "affectsUser": true,
+            "effect": "spdefDown",
+            "effectCount": 4
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "jGTHOTqt8TX69djw",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787885861844,
+    "modifiedTime": 1787886735949,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "IL5GbWiJn52nqeYp",
+  "sort": 1100000,
+  "_key": "!items!IL5GbWiJn52nqeYp"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Amulet Coin",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "You earn 10% more Poké from Mission Rewards.",
+    "category": "battleItems",
+    "price": 5000
+  },
+  "effects": [],
+  "folder": "Isb1KUmSvCXlrJwp",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787039837280,
+    "modifiedTime": 1787040211147,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "MIZia3nIEv0tURsk",
+  "sort": 2800000,
+  "_key": "!items!MIZia3nIEv0tURsk"
+}

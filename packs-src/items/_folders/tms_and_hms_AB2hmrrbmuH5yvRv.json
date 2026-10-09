@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "TMs and HMs",
+  "color": null,
+  "sorting": "a",
+  "_id": "AB2hmrrbmuH5yvRv",
+  "description": "",
+  "sort": 100000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787040867643,
+    "modifiedTime": 1788126867939,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_key": "!folders!AB2hmrrbmuH5yvRv"
+}

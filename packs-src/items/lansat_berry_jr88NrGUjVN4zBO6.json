@@ -1,0 +1,31 @@
+{
+  "name": "Lansat Berry",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "When held, and you fall below 25% HP, your Moves score a Critical Hit on a 5-6.",
+    "category": "berries",
+    "price": 250
+  },
+  "effects": [],
+  "folder": "74Pg5VCRPbJ17HpK",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787022563492,
+    "modifiedTime": 1787022670012,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "jr88NrGUjVN4zBO6",
+  "sort": 103125,
+  "_key": "!items!jr88NrGUjVN4zBO6"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Aqua Veil",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/water.png",
+  "system": {
+    "description": "User heals for the amount rolled when used, and at the start of each subsequent turn for 4 rounds.",
+    "type": "water",
+    "category": "specialStatus",
+    "power": 1,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "zf6sNoWThaVXGCYq": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "OXfbpfN29zrXbGYj": {
+            "affectsUser": false,
+            "effect": "aquaVeil",
+            "effectCount": 4
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "3mfgJR9LyC61B3bQ": "healPower"
+    },
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "rNRJ6uDlYy8UxN3I",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786671646768,
+    "modifiedTime": 1786671646768,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "xRmm0kVZ3syxuEXz",
+  "sort": 0,
+  "_key": "!items!xRmm0kVZ3syxuEXz"
+}

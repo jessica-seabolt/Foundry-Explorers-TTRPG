@@ -1,0 +1,55 @@
+{
+  "name": "Shadow Ball",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ghost.png",
+  "system": {
+    "description": "",
+    "type": "ghost",
+    "category": "special",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "tHkaTpI2m6tlXCyy": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "LeL7EP5xRFNe5qj6": {
+            "affectsUser": false,
+            "effect": "spdefDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "vkKg8uscygYH5LnX": "ballBomb"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "2uN51SBXPRy0kVta",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787037315310,
+    "modifiedTime": 1787944318513,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "AFEytcN7qIKDw2m3",
+  "sort": 2900000,
+  "_key": "!items!AFEytcN7qIKDw2m3"
+}

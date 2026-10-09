@@ -1,0 +1,31 @@
+{
+  "name": "Ancient Fossil",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Arcs and hits target for 3d6 damage. Deals damage as Rock Type.",
+    "category": "thrownItems",
+    "price": 25
+  },
+  "effects": [],
+  "folder": "Gyv3hr6CX8Rs1589",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787040753775,
+    "modifiedTime": 1787040833496,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "OHhP4sNtxU4nmfOM",
+  "sort": 600000,
+  "_key": "!items!OHhP4sNtxU4nmfOM"
+}

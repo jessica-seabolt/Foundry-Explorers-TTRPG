@@ -1,0 +1,55 @@
+{
+  "name": "Supersonic",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "",
+    "type": "normal",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "x5yvZ7LyA4PGlVmJ": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "odnYhSmkS2e6A7qn": {
+            "affectsUser": false,
+            "effect": "confused",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "ffXFEvVmGKz7YSGa": "sound"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "j0b94qoNZhbif16j",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786624713342,
+    "modifiedTime": 1787944919677,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "uvksy4pau5nwEBfW",
+  "sort": 100000,
+  "_key": "!items!uvksy4pau5nwEBfW"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Magnet Bomb",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/steel.png",
+  "system": {
+    "description": "",
+    "type": "steel",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "Xol4brq8njI9qH6t": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "ahQD5IMjFnolOF8E": {
+            "affectsUser": false,
+            "effect": "restrained",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "TS2w0u1VlgpGj9fT": "ballBomb"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "gP3mTYHLybwN5ySr",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786665772421,
+    "modifiedTime": 1787944435132,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "HbedVxliLXUl6N4E",
+  "sort": 1400000,
+  "_key": "!items!HbedVxliLXUl6N4E"
+}

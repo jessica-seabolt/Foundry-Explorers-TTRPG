@@ -1,0 +1,31 @@
+{
+  "name": "Blowback Orb",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Pushes a target back 6 tiles. If they collide with a wall or Pokémon, they take 1d6\ndamage, Range: Foe in front",
+    "category": "orbs",
+    "price": 100
+  },
+  "effects": [],
+  "folder": "nslHbFL6H8zczPA6",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787023625943,
+    "modifiedTime": 1787024347583,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "Tfv30RwD5bT8q6AC",
+  "sort": 3500000,
+  "_key": "!items!Tfv30RwD5bT8q6AC"
+}

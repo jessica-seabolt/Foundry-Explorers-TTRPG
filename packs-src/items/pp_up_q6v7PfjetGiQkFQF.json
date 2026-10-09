@@ -1,0 +1,31 @@
+{
+  "name": "PP Up",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Increase the Maximum PP of a Move of your choice by 25%. Can only be used a maximum of 3 times on one move.",
+    "category": "medicines",
+    "price": 500
+  },
+  "effects": [],
+  "folder": "a6e2kWEJCnlOPoA2",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787023460293,
+    "modifiedTime": 1787023460293,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "q6v7PfjetGiQkFQF",
+  "sort": 0,
+  "_key": "!items!q6v7PfjetGiQkFQF"
+}

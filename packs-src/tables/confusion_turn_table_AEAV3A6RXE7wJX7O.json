@@ -1,0 +1,111 @@
+{
+  "name": "Confusion Turn Table",
+  "_id": "AEAV3A6RXE7wJX7O",
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "type": "text",
+      "weight": 2,
+      "range": [
+        1,
+        2
+      ],
+      "_id": "qwkudOnrHKRpcWEb",
+      "name": "The Pokémon is Confused for 1 round.",
+      "img": "icons/svg/d20-black.svg",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.2",
+        "createdTime": 1788125662741,
+        "modifiedTime": 1788125680151,
+        "lastModifiedBy": "MCdTXLOC9oShsYaY"
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!AEAV3A6RXE7wJX7O.qwkudOnrHKRpcWEb"
+    },
+    {
+      "type": "text",
+      "weight": 2,
+      "range": [
+        3,
+        4
+      ],
+      "_id": "jCbkQ95Dfsxdrdk5",
+      "name": "The Pokémon is Confused for 2 rounds.",
+      "img": "icons/svg/d20-black.svg",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.2",
+        "createdTime": 1788125662884,
+        "modifiedTime": 1788125685048,
+        "lastModifiedBy": "MCdTXLOC9oShsYaY"
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!AEAV3A6RXE7wJX7O.jCbkQ95Dfsxdrdk5"
+    },
+    {
+      "type": "text",
+      "weight": 2,
+      "range": [
+        5,
+        6
+      ],
+      "_id": "6la7dg5LXLak5iQ8",
+      "name": "The Pokémon is Confused for 3 rounds.",
+      "img": "icons/svg/d20-black.svg",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.2",
+        "createdTime": 1788125663039,
+        "modifiedTime": 1788125690321,
+        "lastModifiedBy": "MCdTXLOC9oShsYaY"
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!AEAV3A6RXE7wJX7O.6la7dg5LXLak5iQ8"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.2",
+    "createdTime": 1788125660498,
+    "modifiedTime": 1788125696726,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "formula": "1d6",
+  "_key": "!tables!AEAV3A6RXE7wJX7O"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Wide Guard",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/rock.png",
+  "system": {
+    "description": "The user protects itself and its allies from moves that affect more than 1 target this turn. Has Priority.",
+    "type": "rock",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "pDFvZahXVMPbdY64": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "RRn7XbfjhChK1iL2": {
+            "affectsUser": false,
+            "effect": "wideGuarded",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "JcvQpN90ryEdCVGX": "priority"
+    },
+    "target": "selfAllies",
+    "range": "away",
+    "rangeCount": 2,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786957534528,
+    "modifiedTime": 1786957534528,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "MObD2AQZgvJSVdsN",
+  "sort": 0,
+  "_key": "!items!MObD2AQZgvJSVdsN"
+}

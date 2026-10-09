@@ -1,0 +1,44 @@
+{
+  "name": "Fury Cutter",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/bug.png",
+  "system": {
+    "description": "Move power increases by 1 when used in succession. This effect stacks to a maximum of Move Power 5. The move power is reset after a battle ends.",
+    "type": "bug",
+    "category": "physical",
+    "power": 1,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "Qodd61MuyQXEraDO": "slice"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786952541488,
+    "modifiedTime": 1787945378965,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "ztPW7z6DrbMegPOB",
+  "sort": 7900000,
+  "_key": "!items!ztPW7z6DrbMegPOB"
+}

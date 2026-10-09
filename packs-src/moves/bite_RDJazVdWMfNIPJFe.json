@@ -1,0 +1,56 @@
+{
+  "name": "Bite",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dark.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 6, the target is Flinched.",
+    "type": "dark",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "EzvOJZkBVVgzIzxr": {
+        "triggerType": "d6",
+        "appliedEffects": {
+          "2T4D2x6I4xAIpAl6": {
+            "affectsUser": false,
+            "effect": "flinched",
+            "booleanInput": false,
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "Nj2f2Z8HYtYt9gCQ": "biting"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "lnwdZ55miiw6eO0F",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786620038550,
+    "modifiedTime": 1787944526662,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "RDJazVdWMfNIPJFe",
+  "sort": 1000000,
+  "_key": "!items!RDJazVdWMfNIPJFe"
+}

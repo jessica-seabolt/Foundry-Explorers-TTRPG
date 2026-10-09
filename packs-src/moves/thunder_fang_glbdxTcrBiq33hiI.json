@@ -1,0 +1,55 @@
+{
+  "name": "Thunder Fang",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/electric.png",
+  "system": {
+    "description": "",
+    "type": "electric",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "rsnJJj8zRVYEjhrO": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "Tx8sqxEyKYsK7GQ7": {
+            "affectsUser": false,
+            "effect": "paralyzed",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "GL0qyLZMJd6IVzuX": "biting"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "gP3mTYHLybwN5ySr",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786664397676,
+    "modifiedTime": 1787944609151,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "glbdxTcrBiq33hiI",
+  "sort": 2600000,
+  "_key": "!items!glbdxTcrBiq33hiI"
+}

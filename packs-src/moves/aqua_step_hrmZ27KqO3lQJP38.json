@@ -1,0 +1,56 @@
+{
+  "name": "Aqua Step",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/water.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 5-6, Spe Up 2.",
+    "type": "water",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "YSzgSCQ4tJsjCj1k": {
+        "triggerType": "d56",
+        "appliedEffects": {
+          "L3fO7qMldJQXXpb5": {
+            "affectsUser": true,
+            "effect": "speUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "1DuIYsQBLzOA7TIk": "dance"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787937185610,
+    "modifiedTime": 1787944694891,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "hrmZ27KqO3lQJP38",
+  "sort": 0,
+  "_key": "!items!hrmZ27KqO3lQJP38"
+}

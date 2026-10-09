@@ -1,0 +1,55 @@
+{
+  "name": "Alluring Voice",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fairy.png",
+  "system": {
+    "description": "Deals half the damage dealt back to the User as Recoil.",
+    "type": "fairy",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "kwFfwUQk2tt0NZ9n": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "hG0BCUPAFwitW4uq": {
+            "affectsUser": false,
+            "effect": "infatuated",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "v0E9aPd2a3qneFrJ": "sound"
+    },
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 1,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786953699762,
+    "modifiedTime": 1787944798789,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "uO15Jmyu7goPOWaM",
+  "sort": 6700000,
+  "_key": "!items!uO15Jmyu7goPOWaM"
+}

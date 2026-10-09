@@ -1,0 +1,31 @@
+{
+  "name": "Clear Amulet",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Your Stats cannot be lowered by another Pokémon.",
+    "category": "battleItems",
+    "price": 3000
+  },
+  "effects": [],
+  "folder": "Isb1KUmSvCXlrJwp",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787039910172,
+    "modifiedTime": 1787040211147,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "6XBCL7TwVKKBDJc4",
+  "sort": 2500000,
+  "_key": "!items!6XBCL7TwVKKBDJc4"
+}

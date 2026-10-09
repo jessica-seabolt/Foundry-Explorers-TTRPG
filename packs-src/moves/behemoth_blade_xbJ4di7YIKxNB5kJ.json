@@ -1,0 +1,55 @@
+{
+  "name": "Behemoth Blade",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/steel.png",
+  "system": {
+    "description": "Move power increases by 1 if the target is bigger.",
+    "type": "steel",
+    "category": "physical",
+    "power": 6,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "GxgEdALjsgnPuuUx": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "0y83WoyQSy2AXQ89": {
+            "affectsUser": true,
+            "effect": "atkUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "KoGNSU9WM7eqqzsQ": "slice"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "jGTHOTqt8TX69djw",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787886756535,
+    "modifiedTime": 1791559464859,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "xbJ4di7YIKxNB5kJ",
+  "sort": 0,
+  "_key": "!items!xbJ4di7YIKxNB5kJ"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Water Pulse",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/water.png",
+  "system": {
+    "description": "",
+    "type": "water",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "YUULAPsq0xNeuVn8": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "qb8uwulpvpZPMMWW": {
+            "affectsUser": false,
+            "effect": "confused",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "2bXjtD3d0YkTtbo7": "pulse"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786670001449,
+    "modifiedTime": 1787945067827,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "TFWNFsyYPu4cf0pR",
+  "sort": 0,
+  "_key": "!items!TFWNFsyYPu4cf0pR"
+}

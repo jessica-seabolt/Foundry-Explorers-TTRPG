@@ -1,2 +1,5 @@
 # Compendium packs are LevelDB databases; line-ending conversion corrupts them
 packs/** -text
+
+# Pack source is written by tools/packs.mjs with LF endings; keep it that way so extracts show no false changes
+packs-src/**/*.json text eol=lf

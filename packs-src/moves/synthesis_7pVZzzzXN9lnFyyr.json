@@ -1,0 +1,44 @@
+{
+  "name": "Synthesis",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "User heals for the amount rolled. Healing increases by 2d6 in Harsh Sunlight. Loses 1d6 healing in other Weather.",
+    "type": "grass",
+    "category": "physicalStatus",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "oDyNjH4oyZ7Z49lo": "healPower"
+    },
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "XcbyKlqd66doOyos",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786667036626,
+    "modifiedTime": 1786667928527,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "7pVZzzzXN9lnFyyr",
+  "sort": 900000,
+  "_key": "!items!7pVZzzzXN9lnFyyr"
+}

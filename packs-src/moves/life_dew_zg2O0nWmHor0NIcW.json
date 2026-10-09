@@ -1,0 +1,42 @@
+{
+  "name": "Life Dew",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/water.png",
+  "system": {
+    "description": "User and Allies heal for the amount rolled at the end of their turns. This effect lasts for 5 rounds. It cannot be stacked.",
+    "type": "water",
+    "category": "specialStatus",
+    "power": 1,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "selfAllies",
+    "range": "room",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "a0R9kRJnoJMgYQdT",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787039206519,
+    "modifiedTime": 1787039206519,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "zg2O0nWmHor0NIcW",
+  "sort": 0,
+  "_key": "!items!zg2O0nWmHor0NIcW"
+}

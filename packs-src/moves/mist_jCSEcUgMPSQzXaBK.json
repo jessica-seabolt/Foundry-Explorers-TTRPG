@@ -1,0 +1,53 @@
+{
+  "name": "Mist",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ice.png",
+  "system": {
+    "description": "The user and its allies cannot have stats lowered for 5 turns.",
+    "type": "ice",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "3yjUgBz5PpIshVO6": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "NIhrBYxqLNt0Oz2E": {
+            "affectsUser": false,
+            "effect": "noLoweredStats",
+            "effectCount": 5
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "selfAllies",
+    "range": "room",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "j0b94qoNZhbif16j",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786624673404,
+    "modifiedTime": 1786624764148,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "jCSEcUgMPSQzXaBK",
+  "sort": 1000000,
+  "_key": "!items!jCSEcUgMPSQzXaBK"
+}

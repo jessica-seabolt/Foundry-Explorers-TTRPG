@@ -1,0 +1,55 @@
+{
+  "name": "Ingrain",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "Heal for number rolled. User is Restrained until the end of their next turn.",
+    "type": "grass",
+    "category": "physicalStatus",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "kuSqR3xLoFpvzKBt": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "Ktu9w0cGETNE6wn2": {
+            "affectsUser": false,
+            "effect": "restrained",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "Gamuol5MIJZsE0XJ": "healPower"
+    },
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "ip7KRqxa5gYu2yTu",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.2",
+    "createdTime": 1786621982844,
+    "modifiedTime": 1788124209989,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "ZAunKtXzSKLzjiFn",
+  "sort": 900000,
+  "_key": "!items!ZAunKtXzSKLzjiFn"
+}

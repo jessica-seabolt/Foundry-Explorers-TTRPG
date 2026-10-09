@@ -1,0 +1,53 @@
+{
+  "name": "Confusion",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/psychic.png",
+  "system": {
+    "description": "Uses Deceive vs Intuition.",
+    "type": "psychic",
+    "category": "special",
+    "power": 1,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "0PHlLk4OwI8hUnp2": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "D5K4M76EY3dZt7y7": {
+            "affectsUser": false,
+            "effect": "confused",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": "deceive",
+    "defensiveCheck": "intuition",
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "BOw4zvVanVX05Dsh",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786623545422,
+    "modifiedTime": 1787944829057,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "bgtuFOhkzoMy3wt8",
+  "sort": 0,
+  "_key": "!items!bgtuFOhkzoMy3wt8"
+}

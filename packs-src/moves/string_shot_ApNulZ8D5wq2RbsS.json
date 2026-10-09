@@ -1,0 +1,53 @@
+{
+  "name": "String Shot",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/bug.png",
+  "system": {
+    "description": "",
+    "type": "bug",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "Ah2OZc9PQpvx7IYe": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "wRuJEzl0yUWzQpPD": {
+            "affectsUser": false,
+            "effect": "speDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "ip7KRqxa5gYu2yTu",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786621525773,
+    "modifiedTime": 1786622891526,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "ApNulZ8D5wq2RbsS",
+  "sort": 1100000,
+  "_key": "!items!ApNulZ8D5wq2RbsS"
+}

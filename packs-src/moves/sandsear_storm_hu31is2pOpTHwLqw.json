@@ -1,0 +1,55 @@
+{
+  "name": "Sandsear Storm",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ground.png",
+  "system": {
+    "description": "",
+    "type": "ground",
+    "category": "special",
+    "power": 3,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "nU1ra8NyC4I1ChSz": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "xmOyBtxJ3V7eIAGS": {
+            "affectsUser": false,
+            "effect": "trapped",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "CQOE8hzCFR5D2HIq": "wind"
+    },
+    "target": "foe",
+    "range": "away",
+    "rangeCount": 6,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "uP1U4IGXPrACdhAH",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787783854975,
+    "modifiedTime": 1787945703625,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "hu31is2pOpTHwLqw",
+  "sort": 900000,
+  "_key": "!items!hu31is2pOpTHwLqw"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Mega Punch",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "Target is pushed 4 tiles away. If they collide with a wall or a Pokemon, they take 1d6 damage.",
+    "type": "normal",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "RZWGyjvAUbjAm4ii": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "UcwE7NrdFg6kKEnp": {
+            "affectsUser": false,
+            "effect": "push",
+            "effectCount": 4
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "P47uSLa9FRKWreRG": "punch"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786954999114,
+    "modifiedTime": 1787945204230,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "ZuAGn7Ya4HWQOOk8",
+  "sort": 1900000,
+  "_key": "!items!ZuAGn7Ya4HWQOOk8"
+}

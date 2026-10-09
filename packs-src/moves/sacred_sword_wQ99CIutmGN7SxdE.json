@@ -1,0 +1,45 @@
+{
+  "name": "Sacred Sword",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fighting.png",
+  "system": {
+    "description": "Damage calculated using the user's Special Attack and the target's Defense.",
+    "type": "fighting",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "3gRMUOsfXP9fXciE": "slice",
+      "vLzqP6NwIpVE00g1": "changeDefense"
+    },
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 1,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "2uN51SBXPRy0kVta",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.2",
+    "createdTime": 1787037198522,
+    "modifiedTime": 1788123813263,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "wQ99CIutmGN7SxdE",
+  "sort": 2500000,
+  "_key": "!items!wQ99CIutmGN7SxdE"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Perfect Apple",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "You do not need to eat for the next week.",
+    "category": "foods",
+    "price": 500
+  },
+  "effects": [],
+  "folder": "XJqLVT4pGPp0Z0xQ",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787021867744,
+    "modifiedTime": 1787022719088,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "S2wS48bmvOf0h5DV",
+  "sort": 500000,
+  "_key": "!items!S2wS48bmvOf0h5DV"
+}

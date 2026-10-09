@@ -1,0 +1,55 @@
+{
+  "name": "Kowtow Cleave",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dark.png",
+  "system": {
+    "description": "Uses Deceive vs Intuition.",
+    "type": "dark",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "TmUUN8ZBGHardsiy": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "Ut13OcZkWa1IZ5Ke": {
+            "affectsUser": false,
+            "effect": "frightened",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": "deceive",
+    "defensiveCheck": "intuition",
+    "tags": {
+      "y56yywQjjar8wq1M": "slice"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786953206665,
+    "modifiedTime": 1787945458703,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "1g00f0oqPDTVnqXn",
+  "sort": 200000,
+  "_key": "!items!1g00f0oqPDTVnqXn"
+}

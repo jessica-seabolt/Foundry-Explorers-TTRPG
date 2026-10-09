@@ -1,0 +1,53 @@
+{
+  "name": "Defence Curl",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "Rollout and Ice Ball have their Move Power increased by 1 if used next turn.",
+    "type": "normal",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "T3zsjtbtGkXxyCIH": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "g2HLKqqDmcDMVINT": {
+            "affectsUser": false,
+            "effect": "defUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "ip7KRqxa5gYu2yTu",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786622822367,
+    "modifiedTime": 1786622891526,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "pXWDoWM2CFqxJc7i",
+  "sort": 400000,
+  "_key": "!items!pXWDoWM2CFqxJc7i"
+}

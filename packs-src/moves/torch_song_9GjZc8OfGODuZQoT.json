@@ -1,0 +1,55 @@
+{
+  "name": "Torch Song",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fire.png",
+  "system": {
+    "description": "Roll a d6 after damage has been dealt. On a 5-6, Sp.Atk Up 2.",
+    "type": "fire",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "tHkaTpI2m6tlXCyy": {
+        "triggerType": "d56",
+        "appliedEffects": {
+          "LeL7EP5xRFNe5qj6": {
+            "affectsUser": true,
+            "effect": "spatkUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "a6Em2Z1b1Q3afYe8": "sound"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "2uN51SBXPRy0kVta",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787037241186,
+    "modifiedTime": 1791559464857,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "9GjZc8OfGODuZQoT",
+  "sort": 2700000,
+  "_key": "!items!9GjZc8OfGODuZQoT"
+}

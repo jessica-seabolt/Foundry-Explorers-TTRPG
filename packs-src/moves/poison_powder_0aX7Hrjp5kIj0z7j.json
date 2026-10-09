@@ -1,0 +1,55 @@
+{
+  "name": "Poison Powder",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/poison.png",
+  "system": {
+    "description": "",
+    "type": "poison",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "x5yvZ7LyA4PGlVmJ": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "odnYhSmkS2e6A7qn": {
+            "affectsUser": false,
+            "effect": "poisoned",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "CCl5Bke6AFIdNYOg": "powderSpore"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "j0b94qoNZhbif16j",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786624745110,
+    "modifiedTime": 1787944974945,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "0aX7Hrjp5kIj0z7j",
+  "sort": 500000,
+  "_key": "!items!0aX7Hrjp5kIj0z7j"
+}

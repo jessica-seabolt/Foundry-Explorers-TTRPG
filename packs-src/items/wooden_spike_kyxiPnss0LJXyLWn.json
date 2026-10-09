@@ -1,0 +1,31 @@
+{
+  "name": "Wooden Spike",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Hits target for 1d6 damage. Deals damage as Grass Type. Thrown in a straight line.",
+    "category": "thrownItems",
+    "price": 5
+  },
+  "effects": [],
+  "folder": "Gyv3hr6CX8Rs1589",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787040855149,
+    "modifiedTime": 1787040855149,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "kyxiPnss0LJXyLWn",
+  "sort": 0,
+  "_key": "!items!kyxiPnss0LJXyLWn"
+}

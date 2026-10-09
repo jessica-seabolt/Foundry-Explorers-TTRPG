@@ -1,0 +1,56 @@
+{
+  "name": "Aeroblast",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/flying.png",
+  "system": {
+    "description": "Scores a Critical Hit on a 5-6. Target is pushed 10 tiles away. If they collide with a wall or a Pokemon, they take 1d6 damage.",
+    "type": "flying",
+    "category": "special",
+    "power": 5,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "cv0SSz841jJogZKc": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "Hyab65CNZqCApMkx": {
+            "affectsUser": false,
+            "effect": "push",
+            "effectCount": 10
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "PYCmWkUAvQNfUVAa": "highCritRatio",
+      "rgMWQB0A9i5ZuWuM": "wind"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 10,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "3Xjugd7wb0pfAayG",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787887776720,
+    "modifiedTime": 1787945765478,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "SLYWG6e1B6Kp63Nr",
+  "sort": 600000,
+  "_key": "!items!SLYWG6e1B6Kp63Nr"
+}

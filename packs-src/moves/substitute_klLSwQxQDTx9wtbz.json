@@ -1,0 +1,42 @@
+{
+  "name": "Substitute",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "User takes the damage rolled, becomes Invulnerable, and creates a Substitute. The Substitute has 1/2 maximum HP of the User, and disappears when it has no HP.",
+    "type": "normal",
+    "category": "physicalStatus",
+    "power": 4,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786957163848,
+    "modifiedTime": 1786957163947,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "klLSwQxQDTx9wtbz",
+  "sort": 200000,
+  "_key": "!items!klLSwQxQDTx9wtbz"
+}

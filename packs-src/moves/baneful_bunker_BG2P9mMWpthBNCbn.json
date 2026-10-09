@@ -1,0 +1,58 @@
+{
+  "name": "Baneful Bunker",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/poison.png",
+  "system": {
+    "description": "User is Invulnerable this turn. If attacked this turn, the Foe is Poisoned. If used in succession, roll a d6. On a 1-4, the move fails to activate. Using a third time in succession, or using a similar move in succession always fails. Has Priority.",
+    "type": "poison",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "bQzRGkIBOdSBQYxi": {
+        "triggerType": "flexible",
+        "appliedEffects": {
+          "pQwXs3DQglFvVeeY": {
+            "affectsUser": true,
+            "effect": "invulnerable",
+            "effectCount": null
+          },
+          "mn3fYrPk9Stl43bE": {
+            "affectsUser": false,
+            "effect": "poisoned",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "B8K3m7ctMfQW3Qsx",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787039412765,
+    "modifiedTime": 1787039412765,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "BG2P9mMWpthBNCbn",
+  "sort": 0,
+  "_key": "!items!BG2P9mMWpthBNCbn"
+}

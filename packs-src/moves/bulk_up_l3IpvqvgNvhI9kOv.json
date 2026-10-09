@@ -1,0 +1,63 @@
+{
+  "name": "Bulk Up",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fighting.png",
+  "system": {
+    "description": "User's size increases by one stage.",
+    "type": "fighting",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "oMxlHPiV0Q3saywb": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "hvwrZJMUYVy2dr1Q": {
+            "affectsUser": false,
+            "effect": "atkUp",
+            "effectCount": 2
+          },
+          "wCSJJ1VestWT2k1U": {
+            "affectsUser": false,
+            "effect": "defUp",
+            "effectCount": 2
+          },
+          "xuxYJRnNVQzZHf61": {
+            "affectsUser": false,
+            "effect": "sizeChange",
+            "effectCount": 1
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "XcbyKlqd66doOyos",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786666667961,
+    "modifiedTime": 1786667928527,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "l3IpvqvgNvhI9kOv",
+  "sort": 2200000,
+  "_key": "!items!l3IpvqvgNvhI9kOv"
+}

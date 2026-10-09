@@ -1,0 +1,53 @@
+{
+  "name": "Dazzling Gleam",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fairy.png",
+  "system": {
+    "description": "",
+    "type": "fairy",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "HdB5CYSclWPKyJVc": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "rKWeq2sIM7cYSOXb": {
+            "affectsUser": false,
+            "effect": "blinded",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786668941103,
+    "modifiedTime": 1786669983852,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "JFtzz1tZayGX6Fqy",
+  "sort": 1900000,
+  "_key": "!items!JFtzz1tZayGX6Fqy"
+}

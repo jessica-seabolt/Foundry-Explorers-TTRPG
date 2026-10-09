@@ -1,0 +1,42 @@
+{
+  "name": "Trick",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/psychic.png",
+  "system": {
+    "description": "You replace your current Held Item with the Foe's. Uses Sneak vs Awareness.",
+    "type": "psychic",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": "sneak",
+    "defensiveCheck": "awareness",
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "rNRJ6uDlYy8UxN3I",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786671330666,
+    "modifiedTime": 1786671330666,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "e8zZnSqJzivGYHaU",
+  "sort": 0,
+  "_key": "!items!e8zZnSqJzivGYHaU"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Stun Spore",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "",
+    "type": "grass",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "KgB2tPlgLN9RG9C2": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "yrRflKGxdnpzaQUk": {
+            "affectsUser": false,
+            "effect": "paralyzed",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "BQoJh94NevLUSBVU": "powderSpore"
+    },
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 1,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "rNRJ6uDlYy8UxN3I",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786670698497,
+    "modifiedTime": 1787944996995,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "78Ldm3Ye9Dp6jonP",
+  "sort": 1000000,
+  "_key": "!items!78Ldm3Ye9Dp6jonP"
+}

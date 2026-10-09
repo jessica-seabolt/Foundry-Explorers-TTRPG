@@ -1,0 +1,31 @@
+{
+  "folder": "AR8CkbQgJHBqmhQ6",
+  "name": "Auspicious Armour",
+  "type": "Item",
+  "_id": "gBaZb9Xl4zsmRnXf",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Evolves Charcadet into Armarouge.",
+    "category": "evolutionItems",
+    "price": 1000
+  },
+  "effects": [],
+  "sort": 3800000,
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.2",
+    "createdTime": 1788126002876,
+    "modifiedTime": 1788126369233,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_key": "!items!gBaZb9Xl4zsmRnXf"
+}

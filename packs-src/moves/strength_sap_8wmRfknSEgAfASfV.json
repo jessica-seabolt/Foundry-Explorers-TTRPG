@@ -1,0 +1,53 @@
+{
+  "name": "Strength Sap",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "User is healed equal to the target's Attack Modifier. This is applied before stats are lowered.",
+    "type": "grass",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "RULl5HwQJFKZqeu5": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "xnt8nwGXEzgYrcAx": {
+            "affectsUser": false,
+            "effect": "atkDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786956607340,
+    "modifiedTime": 1786957163947,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "8wmRfknSEgAfASfV",
+  "sort": 500000,
+  "_key": "!items!8wmRfknSEgAfASfV"
+}

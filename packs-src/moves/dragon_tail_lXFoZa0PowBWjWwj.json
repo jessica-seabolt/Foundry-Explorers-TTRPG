@@ -1,0 +1,53 @@
+{
+  "name": "Dragon Tail",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dragon.png",
+  "system": {
+    "description": "Target is pushed 2 tiles away. If they collide with a wall or a Pokemon, they take 1d6 damage.",
+    "type": "dragon",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "rJFYpvajoXGAf2V2": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "CU278vips4AwYeTQ": {
+            "affectsUser": false,
+            "effect": "push",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "lnwdZ55miiw6eO0F",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786620217087,
+    "modifiedTime": 1786663176278,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "lXFoZa0PowBWjWwj",
+  "sort": 1300000,
+  "_key": "!items!lXFoZa0PowBWjWwj"
+}

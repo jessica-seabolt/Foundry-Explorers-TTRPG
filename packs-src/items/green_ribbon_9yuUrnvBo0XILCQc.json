@@ -1,0 +1,31 @@
+{
+  "name": "Green Ribbon",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Raises Attack, Defense, Special Attack and Special Defense modifiers of users with green aura by 2 (Relaxed Nature)",
+    "category": "ribbons",
+    "price": 1000
+  },
+  "effects": [],
+  "folder": "ZlTprQlgnYa983wv",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787040341716,
+    "modifiedTime": 1787040560317,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "9yuUrnvBo0XILCQc",
+  "sort": 2200000,
+  "_key": "!items!9yuUrnvBo0XILCQc"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Salac Berry",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "When held, and you fall below 50% HP, your Speed Modifier raises by 2.",
+    "category": "berries",
+    "price": 50
+  },
+  "effects": [],
+  "folder": "74Pg5VCRPbJ17HpK",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787022532829,
+    "modifiedTime": 1787022676972,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "RdBYwwLDD5OrDvY8",
+  "sort": 100196,
+  "_key": "!items!RdBYwwLDD5OrDvY8"
+}

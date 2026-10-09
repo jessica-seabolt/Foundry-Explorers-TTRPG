@@ -1,0 +1,42 @@
+{
+  "name": "Earthquake",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ground.png",
+  "system": {
+    "description": "",
+    "type": "ground",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "all",
+    "range": "room",
+    "rangeCount": null,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "aTItPw7LQBLJ3V5v",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787781431373,
+    "modifiedTime": 1787782036189,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "0PiU20NkB5GAHrGD",
+  "sort": 100000,
+  "_key": "!items!0PiU20NkB5GAHrGD"
+}

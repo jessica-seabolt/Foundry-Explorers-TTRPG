@@ -1,0 +1,53 @@
+{
+  "name": "Toxic Spikes",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/poison.png",
+  "system": {
+    "description": "The user places 3 spikes in a 2-tile radius that Poison if the Pokemon enters the same tile. Can be stacked, causing Badly Poisoned. Flying Pokemon and those that Levitate are unaffected.",
+    "type": "poison",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "txwJCEHp1SUx4cBJ": {
+        "triggerType": "flexible",
+        "appliedEffects": {
+          "bAfMMEwJEeBVwzKm": {
+            "affectsUser": false,
+            "effect": "badlyPoisoned",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": null,
+    "range": "special",
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "XcbyKlqd66doOyos",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786667567506,
+    "modifiedTime": 1786955105992,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "tY9Ni32FLByTrDjU",
+  "sort": 700000,
+  "_key": "!items!tY9Ni32FLByTrDjU"
+}

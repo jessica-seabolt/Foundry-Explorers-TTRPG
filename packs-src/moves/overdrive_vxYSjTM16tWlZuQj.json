@@ -1,0 +1,55 @@
+{
+  "name": "Overdrive",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/electric.png",
+  "system": {
+    "description": "",
+    "type": "electric",
+    "category": "special",
+    "power": 1,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "HdB5CYSclWPKyJVc": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "udu9jeru6bHv5xFw": {
+            "affectsUser": false,
+            "effect": "frightened",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "KxpwJdRlJq4P9PIF": "sound"
+    },
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 1,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786668475137,
+    "modifiedTime": 1787944791937,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "vxYSjTM16tWlZuQj",
+  "sort": 1700000,
+  "_key": "!items!vxYSjTM16tWlZuQj"
+}

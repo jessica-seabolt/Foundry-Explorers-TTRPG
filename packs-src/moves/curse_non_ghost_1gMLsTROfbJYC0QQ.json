@@ -1,0 +1,63 @@
+{
+  "name": "Curse (Non-Ghost)",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ghost.png",
+  "system": {
+    "description": "If User is Non-Ghost Type, Spe Down 2, Atk Up 2, Def Up 2. If User is Ghost Type, lose 1d6 health, but the target takes 1d6 damage per turn.",
+    "type": "ghost",
+    "category": "physicalStatus",
+    "power": 1,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "oMxlHPiV0Q3saywb": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "cTBUOPlbvaOIPWS2": {
+            "affectsUser": false,
+            "effect": "speDown",
+            "effectCount": 2
+          },
+          "Ea5FeaHrx6H4ifh5": {
+            "affectsUser": false,
+            "effect": "atkUp",
+            "effectCount": 2
+          },
+          "P13m9T04KUeUS9n3": {
+            "affectsUser": false,
+            "effect": "defUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "XcbyKlqd66doOyos",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786666953493,
+    "modifiedTime": 1786667928527,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "1gMLsTROfbJYC0QQ",
+  "sort": 2000000,
+  "_key": "!items!1gMLsTROfbJYC0QQ"
+}

@@ -1,0 +1,53 @@
+{
+  "name": "Disable",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "The target cannot use the last move they used again for 3 rounds.",
+    "type": "normal",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "T3zsjtbtGkXxyCIH": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "g2HLKqqDmcDMVINT": {
+            "affectsUser": false,
+            "effect": "disabled",
+            "effectCount": 3
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "ip7KRqxa5gYu2yTu",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786622768155,
+    "modifiedTime": 1786622891526,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "CaJeixT8j0GiDrhn",
+  "sort": 300000,
+  "_key": "!items!CaJeixT8j0GiDrhn"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Rock Wrecker",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/rock.png",
+  "system": {
+    "description": "User cannot use a Move for 1 round after this Move.",
+    "type": "rock",
+    "category": "physical",
+    "power": 7,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "xB53OcZQov7VWhnX": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "Np4dhBVJ2S4Pqo9v": {
+            "affectsUser": true,
+            "effect": "recharging",
+            "effectCount": 1
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "UoUkslMZedvil7XP": "ballBomb"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "jGTHOTqt8TX69djw",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787886709882,
+    "modifiedTime": 1787944506221,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "BpJcZBKYiELX5HlJ",
+  "sort": 600000,
+  "_key": "!items!BpJcZBKYiELX5HlJ"
+}

@@ -1,0 +1,380 @@
+{
+  "name": "Salazzle",
+  "type": "Character",
+  "_id": "WjCqdPKxwdA2Z0Zv",
+  "img": "systems/explorers/packs/enemies/assets/salazzle.png",
+  "system": {
+    "species": "Salazzle",
+    "type1": "poison",
+    "type2": "fire",
+    "heldItem": "",
+    "size": "small",
+    "hp": {
+      "raw": 50,
+      "max": 50
+    },
+    "abilities": {
+      "atk": {
+        "raw": 15
+      },
+      "def": {
+        "raw": 20
+      },
+      "spatk": {
+        "raw": 30
+      },
+      "spdef": {
+        "raw": 20
+      },
+      "spe": {
+        "raw": 20
+      },
+      "iq": {
+        "raw": 25
+      }
+    },
+    "skills": {
+      "endurance": "untrained",
+      "strength": "untrained",
+      "physicalStatusResistance": "untrained",
+      "awareness": "untrained",
+      "specialStatusResistance": "untrained",
+      "movement": "untrained",
+      "iqSkills": "untrained",
+      "influence": "minor",
+      "deceive": "minor",
+      "intuition": "untrained",
+      "tracking": "untrained",
+      "ecology": "untrained",
+      "sneak": "minor",
+      "memory": "untrained",
+      "logic": "untrained",
+      "traps": "untrained"
+    },
+    "feats": [],
+    "blurbText": "Leader of the Salazzle Gang, She uses her Influence to get what she wants, and Infatuating her enemies. She prefers to command from the back, letting her Salazzle do the brunt of the fighting.",
+    "itemText": "",
+    "featText": ""
+  },
+  "prototypeToken": {
+    "name": "Salazzle",
+    "displayName": 0,
+    "actorLink": true,
+    "width": 1,
+    "height": 1,
+    "texture": {
+      "src": "systems/explorers/packs/enemies/assets/salazzle.png",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "offsetX": 0,
+      "offsetY": 0,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "rotation": 0,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": 1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "hp.raw"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": true,
+      "range": 20,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "items": [
+    {
+      "name": "Sludge",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/poison.png",
+      "system": {
+        "description": "",
+        "type": "poison",
+        "category": "special",
+        "power": 2,
+        "ppLeft": 15,
+        "pp": 15,
+        "effects": {
+          "wYoOj8t7Vj9lJj1k": {
+            "triggerType": "hit",
+            "appliedEffects": {
+              "56dMRJbk7ycYMCF3": {
+                "affectsUser": false,
+                "effect": "poisoned",
+                "effectCount": null
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {},
+        "target": "foe",
+        "range": "ahead",
+        "rangeCount": 4,
+        "level": 2
+      },
+      "effects": [],
+      "folder": "BjQ5iLLOcI614vOM",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.FHRSw4RSiELPopx3",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.5.2",
+        "createdTime": 1787045897622,
+        "modifiedTime": 1787045927941,
+        "lastModifiedBy": "MCdTXLOC9oShsYaY"
+      },
+      "ownership": {
+        "default": 0,
+        "DS0NWnqzUzstZn8l": 3,
+        "MCdTXLOC9oShsYaY": 3
+      },
+      "_id": "FHRSw4RSiELPopx3",
+      "sort": 700000,
+      "_key": "!actors.items!WjCqdPKxwdA2Z0Zv.FHRSw4RSiELPopx3"
+    },
+    {
+      "name": "Toxic Spikes",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/poison.png",
+      "system": {
+        "description": "The user places 3 spikes in a 2-tile radius that Poison if the Pokemon enters the same tile. Can be stacked, causing Badly Poisoned. Flying Pokemon and those that Levitate are unaffected.",
+        "type": "poison",
+        "category": "physicalStatus",
+        "power": 0,
+        "ppLeft": 15,
+        "pp": 15,
+        "effects": {
+          "txwJCEHp1SUx4cBJ": {
+            "triggerType": "flexible",
+            "appliedEffects": {
+              "bAfMMEwJEeBVwzKm": {
+                "affectsUser": false,
+                "effect": "badlyPoisoned",
+                "effectCount": null
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {},
+        "target": null,
+        "range": "special",
+        "rangeCount": null,
+        "level": 2
+      },
+      "effects": [],
+      "folder": "XcbyKlqd66doOyos",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.tY9Ni32FLByTrDjU",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.5.2",
+        "createdTime": 1787045901255,
+        "modifiedTime": 1787045928718,
+        "lastModifiedBy": "MCdTXLOC9oShsYaY"
+      },
+      "ownership": {
+        "default": 0,
+        "DS0NWnqzUzstZn8l": 3,
+        "MCdTXLOC9oShsYaY": 3
+      },
+      "_id": "tY9Ni32FLByTrDjU",
+      "sort": 700000,
+      "_key": "!actors.items!WjCqdPKxwdA2Z0Zv.tY9Ni32FLByTrDjU"
+    },
+    {
+      "name": "Venoshock",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/poison.png",
+      "system": {
+        "description": "Move power increases by 1 if the target is Poisoned.",
+        "type": "poison",
+        "category": "special",
+        "power": 2,
+        "ppLeft": 15,
+        "pp": 15,
+        "effects": {},
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {},
+        "target": "foe",
+        "range": "ahead",
+        "rangeCount": 4,
+        "level": 2
+      },
+      "effects": [],
+      "folder": "BjQ5iLLOcI614vOM",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.ZQ8mqmlfjjx9HLD3",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.5.2",
+        "createdTime": 1787045912967,
+        "modifiedTime": 1787045933798,
+        "lastModifiedBy": "MCdTXLOC9oShsYaY"
+      },
+      "ownership": {
+        "default": 0,
+        "DS0NWnqzUzstZn8l": 3,
+        "MCdTXLOC9oShsYaY": 3
+      },
+      "_id": "ZQ8mqmlfjjx9HLD3",
+      "sort": 800000,
+      "_key": "!actors.items!WjCqdPKxwdA2Z0Zv.ZQ8mqmlfjjx9HLD3"
+    },
+    {
+      "name": "Attract",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/normal.png",
+      "system": {
+        "description": "Uses Influence vs Intuition.",
+        "type": "normal",
+        "category": "specialStatus",
+        "power": 0,
+        "ppLeft": 15,
+        "pp": 15,
+        "effects": {
+          "KduFemQ9oDOG4uXA": {
+            "triggerType": "hit",
+            "appliedEffects": {
+              "sSeorlfjjs7RBZKz": {
+                "affectsUser": false,
+                "effect": "infatuated",
+                "effectCount": null
+              }
+            }
+          }
+        },
+        "offensiveCheck": "influence",
+        "defensiveCheck": "intuition",
+        "tags": {},
+        "target": "foe",
+        "range": "ahead",
+        "rangeCount": 2,
+        "level": 2
+      },
+      "effects": [],
+      "folder": "rNRJ6uDlYy8UxN3I",
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.MCb97ssgHBwoNhnk",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.5.2",
+        "createdTime": 1787045918976,
+        "modifiedTime": 1787045931907,
+        "lastModifiedBy": "MCdTXLOC9oShsYaY"
+      },
+      "ownership": {
+        "default": 0,
+        "DS0NWnqzUzstZn8l": 3,
+        "MCdTXLOC9oShsYaY": 3
+      },
+      "_id": "MCb97ssgHBwoNhnk",
+      "sort": 500000,
+      "_key": "!actors.items!WjCqdPKxwdA2Z0Zv.MCb97ssgHBwoNhnk"
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787045792709,
+    "modifiedTime": 1787770159848,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_key": "!actors!WjCqdPKxwdA2Z0Zv"
+}

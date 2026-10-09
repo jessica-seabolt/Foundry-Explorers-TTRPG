@@ -1,0 +1,53 @@
+{
+  "name": "Luster Purge",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/psychic.png",
+  "system": {
+    "description": "",
+    "type": "psychic",
+    "category": "special",
+    "power": 3,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "M5d0i5VgTxoy4WjX": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "0b83tJfbg8o7uAaS": {
+            "affectsUser": false,
+            "effect": "blinded",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foes",
+    "range": "away",
+    "rangeCount": 1,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "uP1U4IGXPrACdhAH",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787784283959,
+    "modifiedTime": 1787784347863,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "WgfzuedQpT24HeEO",
+  "sort": 600000,
+  "_key": "!items!WgfzuedQpT24HeEO"
+}

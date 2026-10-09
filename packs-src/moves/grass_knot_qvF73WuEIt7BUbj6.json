@@ -1,0 +1,42 @@
+{
+  "name": "Grass Knot",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "Move power increases by 1 if the target is larger in size. Move power decreases by 1 if the target is smaller in size.",
+    "type": "grass",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "2uN51SBXPRy0kVta",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787037361310,
+    "modifiedTime": 1787038050018,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "qvF73WuEIt7BUbj6",
+  "sort": 1900000,
+  "_key": "!items!qvF73WuEIt7BUbj6"
+}

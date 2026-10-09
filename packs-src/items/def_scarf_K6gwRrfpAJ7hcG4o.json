@@ -1,0 +1,31 @@
+{
+  "name": "Def. Scarf",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Boosts user's Defense Modifier by 2.",
+    "category": "scarvesAndBands",
+    "price": null
+  },
+  "effects": [],
+  "folder": "flTbL5r9BQOlCHFW",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787036449680,
+    "modifiedTime": 1787036731372,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "K6gwRrfpAJ7hcG4o",
+  "sort": 2800000,
+  "_key": "!items!K6gwRrfpAJ7hcG4o"
+}

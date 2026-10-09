@@ -1,0 +1,53 @@
+{
+  "name": "Dive",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/water.png",
+  "system": {
+    "description": "User becomes Invulnerable for 1 turn, and then damages the target on the 2nd turn. Can be used to Dive outside the Dungeon.",
+    "type": "water",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "wYvHJlw5nf9aS2Pk": {
+        "triggerType": "flexible",
+        "appliedEffects": {
+          "VankqE3QsHX7exz3": {
+            "affectsUser": true,
+            "effect": "invulnerable",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 6,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "JG9Oc4qLAwpQ1qKO",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786955610350,
+    "modifiedTime": 1786955610350,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "TefT4epqDQtHLt3x",
+  "sort": 0,
+  "_key": "!items!TefT4epqDQtHLt3x"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Poison Fang",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/poison.png",
+  "system": {
+    "description": "",
+    "type": "poison",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "Xol4brq8njI9qH6t": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "ahQD5IMjFnolOF8E": {
+            "affectsUser": false,
+            "effect": "badlyPoisoned",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "0gRrdFT8wl6pRRGS": "biting"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "gP3mTYHLybwN5ySr",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786665434649,
+    "modifiedTime": 1787944605788,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "KnmPGkgOIscAaagu",
+  "sort": 800000,
+  "_key": "!items!KnmPGkgOIscAaagu"
+}

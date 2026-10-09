@@ -1,0 +1,63 @@
+{
+  "name": "Stockpile",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "Generates 1 Stockpile.",
+    "type": "normal",
+    "category": "physicalStatus",
+    "power": 2,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "xbXhHx2KzyGJ1oVR": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "i6s8hftT4qQLaiNQ": {
+            "affectsUser": false,
+            "effect": "defUp",
+            "effectCount": 2
+          },
+          "y1N7lUGitQUdp6O7": {
+            "affectsUser": false,
+            "effect": "spdefUp",
+            "effectCount": 2
+          },
+          "4jjuAoJmZqSrL9AA": {
+            "affectsUser": false,
+            "effect": "stockpile",
+            "effectCount": 1
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786957133871,
+    "modifiedTime": 1786957163947,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "DgzuV35xaFq2Pgvu",
+  "sort": 400000,
+  "_key": "!items!DgzuV35xaFq2Pgvu"
+}

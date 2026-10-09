@@ -1,0 +1,31 @@
+{
+  "name": "Wacan Berry",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "When held, you eat the Berry as a Reaction to taking damage from a Electric-Type Move. It deals half of the damage it would normally do instead.",
+    "category": "berries",
+    "price": 50
+  },
+  "effects": [],
+  "folder": "74Pg5VCRPbJ17HpK",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787022297986,
+    "modifiedTime": 1787022680263,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "BrW7IXf6bJhZcBpT",
+  "sort": 2600000,
+  "_key": "!items!BrW7IXf6bJhZcBpT"
+}

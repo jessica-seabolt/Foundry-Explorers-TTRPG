@@ -1,0 +1,53 @@
+{
+  "name": "Leaf Storm",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "After damage has been dealt, User's Sp.Atk Down 4.",
+    "type": "grass",
+    "category": "special",
+    "power": 5,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "l3MXuTHGSYanW4r9": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "QcYaGtQhk5Qui15t": {
+            "affectsUser": true,
+            "effect": "spatkDown",
+            "effectCount": 4
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "away",
+    "rangeCount": 6,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "uP1U4IGXPrACdhAH",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787783738989,
+    "modifiedTime": 1787784347863,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "cYCjEW4RsVgPcSug",
+  "sort": 1100000,
+  "_key": "!items!cYCjEW4RsVgPcSug"
+}

@@ -1,0 +1,46 @@
+{
+  "name": "Aura Sphere",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fighting.png",
+  "system": {
+    "description": "Scores a Critical Hit on a 5-6.",
+    "type": "fighting",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "VbPZxUhBvMCGdPNT": "highCritRatio",
+      "jFkeXShYyB199B9u": "ballBomb",
+      "DjjIjlwmKiTHdNzo": "pulse"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786668961390,
+    "modifiedTime": 1787945116158,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "a4fzwFHR6AktiCNm",
+  "sort": 2200000,
+  "_key": "!items!a4fzwFHR6AktiCNm"
+}

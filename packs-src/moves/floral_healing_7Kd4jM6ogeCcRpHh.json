@@ -1,0 +1,44 @@
+{
+  "name": "Floral Healing",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fairy.png",
+  "system": {
+    "description": "Heals the target for the amount rolled.",
+    "type": "fairy",
+    "category": "specialStatus",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "ZVIckcbGRyg5t3vV": "healPower"
+    },
+    "target": "selfOrAlly",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "rNRJ6uDlYy8UxN3I",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786670548300,
+    "modifiedTime": 1786671268496,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "7Kd4jM6ogeCcRpHh",
+  "sort": 1500000,
+  "_key": "!items!7Kd4jM6ogeCcRpHh"
+}

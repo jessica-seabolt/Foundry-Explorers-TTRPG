@@ -1,0 +1,42 @@
+{
+  "name": "Brine",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/water.png",
+  "system": {
+    "description": "Move power increases by 1 if the target is below 50% HP.",
+    "type": "water",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "2uN51SBXPRy0kVta",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787038103183,
+    "modifiedTime": 1787038103183,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "4D8Q2C6SVDDuTkK0",
+  "sort": 0,
+  "_key": "!items!4D8Q2C6SVDDuTkK0"
+}

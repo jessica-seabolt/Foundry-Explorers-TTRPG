@@ -1,0 +1,55 @@
+{
+  "name": "Sand Attack",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ground.png",
+  "system": {
+    "description": "",
+    "type": "ground",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "Anyiugso8AwjnhM7": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "Tj5FuJeT7maXxvE2": {
+            "affectsUser": false,
+            "effect": "blinded",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "oDyNjH4oyZ7Z49lo": "healPower"
+    },
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 1,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "XcbyKlqd66doOyos",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786667075838,
+    "modifiedTime": 1786667928527,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "eXOc4IAP30ruvqFm",
+  "sort": 1200000,
+  "_key": "!items!eXOc4IAP30ruvqFm"
+}

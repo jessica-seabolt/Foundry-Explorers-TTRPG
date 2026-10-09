@@ -1,0 +1,53 @@
+{
+  "name": "Hyperspace Fury",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dark.png",
+  "system": {
+    "description": "Ignores Invulnerability.",
+    "type": "dark",
+    "category": "physical",
+    "power": 6,
+    "ppLeft": 5,
+    "pp": 5,
+    "effects": {
+      "M5AMSjhJbDNaBuYO": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "D9NkgEr2Yq8ICQ4c": {
+            "affectsUser": false,
+            "effect": "defDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 1,
+    "level": 5
+  },
+  "effects": [],
+  "folder": "jGTHOTqt8TX69djw",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787885520637,
+    "modifiedTime": 1787886735949,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "II0O03oGIxTEWcSC",
+  "sort": 1700000,
+  "_key": "!items!II0O03oGIxTEWcSC"
+}

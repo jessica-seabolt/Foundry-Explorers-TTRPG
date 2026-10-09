@@ -1,0 +1,53 @@
+{
+  "name": "Belly Drum",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "User takes the number rolled in damage.",
+    "type": "normal",
+    "category": "physicalStatus",
+    "power": 4,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "gK5x7S7Fr2J9LUEs": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "yN2vrCvIzlTEifpT": {
+            "affectsUser": false,
+            "effect": "atkUp",
+            "effectCount": 6
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.3.0",
+    "createdTime": 1786956812345,
+    "modifiedTime": 1786957163947,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "ohZ8v5pM2gPjRFXA",
+  "sort": 800000,
+  "_key": "!items!ohZ8v5pM2gPjRFXA"
+}

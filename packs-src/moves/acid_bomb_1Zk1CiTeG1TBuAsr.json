@@ -1,0 +1,55 @@
+{
+  "name": "Acid Bomb",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/poison.png",
+  "system": {
+    "description": "",
+    "type": "poison",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "wYoOj8t7Vj9lJj1k": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "56dMRJbk7ycYMCF3": {
+            "affectsUser": false,
+            "effect": "spdefDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "Sotn1F1BXP5KNg8H": "ballBomb"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786669837689,
+    "modifiedTime": 1787944496951,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "1Zk1CiTeG1TBuAsr",
+  "sort": 600000,
+  "_key": "!items!1Zk1CiTeG1TBuAsr"
+}

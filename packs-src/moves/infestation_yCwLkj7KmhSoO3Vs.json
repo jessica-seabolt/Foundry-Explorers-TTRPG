@@ -1,0 +1,53 @@
+{
+  "name": "Infestation",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/bug.png",
+  "system": {
+    "description": "",
+    "type": "bug",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "txwJCEHp1SUx4cBJ": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "2ncZ6paJutT6UW4N": {
+            "affectsUser": false,
+            "effect": "trapped",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786668254156,
+    "modifiedTime": 1786669983852,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "yCwLkj7KmhSoO3Vs",
+  "sort": 3000000,
+  "_key": "!items!yCwLkj7KmhSoO3Vs"
+}

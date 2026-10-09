@@ -1,0 +1,60 @@
+{
+  "name": "Dragon Dance",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dragon.png",
+  "system": {
+    "description": "",
+    "type": "dragon",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "oMxlHPiV0Q3saywb": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "hvwrZJMUYVy2dr1Q": {
+            "affectsUser": false,
+            "effect": "atkUp",
+            "effectCount": 2
+          },
+          "dltD1wkQDbmNJvbW": {
+            "affectsUser": false,
+            "effect": "speUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "nmLcao67HMqGj6ZX": "dance"
+    },
+    "target": "self",
+    "range": null,
+    "rangeCount": null,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "XcbyKlqd66doOyos",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786666601806,
+    "modifiedTime": 1787944655775,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "Vj4GJlaDUFnxeqgG",
+  "sort": 2400000,
+  "_key": "!items!Vj4GJlaDUFnxeqgG"
+}

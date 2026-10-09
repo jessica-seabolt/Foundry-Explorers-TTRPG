@@ -1,0 +1,58 @@
+{
+  "name": "Meteor Beam",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/rock.png",
+  "system": {
+    "description": "Charges on the first turn, Restraining the User for 1 round and gives User Sp.Atk Up 2. Attacks on the second turn.",
+    "type": "rock",
+    "category": "special",
+    "power": 5,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "xR0PliVprOiR6WeV": {
+        "triggerType": "flexible",
+        "appliedEffects": {
+          "TxnObP4TNRsQ3Y99": {
+            "affectsUser": true,
+            "effect": "restrained",
+            "effectCount": null
+          },
+          "bF05cbJC4keqgUHS": {
+            "affectsUser": true,
+            "effect": "spatkUp",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "away",
+    "rangeCount": 6,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "uP1U4IGXPrACdhAH",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787784860158,
+    "modifiedTime": 1791559464854,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "5Z3rwHyMYYEYvh6U",
+  "sort": 0,
+  "_key": "!items!5Z3rwHyMYYEYvh6U"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Bleakwind Storm",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/flying.png",
+  "system": {
+    "description": "",
+    "type": "flying",
+    "category": "special",
+    "power": 3,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "COMHumfCzJhi21ef": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "GUb3eZjDEQwv4hhL": {
+            "affectsUser": false,
+            "effect": "trapped",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "7RDjmsAqixkdTT1v": "wind"
+    },
+    "target": "foe",
+    "range": "away",
+    "rangeCount": 6,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "uP1U4IGXPrACdhAH",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787783628370,
+    "modifiedTime": 1787945697132,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "CG7ms8m38qzuNYAw",
+  "sort": 2000000,
+  "_key": "!items!CG7ms8m38qzuNYAw"
+}

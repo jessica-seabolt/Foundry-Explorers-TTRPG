@@ -1,0 +1,44 @@
+{
+  "name": "Flare Blitz",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/fire.png",
+  "system": {
+    "description": "Deals half the damage dealt back to the User as Recoil.",
+    "type": "fire",
+    "category": "physical",
+    "power": 5,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "SFMCjmnt6YHIsmMS": "recoil"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "aTItPw7LQBLJ3V5v",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787780903607,
+    "modifiedTime": 1787782036189,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "NXSBeecma77ruXmM",
+  "sort": 2400000,
+  "_key": "!items!NXSBeecma77ruXmM"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Rollcall Orb",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Draws all team members next to user, Range: Floor",
+    "category": "orbs",
+    "price": 150
+  },
+  "effects": [],
+  "folder": "nslHbFL6H8zczPA6",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787024133108,
+    "modifiedTime": 1787024347583,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "Ikxnj0ARP4vXX7xh",
+  "sort": 1700000,
+  "_key": "!items!Ikxnj0ARP4vXX7xh"
+}

@@ -1,0 +1,23 @@
+{
+  "type": "Item",
+  "folder": null,
+  "name": "Evolution Items",
+  "color": null,
+  "sorting": "a",
+  "_id": "AR8CkbQgJHBqmhQ6",
+  "description": "",
+  "sort": 1300000,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.2",
+    "createdTime": 1788125991264,
+    "modifiedTime": 1788126867939,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_key": "!folders!AR8CkbQgJHBqmhQ6"
+}

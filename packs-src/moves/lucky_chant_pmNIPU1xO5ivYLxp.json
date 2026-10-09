@@ -1,0 +1,42 @@
+{
+  "name": "Lucky Chant",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "Foe PokÃƒÆ’Ã‚Â©mon cannot land Critical Hits for five turns.",
+    "type": "normal",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "all",
+    "range": "room",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "a0R9kRJnoJMgYQdT",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787038830225,
+    "modifiedTime": 1787038845277,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "pmNIPU1xO5ivYLxp",
+  "sort": 1000000,
+  "_key": "!items!pmNIPU1xO5ivYLxp"
+}

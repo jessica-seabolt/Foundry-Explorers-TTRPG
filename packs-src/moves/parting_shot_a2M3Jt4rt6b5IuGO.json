@@ -1,0 +1,60 @@
+{
+  "name": "Parting Shot",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dark.png",
+  "system": {
+    "description": "User also switches place with an Ally up to 4 tiles away.",
+    "type": "dark",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "vTZPsq8K4IfbKQy5": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "RAe3s1AWolDhfHnU": {
+            "affectsUser": false,
+            "effect": "atkDown",
+            "effectCount": 2
+          },
+          "klC04H0prDMaU2LV": {
+            "affectsUser": false,
+            "effect": "spatkDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "3QMYtyne7oDyNeOu": "sound"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786956018423,
+    "modifiedTime": 1787944750332,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "a2M3Jt4rt6b5IuGO",
+  "sort": 1900000,
+  "_key": "!items!a2M3Jt4rt6b5IuGO"
+}

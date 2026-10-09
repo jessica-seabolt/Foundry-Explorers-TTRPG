@@ -1,0 +1,31 @@
+{
+  "name": "Vanish Seed",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Gives Invisible status.",
+    "category": "seeds",
+    "price": 100
+  },
+  "effects": [],
+  "folder": "uePSqJtUuLeN0nr5",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787023324532,
+    "modifiedTime": 1787023343900,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "P04F7f5FmfmzTQCy",
+  "sort": 600000,
+  "_key": "!items!P04F7f5FmfmzTQCy"
+}

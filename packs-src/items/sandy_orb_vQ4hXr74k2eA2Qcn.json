@@ -1,0 +1,31 @@
+{
+  "name": "Sandy Orb",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Starts Sandstorm weather on the current floor.",
+    "category": "orbs",
+    "price": 200
+  },
+  "effects": [],
+  "folder": "nslHbFL6H8zczPA6",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787024146450,
+    "modifiedTime": 1787024347583,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "vQ4hXr74k2eA2Qcn",
+  "sort": 1800000,
+  "_key": "!items!vQ4hXr74k2eA2Qcn"
+}

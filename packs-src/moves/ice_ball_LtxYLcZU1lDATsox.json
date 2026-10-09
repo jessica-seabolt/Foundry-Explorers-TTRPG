@@ -1,0 +1,44 @@
+{
+  "name": "Ice Ball",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ice.png",
+  "system": {
+    "description": "Roll in a direction until you hit a wall, hitting any target in the path. This move must be used for 4 turns consecutively. Move power increases by 1 for each use until it ends. This move ends if you do not hit a PokÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©mon.",
+    "type": "ice",
+    "category": "physical",
+    "power": 1,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "nqlvlwK3qC1uBqqS": "ballBomb"
+    },
+    "target": "all",
+    "range": "path",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786954723256,
+    "modifiedTime": 1787944380715,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "LtxYLcZU1lDATsox",
+  "sort": 3200000,
+  "_key": "!items!LtxYLcZU1lDATsox"
+}

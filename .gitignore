@@ -2,3 +2,13 @@ foundry-config.yaml
 foundry
 node_modules
 .vscode
+
+# Compendium databases are built from packs-src/ by tools/packs.ps1 (images in packs/ stay tracked)
+packs/*/*.ldb
+packs/*/*.log
+packs/*/CURRENT
+packs/*/LOCK
+packs/*/LOG
+packs/*/LOG.old
+packs/*/MANIFEST-*
+packs/*/lost/

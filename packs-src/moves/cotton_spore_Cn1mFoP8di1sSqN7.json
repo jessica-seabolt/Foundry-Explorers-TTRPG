@@ -1,0 +1,55 @@
+{
+  "name": "Cotton Spore",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/grass.png",
+  "system": {
+    "description": "",
+    "type": "grass",
+    "category": "physicalStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "RULl5HwQJFKZqeu5": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "LSlezbA6T23XyvrG": {
+            "affectsUser": false,
+            "effect": "speDown",
+            "effectCount": 4
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "VECaweAigKNkuZBf": "powderSpore"
+    },
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 1,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "FLuXyRTDvzWBmfid",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786956537101,
+    "modifiedTime": 1787944994834,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "Cn1mFoP8di1sSqN7",
+  "sort": 1700000,
+  "_key": "!items!Cn1mFoP8di1sSqN7"
+}

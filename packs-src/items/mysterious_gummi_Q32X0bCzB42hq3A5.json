@@ -1,0 +1,31 @@
+{
+  "name": "Mysterious Gummi",
+  "type": "Item",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "description": "Permanently raises IQ of all types by 10. Can be used to fill half your belly for today.",
+    "category": "gummies",
+    "price": 500
+  },
+  "effects": [],
+  "folder": "M4nON8JhXkGxExxT",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.4.0",
+    "createdTime": 1787022953463,
+    "modifiedTime": 1787022953463,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "_id": "Q32X0bCzB42hq3A5",
+  "sort": 0,
+  "_key": "!items!Q32X0bCzB42hq3A5"
+}

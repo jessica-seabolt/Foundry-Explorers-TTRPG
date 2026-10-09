@@ -1,0 +1,53 @@
+{
+  "name": "Confuse Ray",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ghost.png",
+  "system": {
+    "description": "Uses Deceive vs Awareness.",
+    "type": "ghost",
+    "category": "specialStatus",
+    "power": 0,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "W0S1u7oLty5DPdJ1": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "7BekLjInxltkF9Y8": {
+            "affectsUser": false,
+            "effect": "confused",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": "deceive",
+    "defensiveCheck": "awareness",
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 2,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "rNRJ6uDlYy8UxN3I",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786670623365,
+    "modifiedTime": 1786671268496,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "cNu6b4raWZSm0hCP",
+  "sort": 900000,
+  "_key": "!items!cNu6b4raWZSm0hCP"
+}

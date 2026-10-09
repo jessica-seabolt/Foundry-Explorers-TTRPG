@@ -1,0 +1,55 @@
+{
+  "name": "Icy Wind",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/ice.png",
+  "system": {
+    "description": "",
+    "type": "ice",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "f4gDqBiCb4Wp0bRR": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "fmAJLTPphAom63RY": {
+            "affectsUser": false,
+            "effect": "speDown",
+            "effectCount": 2
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "myjd2nM3CtqSAMyn": "wind"
+    },
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786669275541,
+    "modifiedTime": 1787945810114,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "bkflVG6sZIgOX4yO",
+  "sort": 400000,
+  "_key": "!items!bkflVG6sZIgOX4yO"
+}

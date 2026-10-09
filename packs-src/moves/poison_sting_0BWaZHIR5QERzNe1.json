@@ -1,0 +1,53 @@
+{
+  "name": "Poison Sting",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/poison.png",
+  "system": {
+    "description": "",
+    "type": "poison",
+    "category": "physical",
+    "power": 2,
+    "ppLeft": 20,
+    "pp": 20,
+    "effects": {
+      "Ge8h2fcVf27T8jH5": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "oq4xBS1xsFQIdyQZ": {
+            "affectsUser": false,
+            "effect": "poisoned",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 1
+  },
+  "effects": [],
+  "folder": "lnwdZ55miiw6eO0F",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786621220972,
+    "modifiedTime": 1786621220972,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "0BWaZHIR5QERzNe1",
+  "sort": 0,
+  "_key": "!items!0BWaZHIR5QERzNe1"
+}

@@ -1,0 +1,53 @@
+{
+  "name": "Dragon Rush",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/dragon.png",
+  "system": {
+    "description": "If the User attacks from 2-tiles away, they move 1 tile toward the target.",
+    "type": "dragon",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 10,
+    "pp": 10,
+    "effects": {
+      "TAGEkx5ckhkXMxFh": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "dw1TY8NyUZymw4YN": {
+            "affectsUser": false,
+            "effect": "frightened",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "away",
+    "rangeCount": 2,
+    "level": 4
+  },
+  "effects": [],
+  "folder": "aTItPw7LQBLJ3V5v",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.3",
+    "createdTime": 1787769343605,
+    "modifiedTime": 1787782036189,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "NKbsnJmsY0QQ32u7",
+  "sort": 3300000,
+  "_key": "!items!NKbsnJmsY0QQ32u7"
+}

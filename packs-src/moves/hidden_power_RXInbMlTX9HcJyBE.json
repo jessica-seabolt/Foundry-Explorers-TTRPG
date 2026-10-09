@@ -1,0 +1,42 @@
+{
+  "name": "Hidden Power",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "Type changes based on Aura. Fighting = Pearl/Silver, Flying = Olive/Gold, Poison = Blue/Ruby, Ground = Brown/Pink, Rock = Purple/Scarlet, Bug = Lime/Diamond, Ghost = Sapphire, Steel = Orange, Fire = Yellow, Water = Mint, Grass = Platinum, Electric = Red, Psychic = Green, Ice = Emerald, Dragon = Violet/Black, Dark = Turqoise/White, Fairy = Magenta.",
+    "type": "normal",
+    "category": "special",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {},
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "2uN51SBXPRy0kVta",
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.5.1",
+    "createdTime": 1787037609199,
+    "modifiedTime": 1787038050018,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "_id": "RXInbMlTX9HcJyBE",
+  "sort": 800000,
+  "_key": "!items!RXInbMlTX9HcJyBE"
+}

@@ -1,0 +1,155 @@
+{
+  "name": "Confusion Attack Table",
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "_id": "OORFoOWhLwzMA8u7",
+      "name": "The Pokémon hits a nearby ally with their Attack or Move, if within range. Otherwise, it hits itself for 1d6 damage.",
+      "img": "icons/svg/d20-black.svg",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.1",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!9d63wZU0IGM8DLBK.OORFoOWhLwzMA8u7"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "_id": "WkzlOivhKna8RwIt",
+      "name": "The Pokémon hits itself in confusion, dealing 1d6 damage to themselves.",
+      "img": "icons/svg/d20-black.svg",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.1",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!9d63wZU0IGM8DLBK.WkzlOivhKna8RwIt"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "_id": "2vmbwuwdA18ZanT6",
+      "name": "The Pokémon hits a random target, friend or foe, within range. Designate each Pokémon in range a number, or set of numbers, and roll a d6 to determine the target. Use additional d6’s as necessary. If there is an odd number in the list of available targets, include the Confused Pokémon.",
+      "img": "icons/svg/d20-black.svg",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.1",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!9d63wZU0IGM8DLBK.2vmbwuwdA18ZanT6"
+    },
+    {
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "_id": "FYmlGYCPYGgkAuz0",
+      "name": "The Pokémon has control of its Attack or Move this turn.",
+      "img": "icons/svg/d20-black.svg",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.1",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!9d63wZU0IGM8DLBK.FYmlGYCPYGgkAuz0"
+    },
+    {
+      "type": "text",
+      "weight": 2,
+      "range": [
+        5,
+        6
+      ],
+      "_id": "OAYkKJvG4p0NBxot",
+      "name": "The Pokémon’s Confused condition ends.",
+      "img": "icons/svg/d20-black.svg",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.1",
+        "lastModifiedBy": null
+      },
+      "documentUuid": null,
+      "_key": "!tables.results!9d63wZU0IGM8DLBK.OAYkKJvG4p0NBxot"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "MCdTXLOC9oShsYaY": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1787946587181,
+    "modifiedTime": 1787946588235,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "formula": "1d6",
+  "_id": "9d63wZU0IGM8DLBK",
+  "sort": 300000,
+  "_key": "!tables!9d63wZU0IGM8DLBK"
+}

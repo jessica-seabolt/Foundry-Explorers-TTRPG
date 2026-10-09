@@ -1,0 +1,55 @@
+{
+  "name": "Thunder Punch",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/electric.png",
+  "system": {
+    "description": "",
+    "type": "electric",
+    "category": "physical",
+    "power": 3,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "jr9MSJHO0bN4LQtE": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "btAtRCW2VdqyBhDK": {
+            "affectsUser": false,
+            "effect": "paralyzed",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {
+      "uI9bv8N2veJEcX9Y": "punch"
+    },
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "level": 3
+  },
+  "effects": [],
+  "folder": "qwF0Nu3AsZH5R8PX",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.1",
+    "createdTime": 1786953599226,
+    "modifiedTime": 1787945198167,
+    "lastModifiedBy": "MCdTXLOC9oShsYaY"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "dwUCjdSDhQACROnY",
+  "sort": 6500000,
+  "_key": "!items!dwUCjdSDhQACROnY"
+}

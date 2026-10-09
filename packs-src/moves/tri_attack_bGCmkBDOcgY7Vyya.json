@@ -1,0 +1,63 @@
+{
+  "name": "Tri Attack",
+  "type": "Move",
+  "img": "systems/explorers/assets/icons/normal.png",
+  "system": {
+    "description": "Roll a d6 to determine Status Condition. On a 1-2, Burn. On a 3-4, Paralyzed. On a 5-6, Frozen.",
+    "type": "normal",
+    "category": "special",
+    "power": 2,
+    "ppLeft": 15,
+    "pp": 15,
+    "effects": {
+      "8bnEVUrzRXMOYNpH": {
+        "triggerType": "flexible",
+        "appliedEffects": {
+          "zC9Zhj1n60WWYgWK": {
+            "affectsUser": false,
+            "effect": "burned",
+            "effectCount": null
+          },
+          "g2uWbG7lmYwyvza8": {
+            "affectsUser": false,
+            "effect": "paralyzed",
+            "effectCount": null
+          },
+          "2q2U5GKC4UKC26LF": {
+            "affectsUser": false,
+            "effect": "frozen",
+            "effectCount": null
+          }
+        }
+      }
+    },
+    "offensiveCheck": null,
+    "defensiveCheck": null,
+    "tags": {},
+    "target": "foe",
+    "range": "ahead",
+    "rangeCount": 4,
+    "level": 2
+  },
+  "effects": [],
+  "folder": "BjQ5iLLOcI614vOM",
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "explorers",
+    "systemVersion": "1.1.0",
+    "createdTime": 1786669811882,
+    "modifiedTime": 1786669983852,
+    "lastModifiedBy": "DS0NWnqzUzstZn8l"
+  },
+  "ownership": {
+    "default": 0,
+    "DS0NWnqzUzstZn8l": 3
+  },
+  "_id": "bGCmkBDOcgY7Vyya",
+  "sort": 500000,
+  "_key": "!items!bGCmkBDOcgY7Vyya"
+}
