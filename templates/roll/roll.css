@@ -25,3 +25,13 @@
 .roll-types > * {
   flex: 1;
 }
+
+.initiative-tie-choice .initiative-tie-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.initiative-tie-choice .initiative-tie-buttons button {
+  flex: 1 1 auto;
+}

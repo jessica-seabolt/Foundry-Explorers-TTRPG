@@ -1,0 +1,64 @@
+.explorers-targeting .targeting-description {
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+
+.explorers-targeting .direction-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 56px);
+  grid-auto-rows: 56px;
+  gap: 4px;
+  justify-content: center;
+}
+
+.explorers-targeting .direction-pad button {
+  position: relative;
+  height: 100%;
+  font-size: 1.4rem;
+}
+
+.explorers-targeting .direction-pad button.active {
+  box-shadow: 0 0 6px var(--color-shadow-primary);
+}
+
+.explorers-targeting .direction-count {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.explorers-targeting .direction-center {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border: none;
+}
+
+.explorers-targeting .target-candidates {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.explorers-targeting .target-candidates label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.explorers-targeting .target-candidates img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border: none;
+}
+
+.explorers-targeting .form-footer {
+  display: flex;
+  gap: 4px;
+}

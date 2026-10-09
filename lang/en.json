@@ -2,6 +2,7 @@
   "TYPES.Actor.Character": "Character",
   "TYPES.Actor.Player": "Player",
   "TYPES.Item.Move": "Move",
+  "TYPES.RegionBehavior.room": "Room",
   "TYPES.Item.Item": "Item",
   "CHAT": {
     "RollPublic": "Roll Public",
@@ -19,7 +20,9 @@
     "Dice": {
       "Advantage": "Advantage",
       "Normal": "Normal",
-      "Disadvantage": "Disadvantage"
+      "Disadvantage": "Disadvantage",
+      "Success": "Success",
+      "Failure": "Failure"
     },
     "Tabs": {
       "Stats": "Stats",
@@ -311,7 +314,9 @@
       "DestinyBonded": "Destiny Bonded",
       "DoubleDamage": "Double Damage",
       "Recharging": "Recharging",
-      "AbilitySuppressed": "Ability Suppressed"
+      "AbilitySuppressed": "Ability Suppressed",
+      "Guarding": "Guarding",
+      "Fainted": "Fainted"
     },
     "Weathers": {
       "ClearWeather": "Clear Weather",
@@ -370,7 +375,144 @@
       "Points": "pts.",
       "Bonus": "bonus",
       "Minimum": "min.",
-      "STAB": "STAB"
+      "STAB": "STAB",
+      "StatChanges": "Stat Changes",
+      "StatChangesHint": "Stat Up/Down from moves, added to each Stat Modifier (max ±10). Reset on a new Floor.",
+      "Movement": "Movement",
+      "Visibility": "Visibility",
+      "Tiles": "tiles",
+      "NoConditions": "No conditions",
+      "ConditionRemoveHint": "Right-click to remove",
+      "TurnsLeft": "{count} turns left",
+      "RoundsLeft": "{count} rounds left"
+    },
+    "Initiative": {
+      "TieTitle": "Initiative Tie",
+      "TieRolled": "Pokémon on different Teams tied on Speed and rolled 2d6 to break the tie:",
+      "TieChoose": "Teammates tied on Speed. Choose who goes first:",
+      "TieDecided": "Turn order decided:",
+      "TieNotify": "Your Pokémon is tied for initiative with a teammate. Choose who goes first in the chat.",
+      "TieOutdated": "This initiative tie has changed since this card was posted."
+    },
+    "Socket": {
+      "NoGM": "A GM must be connected to affect a Pokémon you don't own."
+    },
+    "Actions": {
+      "BasicAttack": "Basic Attack",
+      "Guard": "Guard",
+      "GuardHint": "Take half damage from attacks and gain 1d6 on Status Resist Checks until your next turn.",
+      "Rest": "Rest",
+      "RestHint": "Regain all HP and PP.",
+      "NewFloor": "New Floor",
+      "NewFloorHint": "Reset Stat Changes, as when moving to a new Floor.",
+      "OpportunityStrike": "Opportunity Strike"
+    },
+    "Automation": {
+      "Power": "Power",
+      "Healing": "Healing",
+      "Status": "Status",
+      "Use": "Use",
+      "DamageButton": "Damage",
+      "HealButton": "Heal",
+      "ResistButton": "Resist",
+      "ResistTitle": "vs. {move}",
+      "HighestDefense": "Highest Defense",
+      "SkipChecks": "Skip Condition Checks",
+      "SkipChecksHint": "Don't roll for Paralysis, Confusion or Blindness, or block the move for Sleep, Freeze, Flinch or Silence.",
+      "NoActorSelected": "No character is selected!",
+      "OutOfPP": "You're out of PP!",
+      "StatChanged": "{name}: {label} {amount} (now {total}).",
+      "StatBlocked": "{name}'s stats can't be lowered, so {label} has no effect.",
+      "ConditionApplied": "{name} is now {label}.",
+      "AlreadyHas": "{name} is already {label}.",
+      "ConditionEnded": "{name} is no longer {label}.",
+      "ConditionShaken": "{name} shook off {label}!",
+      "BlockedInvulnerable": "{name} is Invulnerable, so {label} has no effect.",
+      "BlockedType": "{name}'s Type is immune to {label}.",
+      "BlockedInsomnia": "{name} can't fall asleep, so {label} has no effect.",
+      "WeatherChanged": "Weather/Terrain changes: {label}.",
+      "ManualEffect": "{name}: {label} {count} (apply this effect by hand).",
+      "ApplyManually": "Apply by hand: {effects}.",
+      "FlexibleEffects": "{move} can cause: {effects}. Apply them from the Token HUD when they happen.",
+      "RoomEffects": "{move} affects everyone in the room: {effects}. Apply them from the Token HUD.",
+      "Resisted": "{name} resisted {move}!",
+      "ImmuneNoEffect": "{name} is immune to {move}, so it has no effect.",
+      "MagicCoatReflect": "{name}'s Magic Coat reflects {move} back at the user!",
+      "TookDamage": "{name} took {damage} damage.",
+      "TookDamageFrom": "{name} took {damage} damage from {label}.",
+      "Fainted": "{name} fainted!",
+      "GuardHalved": "{name} is Guarding, so the damage is halved.",
+      "InvulnerableNoDamage": "{name} is Invulnerable and takes no damage.",
+      "FrozenNoDamage": "{name} is Frozen and only takes damage from Fire-Type moves.",
+      "Thawed": "{name} thawed out!",
+      "WokeUp": "{name} woke up!",
+      "FellAsleep": "{name} fell asleep!",
+      "Healed": "{name} healed {amount} HP.",
+      "HealedFrom": "{name} healed {amount} HP from {label}.",
+      "Rested": "{name} rested and regained all HP and PP.",
+      "NewFloor": "{name}'s Stat Changes were reset for the new Floor.",
+      "CannotActFrozen": "{name} is Frozen and can't use {move}.",
+      "CannotActAsleep": "{name} is Asleep and can't use {move}.",
+      "CannotActFlinched": "{name} Flinched and can't use a move this round.",
+      "CannotActSilenced": "{name} is Silenced and can't use the sound-based move {move}.",
+      "ParalysisCheck": "{name} is Paralyzed (1-2: the move fails)",
+      "ParalysisFail": "{name} is paralyzed and couldn't use {move}!",
+      "ConfusionCheck": "{name} is Confused (attack table)",
+      "ConfusionSelfHit": "{name} hit itself in its confusion!",
+      "ConfusionDamage": "Confusion damage",
+      "ConfusionAlly": "{name} attacks a nearby ally in its confusion! Target that ally and roll the move again with \"Skip Condition Checks\". If no ally is in range, it hits itself for 1d6.",
+      "ConfusionRandom": "{name} attacks a random target in range! Number each Pokémon in range, roll for the target, then roll the move again with \"Skip Condition Checks\".",
+      "ConfusionEnds": "{name} snapped out of its confusion!",
+      "ConfusionDuration": "{name} is Confused (1-2: 1 round, 3-4: 2 rounds, 5-6: 3 rounds)",
+      "BlindCheck": "{name} is Blinded (1-3: miss, 4-5: hit, 6: hit and cured)",
+      "BlindMiss": "{name} can't see and {move} missed!",
+      "BlindCured": "{name} can see again!",
+      "SleepDuration": "{name} is Asleep for this many rounds",
+      "WakeCheck": "{name} tries to wake up (needs {target}+)",
+      "RerollReminder": "{name} can roll its Status Resistance Check to end {label}. There's no roll on record to beat, so roll it from the sheet.",
+      "RerollFlavor": "{skill} to end {label} (vs. {dc})"
+    },
+    "Targeting": {
+      "Title": "Targeting",
+      "ChooseDirection": "Choose a direction.",
+      "PickLocation": "Pick a location",
+      "ClickLocation": "Click a tile within {reach} tiles.",
+      "LocationOutOfRange": "That tile is out of range or blocked by a wall.",
+      "NoTargets": "No valid targets.",
+      "Blocked": "Blocked by",
+      "IncludesSelf": "This move also affects you.",
+      "NoneChosen": "Choose at least one target.",
+      "NoToken": "Place this Pokémon's token on the scene to aim its moves automatically.",
+      "Confirm": "Confirm",
+      "UseAnyway": "Use anyway",
+      "Cancel": "Cancel"
+    },
+    "Regions": {
+      "Room": {
+        "Hint": "Marks this Region as a dungeon Room. Pokémon inside see the whole Room and one tile beyond it, and Room-range moves hit everyone inside."
+      }
+    },
+    "Settings": {
+      "AutoApplyDamage": {
+        "Name": "Apply Damage Automatically",
+        "Hint": "Deal a move's damage (or healing) to its target as soon as it's rolled, before any secondary effects. Untargeted rolls keep their Damage button."
+      },
+      "AutoRollNpcStatusChecks": {
+        "Name": "Auto-Roll GM Status Checks",
+        "Hint": "When a move targets a Pokémon no connected player owns, roll its Status Check automatically instead of opening a dialog for the GM."
+      },
+      "AutoTargeting": {
+        "Name": "Automatic Targeting",
+        "Hint": "Aim moves from their Target and Range, asking only when there's a choice to make."
+      },
+      "DungeonVisibility": {
+        "Name": "Dungeon Visibility",
+        "Hint": "A Pokémon in a Room (a Region with the Room behavior) sees the whole Room and one tile beyond it. Outside Rooms, it sees only as far as its Visibility, even in lit areas."
+      },
+      "RevealWallTiles": {
+        "Name": "Show Wall Tiles",
+        "Hint": "Let tokens see one tile past walls, so the wall tiles of a dungeon map show up. Draw walls along the edges of floor tiles."
+      }
     }
   }
 }

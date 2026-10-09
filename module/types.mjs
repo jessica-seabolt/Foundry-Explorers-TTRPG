@@ -220,6 +220,7 @@ export const stateConditions = { // does not require a status condition save
   doubleDamage: "SYSTEM.Conditions.DoubleDamage",
   recharging: "SYSTEM.Conditions.Recharging",
   abilitySuppressed: "SYSTEM.Conditions.AbilitySuppressed",
+  guarding: "SYSTEM.Conditions.Guarding",
 };
 export const weathers = {
   clearWeather: "SYSTEM.Weathers.ClearWeather",
@@ -324,4 +325,80 @@ export const itemCategories = {
   evolutionItems: "SYSTEM.Items.Categories.EvolutionItems",
   formChangingItems: "SYSTEM.Items.Categories.FormChangingItems",
   tmsAndHms: "SYSTEM.Items.Categories.TmsAndHms",
+};
+export const statKeys = ['atk', 'def', 'spatk', 'spdef', 'spe', 'iq'];
+// Pokemon of these Types cannot be afflicted with the Condition
+export const conditionTypeImmunities = {
+  burned: ['fire'],
+  poisoned: ['steel', 'poison'],
+  badlyPoisoned: ['steel', 'poison'],
+  frozen: ['ice'],
+};
+// Conditions that let the afflicted Pokemon roll its Status Resistance Check again at the start of its turn
+export const resistRerollConditions = new Set([
+  'frozen', 'restrained', 'blinded', 'trapped', 'frightened', 'silenced', 'infatuated', 'taunted'
+]);
+// Value effects whose count is a number of turns, counted down at the start of the afflicted Pokemon's turn
+export const durationEffects = new Set([
+  'insomnia', 'magicCoat', 'disabled', 'statusDisabled', 'flyingDisabled', 'noLoweredStats', 'embargo',
+  'levitating', 'aquaVeil', 'doubleDamage', 'recharging', 'abilitySuppressed', 'mudSport', 'waterSport'
+]);
+// Conditions that end at the start of the Pokemon's next turn ("this turn" effects)
+export const untilNextTurnConditions = new Set(['guarding', 'invulnerable', 'quickGuarded', 'wideGuarded']);
+// Token icons for each Condition, using Foundry's core icon set
+export const conditionIcons = {
+  atkUp: 'icons/svg/sword.svg', atkDown: 'icons/svg/sword.svg',
+  defUp: 'icons/svg/shield.svg', defDown: 'icons/svg/shield.svg',
+  spatkUp: 'icons/svg/lightning.svg', spatkDown: 'icons/svg/lightning.svg',
+  spdefUp: 'icons/svg/mage-shield.svg', spdefDown: 'icons/svg/mage-shield.svg',
+  speUp: 'icons/svg/wingfoot.svg', speDown: 'icons/svg/wingfoot.svg',
+  iqUp: 'icons/svg/book.svg', iqDown: 'icons/svg/book.svg',
+  paralyzed: 'icons/svg/paralysis.svg',
+  burned: 'icons/svg/fire.svg',
+  poisoned: 'icons/svg/poison.svg',
+  badlyPoisoned: 'icons/svg/biohazard.svg',
+  frozen: 'icons/svg/frozen.svg',
+  asleep: 'icons/svg/sleep.svg',
+  flinched: 'icons/svg/daze.svg',
+  confused: 'icons/svg/stoned.svg',
+  restrained: 'icons/svg/net.svg',
+  blinded: 'icons/svg/blind.svg',
+  yawning: 'icons/svg/unconscious.svg',
+  trapped: 'icons/svg/trap.svg',
+  frightened: 'icons/svg/terror.svg',
+  silenced: 'icons/svg/silenced.svg',
+  invisible: 'icons/svg/invisible.svg',
+  infatuated: 'icons/svg/angel.svg',
+  taunted: 'icons/svg/target.svg',
+  counter: 'icons/svg/thrust.svg',
+  mirrorCoat: 'icons/svg/aura.svg',
+  magicCoat: 'icons/svg/holy-shield.svg',
+  eyedrop: 'icons/svg/eye.svg',
+  insomnia: 'icons/svg/light.svg',
+  invulnerable: 'icons/svg/ice-shield.svg',
+  disabled: 'icons/svg/cancel.svg',
+  statusDisabled: 'icons/svg/cancel.svg',
+  flyingDisabled: 'icons/svg/wing.svg',
+  noLoweredStats: 'icons/svg/upgrade.svg',
+  embargo: 'icons/svg/padlock.svg',
+  tormented: 'icons/svg/degen.svg',
+  grudge: 'icons/svg/skull.svg',
+  seeded: 'icons/svg/oak.svg',
+  levitating: 'icons/svg/up.svg',
+  saltCured: 'icons/svg/acid.svg',
+  cursed: 'icons/svg/bones.svg',
+  helpingHand: 'icons/svg/heal.svg',
+  foresighted: 'icons/svg/dice-target.svg',
+  tarShot: 'icons/svg/blood.svg',
+  snatch: 'icons/svg/item-bag.svg',
+  encore: 'icons/svg/sound.svg',
+  aquaVeil: 'icons/svg/waterfall.svg',
+  quickGuarded: 'icons/svg/fire-shield.svg',
+  stockpile: 'icons/svg/barrel.svg',
+  wideGuarded: 'icons/svg/castle.svg',
+  destinyBonded: 'icons/svg/radiation.svg',
+  doubleDamage: 'icons/svg/explosion.svg',
+  recharging: 'icons/svg/clockwork.svg',
+  abilitySuppressed: 'icons/svg/downgrade.svg',
+  guarding: 'icons/svg/statue.svg',
 };

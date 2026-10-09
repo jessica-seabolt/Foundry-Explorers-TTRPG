@@ -3,9 +3,9 @@
   "title": "Explorers! a TTRPG",
   "description": "A tabletop roleplaying game for explorers",
   "version": "1.6.6",
-  "url": "https://github.com/25Pi25/Foundry-Explorers-TTRPG",
-  "manifest": "https://raw.githubusercontent.com/25Pi25/Foundry-Explorers-TTRPG/main/system.json",
-  "download": "https://github.com/25Pi25/Foundry-Explorers-TTRPG/releases/download/v1.6.6/explorers.zip",
+  "url": "https://github.com/jessica-seabolt/Foundry-Explorers-TTRPG",
+  "manifest": "https://raw.githubusercontent.com/jessica-seabolt/Foundry-Explorers-TTRPG/main/system.json",
+  "download": "https://github.com/jessica-seabolt/Foundry-Explorers-TTRPG/releases/download/v1.6.6/explorers.zip",
   "compatibility": {
     "minimum": 13,
     "verified": 13
@@ -71,10 +71,13 @@
     "Item": {
       "Move": { "htmlFields": ["description"] },
       "Item": { "htmlFields": ["description"] }
+    },
+    "RegionBehavior": {
+      "room": {}
     }
   },
-  "socket": false,
-  "initiative": "@abilities.spe.mod",
+  "socket": true,
+  "initiative": "@abilities.spe.value",
   "grid": {
     "distance": 5,
     "units": "ft"

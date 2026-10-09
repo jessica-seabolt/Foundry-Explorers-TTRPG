@@ -216,3 +216,83 @@ input.character-name {
 .blurb .form-fields, .blurb .form-fields input {
   height: 100%;
 }
+
+.stat-changes {
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(7, calc(100% / 7));
+  margin-top: 4px;
+}
+
+.stat-changes input {
+  width: 60px;
+  text-align: center;
+}
+
+.derived-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  margin: 4px 0;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.action-buttons button.active {
+  box-shadow: 0 0 6px var(--color-shadow-primary);
+}
+
+.status-strip {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.condition-chips {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-height: 26px;
+  align-items: center;
+}
+
+.condition-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 6px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  font-size: 0.85rem;
+  cursor: default;
+}
+
+.condition-chip img {
+  width: 18px;
+  height: 18px;
+  border: none;
+}
+
+.condition-chip.stat-chip.up {
+  color: green;
+}
+
+.condition-chip.stat-chip.down {
+  color: red;
+}
+
+.no-conditions {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.sheet-utilities {
+  display: flex;
+  gap: 4px;
+}

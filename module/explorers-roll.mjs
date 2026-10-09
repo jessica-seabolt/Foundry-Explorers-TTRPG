@@ -1,5 +1,5 @@
 import { filePath, getSelectedActors } from '../constants.mjs';
-import { abilities } from './types.mjs';
+import { abilities, effects, skills } from './types.mjs';
 
 const { Roll, terms: { Die } } = foundry.dice;
 
@@ -13,12 +13,20 @@ export class ExplorersRoll extends Roll {
   }
 }
 
+/** Resolves the actors a chat card button applies to: its target if it has one, otherwise the selected tokens. */
+function getCardActors(targetId) {
+  const actors = targetId ? [fromUuidSync(targetId)].filter(_ => _) : getSelectedActors();
+  if (!actors?.length) ui.notifications.error("SYSTEM.Automation.NoActorSelected", { localize: true });
+  return actors ?? [];
+}
+
 export class DamageRoll extends ExplorersRoll {
   static CHAT_TEMPLATE = filePath("templates/roll/roll-chat-damage.hbs");
 
   get resistAbility() { return this.options.resistAbility; } // physical or special defense
   get targetId() { return this.options.targetId; } // target will take damage
-  
+  get isHealing() { return !!this.options.isHealing; } // healing moves restore HP instead of dealing damage
+
   constructor(formula, data, options={}) {
     super(formula, data, options);
     if (options.resistAbility === undefined) options.resistAbility = null;
@@ -28,23 +36,56 @@ export class DamageRoll extends ExplorersRoll {
   async _prepareChatRenderContext(options) {
     const context = await super._prepareChatRenderContext(options);
     context.resistAbility = this.resistAbility;
-    context.resistText = abilities[this.resistAbility];
+    context.resistText = this.resistAbility === 'highest' ? "SYSTEM.Automation.HighestDefense" : abilities[this.resistAbility];
     context.damagePermission = fromUuidSync(this.targetId)?.isOwner ?? true;
     context.damage = this.total;
     context.targetId = this.targetId;
+    context.isHealing = this.isHealing;
     return context;
   }
 
-  static applyDamageCallback(event) {
-    const { resist, damage, targetid } = event.target.dataset;
-    const actors = targetid ? [fromUuidSync(targetid)] : getSelectedActors();
-    if (!actors.length) {
-      ui.notifications.error("No character is selected!");
+  /** The options to pass to CharacterDataModel#applyDamage for this roll. */
+  get damageOptions() {
+    return {
+      amount: this.total,
+      resistAbility: this.resistAbility,
+      moveType: this.options.moveType ?? null,
+      attackerUuid: this.options.attackerUuid ?? null,
+      tags: this.options.tags ?? [],
+      isAttack: true,
+      label: this.options.moveName ?? null
+    };
+  }
+
+  /** Applies this roll's damage (or healing) to its target, or to the selected tokens if it has none. */
+  applyToTargets() {
+    for (const actor of getCardActors(this.targetId)) {
+      if (this.isHealing) actor.system.heal?.(this.total, this.options.moveName ?? null);
+      else actor.system.applyDamage?.(this.damageOptions);
     }
-    for (const actor of actors) {
-      // TODO: remove duck typing and just check for character actor
-      actor.system.takeDamage?.(Number(damage), resist);
-    }
+  }
+}
+
+/**
+ * The attacker's roll to land a move's Status Conditions or secondary effects.
+ * The target makes a Status Check against it from the chat card's Resist button.
+ * options.effects: [{effect, effectCount}] applied to the target if its Status Check fails
+ * options.onLandEffects: [{effect, effectCount}] applied to the attacker if the effects land
+ * options.resistSkill: the skill the target rolls to resist
+ * options.attackerUuid, options.targetId, options.moveName, options.moveType
+ * options.resistBonusDice: extra dice the target gets on its Status Check (e.g. from an Opportunity Strike)
+ */
+export class StatusRoll extends ExplorersRoll {
+  static CHAT_TEMPLATE = filePath("templates/roll/roll-chat-status.hbs");
+
+  async _prepareChatRenderContext(options) {
+    const context = await super._prepareChatRenderContext(options);
+    const target = this.options.targetId ? fromUuidSync(this.options.targetId) : null;
+    context.resistPermission = target?.isOwner ?? true;
+    context.resistText = skills[this.options.resistSkill];
+    context.effectNames = (this.options.effects ?? []).map(({ effect, effectCount }) =>
+      `${game.i18n.localize(effects[effect] ?? effect)}${effectCount ? ` (${effectCount})` : ""}`).join(", ");
+    return context;
   }
 }
 

@@ -1,6 +1,11 @@
 import { proficiencies, types, typeChart, abilities, skills, sizes, classes,
   specializations, categories, targets, ranges, triggerTypes, effects, tags, 
-  itemCategories} from './types.mjs';
+  itemCategories, statKeys} from './types.mjs';
+import { FAINTED_STATUS, applyDamage, healActor, postAutomationMessage, removeCondition, syncStatChangeIcons } from './conditions.mjs';
+import { SYSTEM_ID } from '../constants.mjs';
+
+// Tokens of Large Pokemon take up 2x2 Tiles, and Huge Pokemon take up 3x3
+const sizeToTiles = { tiny: 1, small: 1, medium: 1, large: 2, huge: 3 };
 
 const { NumberField, SchemaField, StringField, HTMLField, ArrayField, TypedObjectField, BooleanField } = foundry.data.fields;
 
@@ -9,7 +14,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
   static LOCALIZATION_PREFIXES = ["SYSTEM.Models.Character"];
 
   get tileVisibility() {
-    let result = Math.floor(this.abilities.spatk.mod / 2) + 4;
+    let result = Math.floor(this.abilities.spatk.baseMod / 2) + 4;
     if (result % 10 === 8) result--; // I have no idea why the visibility table was like this
     if (this.skills.awareness === 'major') result += 2;
     else if (this.skills.awareness === 'minor') result += 1;
@@ -17,29 +22,73 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
   }
 
   get tileMovement() {
+    const statuses = this.parent?.statuses ?? new Set();
+    if (['frozen', 'restrained', 'trapped', 'asleep'].some(status => statuses.has(status))) return 0;
     let result = Math.floor(this.abilities.spe.mod / 2) + 1;
     if (this.skills.movement === 'major') result += 4;
     else if (this.skills.movement === 'minor') result += 2;
-    return result;
+    if (statuses.has('paralyzed')) result -= 1;
+    return Math.max(result, 0);
+  }
+
+  /** Sight range in scene distance units, from the Visibility table. Assumes the system's 5ft grid. */
+  get sightRange() {
+    return this.tileVisibility * (game.system.grid?.distance ?? 5);
   }
 
   async _preCreate(data, options, user) {
     const isAllowed = await super._preCreate(data, options, user);
     if (isAllowed === false) return false;
 
+    const tiles = sizeToTiles[this.size] ?? 1;
     this.parent.updateSource({
       prototypeToken: {
         actorLink: true,
         disposition: CONST.TOKEN_DISPOSITIONS.NEUTRAL,
         lockRotation: true,
+        width: tiles,
+        height: tiles,
         sight: {
           enabled: true,
-          range: 20,
-          // range: this.tileVisibility * game.scenes.viewed.grid.distance
-          // TODO: add tile visibility into sight when the derived attribute is computed
+          range: this.sightRange
         }
       }
     });
+  }
+
+  async _preUpdate(changes, options, user) {
+    const allowed = await super._preUpdate(changes, options, user);
+    if (allowed === false) return false;
+    const newSize = changes.system?.size;
+    if (newSize && newSize !== this.size) {
+      const tiles = sizeToTiles[newSize] ?? 1;
+      foundry.utils.setProperty(changes, "prototypeToken.width", tiles);
+      foundry.utils.setProperty(changes, "prototypeToken.height", tiles);
+      options[SYSTEM_ID] = { ...options[SYSTEM_ID], resizeTokens: tiles };
+    }
+  }
+
+  _onUpdate(changed, options, userId) {
+    super._onUpdate(changed, options, userId);
+    if (userId !== game.user.id) return; // only the user who made the change follows up on it
+    if (changed.system?.statChanges) syncStatChangeIcons(this.parent);
+    this.#syncTokens(options[SYSTEM_ID]?.resizeTokens);
+  }
+
+  /** Keeps the prototype and placed tokens' size and vision in line with the actor. */
+  async #syncTokens(resizeTiles) {
+    const actor = this.parent;
+    const sightRange = this.sightRange;
+    if (!actor.isToken && actor.prototypeToken.sight.range !== sightRange && actor.isOwner) {
+      await actor.update({ "prototypeToken.sight.range": sightRange });
+    }
+    for (const token of actor.getActiveTokens(false, true)) {
+      if (!token.isOwner) continue;
+      const update = {};
+      if (token.sight.range !== sightRange) update["sight.range"] = sightRange;
+      if (resizeTiles) Object.assign(update, { width: resizeTiles, height: resizeTiles });
+      if (!foundry.utils.isEmpty(update)) await token.update(update);
+    }
   }
 
   static defineSchema() {
@@ -64,6 +113,8 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
         max: new NumberField({ required: true, integer: true, min: 1, initial: 25 })
       }),
       abilities: new SchemaField(abilityFields),
+      statChanges: new SchemaField(Object.fromEntries(statKeys.map(stat =>
+        [stat, new NumberField({ required: true, integer: true, min: -10, max: 10, initial: 0 })]))),
       skills: new SchemaField(skillFields),
       feats: new ArrayField(new StringField({ required: true })),
 
@@ -74,10 +125,15 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 
   prepareDerivedData() {
     this.hp.mod = Math.floor(Math.ceil(this.hp.max / 5) / 2);
+    const statuses = this.parent?.statuses ?? new Set();
     for (const ability in this.abilities) {
       const abilitySettings = this.abilities[ability];
-      abilitySettings.mod = Math.ceil(abilitySettings.raw / 5);
-      abilitySettings.value = abilitySettings.raw; // TODO: add stat up/stat down penalties
+      abilitySettings.baseMod = Math.ceil(abilitySettings.raw / 5);
+      let change = this.statChanges[ability] ?? 0;
+      if (ability === 'atk' && statuses.has('burned')) change -= 2; // Burned lowers the Atk modifier by 2
+      abilitySettings.change = change;
+      abilitySettings.mod = Math.max(abilitySettings.baseMod + change, 0);
+      abilitySettings.value = abilitySettings.raw;
     }
   }
 
@@ -93,13 +149,107 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     return ['immune', 'mostlyIneffective', 'notVeryEffective', 'effective', 'superEffective', 'extremelyEffective'][result];
   }
 
+  /** The defensive modifier used against a move. "highest" picks the better of Def and Sp.Def. */
+  getResistMod(resistAbility) {
+    if (resistAbility === 'highest') return Math.max(this.abilities.def.mod, this.abilities.spdef.mod);
+    return this.abilities[resistAbility]?.mod ?? 0;
+  }
+
+  /**
+   * Applies damage to this Pokemon.
+   * @param {object} options
+   * @param {number} options.amount                 The damage rolled
+   * @param {string|null} [options.resistAbility]   Defensive stat subtracted from the damage (none for tick damage)
+   * @param {string|null} [options.moveType]        Type of the move dealing the damage
+   * @param {string|null} [options.attackerUuid]    The attacking Pokemon, for Counter, Mirror Coat, recoil and draining
+   * @param {string[]} [options.tags]               Tags of the attacking move
+   * @param {boolean} [options.isAttack]            Whether this comes from a move or attack (as opposed to tick damage)
+   * @param {string|null} [options.label]           What dealt the damage, for the chat message
+   * @returns {Promise<{damage: number, hp: number}>} The damage taken and the HP left
+   */
+  async applyDamage({ amount, resistAbility = null, moveType = null, attackerUuid = null, tags = [], isAttack = false, label = null }) {
+    const actor = this.parent;
+    const name = foundry.utils.escapeHTML(actor.name);
+    const format = (key, data) => game.i18n.format(key, { name, ...data });
+    const statuses = actor.statuses;
+    if (isAttack && statuses.has('invulnerable')) {
+      await postAutomationMessage(actor, [format("SYSTEM.Automation.InvulnerableNoDamage")]);
+      return { damage: 0, hp: this.hp.raw };
+    }
+    if (isAttack && statuses.has('frozen') && moveType && moveType !== 'fire') {
+      await postAutomationMessage(actor, [format("SYSTEM.Automation.FrozenNoDamage")]);
+      return { damage: 0, hp: this.hp.raw };
+    }
+
+    const lines = [];
+    let damage = Math.max(amount - (resistAbility ? this.getResistMod(resistAbility) : 0), 0);
+    if (isAttack && statuses.has('guarding')) {
+      damage = Math.floor(damage / 2);
+      lines.push(format("SYSTEM.Automation.GuardHalved"));
+    }
+    const newHP = Math.max(this.hp.raw - damage, 0);
+    await actor.update({ "system.hp.raw": newHP });
+    lines.unshift(label
+      ? format("SYSTEM.Automation.TookDamageFrom", { damage, label: foundry.utils.escapeHTML(label) })
+      : format("SYSTEM.Automation.TookDamage", { damage }));
+
+    if (newHP === 0 && damage > 0) {
+      lines.push(format("SYSTEM.Automation.Fainted"));
+      await actor.toggleStatusEffect(FAINTED_STATUS, { active: true, overlay: true });
+    }
+    if (isAttack && statuses.has('frozen') && moveType === 'fire') {
+      await removeCondition(actor, 'frozen');
+      lines.push(format("SYSTEM.Automation.Thawed"));
+    }
+    if (isAttack && statuses.has('asleep')) { // attacking a sleeping Pokemon wakes it
+      await removeCondition(actor, 'asleep');
+      lines.push(format("SYSTEM.Automation.WokeUp"));
+    }
+    await postAutomationMessage(actor, lines);
+
+    const attacker = attackerUuid ? fromUuidSync(attackerUuid) : null;
+    if (isAttack && attacker && damage > 0) {
+      const half = Math.floor(damage / 2);
+      const reflected = (resistAbility === 'def' && statuses.has('counter')) ? "SYSTEM.Conditions.Counter"
+        : (resistAbility === 'spdef' && statuses.has('mirrorCoat')) ? "SYSTEM.Conditions.MirrorCoat" : null;
+      if (reflected) await applyDamage(attacker, { amount: half, label: game.i18n.localize(reflected) });
+      if (tags.includes('recoil')) await applyDamage(attacker, { amount: half, label: game.i18n.localize("SYSTEM.Tags.Recoil") });
+      if (tags.includes('healHalf')) await healActor(attacker, half, game.i18n.localize("SYSTEM.Tags.HealHalf"));
+    }
+    return { damage, hp: newHP };
+  }
+
+  // Kept for macros written against the old API
   takeDamage(amount, resistAbility) {
-    const totalDamage = Math.max(amount - this.abilities[resistAbility].mod, 0);
-    const newHP = Math.max(this.hp.raw - totalDamage, 0);
-    this.parent.update({ "system.hp.raw": newHP });
-    ChatMessage.create({
-      flavor: `${this.parent.name} took ${totalDamage > 0 ? totalDamage : "no"} damage.${newHP === 0 ? `\n${this.parent.name} fainted!`: ""}`
-    });
+    return this.applyDamage({ amount, resistAbility, isAttack: true });
+  }
+
+  async heal(amount, label = null) {
+    const actor = this.parent;
+    const newHP = Math.min(this.hp.raw + amount, this.hp.max);
+    const healed = Math.max(newHP - this.hp.raw, 0);
+    await actor.update({ "system.hp.raw": newHP });
+    if (newHP > 0) await actor.toggleStatusEffect(FAINTED_STATUS, { active: false });
+    await postAutomationMessage(actor, [game.i18n.format(label ? "SYSTEM.Automation.HealedFrom" : "SYSTEM.Automation.Healed",
+      { name: foundry.utils.escapeHTML(actor.name), amount: healed, label: foundry.utils.escapeHTML(label ?? "") })]);
+    return healed;
+  }
+
+  /** A full Rest: regain all HP and PP. */
+  async rest() {
+    const actor = this.parent;
+    await actor.update({ "system.hp.raw": this.hp.max });
+    const moveUpdates = actor.items.filter(item => item.type === 'Move').map(move => ({ _id: move.id, "system.ppLeft": move.system.pp }));
+    if (moveUpdates.length) await actor.updateEmbeddedDocuments("Item", moveUpdates);
+    await actor.toggleStatusEffect(FAINTED_STATUS, { active: false });
+    await postAutomationMessage(actor, [game.i18n.format("SYSTEM.Automation.Rested", { name: foundry.utils.escapeHTML(actor.name) })]);
+  }
+
+  /** Moving to a new Floor resets temporary effects such as Stat Changes. */
+  async newFloor() {
+    const actor = this.parent;
+    await actor.update(Object.fromEntries(statKeys.map(stat => [`system.statChanges.${stat}`, 0])));
+    await postAutomationMessage(actor, [game.i18n.format("SYSTEM.Automation.NewFloor", { name: foundry.utils.escapeHTML(actor.name) })]);
   }
 }
 
@@ -229,6 +379,23 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
     if (this.ppLeft == 0) return false;
     this.parent.update({ "system.ppLeft": this.ppLeft-1 });
     return true;
+  }
+
+  /** Effects of a trigger, split into those that land on the target and those that affect the user. */
+  getSplitEffects(triggerType) {
+    const result = { target: [], user: [] };
+    for (const trigger of Object.values(this.effects)) {
+      if (trigger.triggerType !== triggerType) continue;
+      for (const applied of Object.values(trigger.appliedEffects)) {
+        result[applied.affectsUser ? 'user' : 'target'].push({ effect: applied.effect, effectCount: applied.effectCount ?? null });
+      }
+    }
+    return result;
+  }
+
+  /** Whether this move is aimed at foes, so its effects on the target must get past a Status Check. */
+  get targetsFoe() {
+    return ['foe', 'foes'].includes(this.target);
   }
 }
 

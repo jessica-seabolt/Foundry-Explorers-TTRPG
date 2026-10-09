@@ -19,4 +19,22 @@
     </div>
     {{formGroup systemFields.poke value=document.system.poke classes="slim inline center-row"}}
   </div>
+  <div class="status-strip">
+    <div class="condition-chips">
+      {{#each statChips as |chip|}}
+      <span class="condition-chip stat-chip {{#if chip.up}}up{{else}}down{{/if}}">{{chip.label}} {{chip.value}}</span>
+      {{/each}}
+      {{#each conditionChips as |chip|}}
+      <span class="condition-chip" data-effect-id="{{chip.id}}" data-tooltip="{{chip.tooltip}}">
+        <img src="{{chip.img}}" alt="">{{chip.name}}{{#if chip.detail}} <em>({{chip.detail}})</em>{{/if}}
+      </span>
+      {{else}}
+      {{#unless statChips.length}}<span class="no-conditions">{{localize "SYSTEM.Misc.NoConditions"}}</span>{{/unless}}
+      {{/each}}
+    </div>
+    <div class="sheet-utilities">
+      <button type="button" class="icon fa-solid fa-bed" data-action="rest" data-tooltip="SYSTEM.Actions.RestHint" aria-label="{{localize "SYSTEM.Actions.Rest"}}"></button>
+      <button type="button" class="icon fa-solid fa-stairs" data-action="newFloor" data-tooltip="SYSTEM.Actions.NewFloorHint" aria-label="{{localize "SYSTEM.Actions.NewFloor"}}"></button>
+    </div>
+  </div>
 </div>

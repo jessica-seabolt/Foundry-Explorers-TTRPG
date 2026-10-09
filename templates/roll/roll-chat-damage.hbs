@@ -10,6 +10,10 @@
     </div>
   </div>
   {{#if damagePermission}}
-    <button class="damage-button" data-resist="{{resistAbility}}" data-damage="{{damage}}" data-targetid="{{targetId}}">Damage ({{localize resistText}})</button>
+    {{#if isHealing}}
+    <button class="damage-button" type="button">{{localize "SYSTEM.Automation.HealButton"}}</button>
+    {{else}}
+    <button class="damage-button" type="button">{{localize "SYSTEM.Automation.DamageButton"}} ({{localize resistText}})</button>
+    {{/if}}
   {{/if}}
 </div>

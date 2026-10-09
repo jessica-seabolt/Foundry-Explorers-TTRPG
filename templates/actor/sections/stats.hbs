@@ -8,6 +8,16 @@
     {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.spe field=systemFields.abilities.fields.spe value=document.system.abilities.spe}}
     {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.iq field=systemFields.abilities.fields.iq value=document.system.abilities.iq}}
   </div>
+  <div class="stat-changes" data-tooltip="SYSTEM.Misc.StatChangesHint">
+    <label>{{localize "SYSTEM.Misc.StatChanges"}}</label>
+    {{#each statChangeRows as |row|}}
+    <input type="number" name="system.statChanges.{{row.stat}}" value="{{row.value}}" min="-10" max="10" step="1" data-tooltip="{{localize row.label}}">
+    {{/each}}
+  </div>
+  <div class="derived-stats">
+    <span>{{localize "SYSTEM.Misc.Movement"}}: {{tileMovement}} {{localize "SYSTEM.Misc.Tiles"}}</span>
+    <span>{{localize "SYSTEM.Misc.Visibility"}}: {{tileVisibility}} {{localize "SYSTEM.Misc.Tiles"}}</span>
+  </div>
   {{#if isPlayerSheet}}
   <div class="stat-tracking">
     <span>{{document.system.statSum}}/{{document.system.statTotal}} {{localize "SYSTEM.Misc.Points"}}</span>

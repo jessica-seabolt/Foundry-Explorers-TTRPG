@@ -13,6 +13,39 @@ export function getDieString({ sides, modifier, advantage = 'normal', multiplier
   const advString = advantage == 'normal' ? "" : advantage == 'advantage' ? "r<3" : "r>3";
   return `${multiplier != 1 ? "floor((" : ""}${sides}d6${advString}x${highCrit ? ">=5" : ""}${modString}${multiplier != 1 ? `) * ${multiplier})` : ""}`;
 }
+// Applies a type matchup to a die in place, following the Type Effectiveness rules.
+// Not Very Effective lowers Move Power by 1, or halves damage if Move Power is already 1.
+// Mostly Ineffective (4x resist) also halves damage, or quarters it if Move Power is already 1.
+// Multistrike Moves cannot gain benefits from increasing Move Power, so pass isMultistrike to skip the +1.
+// Returns 1 for a bonus, -1 for a penalty, or 0 if the matchup changes nothing.
+export function applyTypeMatchup(die, matchup, { isMultistrike = false } = {}) {
+  switch (matchup) {
+    case 'extremelyEffective':
+      die.multiplier *= 2;
+      if (!isMultistrike) die.sides += 1;
+      return 1;
+    case 'superEffective':
+      if (isMultistrike) return 0;
+      die.sides += 1;
+      return 1;
+    case 'notVeryEffective':
+      if (die.sides > 1) die.sides -= 1;
+      else die.multiplier *= 0.5;
+      return -1;
+    case 'mostlyIneffective':
+      if (die.sides > 1) {
+        die.sides -= 1;
+        die.multiplier *= 0.5;
+      }
+      else die.multiplier *= 0.25;
+      return -1;
+    case 'immune':
+      die.multiplier = 0;
+      return -1;
+    default:
+      return 0;
+  }
+}
 export function getMoveDie(actor, move) {
   return move.system.power > 0 ? getDamageDie(actor, move) : getStatusDie(actor, move);
 }

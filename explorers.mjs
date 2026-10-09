@@ -1,13 +1,18 @@
 import { filePath, toModString, toMoveString, hasEffectCount, SYSTEM_ID, toSkillString } from './constants.mjs';
 import { CharacterSheet, PlayerSheet } from './module/actor-sheet.mjs';
+import { ExplorersCombat, addTieChoiceListeners, registerCombatHooks } from './module/combat.mjs';
+import { FAINTED_STATUS, buildStatusEffects } from './module/conditions.mjs';
 import { CharacterDataModel, ItemDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
 import { SystemToken } from './module/documents.mjs';
-import { DamageRoll, ExplorersDie, ExplorersRoll } from './module/explorers-roll.mjs';
+import { DamageRoll, ExplorersDie, ExplorersRoll, StatusRoll } from './module/explorers-roll.mjs';
 import { ItemSheet } from './module/item-sheet.mjs';
 import macros from './module/macros.mjs';
 import BaseMessageModel from './module/message-model.mjs';
+import { registerStatusCheckHooks } from './module/roll-dialog.mjs';
 import { MoveSheet } from './module/move-sheet.mjs';
-import { conditions } from './module/types.mjs';
+import { initSocket } from './module/socket.mjs';
+import { ROOM_BEHAVIOR, RoomRegionBehaviorType } from './module/rooms.mjs';
+import { ExplorersVisionSource, registerVisionHooks } from './module/vision.mjs';
 
 const { Localization } = foundry.helpers;
 const { Die } = foundry.dice.terms;
@@ -21,6 +26,8 @@ globalThis.explorers = {
 Hooks.once("init", () => {
   // Configure custom Document implementations.
   CONFIG.Token.documentClass = SystemToken;
+  CONFIG.Combat.documentClass = ExplorersCombat;
+  CONFIG.Combat.initiative = { formula: "@abilities.spe.value", decimals: 0 };
   // CONFIG.Actor.documentClass = SystemActor;
   // CONFIG.Item.documentClass = SystemItem;
 
@@ -33,7 +40,7 @@ Hooks.once("init", () => {
     Item: ItemDataModel,
     Move: MoveDataModel
   };
-  CONFIG.Dice.rolls = [ExplorersRoll, DamageRoll];
+  CONFIG.Dice.rolls = [ExplorersRoll, DamageRoll, StatusRoll];
   CONFIG.Dice.terms.d = ExplorersDie;
   CONFIG.ChatMessage.dataModels.base = BaseMessageModel;
 
@@ -65,12 +72,44 @@ Hooks.once("init", () => {
     }
   };
 
-  const statusEffects = [];
-  for (const condition in conditions) {
-    statusEffects.push({ id: condition, name: conditions[condition], img: "./" })
-  }
-  CONFIG.statusEffects = statusEffects;
+  CONFIG.statusEffects = buildStatusEffects();
+  CONFIG.specialStatusEffects.DEFEATED = FAINTED_STATUS;
+
+  // Dungeon Rooms are Regions with the Room behavior, and token vision follows the Visibility rules
+  CONFIG.RegionBehavior.dataModels[ROOM_BEHAVIOR] = RoomRegionBehaviorType;
+  CONFIG.RegionBehavior.typeIcons[ROOM_BEHAVIOR] = "fa-solid fa-dungeon";
+  CONFIG.Canvas.visionSourceClass = ExplorersVisionSource;
+  registerSettings();
 });
+
+function registerSettings() {
+  const refreshVision = () => canvas?.ready && canvas.perception.update({ initializeVision: true });
+  game.settings.register(SYSTEM_ID, "autoTargeting", {
+    name: "SYSTEM.Settings.AutoTargeting.Name",
+    hint: "SYSTEM.Settings.AutoTargeting.Hint",
+    scope: "world", config: true, type: Boolean, default: true
+  });
+  game.settings.register(SYSTEM_ID, "autoApplyDamage", {
+    name: "SYSTEM.Settings.AutoApplyDamage.Name",
+    hint: "SYSTEM.Settings.AutoApplyDamage.Hint",
+    scope: "world", config: true, type: Boolean, default: true
+  });
+  game.settings.register(SYSTEM_ID, "autoRollNpcStatusChecks", {
+    name: "SYSTEM.Settings.AutoRollNpcStatusChecks.Name",
+    hint: "SYSTEM.Settings.AutoRollNpcStatusChecks.Hint",
+    scope: "world", config: true, type: Boolean, default: true
+  });
+  game.settings.register(SYSTEM_ID, "dungeonVisibility", {
+    name: "SYSTEM.Settings.DungeonVisibility.Name",
+    hint: "SYSTEM.Settings.DungeonVisibility.Hint",
+    scope: "world", config: true, type: Boolean, default: true, onChange: refreshVision
+  });
+  game.settings.register(SYSTEM_ID, "revealWallTiles", {
+    name: "SYSTEM.Settings.RevealWallTiles.Name",
+    hint: "SYSTEM.Settings.RevealWallTiles.Hint",
+    scope: "world", config: true, type: Boolean, default: true, onChange: refreshVision
+  });
+}
 
 Hooks.once("i18nInit", () => {
   Localization.localizeDataModel(CharacterDataModel);
@@ -80,6 +119,7 @@ Hooks.once("i18nInit", () => {
 });
 
 Hooks.once("ready", async () => {
+  initSocket();
   Hooks.on("hotbarDrop", (bar, data, slot) => {
     if (data.type == "Item") {
       assignItemMacro(data, slot);
@@ -118,6 +158,7 @@ async function assignItemMacro(itemData, slot) {
 
 async function renderChatMessageHTML(message, html, context) {
   if (!message.isContentVisible) return;
+  addTieChoiceListeners(message, html);
   // if (typeof message.system.alterMessageHTML === "function") {
   //   await message.system.alterMessageHTML(html);
   // }
@@ -127,3 +168,6 @@ async function renderChatMessageHTML(message, html, context) {
 }
 
 Hooks.on("renderChatMessageHTML", renderChatMessageHTML)
+registerCombatHooks();
+registerVisionHooks();
+registerStatusCheckHooks();

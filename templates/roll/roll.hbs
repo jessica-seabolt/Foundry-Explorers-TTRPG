@@ -1,33 +1,38 @@
 <section class="standard-form">
   <div class="roll-options">
-    <label>DC</label><input type="number" data-name="dc" step="1" min="0">
-    <label>Extra Die</label><input type="number" data-name="extraDie" step="1">
-    <label>Extra Modifier</label><input type="number" data-name="extraModifier" step="1">
-    <label>Multiplier</label><input type="number" data-name="multiplier">
+    <label>DC</label><input type="number" data-name="dc" step="1" min="0" value="{{dialogState.dc}}">
+    <label>Extra Die</label><input type="number" data-name="extraDie" step="1" value="{{dialogState.extraDie}}">
+    <label>Extra Modifier</label><input type="number" data-name="extraModifier" step="1" value="{{dialogState.extraModifier}}">
+    <label>Multiplier</label><input type="number" data-name="multiplier" value="{{dialogState.multiplier}}">
     <label>Advantage</label>
     <select data-name="advantage">
-      {{#if isMove}}<option selected value="">Default</option>{{/if}}
+      {{#if isMove}}<option {{#if (equals dialogState.advantage "")}}selected{{/if}} value="">Default</option>{{/if}}
       {{#each advantage as |advOption advValue|}}
       {{#with ..}}
         <option {{#if (equals dialogState.advantage advValue)}}selected{{/if}} value={{advValue}}>{{localize advOption}}</option>
       {{/with}}
       {{/each}}
     </select>
-    <label>High Crit. Ratio</label><input type="checkbox" data-name="highCrit">
+    <label>High Crit. Ratio</label><input type="checkbox" data-name="highCrit" {{checked dialogState.highCrit}}>
     {{#if isMove}}
     <label>Type Matchup</label>
     <select data-name="typeMatchup">
-      <option selected value="">Default</option>
+      <option {{#if (equals dialogState.typeMatchup "")}}selected{{/if}} value="">Default</option>
       {{#each typeMatchups as |typeMatchup matchupValue|}}
-        <option value={{matchupValue}}>{{localize typeMatchup}}</option>
+      {{#with ..}}
+        <option {{#if (equals dialogState.typeMatchup matchupValue)}}selected{{/if}} value={{matchupValue}}>{{localize typeMatchup}}</option>
+      {{/with}}
       {{/each}}
     </select>
+    {{#unless isBasicAttack}}
+    <label>{{localize "SYSTEM.Actions.OpportunityStrike"}}</label><input type="checkbox" data-name="opportunity" {{checked dialogState.opportunity}}>
+    {{/unless}}
+    <label data-tooltip="SYSTEM.Automation.SkipChecksHint">{{localize "SYSTEM.Automation.SkipChecks"}}</label><input type="checkbox" data-name="skipChecks" {{checked dialogState.skipChecks}}>
     {{/if}}
   </div>
   <div class="roll-types">
     {{#if isMove}}
-      {{#if hasPower}}<button data-action="roll"><i class="icon fa-solid fa-dice-d6"></i>Power</button>{{/if}}
-      {{#if (inSet triggers "hit")}}<button data-action="rollStatus"><i class="icon fa-solid fa-dice-d6"></i>Status</button>{{/if}}
+      <button data-action="use"><i class="icon fa-solid fa-hand-sparkles"></i>{{localize "SYSTEM.Automation.Use"}}</button>
     {{else}}
       <button data-action="roll"><i class="icon fa-solid fa-dice-d6"></i>Roll</button>
     {{/if}}

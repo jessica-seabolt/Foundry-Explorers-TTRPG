@@ -1,6 +1,7 @@
 import { filePath, toFormGroup } from '../constants.mjs';
 import { MoveRollDialog, SkillRollDialog } from './roll-dialog.mjs';
-import { abilities, classes, proficiencies, specializations, categories, types, skills, effects, itemCategories, sizes } from './types.mjs'
+import { abilities, classes, proficiencies, specializations, categories, types, skills, effects, itemCategories, sizes, statKeys, statConditions } from './types.mjs'
+import { SYSTEM_ID } from '../constants.mjs';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -15,7 +16,11 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       clearTrack: CharacterSheet.clearTrack,
       rollDie: CharacterSheet.rollDie,
       rollMoveDie: CharacterSheet.rollMoveDie,
-      removeItem: CharacterSheet.removeItem
+      removeItem: CharacterSheet.removeItem,
+      basicAttack: CharacterSheet.basicAttack,
+      guard: CharacterSheet.guard,
+      rest: CharacterSheet.rest,
+      newFloor: CharacterSheet.newFloor
     }
   }
 
@@ -61,7 +66,52 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     context.systemFields = this.document.system.schema.fields;
     context.tabs = this._prepareTabs("primary");
     context.heldItemName = this.actor.items.get(this.document.system.heldItem ?? "")?.name
+    context.statChangeRows = statKeys.map(stat => ({
+      stat,
+      value: this.document.system.statChanges[stat],
+      label: abilities[stat]
+    }));
+    context.tileMovement = this.document.system.tileMovement;
+    context.tileVisibility = this.document.system.tileVisibility;
+    context.isGuarding = this.actor.statuses.has('guarding');
+    context.statChips = statKeys.filter(stat => this.document.system.statChanges[stat])
+      .map(stat => {
+        const value = this.document.system.statChanges[stat];
+        return { label: game.i18n.localize(abilities[stat]), value: value > 0 ? `+${value}` : `${value}`, up: value > 0 };
+      });
+    context.conditionChips = this.actor.effects.filter(effect => effect.active && effect.statuses.size
+      && ![...effect.statuses].some(status => statConditions[status])) // stat changes are shown as numbers instead
+      .map(effect => ({
+        id: effect.id,
+        name: effect.name,
+        img: effect.img,
+        detail: CharacterSheet.conditionDetail(effect),
+        tooltip: game.i18n.localize(this.isEditable ? "SYSTEM.Misc.ConditionRemoveHint" : "")
+      }));
     return context;
+  }
+
+  /** How long a Condition has left, from what the automation tracks. */
+  static conditionDetail(effect) {
+    const flags = effect.flags?.[SYSTEM_ID] ?? {};
+    const format = (key, data) => game.i18n.format(key, data);
+    if (typeof flags.remaining === "number") return format("SYSTEM.Misc.TurnsLeft", { count: flags.remaining });
+    if (typeof flags.rounds === "number") return format("SYSTEM.Misc.RoundsLeft", { count: flags.rounds });
+    if (typeof flags.duration === "number") return format("SYSTEM.Misc.RoundsLeft", { count: Math.max(flags.duration - (flags.turns ?? 0), 0) });
+    if (effect.statuses.has("badlyPoisoned")) return `${(flags.turns ?? 0) + 1}d6`;
+    return null;
+  }
+
+  _onRender(context, options) {
+    super._onRender(context, options);
+    if (!this.isEditable) return;
+    // Right-click a Condition to remove it
+    for (const chip of this.element.querySelectorAll(".condition-chip[data-effect-id]")) {
+      chip.addEventListener("contextmenu", event => {
+        event.preventDefault();
+        this.actor.effects.get(chip.dataset.effectId)?.delete();
+      });
+    }
   }
 
   _onChangeForm(config, event) {
@@ -92,6 +142,22 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   static async rollMoveDie(event, target) {
     const move = this.actor.items.get(target.dataset.id);
     new MoveRollDialog({ user: this.actor, move }).render({ force: true });
+  }
+
+  static basicAttack() {
+    MoveRollDialog.basicAttack(this.actor).render({ force: true });
+  }
+
+  static async guard() {
+    await this.actor.toggleStatusEffect('guarding');
+  }
+
+  static async rest() {
+    await this.actor.system.rest();
+  }
+
+  static async newFloor() {
+    await this.actor.system.newFloor();
   }
 
   static async removeItem(event, target) {

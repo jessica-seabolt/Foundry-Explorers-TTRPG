@@ -1,5 +1,8 @@
 <section class="tab standard-form {{tabs.moves.cssClass}}" data-group="primary" data-tab="moves">
-  {{!-- <button type="button" data-action="rollBasicMoveDie">Basic Attack (1d6x+ATK)</button> --}}
+  <div class="action-buttons">
+    <button type="button" data-action="basicAttack"><i class="fa-solid fa-hand-fist"></i> {{localize "SYSTEM.Actions.BasicAttack"}}</button>
+    <button type="button" data-action="guard" class="{{#if isGuarding}}active{{/if}}" data-tooltip="SYSTEM.Actions.GuardHint"><i class="fa-solid fa-shield"></i> {{localize "SYSTEM.Actions.Guard"}}</button>
+  </div>
   {{#if moves}}
   <div class="move-grid scrollable">
     {{#each moves as |move id|}}

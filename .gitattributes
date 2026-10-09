@@ -1,0 +1,2 @@
+# Compendium packs are LevelDB databases; line-ending conversion corrupts them
+packs/** -text

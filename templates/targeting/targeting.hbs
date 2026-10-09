@@ -1,0 +1,47 @@
+<section class="standard-form targeting">
+  <p class="targeting-description">{{description}}</p>
+
+  {{#if needsDirection}}
+  <p class="hint">{{localize "SYSTEM.Targeting.ChooseDirection"}}</p>
+  <div class="direction-pad">
+    {{#each directions as |cell|}}
+      {{#if cell.center}}
+      <img class="direction-center" src="{{cell.img}}" alt="">
+      {{else}}
+      <button type="button" data-action="direction" data-direction="{{cell.direction}}" class="{{#if cell.active}}active{{/if}}">
+        <i class="fa-solid {{cell.icon}}"></i>
+        {{#if cell.count}}<span class="direction-count">{{cell.count}}</span>{{/if}}
+      </button>
+      {{/if}}
+    {{/each}}
+  </div>
+  {{/if}}
+
+  {{#if locationMove}}
+  <button type="button" data-action="pickLocation"><i class="fa-solid fa-location-crosshairs"></i> {{localize "SYSTEM.Targeting.PickLocation"}}</button>
+  {{/if}}
+
+  {{#if ready}}
+    {{#if candidates.length}}
+    <ul class="target-candidates">
+      {{#each candidates as |candidate|}}
+      <li>
+        <label>
+          <input type="{{#if ../single}}radio{{else}}checkbox{{/if}}" name="target" value="{{candidate.id}}" {{checked candidate.checked}}>
+          <img src="{{candidate.img}}" alt="">
+          <span>{{candidate.name}}</span>
+        </label>
+      </li>
+      {{/each}}
+    </ul>
+    {{else}}
+    <p class="hint">{{#if blockedBy}}{{localize "SYSTEM.Targeting.Blocked"}} {{blockedBy}}{{else}}{{localize "SYSTEM.Targeting.NoTargets"}}{{/if}}</p>
+    {{/if}}
+    {{#if includeSelf}}<p class="hint">{{localize "SYSTEM.Targeting.IncludesSelf"}}</p>{{/if}}
+  {{/if}}
+
+  <footer class="form-footer">
+    <button type="button" data-action="confirm" {{#unless ready}}disabled{{/unless}}><i class="fa-solid fa-check"></i> {{#if (and ready (not candidates.length))}}{{localize "SYSTEM.Targeting.UseAnyway"}}{{else}}{{localize "SYSTEM.Targeting.Confirm"}}{{/if}}</button>
+    <button type="button" data-action="cancel"><i class="fa-solid fa-xmark"></i> {{localize "SYSTEM.Targeting.Cancel"}}</button>
+  </footer>
+</section>
