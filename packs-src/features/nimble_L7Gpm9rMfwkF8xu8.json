@@ -1,0 +1,42 @@
+{
+  "name": "Nimble",
+  "type": "Feature",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "This Pokémon gains Movement as a Major Skill.",
+    "category": "rareQuality",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "Must have Movement as a Minor Skill",
+    "prerequisiteLevel": 6,
+    "rules": [
+      {
+        "type": "skill",
+        "skill": "movement",
+        "proficiency": "major"
+      }
+    ],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "UJ5SmygBwDPJ1w2T",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "L7Gpm9rMfwkF8xu8",
+  "sort": 145000,
+  "_key": "!items!L7Gpm9rMfwkF8xu8"
+}

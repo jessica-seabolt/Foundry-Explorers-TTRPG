@@ -3,6 +3,7 @@ import { applyDamage, applyEffects, checkMoveConditions, healActor, postAutomati
 import { DamageRoll, ExplorersRoll, StatusRoll } from './explorers-roll.mjs';
 import { emitToGM, registerSocketHandler } from './socket.mjs';
 import { pickTargets } from './targeting.mjs';
+import { critRangeMin, effectiveMoveType, getRules, hasCondition, hasRule, moveImmunity, movePowerBonus } from './features.mjs';
 import { advantage, effects, skills, typeMatchups } from './types.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -299,7 +300,8 @@ export class MoveRollDialog extends RollDialog {
 
   #spendPP() {
     if (this.isBasicAttack || this.move.actor?.id !== this.user.id) return true; // no PP to track
-    if (this.move.system.use()) return true;
+    const extra = Math.max(0, ...this.#targetActors.filter(_ => _).flatMap(target => getRules(target, "extraPpCost").map(rule => rule.amount ?? 1)));
+    if (this.move.system.use(1 + extra)) return true;
     ui.notifications.error("SYSTEM.Automation.OutOfPP", { localize: true });
     return false;
   }
@@ -351,8 +353,15 @@ export class MoveRollDialog extends RollDialog {
     const tags = Object.values(system.tags);
     const userSystem = this.user.system;
     const { sides, modifier } = getMoveDie(this.user, this.move);
+    // Features can change the move's Type (Aerilate, Normalize, ...)
+    const moveType = this.isBasicAttack ? null : effectiveMoveType(this.user, this.move);
+    const isPhysical = system.isPhysical;
+    const isStab = !this.isBasicAttack && (userSystem.type1 === moveType || userSystem.type2 === moveType);
+    const isMultistrike = system.hasTag('multihit') || system.hasTag('multihitHalf');
+    const note = (text, good) => `<span style="color:${good ? "green" : "red"};font-weight:bold;">${text}</span><br>`;
     let targets = this.#targetActors;
     if (isHealing && system.target === 'self') targets = [this.user];
+    let knockedOut = false;
 
     for (const target of targets) {
       // Build a fresh die per target so one target's matchup doesn't carry over to the next
@@ -361,28 +370,57 @@ export class MoveRollDialog extends RollDialog {
       die.modifier += isHealing ? 0 : modifier; // Healing moves don't add a modifier
       let additionString = "";
 
+      // Feature immunities: Levitate, Flash Fire, Water Absorb, Soundproof, ...
+      const immunity = target && !this.isBasicAttack && !isHealing ? moveImmunity(target, this.move, moveType) : null;
+      if (immunity) {
+        await this.#resolveImmunity(target, immunity, die);
+        continue;
+      }
+
       let matchup = '';
       if (!this.isBasicAttack && !isHealing) {
         matchup = this.dialogState.typeMatchup;
-        if (matchup === '' && target) matchup = target.system.getTypeMatchup?.(system.type) ?? '';
-        const isMultistrike = system.hasTag('multihit') || system.hasTag('multihitHalf');
-        const matchupResult = applyTypeMatchup(die, matchup, { isMultistrike });
-        if (matchupResult > 0) {
-          additionString += `<span style=\"color:green;font-weight:bold;\">+${localize(typeMatchups[matchup])}</span><br>`;
-        } else if (matchupResult < 0) {
-          additionString += `<span style=\"color:red;font-weight:bold;\">-${localize(typeMatchups[matchup])}</span><br>`;
+        if (matchup === '' && target) matchup = target.system.getTypeMatchup?.(moveType) ?? '';
+        // Steamroll: resisted (or even immune) hits deal regular damage. Filter: no benefit from Super Effective hits.
+        // (Scrappy is a narrower Steamroll: Normal and Fighting moves against Ghost types)
+        const steamroll = getRules(this.user, "steamroll").find(rule => (!rule.moveTypes || rule.moveTypes.includes(moveType))
+          && (rule.matchups ?? ['notVeryEffective', 'mostlyIneffective', 'immune']).includes(matchup));
+        if (steamroll) {
+          additionString += note(steamroll.source, true);
+          matchup = 'effective';
         }
+        const filter = getRules(target, "filter")[0];
+        if (filter && ['superEffective', 'extremelyEffective'].includes(matchup)) {
+          additionString += note(filter.source, false);
+          matchup = 'effective';
+        }
+        const matchupResult = applyTypeMatchup(die, matchup, { isMultistrike });
+        if (matchupResult > 0) additionString += note(`+${localize(typeMatchups[matchup])}`, true);
+        else if (matchupResult < 0) additionString += note(`-${localize(typeMatchups[matchup])}`, false);
       }
       if (die.advantage === '') {
-        if (!this.isBasicAttack && (userSystem.type1 == system.type || userSystem.type2 == system.type)) {
+        if (isStab) {
           die.advantage = 'advantage';
-          additionString += "<span style=\"color:green;font-weight:bold;\">+STAB</span><br>";
+          additionString += note("+STAB", true);
         } else die.advantage = 'normal';
       }
+
+      // Move Power from Features (Multistrike Moves can't gain Move Power)
+      const bonus = this.isBasicAttack ? { amount: 0, sources: [], removeSecondary: false }
+        : movePowerBonus(this.user, this.move, { target, moveType, isPhysical, isStab, opportunity: this.dialogState.opportunity });
+      if (bonus.amount && !isMultistrike) {
+        die.sides = Math.max(die.sides + bonus.amount, 1);
+        additionString += note(`${bonus.amount > 0 ? "+" : ""}${bonus.amount} ${localize("SYSTEM.Automation.MovePower")} (${bonus.sources.join(", ")})`, bonus.amount > 0);
+      }
+
+      // Critical Hits: Super Luck scores them on a 5-6; Battle Armour stops the attacker's dice exploding
+      if (critRangeMin(this.user) <= 5) die.highCrit = true;
+      if (hasRule(target, "noCritsAgainst")) die.explode = false;
+
       // Opportunity Strikes deal half damage, except with a Basic Attack
       if (this.dialogState.opportunity && !this.isBasicAttack && !isHealing) {
         die.multiplier *= 0.5;
-        additionString += `<span style=\"color:red;font-weight:bold;\">${localize("SYSTEM.Actions.OpportunityStrike")}</span><br>`;
+        additionString += note(localize("SYSTEM.Actions.OpportunityStrike"), false);
       }
 
       const roll = await this.toChatMessage(new DamageRoll(getDieString(die), {}, {
@@ -391,7 +429,8 @@ export class MoveRollDialog extends RollDialog {
         targetId: target?.uuid ?? null,
         isHealing,
         attackerUuid: this.user.uuid,
-        moveType: this.isBasicAttack ? null : system.type,
+        moveType,
+        moveCategory: isPhysical ? 'physical' : 'special',
         moveName: this.move.name,
         tags
       }), {
@@ -400,10 +439,52 @@ export class MoveRollDialog extends RollDialog {
 
       // Damage is dealt before secondary effects ("roll a d6 after damage has been dealt"), and a fainted target gets none
       const result = await this.#applyRoll(roll, target, this.lastMessage);
-      // A fainted target, or one immune to the move's Type, gets no secondary effects
       const fainted = result?.hp <= 0;
-      if (matchup === 'immune') await postAutomationMessage(target ?? this.user, [format("SYSTEM.Automation.ImmuneNoEffect", { name: escape(target?.name ?? ""), move: escape(this.move.name) })]);
-      else if (!this.isBasicAttack && !isHealing && !fainted) await this.#applySecondaryEffects(target);
+      if (fainted) knockedOut = true;
+      if (matchup === 'immune') {
+        await postAutomationMessage(target ?? this.user, [format("SYSTEM.Automation.ImmuneNoEffect", { name: escape(target?.name ?? ""), move: escape(this.move.name) })]);
+        continue;
+      }
+      if (this.isBasicAttack || isHealing || fainted) continue;
+      // Sheer Force drops secondary effects; Shield Dust ignores them
+      const shielded = getRules(target, "ignoreSecondary")[0];
+      if (bonus.removeSecondary) await postAutomationMessage(this.user, [format("SYSTEM.Automation.NoSecondary", { move: escape(this.move.name) })]);
+      else if (shielded) await postAutomationMessage(target, [format("SYSTEM.Automation.FeatureBlockedSecondary", { name: escape(target.name), feature: escape(shielded.source) })]);
+      else await this.#applySecondaryEffects(target);
+      if (target) await this.#applyOnHit(target, isPhysical);
+    }
+
+    // Moxie: knocking out a foe boosts the user
+    if (knockedOut && !this.isBasicAttack) {
+      for (const rule of getRules(this.user, "onKnockOut")) {
+        await postAutomationMessage(this.user, [format("SYSTEM.Automation.FeatureTriggered", { name: escape(this.user.name), feature: escape(rule.source) })]);
+        await applyEffects(this.user, rule.effects ?? [], { sourceUuid: this.user.uuid, sourceName: this.user.name });
+      }
+    }
+  }
+
+  /** A target immune to the move through a Feature takes no damage, or absorbs it as healing (Water Absorb). */
+  async #resolveImmunity(target, rule, die) {
+    const name = escape(target.name);
+    if (rule.heal) {
+      die.advantage = die.advantage || 'normal';
+      const roll = await this.toChatMessage(new DamageRoll(getDieString(die), {}, {
+        targetId: target.uuid, isHealing: true, attackerUuid: this.user.uuid, moveName: rule.source
+      }), { flavor: `${this.move.name} (${target.name}) - ${format("SYSTEM.Automation.Absorbed", { name, feature: escape(rule.source) })}` });
+      await this.#applyRoll(roll, target, this.lastMessage);
+    }
+    else await postAutomationMessage(target, [format("SYSTEM.Automation.FeatureImmune", { name, move: escape(this.move.name), feature: escape(rule.source) })]);
+    if (rule.effects?.length) await applyEffects(target, rule.effects, { sourceUuid: target.uuid, sourceName: target.name });
+  }
+
+  /** Poison Touch and similar: a chance to afflict the target after hitting it. */
+  async #applyOnHit(target, isPhysical) {
+    for (const rule of getRules(this.user, "onHit")) {
+      if (rule.physical && !isPhysical) continue;
+      if (rule.special && isPhysical) continue;
+      if (rule.chance && await this.#rollTriggerDie(null, target, rule) < rule.chance) continue;
+      await postAutomationMessage(this.user, [format("SYSTEM.Automation.FeatureTriggered", { name: escape(this.user.name), feature: escape(rule.source) })]);
+      await applyEffects(target, rule.targetEffects ?? [], { sourceUuid: this.user.uuid, sourceName: this.user.name, fromOther: true });
     }
   }
 
@@ -434,11 +515,13 @@ export class MoveRollDialog extends RollDialog {
     }
   }
 
-  async #rollTriggerDie(trigger, target) {
+  async #rollTriggerDie(trigger, target, rule = null) {
     const roll = await new Roll("1d6").evaluate();
+    const what = rule ? format("SYSTEM.Automation.FeatureChance", { feature: escape(rule.source), chance: rule.chance })
+      : localize(`SYSTEM.TriggerTypes.${trigger === 'd6' ? 'D6' : 'D56'}`);
     await roll.toMessage({
       speaker: ChatMessage.implementation.getSpeaker({ actor: this.user }),
-      flavor: `${this.move.name}${target ? ` (${target.name})` : ""} - ${localize(`SYSTEM.TriggerTypes.${trigger === 'd6' ? 'D6' : 'D56'}`)}`
+      flavor: `${this.move.name}${target ? ` (${target.name})` : ""} - ${what}`
     });
     return roll.total;
   }
@@ -485,9 +568,18 @@ export class MoveRollDialog extends RollDialog {
     }
     // An Opportunity Strike with a Status Move only rolls 1 die
     if (this.dialogState.opportunity && system.isStatus) statusDie.sides = 1;
+    // Serene Grace: extra dice to land a Physical or Special Move's secondary effect
+    if (!system.isStatus) statusDie.sides += getRules(this.user, "statusCheckDice").reduce((sum, rule) => sum + (rule.dice ?? 1), 0);
 
-    // Magic Coat reflects Status Moves back at the attacker
-    if (target?.statuses.has('magicCoat') && system.isStatus) {
+    // Feature immunities also stop status moves (Soundproof against Growl, Levitate against Sand Attack)
+    const immunity = target && system.power == 0 ? moveImmunity(target, this.move, effectiveMoveType(this.user, this.move)) : null;
+    if (immunity) {
+      await postAutomationMessage(target, [format("SYSTEM.Automation.FeatureImmune", { name: escape(target.name), move: escape(this.move.name), feature: escape(immunity.source) })]);
+      return;
+    }
+
+    // Magic Coat (or Magic Bounce) reflects Status Moves back at the attacker
+    if (target && hasCondition(target, 'magicCoat') && system.isStatus) {
       await postAutomationMessage(target, [format("SYSTEM.Automation.MagicCoatReflect", { name: escape(target.name), move: escape(this.move.name) })]);
       target = this.user;
     }
@@ -501,7 +593,7 @@ export class MoveRollDialog extends RollDialog {
       attackerUuid: this.user.uuid,
       targetId: target?.uuid ?? null,
       moveName: this.move.name,
-      moveType: system.type,
+      moveType: effectiveMoveType(this.user, this.move),
       resistBonusDice: this.dialogState.opportunity ? 1 : 0 // the target gains 1d6 against an Opportunity Strike
     }), { // not including adv/mult for status checks
       flavor: `${this.move.name}${target ? ` (${target.name})` : ""} - ${localize("SYSTEM.Automation.Status")}`,

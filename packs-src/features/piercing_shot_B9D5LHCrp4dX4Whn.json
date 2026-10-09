@@ -1,0 +1,40 @@
+{
+  "name": "Piercing Shot",
+  "type": "Feature",
+  "img": "icons/svg/target.svg",
+  "system": {
+    "description": "Items thrown in a straight line and Moves with a range greater than 1 Tile can now Pierce Pokémon, hitting those behind the original target in a line, that are within range.",
+    "category": "specializationFeature",
+    "class": "strategist",
+    "specialization": "sharpshooter",
+    "level": 4,
+    "prerequisite": "",
+    "prerequisiteLevel": null,
+    "rules": [
+      {
+        "type": "pierce"
+      }
+    ],
+    "manualNote": "Piercing with Thrown Items."
+  },
+  "effects": [],
+  "folder": "vnXrw30hAPDgzLpL",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "B9D5LHCrp4dX4Whn",
+  "sort": 413000,
+  "_key": "!items!B9D5LHCrp4dX4Whn"
+}

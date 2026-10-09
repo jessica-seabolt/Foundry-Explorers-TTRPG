@@ -1,0 +1,41 @@
+{
+  "name": "Levitate",
+  "type": "Feature",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "This Pokémon always levitates off the ground, is immune to Ground-Type moves, Spikes, Toxic Spikes, Sticky Web, Traps, and Terrain.",
+    "category": "rareQuality",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "Pokémon that naturally float or have wings",
+    "prerequisiteLevel": 3,
+    "rules": [
+      {
+        "type": "typeImmunity",
+        "moveType": "ground"
+      }
+    ],
+    "manualNote": "Immunity to Spikes, Toxic Spikes, Sticky Web, Traps and Terrain."
+  },
+  "effects": [],
+  "folder": "km7lMLkpOyOmoYSx",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "0JqUAQsF3P1885Pn",
+  "sort": 47000,
+  "_key": "!items!0JqUAQsF3P1885Pn"
+}

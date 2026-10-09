@@ -1,0 +1,36 @@
+{
+  "name": "Effect Spore",
+  "type": "Feature",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "Whenever this Pokémon is attacked by a Physical Move, roll a d6. On a 5-6, the attacker gets a Status. Roll another d6 to determine Status. 1-2 is Poisoned, 3-4 is Paralyzed, 5-6 is Asleep.",
+    "category": "rareQuality",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "Grass-Type Pokémon",
+    "prerequisiteLevel": 3,
+    "rules": [],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "km7lMLkpOyOmoYSx",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "86lgB6YnRWhINt91",
+  "sort": 19000,
+  "_key": "!items!86lgB6YnRWhINt91"
+}

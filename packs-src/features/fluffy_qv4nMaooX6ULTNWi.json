@@ -1,0 +1,49 @@
+{
+  "name": "Fluffy",
+  "type": "Feature",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "This Pokémon takes half damage from Physical Moves, but double damage from Fire-Type Moves.",
+    "category": "rareQuality",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "Pokémon with fur",
+    "prerequisiteLevel": 6,
+    "rules": [
+      {
+        "type": "damageTaken",
+        "multiplier": 0.5,
+        "physical": true
+      },
+      {
+        "type": "damageTaken",
+        "multiplier": 2,
+        "moveTypes": [
+          "fire"
+        ]
+      }
+    ],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "UJ5SmygBwDPJ1w2T",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "qv4nMaooX6ULTNWi",
+  "sort": 125000,
+  "_key": "!items!qv4nMaooX6ULTNWi"
+}

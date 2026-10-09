@@ -1,0 +1,40 @@
+{
+  "name": "Magic Guard",
+  "type": "Feature",
+  "img": "icons/svg/target.svg",
+  "system": {
+    "description": "You cannot take damage from anything other than Moves and Fall Damage. Damage from sources such as secondary \"chip\" damage from Moves is ignored.",
+    "category": "specializationFeature",
+    "class": "guardian",
+    "specialization": "ward",
+    "level": 4,
+    "prerequisite": "",
+    "prerequisiteLevel": null,
+    "rules": [
+      {
+        "type": "magicGuard"
+      }
+    ],
+    "manualNote": "Fall damage still applies; apply it by hand."
+  },
+  "effects": [],
+  "folder": "bxI2f2CK8Kg52xAb",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "PK5mvPD2jxqwxtQo",
+  "sort": 413000,
+  "_key": "!items!PK5mvPD2jxqwxtQo"
+}

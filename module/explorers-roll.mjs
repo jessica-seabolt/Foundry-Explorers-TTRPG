@@ -50,11 +50,18 @@ export class DamageRoll extends ExplorersRoll {
       amount: this.total,
       resistAbility: this.resistAbility,
       moveType: this.options.moveType ?? null,
+      moveCategory: this.options.moveCategory ?? null,
       attackerUuid: this.options.attackerUuid ?? null,
       tags: this.options.tags ?? [],
       isAttack: true,
+      isCritical: this.isCritical,
       label: this.options.moveName ?? null
     };
+  }
+
+  /** Whether any die exploded, i.e. the roll scored a Critical Hit. */
+  get isCritical() {
+    return (this.dice ?? []).some(die => die.results?.some(result => result.exploded));
   }
 
   /** Applies this roll's damage (or healing) to its target, or to the selected tokens if it has none. */

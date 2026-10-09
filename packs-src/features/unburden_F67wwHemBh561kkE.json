@@ -1,0 +1,36 @@
+{
+  "name": "Unburden",
+  "type": "Feature",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "Whenever this Pokémon uses or loses its Held Item, the Pokémon gets Spe Up 2.",
+    "category": "rareQuality",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "",
+    "prerequisiteLevel": 3,
+    "rules": [],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "km7lMLkpOyOmoYSx",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "F67wwHemBh561kkE",
+  "sort": 107000,
+  "_key": "!items!F67wwHemBh561kkE"
+}

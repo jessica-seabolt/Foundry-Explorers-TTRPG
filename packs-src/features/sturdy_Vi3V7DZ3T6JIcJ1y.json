@@ -1,0 +1,41 @@
+{
+  "name": "Sturdy",
+  "type": "Feature",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "This Pokémon cannot be knocked out by a single hit as long as its HP is full. One-hit KO moves will also fail to knock it out.",
+    "category": "rareQuality",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "",
+    "prerequisiteLevel": 3,
+    "rules": [
+      {
+        "type": "endure",
+        "fromFullHp": true
+      }
+    ],
+    "manualNote": "One-hit KO moves failing to knock it out."
+  },
+  "effects": [],
+  "folder": "km7lMLkpOyOmoYSx",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "Vi3V7DZ3T6JIcJ1y",
+  "sort": 96000,
+  "_key": "!items!Vi3V7DZ3T6JIcJ1y"
+}

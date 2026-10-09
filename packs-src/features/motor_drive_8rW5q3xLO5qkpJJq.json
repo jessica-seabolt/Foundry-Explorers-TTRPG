@@ -1,0 +1,47 @@
+{
+  "name": "Motor Drive",
+  "type": "Feature",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "This Pokémon takes no damage from Electric-type moves. Instead, this Pokémon gets Spe Up 2.",
+    "category": "rareQuality",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "Electric-Type & Steel-Type Pokémon",
+    "prerequisiteLevel": 6,
+    "rules": [
+      {
+        "type": "typeImmunity",
+        "moveType": "electric",
+        "effects": [
+          {
+            "effect": "speUp",
+            "effectCount": 2
+          }
+        ]
+      }
+    ],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "UJ5SmygBwDPJ1w2T",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "8rW5q3xLO5qkpJJq",
+  "sort": 140000,
+  "_key": "!items!8rW5q3xLO5qkpJJq"
+}

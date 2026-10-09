@@ -1,0 +1,42 @@
+<section class="standard-form feature-sheet">
+  <div class="move-header">
+    <div class="center">
+      <img src="{{document.img}}" title="{{document.name}}" style="cursor: pointer;"
+        height="70" width="70" class="edit-avatar" data-action="editImage" data-edit="img" />
+    </div>
+    <div class="center">
+      <input type="text" name="name" value="{{document.name}}" class="move-name">
+    </div>
+  </div>
+  {{formGroup systemFields.category value=document.system.category options=categories localize=true}}
+  <div class="feature-grid">
+    {{formGroup systemFields.class value=document.system.class options=classes localize=true blank=""}}
+    {{formGroup systemFields.specialization value=document.system.specialization options=specializations localize=true blank=""}}
+    {{formGroup systemFields.level value=document.system.level localize=true}}
+    {{formGroup systemFields.prerequisiteLevel value=document.system.prerequisiteLevel localize=true}}
+  </div>
+  {{formGroup systemFields.prerequisite value=document.system.prerequisite localize=true}}
+  {{formGroup systemFields.description value=document.system.description localize=true elementType="textarea" classes="feature-description"}}
+
+  <fieldset class="feature-automation">
+    <legend>{{localize "SYSTEM.Features.Automation"}}</legend>
+    {{#if document.system.isAutomated}}
+    <p class="hint"><i class="fa-solid fa-gears"></i> {{localize "SYSTEM.Features.AutomatedHint"}}</p>
+    {{else}}
+    <p class="hint">{{localize "SYSTEM.Features.ManualHint"}}</p>
+    {{/if}}
+    {{formGroup systemFields.manualNote value=document.system.manualNote localize=true}}
+    {{#if canEditRules}}
+    <label>{{localize "SYSTEM.Models.Feature.FIELDS.rules.label"}}</label>
+    <textarea class="feature-rules" spellcheck="false" placeholder="[]">{{rulesText}}</textarea>
+    <details>
+      <summary>{{localize "SYSTEM.Features.RuleReference"}}</summary>
+      <ul class="rule-reference">
+        {{#each ruleTypes as |rule|}}<li><code>{{rule.example}}</code></li>{{/each}}
+      </ul>
+    </details>
+    {{else if document.system.isAutomated}}
+    <pre class="feature-rules-readonly">{{rulesText}}</pre>
+    {{/if}}
+  </fieldset>
+</section>

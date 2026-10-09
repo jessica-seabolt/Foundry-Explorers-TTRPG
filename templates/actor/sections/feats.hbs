@@ -1,3 +1,27 @@
 <section class="tab standard-form {{tabs.feats.cssClass}}" data-group="primary" data-tab="feats">
-  {{formGroup systemFields.featText value=document.system.featText elementType="textarea" classes="blurb"}}
+  {{#if featureGroups.length}}
+  <div class="feature-list scrollable">
+    {{#each featureGroups as |group|}}
+    <h3 class="feature-group-title">{{localize group.label}}</h3>
+    {{#each group.features as |feature|}}
+    <div class="feature-row">
+      <img src="{{feature.img}}" alt="">
+      <div class="feature-main">
+        <div class="feature-title">
+          <a data-action="openItem" data-id="{{feature.id}}">{{feature.name}}</a>
+          {{#if feature.level}}<span class="feature-level">{{localize "SYSTEM.Features.LevelShort"}} {{feature.level}}</span>{{/if}}
+          {{#if feature.automated}}<i class="fa-solid fa-gears" data-tooltip="SYSTEM.Features.AutomatedHint"></i>{{/if}}
+          {{#if feature.manualNote}}<i class="fa-solid fa-hand" data-tooltip="{{feature.manualNote}}"></i>{{/if}}
+        </div>
+        <p>{{feature.description}}</p>
+      </div>
+      <button type="button" data-action="removeItem" data-id="{{feature.id}}" class="icon fa-solid fa-trash"></button>
+    </div>
+    {{/each}}
+    {{/each}}
+  </div>
+  {{else}}
+  <div class="feature-help">{{localize "SYSTEM.Features.DropHint"}}</div>
+  {{/if}}
+  {{formGroup systemFields.featText value=document.system.featText elementType="textarea" classes="blurb blurb-small"}}
 </section>

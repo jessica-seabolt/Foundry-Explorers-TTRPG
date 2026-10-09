@@ -1,0 +1,36 @@
+{
+  "name": "Survivor: Hardened Resolve",
+  "type": "Feature",
+  "img": "icons/svg/house.svg",
+  "system": {
+    "description": "You gain 1d6 to Endurance Checks when you need to survive a situation of dire intensity.",
+    "category": "origin",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "",
+    "prerequisiteLevel": null,
+    "rules": [],
+    "manualNote": "Add the 1d6 to the roll when the situation applies."
+  },
+  "effects": [],
+  "folder": "bIiWQhDwKjphfivh",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "hvYS0ZRSbDNp3JjI",
+  "sort": 7000,
+  "_key": "!items!hvYS0ZRSbDNp3JjI"
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Mind Over Matter",
+  "type": "Feature",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "Whenever this Pokémon steps on a Wonder Tile, its Status Condition is also restored.",
+    "category": "rareQuality",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "Must have an Intellect Skill as a Minor or Major Skill",
+    "prerequisiteLevel": 3,
+    "rules": [],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "km7lMLkpOyOmoYSx",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "o7wGu3bKeZ5W0OUE",
+  "sort": 55000,
+  "_key": "!items!o7wGu3bKeZ5W0OUE"
+}

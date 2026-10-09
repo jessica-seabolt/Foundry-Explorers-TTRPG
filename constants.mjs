@@ -1,4 +1,5 @@
 import { effects, skillToAbility, statConditions, valueEffects } from './module/types.mjs';
+import { skillBonusDice } from './module/features.mjs';
 
 export const SYSTEM_ID = 'explorers';
 export const skillToDie = {
@@ -8,10 +9,12 @@ export const skillToDie = {
 }
 export const filePath = path => `systems/${SYSTEM_ID}/${path}`;
 export const toModString = mod => mod >= 0 ? `+${mod}` : mod.toString();
-export function getDieString({ sides, modifier, advantage = 'normal', multiplier = 1, highCrit = false }) {
+// explode: whether dice score Critical Hits (Battle Armour stops a foe's dice exploding)
+export function getDieString({ sides, modifier, advantage = 'normal', multiplier = 1, highCrit = false, explode = true }) {
   const modString = modifier !== 0 ? toModString(modifier) : "";
   const advString = advantage == 'normal' ? "" : advantage == 'advantage' ? "r<3" : "r>3";
-  return `${multiplier != 1 ? "floor((" : ""}${sides}d6${advString}x${highCrit ? ">=5" : ""}${modString}${multiplier != 1 ? `) * ${multiplier})` : ""}`;
+  const explodeString = explode ? `x${highCrit ? ">=5" : ""}` : "";
+  return `${multiplier != 1 ? "floor((" : ""}${sides}d6${advString}${explodeString}${modString}${multiplier != 1 ? `) * ${multiplier})` : ""}`;
 }
 // Applies a type matchup to a die in place, following the Type Effectiveness rules.
 // Not Very Effective lowers Move Power by 1, or halves damage if Move Power is already 1.
@@ -67,10 +70,11 @@ export function getStatusDie(actor, move) {
   return { sides: move.system.isStatus ? 2 : 1, modifier: baseModifier };
 }
 export function getSkillDie(actor, skill) {
-  const proficiency = actor.system.skills[skill];
+  // Effective proficiency includes class Major Skills and Features; Features can also add dice (e.g. Keen Eye)
+  const proficiency = actor.system.proficiency?.[skill] ?? actor.system.skills[skill];
   const abilityName = skillToAbility[skill];
   const ability = abilityName === "hp" ? actor.system.hp : actor.system.abilities[abilityName];
-  return { sides: skillToDie[proficiency], modifier: ability.mod }
+  return { sides: skillToDie[proficiency] + skillBonusDice(actor, skill), modifier: ability.mod }
 }
 export function toMoveString(move) {
   const moveDie = getMoveDie(this.document, move);

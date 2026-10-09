@@ -2,7 +2,8 @@ import { filePath, toModString, toMoveString, hasEffectCount, SYSTEM_ID, toSkill
 import { CharacterSheet, PlayerSheet } from './module/actor-sheet.mjs';
 import { ExplorersCombat, addTieChoiceListeners, registerCombatHooks } from './module/combat.mjs';
 import { FAINTED_STATUS, buildStatusEffects } from './module/conditions.mjs';
-import { CharacterDataModel, ItemDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
+import { CharacterDataModel, FeatureDataModel, ItemDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
+import { FeatureSheet } from './module/feature-sheet.mjs';
 import { SystemToken } from './module/documents.mjs';
 import { DamageRoll, ExplorersDie, ExplorersRoll, StatusRoll } from './module/explorers-roll.mjs';
 import { ItemSheet } from './module/item-sheet.mjs';
@@ -38,7 +39,8 @@ Hooks.once("init", () => {
   };
   CONFIG.Item.dataModels = {
     Item: ItemDataModel,
-    Move: MoveDataModel
+    Move: MoveDataModel,
+    Feature: FeatureDataModel
   };
   CONFIG.Dice.rolls = [ExplorersRoll, DamageRoll, StatusRoll];
   CONFIG.Dice.terms.d = ExplorersDie;
@@ -49,6 +51,7 @@ Hooks.once("init", () => {
   Actors.registerSheet(SYSTEM_ID, CharacterSheet, { types: ["Character"] });
   Items.registerSheet(SYSTEM_ID, ItemSheet, { types: ["Item"], makeDefault: true });
   Items.registerSheet(SYSTEM_ID, MoveSheet, { types: ["Move"] });
+  Items.registerSheet(SYSTEM_ID, FeatureSheet, { types: ["Feature"] });
   const templates = ["templates/actor/partials/stat-block.hbs",
     "templates/actor/partials/skill-block.hbs"].map(filePath);
   foundry.applications.handlebars.loadTemplates(templates);
@@ -116,10 +119,17 @@ Hooks.once("i18nInit", () => {
   Localization.localizeDataModel(PlayerDataModel);
   Localization.localizeDataModel(ItemDataModel);
   Localization.localizeDataModel(MoveDataModel);
+  Localization.localizeDataModel(FeatureDataModel);
 });
 
 Hooks.once("ready", async () => {
   initSocket();
+  // Bring permanent Conditions and token vision up to date for actors whose Features predate this
+  if (game.user.isActiveGM) {
+    for (const actor of game.actors) {
+      if (actor.items.some(item => item.type === "Feature")) await actor.system.onFeaturesChanged?.();
+    }
+  }
   Hooks.on("hotbarDrop", (bar, data, slot) => {
     if (data.type == "Item") {
       assignItemMacro(data, slot);
@@ -171,3 +181,21 @@ Hooks.on("renderChatMessageHTML", renderChatMessageHTML)
 registerCombatHooks();
 registerVisionHooks();
 registerStatusCheckHooks();
+
+// Adding, removing or editing a Feature can change Visibility, permanent Conditions and so on
+function onFeatureChanged(item, userId) {
+  if (item.type !== "Feature" || !item.actor || userId !== game.user.id) return;
+  item.actor.system.onFeaturesChanged?.();
+}
+Hooks.on("createItem", (item, options, userId) => onFeatureChanged(item, userId));
+Hooks.on("deleteItem", (item, options, userId) => onFeatureChanged(item, userId));
+Hooks.on("updateItem", (item, changes, options, userId) => {
+  if (changes.system?.rules) onFeatureChanged(item, userId);
+});
+// Eyedrop added or removed by hand also changes what the token can detect
+function onEyedropChanged(effect, userId) {
+  if (userId !== game.user.id || !effect.statuses?.has("eyedrop") || !(effect.parent instanceof Actor)) return;
+  effect.parent.system.syncTokens?.();
+}
+Hooks.on("createActiveEffect", (effect, options, userId) => onEyedropChanged(effect, userId));
+Hooks.on("deleteActiveEffect", (effect, options, userId) => onEyedropChanged(effect, userId));

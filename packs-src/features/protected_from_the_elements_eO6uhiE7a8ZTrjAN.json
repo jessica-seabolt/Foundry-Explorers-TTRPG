@@ -1,0 +1,41 @@
+{
+  "name": "Protected from the Elements",
+  "type": "Feature",
+  "img": "icons/svg/target.svg",
+  "system": {
+    "description": "This Pokémon cannot be affected by powders, spores, or Sandstorm.",
+    "category": "specializationFeature",
+    "class": "explorer",
+    "specialization": "survivalist",
+    "level": 4,
+    "prerequisite": "",
+    "prerequisiteLevel": null,
+    "rules": [
+      {
+        "type": "tagImmunity",
+        "tag": "powderSpore"
+      }
+    ],
+    "manualNote": "Immunity to Sandstorm."
+  },
+  "effects": [],
+  "folder": "eppkPSC7JDhyZ9jX",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "eO6uhiE7a8ZTrjAN",
+  "sort": 412000,
+  "_key": "!items!eO6uhiE7a8ZTrjAN"
+}

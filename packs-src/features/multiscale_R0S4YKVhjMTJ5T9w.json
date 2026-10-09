@@ -1,0 +1,42 @@
+{
+  "name": "Multiscale",
+  "type": "Feature",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "Whenever this Pokémon takes damage at 100% HP, the damage is halved.",
+    "category": "rareQuality",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "",
+    "prerequisiteLevel": 6,
+    "rules": [
+      {
+        "type": "damageTaken",
+        "multiplier": 0.5,
+        "whenFullHp": true
+      }
+    ],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "UJ5SmygBwDPJ1w2T",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "R0S4YKVhjMTJ5T9w",
+  "sort": 142000,
+  "_key": "!items!R0S4YKVhjMTJ5T9w"
+}

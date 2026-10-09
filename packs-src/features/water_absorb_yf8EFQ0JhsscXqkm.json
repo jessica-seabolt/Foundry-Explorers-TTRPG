@@ -1,0 +1,42 @@
+{
+  "name": "Water Absorb",
+  "type": "Feature",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "Whenever this Pokémon is attacked by a Water-Type Move, they take no damage and are healed for the damage rolled.",
+    "category": "rareQuality",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "Water-Type & Grass-Type Pokémon",
+    "prerequisiteLevel": 3,
+    "rules": [
+      {
+        "type": "typeImmunity",
+        "moveType": "water",
+        "heal": true
+      }
+    ],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "km7lMLkpOyOmoYSx",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "yf8EFQ0JhsscXqkm",
+  "sort": 109000,
+  "_key": "!items!yf8EFQ0JhsscXqkm"
+}

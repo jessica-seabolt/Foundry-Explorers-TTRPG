@@ -1,0 +1,42 @@
+{
+  "name": "Mega Launcher",
+  "type": "Feature",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "This Pokémon's Pulse Moves have their Move Power increased by 1.",
+    "category": "rareQuality",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "",
+    "prerequisiteLevel": 3,
+    "rules": [
+      {
+        "type": "movePower",
+        "amount": 1,
+        "tag": "pulse"
+      }
+    ],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "km7lMLkpOyOmoYSx",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "QIXMZQxNQxUFxMc3",
+  "sort": 54000,
+  "_key": "!items!QIXMZQxNQxUFxMc3"
+}

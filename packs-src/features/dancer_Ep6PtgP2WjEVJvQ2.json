@@ -1,0 +1,36 @@
+{
+  "name": "Dancer",
+  "type": "Feature",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "Whenever a Dance-based Move is used in the same Room as this Pokémon, this Pokémon copies that Move immediately.",
+    "category": "rareQuality",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "",
+    "prerequisiteLevel": 6,
+    "rules": [],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "UJ5SmygBwDPJ1w2T",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "Ep6PtgP2WjEVJvQ2",
+  "sort": 119000,
+  "_key": "!items!Ep6PtgP2WjEVJvQ2"
+}

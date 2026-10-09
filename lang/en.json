@@ -3,6 +3,7 @@
   "TYPES.Actor.Player": "Player",
   "TYPES.Item.Move": "Move",
   "TYPES.RegionBehavior.room": "Room",
+  "TYPES.Item.Feature": "Feature",
   "TYPES.Item.Item": "Item",
   "CHAT": {
     "RollPublic": "Roll Public",
@@ -12,6 +13,7 @@
   },
   "COMPENDIUMS": {
     "Moves": "Moves",
+    "Features": "Features",
     "Items": "Items",
     "Enemies": "Enemies",
     "Tables": "Tables"
@@ -30,7 +32,7 @@
       "Moves": "Moves",
       "Items": "Items",
       "Tracks": "Tracks",
-      "Feats": "Feats"
+      "Feats": "Features"
     },
     "Items": {
       "Categories": {
@@ -82,13 +84,31 @@
           "feats": { "label": "Feats" }
         }
       },
+      "Feature": {
+        "FIELDS": {
+          "description": { "label": "Effect" },
+          "category": { "label": "Kind" },
+          "class": { "label": "Class" },
+          "specialization": { "label": "Specialization" },
+          "level": { "label": "Gained at Level" },
+          "prerequisite": { "label": "Prerequisite" },
+          "prerequisiteLevel": { "label": "Level Prerequisite" },
+          "rules": { "label": "Automation Rules (JSON)" },
+          "manualNote": { "label": "Left to the GM", "hint": "The parts of this feature the system doesn't handle." }
+        }
+      },
       "Player": {
         "FIELDS": {
           "class": { "label": "Class" },
           "specialization": { "label": "Specialization" },
           "nature": { "label": "Nature" },
           "origin": { "label": "Origin" },
+          "aura": { "label": "Aura Colour", "hint": "For a custom Nature: its Aura colour, by name (e.g. Teal) or hex code." },
           "level": { "label": "Level" },
+          "hp": {
+            "label": "HP",
+            "bonus": { "label": "HP Bonus" }
+          },
           "friendship": {
             "label": "Friendship",
             "track": { "label": "Friendship Track" },
@@ -436,6 +456,18 @@
       "FlexibleEffects": "{move} can cause: {effects}. Apply them from the Token HUD when they happen.",
       "RoomEffects": "{move} affects everyone in the room: {effects}. Apply them from the Token HUD.",
       "Resisted": "{name} resisted {move}!",
+      "FeatureTriggered": "{name}'s {feature} activates!",
+      "FeatureChance": "{feature} (needs {chance}+)",
+      "BlockedFeature": "{name}'s {feature} prevents {label}.",
+      "FeatureBlockedDamage": "{name}'s {feature} prevents the damage.",
+      "FeatureChangedDamage": "{name}'s {feature} changes the damage taken.",
+      "FeatureImmune": "{name}'s {feature} makes it immune to {move}.",
+      "FeatureBlockedSecondary": "{name}'s {feature} blocks the move's secondary effects.",
+      "Absorbed": "absorbed by {name}'s {feature}",
+      "Endured": "{name} holds on with {feature}!",
+      "Synchronized": "{name} passes the Condition back to {target}!",
+      "NoSecondary": "{move} has no secondary effect (Sheer Force).",
+      "MovePower": "Move Power",
       "ImmuneNoEffect": "{name} is immune to {move}, so it has no effect.",
       "MagicCoatReflect": "{name}'s Magic Coat reflects {move} back at the user!",
       "TookDamage": "{name} took {damage} damage.",
@@ -513,6 +545,34 @@
         "Name": "Show Wall Tiles",
         "Hint": "Let tokens see one tile past walls, so the wall tiles of a dungeon map show up. Draw walls along the edges of floor tiles."
       }
+    },
+    "Features": {
+      "Categories": {
+        "ClassAbility": "Class Abilities",
+        "ClassFeature": "Class Features",
+        "SpecializationFeature": "Specialization Features",
+        "RareQuality": "Rare Qualities",
+        "Origin": "Origin",
+        "Other": "Other Features"
+      },
+      "Proficiency": {
+        "untrained": "Untrained",
+        "minor": "Minor",
+        "major": "Major"
+      },
+      "Automation": "Automation",
+      "AutomatedHint": "The system applies this feature automatically.",
+      "ManualHint": "This feature isn't automated; apply it yourself when it comes up.",
+      "RuleReference": "Rule types",
+      "InvalidRules": "Couldn't save the rules: {error}. They must be a JSON list of objects, each with a \"type\".",
+      "LevelShort": "Lv.",
+      "DropHint": "Drag Class Abilities, Features, Rare Qualities and your Origin here from the Features compendium.",
+      "SkillGranted": "{proficiency} from your Class or a Feature",
+      "ClassSummary": "{hp} HP, +{perLevel} per Level. Major Skills: {major}. Choose {count} Minor Skills from: {minor}.",
+      "MaxHp": "Max HP",
+      "MaxHpHint": "Max HP: {hp}, plus {perLevel} for each Level after the first, plus Features and the HP Bonus.",
+      "MinorSkills": "Minor Skills",
+      "TooManyMoves": "{name} now knows more than 4 Moves. A Pokémon can only know 4 at a time, so one should be forgotten."
     }
   }
 }

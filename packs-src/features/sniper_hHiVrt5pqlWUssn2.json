@@ -1,0 +1,36 @@
+{
+  "name": "Sniper",
+  "type": "Feature",
+  "img": "icons/svg/target.svg",
+  "system": {
+    "description": "Whenever you score a Critical Hit with a Special Move, you roll an extra 1d6 for damage. This special die cannot score a Critical Hit.",
+    "category": "specializationFeature",
+    "class": "strategist",
+    "specialization": "sharpshooter",
+    "level": 7,
+    "prerequisite": "",
+    "prerequisiteLevel": null,
+    "rules": [],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "vnXrw30hAPDgzLpL",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "hHiVrt5pqlWUssn2",
+  "sort": 716000,
+  "_key": "!items!hHiVrt5pqlWUssn2"
+}

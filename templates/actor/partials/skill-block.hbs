@@ -3,5 +3,6 @@
     <label>{{localize name}}</label>
     <button type="button" data-action="rollDie" data-skill="{{skill}}" data-name="{{localize name}}">{{skillDie skill}}</button>
     {{formInput field value=value choices=proficiencies localize=true}}
+    {{#if granted}}<i class="fa-solid fa-star skill-granted" data-tooltip="{{granted}}"></i>{{/if}}
   </div>
 </div>

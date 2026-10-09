@@ -1,0 +1,41 @@
+{
+  "name": "Pressure",
+  "type": "Feature",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "Pokémon that use a Move against this Pokémon use 2PP instead of 1.",
+    "category": "rareQuality",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "",
+    "prerequisiteLevel": 3,
+    "rules": [
+      {
+        "type": "extraPpCost",
+        "amount": 1
+      }
+    ],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "km7lMLkpOyOmoYSx",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "AxpmquymHaGAu2e7",
+  "sort": 69000,
+  "_key": "!items!AxpmquymHaGAu2e7"
+}

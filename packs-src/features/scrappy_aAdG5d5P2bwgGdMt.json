@@ -1,0 +1,47 @@
+{
+  "name": "Scrappy",
+  "type": "Feature",
+  "img": "icons/svg/upgrade.svg",
+  "system": {
+    "description": "This Pokémon can hit Ghost-type Pokémon with Normal- and Fighting-type moves. It is also unaffected by Intimidate.",
+    "category": "rareQuality",
+    "class": null,
+    "specialization": null,
+    "level": null,
+    "prerequisite": "Normal-Type & Fighting-Type Pokémon",
+    "prerequisiteLevel": 3,
+    "rules": [
+      {
+        "type": "steamroll",
+        "moveTypes": [
+          "normal",
+          "fighting"
+        ],
+        "matchups": [
+          "immune"
+        ]
+      }
+    ],
+    "manualNote": "Immunity to Intimidate."
+  },
+  "effects": [],
+  "folder": "km7lMLkpOyOmoYSx",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "aAdG5d5P2bwgGdMt",
+  "sort": 82000,
+  "_key": "!items!aAdG5d5P2bwgGdMt"
+}

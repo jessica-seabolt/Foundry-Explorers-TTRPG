@@ -5,6 +5,7 @@ import {
   stateConditions, statConditions, conditionIcons, conditionTypeImmunities, resistRerollConditions,
   durationEffects, untilNextTurnConditions, statKeys, weathers, terrains, effects, skills
 } from './types.mjs';
+import { getRules, hasRule } from './features.mjs';
 
 const { Roll } = foundry.dice;
 const ACTOR_OP_ACTION = "actorOp";
@@ -83,20 +84,29 @@ export async function applyEffectsLocal(actor, effectList, context = {}) {
   const lines = [];
   const name = escape(actor.name);
   const statChanges = {};
+  const followUps = []; // effects that Features trigger in response, applied after this batch
+  const reflect = []; // Conditions sent back to the source by Synchronize
   for (const { effect, effectCount } of effectList) {
     const label = localize(effects[effect] ?? effect);
 
     if (statConditions[effect]) {
-      const isUp = effect.endsWith("Up");
+      let isUp = effect.endsWith("Up");
       const stat = effect.slice(0, isUp ? -2 : -4);
-      if (!isUp && actor.statuses.has("noLoweredStats")) {
-        lines.push(format("SYSTEM.Automation.StatBlocked", { name, label }));
+      let amount = effectCount ?? 1;
+      // Contrary turns boosts into drops and back; Simple doubles them
+      const modes = getRules(actor, "statChange").map(rule => rule.mode);
+      if (modes.includes("invert")) isUp = !isUp;
+      if (modes.includes("double")) amount *= 2;
+      const changedLabel = localize(effects[`${stat}${isUp ? "Up" : "Down"}`] ?? effect);
+      if (!isUp && (actor.statuses.has("noLoweredStats") || statLowerBlocked(actor, stat))) {
+        lines.push(format("SYSTEM.Automation.StatBlocked", { name, label: changedLabel }));
         continue;
       }
-      const amount = effectCount ?? 1;
       const current = statChanges[stat] ?? actor.system.statChanges?.[stat] ?? 0;
       statChanges[stat] = Math.clamp(current + (isUp ? amount : -amount), -10, 10);
-      lines.push(format("SYSTEM.Automation.StatChanged", { name, label, amount, total: statChanges[stat] }));
+      lines.push(format("SYSTEM.Automation.StatChanged", { name, label: changedLabel, amount, total: statChanges[stat] }));
+      // Defiant, Competitive: a foe lowering this Pokemon's stats triggers a boost
+      if (!isUp && context.fromOther) for (const rule of getRules(actor, "onStatLowered")) followUps.push({ rule, effects: rule.effects ?? [] });
       continue;
     }
 
@@ -119,6 +129,13 @@ export async function applyEffectsLocal(actor, effectList, context = {}) {
         remaining: durationEffects.has(effect) && effectCount ? effectCount : null,
       });
       lines.push(format("SYSTEM.Automation.ConditionApplied", { name, label }));
+      for (const rule of getRules(actor, "onConditionGained")) {
+        if ((rule.conditions ?? []).includes(effect)) followUps.push({ rule, effects: rule.effects ?? [] });
+      }
+      if (context.fromOther && context.sourceUuid && !context.reflected
+        && getRules(actor, "reflectConditions").some(rule => (rule.conditions ?? []).includes(effect))) {
+        reflect.push({ effect, effectCount });
+      }
       if (effect === "burned" && actor.statuses.has("frozen")) { // the Burned Condition thaws a Frozen Pokemon early
         await removeCondition(actor, "frozen");
         lines.push(format("SYSTEM.Automation.Thawed", { name }));
@@ -139,6 +156,23 @@ export async function applyEffectsLocal(actor, effectList, context = {}) {
     await actor.update(Object.fromEntries(Object.entries(statChanges).map(([stat, value]) => [`system.statChanges.${stat}`, value])));
   }
   await postAutomationMessage(actor, lines);
+
+  for (const { rule, effects: triggered } of followUps) {
+    await postAutomationMessage(actor, [format("SYSTEM.Automation.FeatureTriggered", { name, feature: escape(rule.source) })]);
+    await applyEffectsLocal(actor, triggered, { sourceUuid: actor.uuid, sourceName: actor.name });
+  }
+  if (reflect.length) {
+    const source = fromUuidSync(context.sourceUuid);
+    if (source && source !== actor) {
+      await postAutomationMessage(actor, [format("SYSTEM.Automation.Synchronized", { name, target: escape(source.name) })]);
+      await applyEffects(source, reflect, { sourceUuid: actor.uuid, sourceName: actor.name, fromOther: true, reflected: true });
+    }
+  }
+}
+
+/** Whether a Feature stops this stat being lowered (Big Pecks, Hyper Cutter, Clear Body). */
+function statLowerBlocked(actor, stat) {
+  return getRules(actor, "statLowerImmunity").some(rule => (rule.stats ?? []).some(blocked => blocked === stat || blocked === "all"));
 }
 
 /** Returns a message if the actor can't receive this Condition, or null if it can. */
@@ -150,12 +184,17 @@ function conditionBlockedReason(actor, effect, context) {
   }
   const immuneTypes = conditionTypeImmunities[effect] ?? [];
   const actorTypes = [actor.system.type1, actor.system.type2];
-  if (immuneTypes.some(type => actorTypes.includes(type))) {
+  // Corrosion lets its user Poison Steel and Poison types
+  const source = context.sourceUuid ? fromUuidSync(context.sourceUuid) : null;
+  const bypassed = getRules(source, "bypassConditionImmunity").some(rule => (rule.conditions ?? []).includes(effect));
+  if (!bypassed && immuneTypes.some(type => actorTypes.includes(type))) {
     return format("SYSTEM.Automation.BlockedType", { name, label });
   }
   if ((effect === "asleep" || effect === "yawning") && actor.statuses.has("insomnia")) {
     return format("SYSTEM.Automation.BlockedInsomnia", { name, label });
   }
+  const immunity = getRules(actor, "conditionImmunity").find(rule => (rule.conditions ?? []).includes(effect));
+  if (immunity) return format("SYSTEM.Automation.BlockedFeature", { name, label, feature: escape(immunity.source) });
   return null;
 }
 
@@ -166,9 +205,29 @@ export async function addCondition(actor, statusId, data = {}) {
   return ActiveEffect.create(effect.toObject(), { parent: actor });
 }
 
+/** Removes a Condition, leaving any copy a Feature keeps on permanently. */
 export async function removeCondition(actor, statusId) {
-  const ids = actor.effects.filter(e => e.statuses.has(statusId)).map(e => e.id);
+  const ids = actor.effects.filter(e => e.statuses.has(statusId) && !e.getFlag(SYSTEM_ID, "permanent")).map(e => e.id);
   if (ids.length) await actor.deleteEmbeddedDocuments("ActiveEffect", ids);
+}
+
+/**
+ * Gives an actor the Conditions its Features keep on permanently (Illuminate's Eyedrop, Magic Bounce's Magic Coat),
+ * and removes ones whose Feature is gone, so they show on the token and sheet like any other Condition.
+ */
+export async function syncPermanentConditions(actor) {
+  if (!actor?.isOwner) return;
+  const wanted = new Map();
+  for (const rule of getRules(actor, "permanentCondition")) {
+    if (CONFIG.statusEffects.some(status => status.id === rule.condition)) wanted.set(rule.condition, rule.source);
+  }
+  const existing = actor.effects.filter(effect => effect.getFlag(SYSTEM_ID, "permanent"));
+  const stale = existing.filter(effect => ![...effect.statuses].some(status => wanted.has(status))).map(effect => effect.id);
+  if (stale.length) await actor.deleteEmbeddedDocuments("ActiveEffect", stale);
+  for (const [condition, source] of wanted) {
+    if (existing.some(effect => effect.statuses.has(condition))) continue;
+    await addCondition(actor, condition, { permanent: true, sourceName: source });
+  }
 }
 
 function conditionEffect(actor, statusId) {
@@ -303,8 +362,14 @@ export async function processStartOfTurn(actor) {
 
   // Damage over time. Tick damage isn't resisted by Defence and can't score a Critical Hit.
   if (actor.statuses.has("burned")) await tickDamage(actor, "1d6", localize("SYSTEM.Conditions.Burned"));
-  if (actor.statuses.has("poisoned")) await tickDamage(actor, "1d6", localize("SYSTEM.Conditions.Poisoned"));
-  if (actor.statuses.has("badlyPoisoned")) {
+  const poisonHeals = hasRule(actor, "poisonHeal");
+  if (poisonHeals && (actor.statuses.has("poisoned") || actor.statuses.has("badlyPoisoned"))) {
+    const roll = await new Roll("1d6").evaluate();
+    await roll.toMessage({ speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }), flavor: getRules(actor, "poisonHeal")[0].source });
+    await actor.system.heal?.(roll.total, getRules(actor, "poisonHeal")[0].source);
+  }
+  if (actor.statuses.has("poisoned") && !poisonHeals) await tickDamage(actor, "1d6", localize("SYSTEM.Conditions.Poisoned"));
+  if (actor.statuses.has("badlyPoisoned") && !poisonHeals) {
     const effect = conditionEffect(actor, "badlyPoisoned");
     const turns = effect.getFlag(SYSTEM_ID, "turns") ?? 0;
     await tickDamage(actor, `${turns + 1}d6`, localize("SYSTEM.Conditions.BadlyPoisoned"));
@@ -336,6 +401,11 @@ async function processSleep(actor) {
   const name = escape(actor.name);
   const effect = conditionEffect(actor, "asleep");
   const duration = effect.getFlag(SYSTEM_ID, "duration");
+  if (hasRule(actor, "earlyBird")) {
+    await removeCondition(actor, "asleep");
+    await postAutomationMessage(actor, [format("SYSTEM.Automation.FeatureTriggered", { name, feature: escape(getRules(actor, "earlyBird")[0].source) }), format("SYSTEM.Automation.WokeUp", { name })]);
+    return;
+  }
   if (typeof duration !== "number") { // first turn asleep: roll how many rounds
     const rounds = await rollD6(actor, format("SYSTEM.Automation.SleepDuration", { name }));
     await effect.setFlag(SYSTEM_ID, "duration", rounds);
@@ -398,7 +468,14 @@ async function rerollResist(actor, statusId) {
 
 /** Runs end-of-turn effects. Only the active GM calls this. */
 export async function processEndOfTurn(actor) {
-  if (!actor?.statuses?.has("flinched")) return;
-  await removeCondition(actor, "flinched");
-  await postAutomationMessage(actor, [format("SYSTEM.Automation.ConditionEnded", { name: escape(actor.name), label: localize(effects.flinched) })]);
+  if (!actor?.system?.hp) return;
+  if (actor.statuses.has("flinched")) {
+    await removeCondition(actor, "flinched");
+    await postAutomationMessage(actor, [format("SYSTEM.Automation.ConditionEnded", { name: escape(actor.name), label: localize(effects.flinched) })]);
+  }
+  if (actor.system.hp.raw <= 0) return;
+  for (const rule of getRules(actor, "onTurnEnd")) {
+    await postAutomationMessage(actor, [format("SYSTEM.Automation.FeatureTriggered", { name: escape(actor.name), feature: escape(rule.source) })]);
+    await applyEffectsLocal(actor, rule.effects ?? [], { sourceUuid: actor.uuid, sourceName: actor.name });
+  }
 }

@@ -1,0 +1,36 @@
+{
+  "name": "Protective Veil",
+  "type": "Feature",
+  "img": "icons/svg/target.svg",
+  "system": {
+    "description": "If an Ally adjacent to you would be afflicted with a Status Condition, you can choose to take on the Status Condition instead of your Ally as a Reaction.",
+    "category": "specializationFeature",
+    "class": "guardian",
+    "specialization": "ward",
+    "level": 2,
+    "prerequisite": "",
+    "prerequisiteLevel": null,
+    "rules": [],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "bxI2f2CK8Kg52xAb",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "Cc39cSpOXDJr8r8z",
+  "sort": 211000,
+  "_key": "!items!Cc39cSpOXDJr8r8z"
+}

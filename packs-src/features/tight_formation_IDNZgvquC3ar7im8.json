@@ -1,0 +1,36 @@
+{
+  "name": "Tight Formation",
+  "type": "Feature",
+  "img": "icons/svg/target.svg",
+  "system": {
+    "description": "Whenever a Move would deal damage to multiple allies, such as a Move with a Room range, that damage is divided by each Team Member that would be damaged by the Move.",
+    "category": "specializationFeature",
+    "class": "icon",
+    "specialization": "teamLeader",
+    "level": 7,
+    "prerequisite": "",
+    "prerequisiteLevel": null,
+    "rules": [],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "Ldn0p0KMymIlsDkG",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "IDNZgvquC3ar7im8",
+  "sort": 715000,
+  "_key": "!items!IDNZgvquC3ar7im8"
+}

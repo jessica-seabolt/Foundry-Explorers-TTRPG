@@ -41,6 +41,13 @@
       "banner": "systems/explorers/assets/banners/enemies.webp"
     },
     {
+      "name": "features",
+      "label": "COMPENDIUMS.Features",
+      "path": "packs/features",
+      "type": "Item",
+      "banner": "systems/explorers/assets/banners/moves.webp"
+    },
+    {
       "name": "tables",
       "label": "COMPENDIUMS.Tables",
       "path": "packs/tables",
@@ -52,7 +59,7 @@
     {
       "name": "Core Rulebook",
       "color": "#000000",
-      "packs": ["moves", "items", "enemies", "tables"]
+      "packs": ["moves", "items", "features", "enemies", "tables"]
     }
   ],
   "relationships": [],
@@ -70,7 +77,8 @@
     },
     "Item": {
       "Move": { "htmlFields": ["description"] },
-      "Item": { "htmlFields": ["description"] }
+      "Item": { "htmlFields": ["description"] },
+      "Feature": { "htmlFields": ["description"] }
     },
     "RegionBehavior": {
       "room": {}

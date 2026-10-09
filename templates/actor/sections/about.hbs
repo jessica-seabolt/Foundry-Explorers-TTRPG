@@ -11,8 +11,17 @@
       </div>
     </div>
     {{#if isPlayerSheet}}
-    {{formGroup systemFields.nature value=document.system.nature localize=true}}
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Models.Player.FIELDS.nature.label"}}</label>
+      <div class="form-fields">
+        <input type="text" name="system.nature" value="{{document.system.nature}}" list="explorers-natures">
+        {{#if auraHex}}<span class="aura-swatch" style="background: {{auraHex}}" data-tooltip="{{document.system.auraColor}}"></span>{{/if}}
+      </div>
+    </div>
+    <datalist id="explorers-natures">{{#each natureOptions as |nature|}}<option value="{{nature}}"></option>{{/each}}</datalist>
+    {{#unless natureAura}}{{formGroup systemFields.aura value=document.system.aura localize=true}}{{/unless}}
     {{formGroup systemFields.class value=document.system.class options=classes localize=true}}
+    {{#if classSummary}}<p class="hint class-summary">{{classSummary}}</p>{{/if}}
     {{formGroup systemFields.specialization value=document.system.specialization options=specializations localize=true}}
     {{formGroup systemFields.level value=document.system.level localize=true}}
     {{formGroup systemFields.origin value=document.system.origin localize=true}}

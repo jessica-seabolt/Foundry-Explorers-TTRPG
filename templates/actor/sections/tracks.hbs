@@ -3,7 +3,7 @@
     <legend>{{localize "SYSTEM.Models.Player.FIELDS.friendship.label"}}</legend>
     {{formGroup systemFields.friendship.fields.track value=document.system.friendship.track localize=true}}
     <div class="friendship-grid">
-      {{formGroup systemFields.friendship.fields.dice value=document.system.friendship.dice localize=true type="number" classes="slim inline"}}
+      {{formGroup systemFields.friendship.fields.dice value=document.system.friendship.dice localize=true type="number" classes="slim inline" max=document.system.friendship.max}}
       {{formGroup systemFields.friendship.fields.cleared value=document.system.friendship.cleared localize=true type="number" classes="slim inline"}}
     </div>
     <button data-action="clearTrack" {{#unless document.system.friendship.isClearable}}disabled{{/unless}}>Clear Track</button>

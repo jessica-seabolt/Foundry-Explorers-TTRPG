@@ -1,0 +1,36 @@
+{
+  "name": "Intimidate",
+  "type": "Feature",
+  "img": "icons/svg/aura.svg",
+  "system": {
+    "description": "When a battle begins, choose one target to Intimidate. The target's Atk modifier drops by 2. Alternatively, you can attempt to Frighten them with an Influence vs Intuition Check.",
+    "category": "classAbility",
+    "class": "brawler",
+    "specialization": null,
+    "level": 1,
+    "prerequisite": "",
+    "prerequisiteLevel": null,
+    "rules": [],
+    "manualNote": ""
+  },
+  "effects": [],
+  "folder": "Hfxu7DSCxQgGKuOQ",
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": 1791590400000,
+    "modifiedTime": 1791590400000,
+    "lastModifiedBy": null
+  },
+  "_id": "7lUHEiy3va3zYGGR",
+  "sort": 1000,
+  "_key": "!items!7lUHEiy3va3zYGGR"
+}

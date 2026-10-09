@@ -1,6 +1,7 @@
 import { SYSTEM_ID, filePath } from '../constants.mjs';
 import { FAINTED_STATUS } from './conditions.mjs';
 import { roomOfToken } from './rooms.mjs';
+import { effectiveRange, hasRule } from './features.mjs';
 import { DIRECTIONS, computeTargets, includesSelf, isSingleTarget, needsDirection, parseLocationMove, tileDistance } from './targeting-geometry.mjs';
 import { ranges, targets } from './types.mjs';
 
@@ -72,9 +73,9 @@ function setUserTargets(tokens) {
 }
 
 /** A short description of a move's targeting, e.g. "Foe up to 4 tiles ahead". */
-export function describeTargeting(system) {
+export function describeTargeting(system, { range: rangeId = system.range, rangeCount = system.rangeCount } = {}) {
   const target = system.target ? game.i18n.localize(targets[system.target]) : "";
-  const range = system.range ? game.i18n.format(ranges[system.range], { X: system.rangeCount ?? "" }) : "";
+  const range = rangeId ? game.i18n.format(ranges[rangeId], { X: rangeCount ?? "" }) : "";
   return [target, range].filter(Boolean).join(" ");
 }
 
@@ -97,9 +98,12 @@ export async function pickTargets(actor, move, { force = false } = {}) {
   const location = system.range === 'special' ? parseLocationMove(system.description) : null;
   if (system.range === 'special' && !location) return true; // other special moves are aimed by hand
 
-  const moveSpec = { target: system.target ?? 'foes', range: system.range, rangeCount: system.rangeCount };
+  // Features can extend a move's range (Long Reach, Focused Shot)
+  const { range, rangeCount } = effectiveRange(actor, move);
+  const moveSpec = { target: system.target ?? 'foes', range, rangeCount };
+  const lineOptions = { pierce: hasRule(actor, "pierce") && range === 'ahead', throughAllies: hasRule(actor, "shootThroughAllies") };
   const compute = (direction = null, chosenLocation = null) => {
-    const result = computeTargets({ ...scene, move: moveSpec, direction, location: chosenLocation, burst: location?.burst });
+    const result = computeTargets({ ...scene, ...lineOptions, move: moveSpec, direction, location: chosenLocation, burst: location?.burst });
     // "Self or Ally" moves can also be used on yourself
     if (moveSpec.target === 'selfOrAlly') result.candidates.unshift(scene.user);
     return result;
@@ -107,7 +111,7 @@ export async function pickTargets(actor, move, { force = false } = {}) {
 
   // Resolve without asking when there's only one sensible choice
   if (!location) {
-    if (needsDirection(system.range)) {
+    if (needsDirection(range)) {
       const withTargets = Object.keys(DIRECTIONS).map(direction => ({ direction, result: compute(direction) }))
         .filter(({ result }) => result.candidates.length);
       if (withTargets.length === 1 && (!isSingleTarget(moveSpec.target) || withTargets[0].result.candidates.length === 1)) {
@@ -122,7 +126,7 @@ export async function pickTargets(actor, move, { force = false } = {}) {
     }
   }
 
-  return new TargetingDialog({ actor, move, scene, compute, location }).wait();
+  return new TargetingDialog({ actor, move, scene, compute, location, range, rangeCount }).wait();
 }
 
 function confirmAutomatically(scene, result, direction) {
@@ -154,14 +158,16 @@ class TargetingDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   #settled = false;
   #removeCanvasListener = null;
 
-  constructor({ actor, move, scene, compute, location, ...options }) {
+  constructor({ actor, move, scene, compute, location, range, rangeCount, ...options }) {
     super(options);
     this.actor = actor;
     this.move = move;
     this.scene = scene;
     this.compute = compute;
     this.locationMove = location;
-    this.direction = needsDirection(move.system.range) ? (lastFacing.get(scene.userToken.id) ?? null) : null;
+    this.range = range;
+    this.rangeCount = rangeCount;
+    this.direction = needsDirection(range) ? (lastFacing.get(scene.userToken.id) ?? null) : null;
     this.location = null;
     this.result = this.#recompute();
   }
@@ -178,7 +184,7 @@ class TargetingDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   #recompute() {
-    if (needsDirection(this.move.system.range) && !this.direction) return null;
+    if (needsDirection(this.range) && !this.direction) return null;
     if (this.locationMove && !this.location) return null;
     return this.compute(this.direction, this.location);
   }
@@ -186,8 +192,8 @@ class TargetingDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
     const system = this.move.system;
-    context.description = describeTargeting(system);
-    context.needsDirection = needsDirection(system.range);
+    context.description = describeTargeting(system, { range: this.range, rangeCount: this.rangeCount });
+    context.needsDirection = needsDirection(this.range);
     if (context.needsDirection) {
       // Lay out the 8 directions around the user's token, with how many targets each would hit
       const order = ['nw', 'n', 'ne', 'w', null, 'e', 'sw', 's', 'se'];

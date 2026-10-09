@@ -1,6 +1,16 @@
 <section class="tab standard-form scrollable {{tabs.stats.cssClass}}" data-group="primary" data-tab="stats">
   <div class="stat-blocks">
+    {{#if isPlayerSheet}}
+    <div class="stat-block center" data-tooltip="{{maxHpHint}}">
+      <div class="form-group">
+        <label>{{localize abilities.hp}}</label>
+        <div class="form-fields"><input type="number" value="{{document.system.hp.max}}" disabled></div>
+      </div>
+      <input type="text" disabled value="{{numberFormat document.system.hp.mod decimals=0 sign=true}}">
+    </div>
+    {{else}}
     {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.hp field=systemFields.hp value=document.system.hp useMax=true }}
+    {{/if}}
     {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.atk field=systemFields.abilities.fields.atk value=document.system.abilities.atk}}
     {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.def field=systemFields.abilities.fields.def value=document.system.abilities.def}}
     {{> (filePath "templates/actor/partials/stat-block.hbs") name=abilities.spatk field=systemFields.abilities.fields.spatk value=document.system.abilities.spatk}}
@@ -26,6 +36,11 @@
     &nbsp;
     <span>({{localize "SYSTEM.Misc.Minimum"}} {{document.system.statMin}})</span>
   </div>
+  <div class="stat-tracking">
+    <span>{{localize "SYSTEM.Features.MaxHp"}} {{document.system.hp.classMax}} + {{formGroup systemFields.hp.fields.bonus value=document.system.hp.bonus type="number" classes="bonus-input"}} {{localize "SYSTEM.Misc.Bonus"}}</span>
+    &nbsp;
+    <span class="{{#if minorSkillsOver}}over-limit{{/if}}">{{localize "SYSTEM.Features.MinorSkills"}} {{minorSkillCount}}/{{minorSkillLimit}}</span>
+  </div>
   {{/if}}
   <div class="skill-blocks">
     {{#each skills as |name key|}}
@@ -35,6 +50,7 @@
           skill=key
           field=(lookup systemFields.skills.fields key)
           value=(lookup document.system.skills key)
+          granted=(lookup skillGrants key)
         }}
       {{/with}}
     {{/each}}

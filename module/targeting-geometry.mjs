@@ -75,10 +75,12 @@ export const includesSelf = target => ['self', 'selfAllies', 'selfOrAlly'].inclu
  * @param {string|null} [args.userRoom]  The id of the Room the user is in
  * @param {number} [args.visibility]     The user's Visibility in Tiles (for Hallways)
  * @param {(fromCenter, toCell) => boolean} [args.isBlocked]  Whether a wall blocks the way to a cell
+ * @param {boolean} [args.pierce]              Lines carry on past the first target (Piercing Shot)
+ * @param {boolean} [args.throughAllies]       Allies don't block lines (Gap Prober)
  * @returns {{cells: {i, j}[], candidates: object[], single: boolean, includeSelf: boolean, blockedBy: object|null}}
  */
 export function computeTargets({ user, others, move, direction = null, location = null, burst = 1,
-  userRoom = null, visibility = Infinity, isBlocked = () => false }) {
+  userRoom = null, visibility = Infinity, isBlocked = () => false, pierce = false, throughAllies = false }) {
   const wants = targetFilter(move.target);
   const valid = other => !other.fainted && wants(user, other);
   const single = isSingleTarget(move.target);
@@ -116,13 +118,13 @@ export function computeTargets({ user, others, move, direction = null, location 
           continue;
         }
         const wanted = hit.filter(valid);
-        const blocker = hit.find(other => !valid(other));
+        const blocker = throughAllies ? null : hit.find(other => !valid(other));
         result.candidates.push(...wanted);
         if (blocker && !wanted.length) { // an Ally in the way blocks the target
           result.blockedBy = blocker;
           break;
         }
-        if (wanted.length && single) break; // stops at the first target
+        if (wanted.length && single && !pierce) break; // stops at the first target
         if (blocker) break;
       }
       return result;

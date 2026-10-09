@@ -2,6 +2,7 @@ import { filePath, toFormGroup } from '../constants.mjs';
 import { MoveRollDialog, SkillRollDialog } from './roll-dialog.mjs';
 import { abilities, classes, proficiencies, specializations, categories, types, skills, effects, itemCategories, sizes, statKeys, statConditions } from './types.mjs'
 import { SYSTEM_ID } from '../constants.mjs';
+import { MINOR_SKILL_CHOICES, auraColors, auraOfNature, classData, featureCategories, natures } from './features.mjs';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -20,7 +21,8 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       basicAttack: CharacterSheet.basicAttack,
       guard: CharacterSheet.guard,
       rest: CharacterSheet.rest,
-      newFloor: CharacterSheet.newFloor
+      newFloor: CharacterSheet.newFloor,
+      openItem: CharacterSheet.openItem
     }
   }
 
@@ -51,7 +53,35 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
     context.moves = this.actor.items.filter(item => item.type === "Move");
-    context.items = this.actor.items.filter(item => item.type !== "Move");
+    context.items = this.actor.items.filter(item => item.type === "Item");
+    context.featureGroups = Object.entries(featureCategories).map(([category, label]) => ({
+      label,
+      features: this.actor.items.filter(item => item.type === "Feature" && item.system.category === category)
+        .sort((a, b) => (a.system.level ?? 0) - (b.system.level ?? 0) || a.name.localeCompare(b.name))
+        .map(item => ({
+          id: item.id, name: item.name, img: item.img, level: item.system.level,
+          description: item.system.description, automated: item.system.isAutomated, manualNote: item.system.manualNote
+        }))
+    })).filter(group => group.features.length);
+    // Skills raised by the class's Major Skills or a Feature are marked on the sheet
+    const system = this.document.system;
+    context.skillGrants = Object.fromEntries(Object.keys(skills)
+      .filter(skill => system.proficiency?.[skill] && system.proficiency[skill] !== system.skills[skill])
+      .map(skill => [skill, game.i18n.format("SYSTEM.Features.SkillGranted", { proficiency: game.i18n.localize(`SYSTEM.Features.Proficiency.${system.proficiency[skill]}`) })]));
+    const classInfo = classData[system.class];
+    if (classInfo) {
+      const skillNames = list => list.map(skill => game.i18n.localize(skills[skill])).join(", ");
+      context.classSummary = game.i18n.format("SYSTEM.Features.ClassSummary", {
+        hp: classInfo.baseHp, perLevel: classInfo.hpPerLevel, major: skillNames(classInfo.majorSkills), minor: skillNames(classInfo.minorSkillOptions), count: MINOR_SKILL_CHOICES
+      });
+      context.maxHpHint = game.i18n.format("SYSTEM.Features.MaxHpHint", { hp: classInfo.baseHp, perLevel: classInfo.hpPerLevel });
+      context.minorSkillCount = Object.values(system.skills).filter(value => value === 'minor').length;
+      context.minorSkillLimit = MINOR_SKILL_CHOICES;
+      context.minorSkillsOver = context.minorSkillCount > MINOR_SKILL_CHOICES;
+    }
+    context.natureOptions = Object.keys(natures).map(nature => `${nature[0].toUpperCase()}${nature.slice(1)}`);
+    context.natureAura = auraOfNature(system.nature ?? "");
+    context.auraHex = auraColors[system.auraColor] ?? (system.auraColor?.startsWith?.("#") ? system.auraColor : null);
     context.types = toFormGroup(types);
     context.classes = toFormGroup(classes);
     context.specializations = toFormGroup(specializations);
@@ -158,6 +188,10 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
 
   static async newFloor() {
     await this.actor.system.newFloor();
+  }
+
+  static openItem(event, target) {
+    this.actor.items.get(target.dataset.id)?.sheet.render({ force: true });
   }
 
   static async removeItem(event, target) {
