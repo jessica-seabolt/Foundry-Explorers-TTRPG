@@ -380,11 +380,11 @@
       "StatChangesHint": "Stat Up/Down from moves, added to each Stat Modifier (max ±10). Reset on a new Floor.",
       "Movement": "Movement",
       "Visibility": "Visibility",
-      "Tiles": "tiles",
+      "Tiles": "tile(s)",
       "NoConditions": "No conditions",
       "ConditionRemoveHint": "Right-click to remove",
-      "TurnsLeft": "{count} turns left",
-      "RoundsLeft": "{count} rounds left"
+      "TurnsLeft": "{count} turn(s) left",
+      "RoundsLeft": "{count} round(s) left"
     },
     "Initiative": {
       "TieTitle": "Initiative Tie",
@@ -476,7 +476,7 @@
       "Title": "Targeting",
       "ChooseDirection": "Choose a direction.",
       "PickLocation": "Pick a location",
-      "ClickLocation": "Click a tile within {reach} tiles.",
+      "ClickLocation": "Click a tile within {reach} tile(s).",
       "LocationOutOfRange": "That tile is out of range or blocked by a wall.",
       "NoTargets": "No valid targets.",
       "Blocked": "Blocked by",
