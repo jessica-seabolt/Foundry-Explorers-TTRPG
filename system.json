@@ -4,6 +4,7 @@
   "description": "A tabletop roleplaying game for explorers",
   "version": "1.6.6",
   "url": "https://github.com/jessica-seabolt/Foundry-Explorers-TTRPG",
+  "license": "LICENSE",
   "manifest": "https://raw.githubusercontent.com/jessica-seabolt/Foundry-Explorers-TTRPG/main/system.json",
   "download": "https://github.com/jessica-seabolt/Foundry-Explorers-TTRPG/releases/download/v1.6.6/explorers.zip",
   "compatibility": {
