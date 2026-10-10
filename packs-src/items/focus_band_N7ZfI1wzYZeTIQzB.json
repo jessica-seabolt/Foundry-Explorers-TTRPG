@@ -5,7 +5,26 @@
   "system": {
     "description": "If the User would be reduced to 0HP, roll a d6. On a 3-6, you drop to 1HP instead. You can only use this Item once per battle.",
     "category": "scarvesAndBands",
-    "price": null
+    "price": null,
+    "rules": [
+      {
+        "type": "endure",
+        "chance": 3,
+        "once": true,
+        "perBattle": true,
+        "key": "focusBand"
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "flTbL5r9BQOlCHFW",

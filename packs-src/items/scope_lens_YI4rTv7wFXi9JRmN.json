@@ -5,7 +5,23 @@
   "system": {
     "description": "All your Moves score a Critical Hit on a 5-6.",
     "category": "scopes",
-    "price": 5000
+    "price": 5000,
+    "rules": [
+      {
+        "type": "critRange",
+        "min": 5
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "Ur1Tb7VuUE9rPmbA",

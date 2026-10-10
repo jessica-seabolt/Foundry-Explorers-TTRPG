@@ -5,7 +5,26 @@
   "system": {
     "description": "Prevents Poisoned and Badly Poisoned conditions.",
     "category": "scarvesAndBands",
-    "price": null
+    "price": null,
+    "rules": [
+      {
+        "type": "conditionImmunity",
+        "conditions": [
+          "poisoned",
+          "badlyPoisoned"
+        ]
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "flTbL5r9BQOlCHFW",

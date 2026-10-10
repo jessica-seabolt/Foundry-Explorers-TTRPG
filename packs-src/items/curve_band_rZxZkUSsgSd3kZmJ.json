@@ -5,7 +5,18 @@
   "system": {
     "description": "Makes items thrown in a straight-line ricochet off walls.",
     "category": "scarvesAndBands",
-    "price": null
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Straight-line throws ricochet off walls."
   },
   "effects": [],
   "folder": "flTbL5r9BQOlCHFW",

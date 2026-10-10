@@ -9,6 +9,14 @@
     <button data-action="clearTrack" {{#unless document.system.friendship.isClearable}}disabled{{/unless}}>Clear Track</button>
   </fieldset>
   <fieldset>
+    <legend>{{localize "SYSTEM.Models.Player.FIELDS.belly.label"}}</legend>
+    <div class="friendship-grid">
+      {{formGroup systemFields.belly.fields.eaten value=document.system.belly.eaten localize=true classes="slim inline"}}
+      {{formGroup systemFields.belly.fields.fedDays value=document.system.belly.fedDays localize=true classes="slim inline"}}
+      {{formGroup systemFields.belly.fields.hungryDays value=document.system.belly.hungryDays localize=true classes="slim inline"}}
+    </div>
+  </fieldset>
+  <fieldset>
     <legend>{{localize "SYSTEM.Models.Player.FIELDS.tokens.label"}}</legend>
     <div class="friendship-grid">
       {{formGroup systemFields.tokens.fields.available value=document.system.tokens.available localize=true classes="slim inline" max=document.system.tokens.max }}

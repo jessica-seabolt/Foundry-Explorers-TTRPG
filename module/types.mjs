@@ -135,6 +135,7 @@ export const targets = {
   selfAllies: "SYSTEM.Moves.Targets.SelfAllies",
   selfOrAlly: "SYSTEM.Moves.Targets.SelfOrAlly",
   all: "SYSTEM.Moves.Targets.All",
+  any: "SYSTEM.Moves.Targets.Any",
 };
 export const ranges = {
   front: "SYSTEM.Moves.Ranges.Front",

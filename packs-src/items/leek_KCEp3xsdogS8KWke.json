@@ -5,7 +5,18 @@
   "system": {
     "description": "Farfetch'd and Sirfetch'd holding this item Score a Critical Hit on a 5-6 on all their Physical Moves.",
     "category": "battleItems",
-    "price": 2000
+    "price": 2000,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Farfetch'd and Sirfetch'd: Physical Moves crit on a 5-6."
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

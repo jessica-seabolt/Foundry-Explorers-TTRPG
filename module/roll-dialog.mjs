@@ -1,5 +1,5 @@
-import { SYSTEM_ID, filePath, getSkillDie, getMoveDie, getStatusDie, getDieString, applyTypeMatchup, getSelectedActors } from '../constants.mjs';
-import { applyDamage, applyEffects, checkMoveConditions, healActor, postAutomationMessage, removeCondition } from './conditions.mjs';
+import { SYSTEM_ID, filePath, getSkillDie, getMoveDie, getStatusDie, getDieString, applyTypeMatchup, getSelectedActors, isHungry } from '../constants.mjs';
+import { applyDamage, applyEffects, checkMoveConditions, consumeRuleItem, healActor, postAutomationMessage, removeCondition } from './conditions.mjs';
 import { DamageRoll, ExplorersRoll, StatusRoll } from './explorers-roll.mjs';
 import { emitToGM, registerSocketHandler } from './socket.mjs';
 import { pickTargets } from './targeting.mjs';
@@ -134,6 +134,7 @@ export class SkillRollDialog extends RollDialog {
     this.skill = skill;
     this.statusRoll = options.statusRoll ?? null;
     this.statusMessage = options.statusMessage ?? null;
+    if (isHungry(user)) this.dialogState.advantage = 'disadvantage';
   }
 
   static async #rollSkill() {
@@ -180,7 +181,8 @@ export function openResistDialog(statusRoll, statusMessage = null) {
 /** Rolls a Status Check straight away, without a dialog (used for Pokemon only the GM controls). */
 async function rollStatusCheck(actor, statusRoll, statusMessage) {
   const { sides, modifier } = getSkillDie(actor, statusRoll.options.resistSkill);
-  const roll = new ExplorersRoll(getDieString({ sides: sides + resistBonusDice(actor, statusRoll), modifier }), {}, { dc: statusRoll.total });
+  const advantage = isHungry(actor) ? 'disadvantage' : 'normal';
+  const roll = new ExplorersRoll(getDieString({ sides: sides + resistBonusDice(actor, statusRoll), modifier, advantage }), {}, { dc: statusRoll.total });
   await roll.evaluate();
   await roll.toMessage({
     speaker: ChatMessage.implementation.getSpeaker({ actor }),
@@ -399,10 +401,14 @@ export class MoveRollDialog extends RollDialog {
         else if (matchupResult < 0) additionString += note(`-${localize(typeMatchups[matchup])}`, false);
       }
       if (die.advantage === '') {
-        if (isStab) {
-          die.advantage = 'advantage';
-          additionString += note("+STAB", true);
-        } else die.advantage = 'normal';
+        // STAB gives Advantage and hunger Disadvantage; together they cancel out
+        const hungry = isHungry(this.user);
+        die.advantage = isStab && !hungry ? 'advantage' : hungry && !isStab ? 'disadvantage' : 'normal';
+        if (isStab) additionString += note("+STAB", true);
+      }
+      if (isHungry(this.user) && !isHealing) {
+        die.multiplier *= 0.5;
+        additionString += note(localize("SYSTEM.Belly.Hungry"), false);
       }
 
       // Move Power from Features (Multistrike Moves can't gain Move Power)
@@ -431,6 +437,7 @@ export class MoveRollDialog extends RollDialog {
         attackerUuid: this.user.uuid,
         moveType,
         moveCategory: isPhysical ? 'physical' : 'special',
+        matchup: matchup || null,
         moveName: this.move.name,
         tags
       }), {
@@ -438,6 +445,8 @@ export class MoveRollDialog extends RollDialog {
       });
 
       // Damage is dealt before secondary effects ("roll a d6 after damage has been dealt"), and a fainted target gets none
+      // Gems are used up once they boost a move
+      for (const itemId of bonus.consumed ?? []) await consumeRuleItem(this.user, { consume: true, itemId });
       const result = await this.#applyRoll(roll, target, this.lastMessage);
       const fainted = result?.hp <= 0;
       if (fainted) knockedOut = true;
@@ -568,6 +577,7 @@ export class MoveRollDialog extends RollDialog {
     }
     // An Opportunity Strike with a Status Move only rolls 1 die
     if (this.dialogState.opportunity && system.isStatus) statusDie.sides = 1;
+    if (isHungry(this.user)) statusDie.advantage = 'disadvantage';
     // Serene Grace: extra dice to land a Physical or Special Move's secondary effect
     if (!system.isStatus) statusDie.sides += getRules(this.user, "statusCheckDice").reduce((sum, rule) => sum + (rule.dice ?? 1), 0);
 

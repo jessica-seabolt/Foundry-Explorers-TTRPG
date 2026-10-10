@@ -5,7 +5,27 @@
   "system": {
     "description": "One Move of your choice regains 10PP. When held, you can use a Reaction to eat the Berry to restore a Move that has 0PP. Can be used to fill half your belly for today.",
     "category": "berries",
-    "price": 50
+    "price": 50,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "restorePP",
+        "amount": 10
+      },
+      {
+        "type": "belly",
+        "halves": 1
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "straight",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Held: eat it as a Reaction to restore 10 PP to a Move that has 0 PP."
   },
   "effects": [],
   "folder": "74Pg5VCRPbJ17HpK",

@@ -5,7 +5,18 @@
   "system": {
     "description": "Increase the Maximum PP of a Move of your choice by 25%. Can only be used a maximum of 3 times on one move.",
     "category": "medicines",
-    "price": 500
+    "price": 500,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Raise one Move's Max PP by 25% (up to 3 times per Move)."
   },
   "effects": [],
   "folder": "a6e2kWEJCnlOPoA2",

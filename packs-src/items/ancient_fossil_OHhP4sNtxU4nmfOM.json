@@ -5,7 +5,18 @@
   "system": {
     "description": "Arcs and hits target for 3d6 damage. Deals damage as Rock Type.",
     "category": "thrownItems",
-    "price": 25
+    "price": 25,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "arc",
+    "throwDamage": "3d6",
+    "throwType": "rock",
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "Gyv3hr6CX8Rs1589",

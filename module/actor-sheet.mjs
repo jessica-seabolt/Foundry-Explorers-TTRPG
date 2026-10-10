@@ -3,6 +3,8 @@ import { MoveRollDialog, SkillRollDialog } from './roll-dialog.mjs';
 import { abilities, classes, proficiencies, specializations, categories, types, skills, effects, itemCategories, sizes, statKeys, statConditions } from './types.mjs'
 import { SYSTEM_ID } from '../constants.mjs';
 import { MINOR_SKILL_CHOICES, auraColors, auraOfNature, classData, featureCategories, natures } from './features.mjs';
+import { holdItem, teamOf, throwItem, transferItem, useItem } from './items.mjs';
+import { heldItemOf } from './features.mjs';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -22,7 +24,12 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       guard: CharacterSheet.guard,
       rest: CharacterSheet.rest,
       newFloor: CharacterSheet.newFloor,
-      openItem: CharacterSheet.openItem
+      openItem: CharacterSheet.openItem,
+      useItem: CharacterSheet.useItem,
+      throwItem: CharacterSheet.throwItem,
+      returnItem: CharacterSheet.returnItem,
+      moveLooseItems: CharacterSheet.moveLooseItems,
+      openTeam: CharacterSheet.openTeam
     }
   }
 
@@ -32,7 +39,6 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
         { id: "stats", label: "SYSTEM.Tabs.Stats", group: "primary" },
         { id: "about", label: "SYSTEM.Tabs.About", group: "primary" },
         { id: "moves", label: "SYSTEM.Tabs.Moves", group: "primary" },
-        { id: "items", label: "SYSTEM.Tabs.Items", group: "primary" },
         { id: "feats", label: "SYSTEM.Tabs.Feats", group: "primary" },
       ],
       initial: "stats",
@@ -46,14 +52,21 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     stats: { template: filePath("templates/actor/sections/stats.hbs"), scrollable: [""] },
     about: { template: filePath("templates/actor/sections/about.hbs") },
     moves: { template: filePath("templates/actor/sections/moves.hbs"), scrollable: [".move-grid"] },
-    items: { template: filePath("templates/actor/sections/items.hbs"), scrollable: [".item-list"] },
     feats: { template: filePath("templates/actor/sections/feats.hbs") },
   }
 
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
     context.moves = this.actor.items.filter(item => item.type === "Move");
-    context.items = this.actor.items.filter(item => item.type === "Item");
+    // A Pokemon holds one item; the Team's Treasure Bag holds the rest
+    const held = heldItemOf(this.actor);
+    context.heldItem = held ? {
+      id: held.id, name: held.name, img: held.img, description: held.system.description,
+      canUse: held.system.canUse, canThrow: held.system.canThrow
+    } : null;
+    // Items carried from before the shared bag, which should move to it
+    context.looseItems = this.actor.items.filter(item => item.type === "Item" && item.id !== held?.id)
+      .map(item => ({ id: item.id, name: item.name, img: item.img }));
     context.featureGroups = Object.entries(featureCategories).map(([category, label]) => ({
       label,
       features: this.actor.items.filter(item => item.type === "Feature" && item.system.category === category)
@@ -95,7 +108,6 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     context.sizes = toFormGroup(sizes);
     context.systemFields = this.document.system.schema.fields;
     context.tabs = this._prepareTabs("primary");
-    context.heldItemName = this.actor.items.get(this.document.system.heldItem ?? "")?.name
     context.statChangeRows = statKeys.map(stat => ({
       stat,
       value: this.document.system.statChanges[stat],
@@ -104,6 +116,14 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     context.tileMovement = this.document.system.tileMovement;
     context.tileVisibility = this.document.system.tileVisibility;
     context.isGuarding = this.actor.statuses.has('guarding');
+    context.team = teamOf(this.actor);
+    const belly = this.document.system.belly;
+    if (belly) context.belly = {
+      hungry: belly.hungry,
+      label: belly.hungry ? game.i18n.format("SYSTEM.Belly.HungryDays", { days: belly.hungryDays })
+        : belly.fedDays > 0 ? game.i18n.format("SYSTEM.Belly.FullDays", { days: belly.fedDays })
+        : game.i18n.format("SYSTEM.Belly.Eaten", { eaten: belly.eaten, needed: belly.needed })
+    };
     context.statChips = statKeys.filter(stat => this.document.system.statChanges[stat])
       .map(stat => {
         const value = this.document.system.statChanges[stat];
@@ -148,7 +168,6 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     super._onChangeForm(config, event);
     const inputName = event.target.dataset.name;
     if (inputName === 'ppLeft') this.editPP(event, event.target);
-    if (inputName === 'heldItem') this.setHeldItem(event, event.target);
   }
 
   static clearTrack() {
@@ -190,6 +209,43 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     await this.actor.system.newFloor();
   }
 
+  static useItem(event, target) {
+    const item = this.actor.items.get(target.dataset.id);
+    if (item) useItem(item, { user: this.actor });
+  }
+
+  static throwItem(event, target) {
+    const item = this.actor.items.get(target.dataset.id);
+    if (item) throwItem(item, { user: this.actor });
+  }
+
+  /** Puts an item back in the Team's shared bag. */
+  static async returnItem(event, target) {
+    const item = this.actor.items.get(target.dataset.id);
+    const team = teamOf(this.actor);
+    if (item && team) await transferItem(item, team);
+  }
+
+  /** Moves items carried from before the shared bag into the Team's bag. */
+  static async moveLooseItems() {
+    const team = teamOf(this.actor);
+    if (!team) return;
+    for (const item of this.actor.items.filter(item => item.type === "Item" && item.id !== this.actor.system.heldItem)) {
+      await transferItem(item, team);
+    }
+  }
+
+  /** Dropping an item on a Pokemon makes it the held item. */
+  async _onDropItem(event, item) {
+    if (item.type !== "Item") return super._onDropItem(event, item);
+    if (!this.actor.isOwner) return;
+    await holdItem(this.actor, item);
+  }
+
+  static openTeam() {
+    teamOf(this.actor)?.sheet.render({ force: true });
+  }
+
   static openItem(event, target) {
     this.actor.items.get(target.dataset.id)?.sheet.render({ force: true });
   }
@@ -206,13 +262,6 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     await item.update({ "system.ppLeft": Number(target.value) });
   }
 
-  async setHeldItem(event, target) {
-    await this.document.update({
-      system: {
-        heldItem: target.checked ? target.dataset.id : null
-      }
-    });
-  }
 }
 
 export class PlayerSheet extends CharacterSheet {

@@ -5,7 +5,27 @@
   "system": {
     "description": "Gives foes Restrained status, Range: Foes in front",
     "category": "orbs",
-    "price": 100
+    "price": 100,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "effects",
+        "effects": [
+          {
+            "effect": "restrained"
+          }
+        ]
+      }
+    ],
+    "target": "foes",
+    "range": "front",
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "nslHbFL6H8zczPA6",

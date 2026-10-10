@@ -5,7 +5,26 @@
   "system": {
     "description": "Your Stats cannot be lowered by another Pokémon.",
     "category": "battleItems",
-    "price": 3000
+    "price": 3000,
+    "rules": [
+      {
+        "type": "statLowerImmunity",
+        "stats": [
+          "all"
+        ],
+        "fromOthers": true
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

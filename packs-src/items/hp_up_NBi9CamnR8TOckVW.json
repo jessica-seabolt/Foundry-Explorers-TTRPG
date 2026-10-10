@@ -5,7 +5,27 @@
   "system": {
     "description": "Increases HP permanently by 10. Can be used to fill half your belly for today.",
     "category": "medicines",
-    "price": 2000
+    "price": 2000,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "maxHp",
+        "amount": 10
+      },
+      {
+        "type": "belly",
+        "halves": 1
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "a6e2kWEJCnlOPoA2",

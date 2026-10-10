@@ -5,7 +5,27 @@
   "system": {
     "description": "When held, and a Move of its Corresponding Type is used, it raises the Move Power of that Move by 1 for this turn only.",
     "category": "gems",
-    "price": 350
+    "price": 350,
+    "rules": [
+      {
+        "type": "movePower",
+        "amount": 1,
+        "moveType": "steel",
+        "physical": true,
+        "special": true,
+        "consume": true
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "xMbwKf9P3JybjLCh",

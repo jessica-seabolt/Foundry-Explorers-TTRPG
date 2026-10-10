@@ -6,7 +6,18 @@
   "system": {
     "description": "Changes Giratina between its Altered and Origin Formes. Giratina holding this Item has its Move Power of all Moves increased by 1.",
     "category": "formChangingItems",
-    "price": null
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Changes the form of the Pokémon it's for."
   },
   "effects": [],
   "ownership": {

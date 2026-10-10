@@ -5,7 +5,27 @@
   "system": {
     "description": "Gives Confused status.",
     "category": "seeds",
-    "price": 75
+    "price": 75,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "effects",
+        "effects": [
+          {
+            "effect": "confused"
+          }
+        ]
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "straight",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "uePSqJtUuLeN0nr5",

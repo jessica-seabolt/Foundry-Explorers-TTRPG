@@ -5,7 +5,23 @@
   "system": {
     "description": "Passes added effects of Moves and Status Conditions to adjacent Pokémon, but your Belly lowers twice as fast.",
     "category": "scarvesAndBands",
-    "price": null
+    "price": null,
+    "rules": [
+      {
+        "type": "bellyNeed",
+        "multiplier": 2
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Passes added effects of Moves and Status Conditions to adjacent Pokémon."
   },
   "effects": [],
   "folder": "flTbL5r9BQOlCHFW",

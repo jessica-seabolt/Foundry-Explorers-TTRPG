@@ -5,7 +5,40 @@
   "system": {
     "description": "Restores HP fully, and permanently increases max HP by 10. When held, and you fall below 50% HP, you can use a Reaction to regain 50% of your HP. Can be used to fill half your belly for today.",
     "category": "berries",
-    "price": 100
+    "price": 100,
+    "rules": [
+      {
+        "type": "onHpBelow",
+        "fraction": 0.5,
+        "heal": {
+          "percent": 50
+        },
+        "consume": true
+      }
+    ],
+    "onUse": [
+      {
+        "type": "heal",
+        "full": true
+      },
+      {
+        "type": "maxHp",
+        "amount": 10
+      },
+      {
+        "type": "belly",
+        "halves": 1
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "straight",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "74Pg5VCRPbJ17HpK",

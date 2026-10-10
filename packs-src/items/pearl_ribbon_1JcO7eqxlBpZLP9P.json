@@ -5,7 +5,30 @@
   "system": {
     "description": "Raises Attack, Defense, Special Attack and Special Defense modifiers of users with pearl aura by 2 (Rash Nature)",
     "category": "ribbons",
-    "price": 1000
+    "price": 1000,
+    "rules": [
+      {
+        "type": "statModifier",
+        "stat": [
+          "atk",
+          "def",
+          "spatk",
+          "spdef"
+        ],
+        "amount": 2,
+        "whenAura": "Pearl"
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "ZlTprQlgnYa983wv",

@@ -5,7 +5,27 @@
   "system": {
     "description": "Your Sp.Def modifier increases by 3, but you cannot use Status Moves.",
     "category": "battleItems",
-    "price": 2500
+    "price": 2500,
+    "rules": [
+      {
+        "type": "statModifier",
+        "stat": "spdef",
+        "amount": 3
+      },
+      {
+        "type": "blockStatusMoves"
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

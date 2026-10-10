@@ -40,6 +40,7 @@ const slug = name => (name ?? "unnamed").normalize("NFKD").replace(/[^\w]+/g, "_
 /* -------------------------------------------- */
 
 async function extractPack(ClassicLevel, pack) {
+  await assertNotInUse(ClassicLevel, pack);
   const db = new ClassicLevel(pack.dir, { keyEncoding: "utf8", valueEncoding: "json" });
   const entries = new Map();
   for await (const [key, value] of db.iterator()) entries.set(key, value);
@@ -118,7 +119,20 @@ function flatten(document, batch) {
   batch.push({ type: "put", key: _key, value });
 }
 
+/** Fails before anything is touched if the pack is open elsewhere (Foundry locks the databases it has loaded). */
+async function assertNotInUse(ClassicLevel, pack) {
+  if (!fs.existsSync(path.join(pack.dir, "CURRENT"))) return;
+  const db = new ClassicLevel(pack.dir, { keyEncoding: "utf8", valueEncoding: "json" });
+  try {
+    await db.open();
+  } catch {
+    throw new Error(`The ${pack.name} pack is in use. Close Foundry (or return to Setup) and try again.`);
+  }
+  await db.close();
+}
+
 async function buildPack(ClassicLevel, pack) {
+  await assertNotInUse(ClassicLevel, pack);
   const files = readSourceFiles(path.join(SOURCE_DIR, pack.name));
   const batch = [];
   for (const file of files) flatten(JSON.parse(fs.readFileSync(file, "utf8")), batch);
@@ -144,7 +158,12 @@ if (!["build", "extract"].includes(command)) {
 }
 const ClassicLevel = loadClassicLevel();
 const packs = readPackList().filter(pack => !only.length || only.includes(pack.name));
-for (const pack of packs) {
-  if (command === "extract") await extractPack(ClassicLevel, pack);
-  else await buildPack(ClassicLevel, pack);
+try {
+  for (const pack of packs) {
+    if (command === "extract") await extractPack(ClassicLevel, pack);
+    else await buildPack(ClassicLevel, pack);
+  }
+} catch (error) {
+  console.error(error.message);
+  process.exit(1);
 }

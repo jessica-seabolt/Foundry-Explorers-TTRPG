@@ -182,7 +182,26 @@ input.character-name {
   display: grid;
   align-items: center;
   text-align: center;
-  grid-template-columns: 20% 40% 20% 7% 8% 5%;
+  grid-template-columns: 22% 38% 16% 6% 18%;
+}
+
+.item-buttons {
+  display: flex;
+  gap: 2px;
+  justify-content: flex-end;
+}
+
+.item-buttons button {
+  width: 26px;
+  padding: 0;
+}
+
+.item-team {
+  margin: 2px 0 6px;
+}
+
+.belly-chip.hungry {
+  color: red;
 }
 
 .held-item-box {
@@ -386,4 +405,29 @@ input.character-name {
 .feature-sheet .rule-reference {
   font-size: 0.75rem;
   padding-left: 1em;
+}
+
+.held-item-card {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  gap: 8px;
+  align-items: start;
+}
+
+.held-item-card img {
+  width: 40px;
+  height: 40px;
+  border: none;
+}
+
+.held-item-card p {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+}
+
+.loose-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
 }

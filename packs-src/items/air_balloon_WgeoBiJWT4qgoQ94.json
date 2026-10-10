@@ -5,7 +5,23 @@
   "system": {
     "description": "You are Immune to Ground-Type Moves until you are hit by a non-Ground Type Move, whereupon it pops.",
     "category": "battleItems",
-    "price": 500
+    "price": 500,
+    "rules": [
+      {
+        "type": "typeImmunity",
+        "moveType": "ground"
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Pops when hit by a non-Ground Move; remove it then."
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

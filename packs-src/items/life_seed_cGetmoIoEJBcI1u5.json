@@ -5,7 +5,23 @@
   "system": {
     "description": "Raises max HP by 5.",
     "category": "seeds",
-    "price": 500
+    "price": 500,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "maxHp",
+        "amount": 5
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "straight",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "uePSqJtUuLeN0nr5",

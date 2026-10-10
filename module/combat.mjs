@@ -209,6 +209,11 @@ export function registerCombatHooks() {
     if (combatant.initiative !== null) scheduleTieResolution(combatant.parent);
   });
   Hooks.on("deleteCombatant", combatant => scheduleTieResolution(combatant.parent));
+  // Once-per-battle Features and items (Focus Band) recharge when the battle ends
+  Hooks.on("deleteCombat", combat => {
+    if (!game.user.isActiveGM) return;
+    for (const combatant of combat.combatants) combatant.actor?.system.clearEndure?.({ battleOnly: true });
+  });
 
   // Let the players involved in a same-Team tie know they need to choose
   Hooks.on("createChatMessage", message => {

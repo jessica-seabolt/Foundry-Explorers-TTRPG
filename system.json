@@ -73,7 +73,8 @@
   "documentTypes": {
     "Actor": {
       "Character": {},
-      "Player": {}
+      "Player": {},
+      "Team": {}
     },
     "Item": {
       "Move": { "htmlFields": ["description"] },

@@ -5,7 +5,18 @@
   "system": {
     "description": "Whenever you inflict the Trapped Condition, the target cannot make a Status Resist Check for the first turn they are Trapped.",
     "category": "battleItems",
-    "price": 2000
+    "price": 2000,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Trapped targets can't resist on their first trapped turn."
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

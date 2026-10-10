@@ -5,7 +5,18 @@
   "system": {
     "description": "Enables Pokémon to see through walls.",
     "category": "scopes",
-    "price": 5000
+    "price": 5000,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Can see through walls."
   },
   "effects": [],
   "folder": "Ur1Tb7VuUE9rPmbA",

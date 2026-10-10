@@ -1,7 +1,7 @@
 import { proficiencies, types, typeChart, abilities, skills, sizes, classes,
   specializations, categories, targets, ranges, triggerTypes, effects, tags, 
   itemCategories, statKeys} from './types.mjs';
-import { FAINTED_STATUS, applyDamage, applyEffects, healActor, postAutomationMessage, removeCondition, syncPermanentConditions, syncStatChangeIcons } from './conditions.mjs';
+import { FAINTED_STATUS, applyDamage, applyEffects, consumeRuleItem, healActor, postAutomationMessage, removeCondition, syncPermanentConditions, syncStatChangeIcons } from './conditions.mjs';
 import { SYSTEM_ID } from '../constants.mjs';
 import { auraOfNature, classData, effectiveProficiencies, featureCategories, getRules, hasCondition, hasRule, hpPerLevelBonus, statModifierBonus, visibilityBonus } from './features.mjs';
 
@@ -75,7 +75,9 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     super._onUpdate(changed, options, userId);
     if (userId !== game.user.id) return; // only the user who made the change follows up on it
     if (changed.system?.statChanges) syncStatChangeIcons(this.parent);
-    this.syncTokens({ resizeTiles: options[SYSTEM_ID]?.resizeTokens });
+    // A new held item can bring permanent Conditions (Goggle Specs) and change vision, like a Feature
+    if (changed.system && "heldItem" in changed.system) this.onFeaturesChanged();
+    else this.syncTokens({ resizeTiles: options[SYSTEM_ID]?.resizeTokens });
   }
 
   /**
@@ -203,11 +205,12 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
    * @param {boolean} [options.isAttack]            Whether this comes from a move or attack (as opposed to tick damage)
    * @param {boolean} [options.isCritical]          Whether the attack scored a Critical Hit
    * @param {boolean} [options.fromMove]            Non-attack damage that still counts as coming from a move (Counter)
+   * @param {string|null} [options.matchup]         The move's Type matchup against this Pokemon (Enigma Berry)
    * @param {string|null} [options.label]           What dealt the damage, for the chat message
    * @returns {Promise<{damage: number, hp: number}>} The damage taken and the HP left
    */
   async applyDamage({ amount, resistAbility = null, moveType = null, moveCategory = null, attackerUuid = null, tags = [],
-    isAttack = false, isCritical = false, fromMove = false, label = null }) {
+    isAttack = false, isCritical = false, fromMove = false, matchup = null, label = null }) {
     const actor = this.parent;
     const name = foundry.utils.escapeHTML(actor.name);
     const format = (key, data) => game.i18n.format(key, { name, ...data });
@@ -242,8 +245,10 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
         if (rule.moveTypes && !rule.moveTypes.includes(moveType)) continue;
         if (rule.tag && !tags.includes(rule.tag)) continue;
         if (rule.whenFullHp && !wasFullHp) continue;
+        if (rule.superEffective && !['superEffective', 'extremelyEffective'].includes(matchup)) continue;
         damage = Math.floor(damage * (rule.multiplier ?? 1));
         lines.push(format("SYSTEM.Automation.FeatureChangedDamage", { feature: foundry.utils.escapeHTML(rule.source) }));
+        await consumeRuleItem(actor, rule);
       }
     }
     if (isAttack && statuses.has('guarding')) {
@@ -253,12 +258,22 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 
     // Sturdy (survives a hit from full HP) and Last Stand (once until revived or fully healed) leave 1 HP
     if (damage >= this.hp.raw && this.hp.raw > 0) {
-      const endure = getRules(actor, "endure").find(rule => (rule.fromFullHp && wasFullHp && isAttack)
-        || (rule.once && !actor.getFlag(SYSTEM_ID, "endureUsed")));
-      if (endure) {
+      for (const rule of getRules(actor, "endure")) {
+        if (rule.fromFullHp && !(wasFullHp && isAttack)) continue;
+        const key = `endure.${rule.key ?? "default"}`;
+        if (rule.once && actor.getFlag(SYSTEM_ID, key)) continue;
+        if (rule.chance) {
+          const roll = await new foundry.dice.Roll("1d6").evaluate();
+          await roll.toMessage({
+            speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }),
+            flavor: game.i18n.format("SYSTEM.Automation.FeatureChance", { feature: foundry.utils.escapeHTML(rule.source), chance: rule.chance })
+          });
+          if (roll.total < rule.chance) continue;
+        }
         damage = this.hp.raw - 1;
-        if (endure.once) await actor.setFlag(SYSTEM_ID, "endureUsed", true);
-        lines.push(format("SYSTEM.Automation.Endured", { feature: foundry.utils.escapeHTML(endure.source) }));
+        if (rule.once) await actor.setFlag(SYSTEM_ID, key, true);
+        lines.push(format("SYSTEM.Automation.Endured", { feature: foundry.utils.escapeHTML(rule.source) }));
+        break;
       }
     }
 
@@ -306,7 +321,12 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
         const threshold = this.hp.max * (rule.fraction ?? 0.5);
         if (this.hp.raw + damage >= threshold && newHP < threshold) {
           await postAutomationMessage(actor, [format("SYSTEM.Automation.FeatureTriggered", { feature: foundry.utils.escapeHTML(rule.source) })]);
-          await applyEffects(actor, rule.effects ?? [], { sourceUuid: actor.uuid, sourceName: actor.name });
+          if (rule.effects?.length) await applyEffects(actor, rule.effects, { sourceUuid: actor.uuid, sourceName: actor.name });
+          if (rule.heal) {
+            const heal = rule.heal.full ? this.hp.max : rule.heal.percent ? Math.floor(this.hp.max * rule.heal.percent / 100) : rule.heal.amount ?? 0;
+            await this.heal(heal, rule.source);
+          }
+          await consumeRuleItem(actor, rule);
         }
       }
     }
@@ -344,6 +364,16 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
         await applyDamage(attacker, { amount: roll.total, label: rule.source, fromMove: true });
       }
     }
+    // Held items react too: a held Blast Seed explodes on its holder, and is used up
+    for (const rule of getRules(actor, "onDamaged").filter(rule => rule.itemId)) {
+      if (rule.moveTypes && !rule.moveTypes.includes(moveType)) continue;
+      if (rule.selfDamage) {
+        const roll = await new foundry.dice.Roll(rule.selfDamage).evaluate();
+        await roll.toMessage({ speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }), flavor: rule.source });
+        await this.applyDamage({ amount: roll.total, moveType: rule.selfDamageType ?? null, label: rule.source, fromMove: true });
+      }
+      await consumeRuleItem(actor, rule);
+    }
   }
 
   // Kept for macros written against the old API
@@ -357,21 +387,50 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     const healed = Math.max(newHP - this.hp.raw, 0);
     await actor.update({ "system.hp.raw": newHP });
     if (newHP > 0) await actor.toggleStatusEffect(FAINTED_STATUS, { active: false });
-    if (newHP >= this.hp.max && actor.getFlag(SYSTEM_ID, "endureUsed")) await actor.unsetFlag(SYSTEM_ID, "endureUsed");
+    if (newHP >= this.hp.max) await this.clearEndure({ battleOnly: false, includeBattle: false });
     await postAutomationMessage(actor, [game.i18n.format(label ? "SYSTEM.Automation.HealedFrom" : "SYSTEM.Automation.Healed",
       { name: foundry.utils.escapeHTML(actor.name), amount: healed, label: foundry.utils.escapeHTML(label ?? "") })]);
     return healed;
   }
 
-  /** A full Rest: regain all HP and PP. */
+  /**
+   * Resets once-only endure Features. Last Stand recharges at full HP; Focus Band ("perBattle") when a battle ends.
+   * @param {object} options
+   * @param {boolean} [options.battleOnly]     Only reset per-battle ones (end of a battle)
+   * @param {boolean} [options.includeBattle]  Also reset per-battle ones (a full Rest resets everything)
+   */
+  async clearEndure({ battleOnly = false, includeBattle = true } = {}) {
+    const actor = this.parent;
+    for (const rule of getRules(actor, "endure")) {
+      if (!rule.once) continue;
+      if (battleOnly && !rule.perBattle) continue;
+      if (!includeBattle && rule.perBattle) continue;
+      const key = `endure.${rule.key ?? "default"}`;
+      if (actor.getFlag(SYSTEM_ID, key)) await actor.unsetFlag(SYSTEM_ID, key);
+    }
+  }
+
+  /** How much a Rest restores: all of it, or less for a Player who hasn't eaten enough today. */
+  get restFraction() {
+    return 1;
+  }
+
+  /** A full Rest: regain all HP and PP (half if the Pokemon has only eaten half as much as it needs, none if nothing). */
   async rest() {
     const actor = this.parent;
-    await actor.update({ "system.hp.raw": this.hp.max });
-    const moveUpdates = actor.items.filter(item => item.type === 'Move').map(move => ({ _id: move.id, "system.ppLeft": move.system.pp }));
+    const name = foundry.utils.escapeHTML(actor.name);
+    const fraction = this.restFraction;
+    if (fraction <= 0) {
+      await postAutomationMessage(actor, [game.i18n.format("SYSTEM.Belly.TooHungryToRest", { name })]);
+      return;
+    }
+    await actor.update({ "system.hp.raw": Math.min(this.hp.max, this.hp.raw + Math.floor(this.hp.max * fraction)) });
+    const moveUpdates = actor.items.filter(item => item.type === 'Move')
+      .map(move => ({ _id: move.id, "system.ppLeft": Math.min(move.system.pp, move.system.ppLeft + Math.floor(move.system.pp * fraction)) }));
     if (moveUpdates.length) await actor.updateEmbeddedDocuments("Item", moveUpdates);
     await actor.toggleStatusEffect(FAINTED_STATUS, { active: false });
-    if (actor.getFlag(SYSTEM_ID, "endureUsed")) await actor.unsetFlag(SYSTEM_ID, "endureUsed");
-    await postAutomationMessage(actor, [game.i18n.format("SYSTEM.Automation.Rested", { name: foundry.utils.escapeHTML(actor.name) })]);
+    await this.clearEndure();
+    await postAutomationMessage(actor, [game.i18n.format(fraction < 1 ? "SYSTEM.Belly.RestedHalf" : "SYSTEM.Automation.Rested", { name })]);
   }
 
   /** Moving to a new Floor resets temporary effects such as Stat Changes. */
@@ -419,8 +478,25 @@ export class PlayerDataModel extends CharacterDataModel {
       }),
       tokens: new SchemaField({
         available: new NumberField({ required: true, integer: true, min: 0, initial: 0 })
+      }),
+      // Belly: food eaten today (each half-belly item counts 1), days already covered by big meals, days gone hungry
+      belly: new SchemaField({
+        eaten: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+        fedDays: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
+        hungryDays: new NumberField({ required: true, integer: true, min: 0, initial: 0 })
       })
     };
+  }
+
+  /** A Pokemon needs 2 food items a day (Munch Band doubles it). */
+  get bellyNeeded() {
+    return getRules(this.parent, "bellyNeed").reduce((need, rule) => need * (rule.multiplier ?? 1), 2);
+  }
+
+  get restFraction() {
+    const needed = this.bellyNeeded;
+    if (this.belly.fedDays > 0 || this.belly.eaten >= needed) return 1;
+    return this.belly.eaten * 2 >= needed ? 0.5 : 0;
   }
 
   /** Max HP: the Class's base HP, its HP per Level for each Level after the first, Features like Brick-Tough, and any bonus. */
@@ -443,17 +519,24 @@ export class PlayerDataModel extends CharacterDataModel {
   }
 
   prepareDerivedData() {
+    // The Aura first: Ribbons boost stats for a matching Aura
+    this.auraColor = this.aura || auraOfNature(this.nature) || "";
     super.prepareDerivedData();
+    // Not having eaten in the last day: Disadvantage and half damage, plus -1 to Skill Checks per day past the second
+    this.belly.hungry = this.belly.hungryDays >= 1;
+    this.belly.skillPenalty = Math.max(this.belly.hungryDays - 2, 0);
+    this.belly.needed = this.bellyNeeded;
     this.friendship.isClearable = this.friendship.track == 5;
     this.friendship.max = this.level;
     this.tokens.max = this.level + 1;
-    this.auraColor = this.aura || auraOfNature(this.nature) || "";
     this.statFlatTotal = this.level * 60;
     this.statTotal = this.statFlatTotal + this.statBonus;
     this.statMin = this.level * 5;
     this.statSum = Object.values(this.abilities).reduce((a, field) => a + field.raw, 0);
   }
 }
+
+const USABLE_CATEGORIES = new Set(['foods', 'berries', 'gummies', 'seeds', 'medicines', 'orbs', 'evolutionItems', 'formChangingItems', 'tmsAndHms']);
 
 export class ItemDataModel extends foundry.abstract.TypeDataModel {
   static LOCALIZATION_PREFIXES = ["SYSTEM.Models.Item"];
@@ -462,8 +545,43 @@ export class ItemDataModel extends foundry.abstract.TypeDataModel {
     return {
       description: new StringField({ required: true }),
       category: new StringField({ required: true, choices: itemCategories, initial: 'foods' }),
-      price: new NumberField({ required: true, nullable: true, integer: true, min: 0 })
+      price: new NumberField({ required: true, nullable: true, integer: true, min: 0 }),
+      // Rules active while a Pokemon holds this item (same rule types as Features, see features.mjs)
+      rules: new ArrayField(new ObjectField()),
+      // What happens when the item is used or eaten (see USE_EFFECTS in items.mjs)
+      onUse: new ArrayField(new ObjectField()),
+      // Who using it affects; none means the Pokemon using it (e.g. Orbs aimed at foes)
+      target: new StringField({ required: true, nullable: true, blank: false, choices: targets, initial: null }),
+      range: new StringField({ required: true, nullable: true, blank: false, choices: ranges, initial: null }),
+      rangeCount: new NumberField({ required: true, nullable: true, integer: true, min: 1, initial: null }),
+      // Throwing: in a straight line or an arc, and the damage it deals when it hits
+      throwMode: new StringField({ required: true, choices: { none: "SYSTEM.Items.Throw.None", straight: "SYSTEM.Items.Throw.Straight", arc: "SYSTEM.Items.Throw.Arc" }, initial: 'none' }),
+      throwDamage: new StringField({ required: true, blank: true }),
+      throwType: new StringField({ required: true, nullable: true, blank: false, choices: types, initial: null }),
+      // Whether using it uses it up, and what it turns into (a Reviver Seed becomes a Plain Seed)
+      consumable: new BooleanField({ required: true, initial: true }),
+      becomes: new StringField({ required: true, blank: true }),
+      manualNote: new StringField({ required: true, blank: true }),
     };
+  }
+
+  /** Items with automated use effects, and kinds of item that are used rather than held (TMs, Orbs, Evolution items). */
+  get canUse() {
+    return this.onUse.length > 0 || !!this.target || USABLE_CATEGORIES.has(this.category);
+  }
+
+  get canThrow() {
+    return this.throwMode !== 'none';
+  }
+
+  /** Warn when the shared Treasure Bag is over capacity. */
+  async _preCreate(data, options, user) {
+    const allowed = await super._preCreate(data, options, user);
+    if (allowed === false) return false;
+    const team = this.parent.actor;
+    if (team?.type === "Team" && team.system.bagCount >= team.system.capacity) {
+      ui.notifications.warn(game.i18n.format("SYSTEM.Team.BagFull", { capacity: team.system.capacity }));
+    }
   }
 }
 

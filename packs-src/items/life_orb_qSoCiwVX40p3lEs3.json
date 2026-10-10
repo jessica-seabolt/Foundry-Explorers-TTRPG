@@ -5,7 +5,29 @@
   "system": {
     "description": "You take 1d6 damage per Round of Battle you hold this (taken at end of turn), but your Moves have their Move Power increased by 1.",
     "category": "battleItems",
-    "price": 3500
+    "price": 3500,
+    "rules": [
+      {
+        "type": "movePower",
+        "amount": 1,
+        "physical": true,
+        "special": true
+      },
+      {
+        "type": "onTurnEnd",
+        "damage": "1d6"
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

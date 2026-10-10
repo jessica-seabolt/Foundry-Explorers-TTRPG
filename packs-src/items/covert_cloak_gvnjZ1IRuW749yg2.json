@@ -5,7 +5,22 @@
   "system": {
     "description": "You do not suffer additional effects of Physical and Special Moves.",
     "category": "scarvesAndBands",
-    "price": null
+    "price": null,
+    "rules": [
+      {
+        "type": "ignoreSecondary"
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "flTbL5r9BQOlCHFW",

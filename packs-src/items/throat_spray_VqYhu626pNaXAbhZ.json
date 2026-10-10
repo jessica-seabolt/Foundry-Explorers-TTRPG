@@ -5,7 +5,18 @@
   "system": {
     "description": "After using a Sound-Based Move, you use this Item as a Reaction, and gain Sp.Atk Up 2. You can only use this Item once per Battle, and it has 10 total uses before it is consumed.",
     "category": "battleItems",
-    "price": 2000
+    "price": 2000,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "After a Sound Move, gain Sp.Atk Up 2 as a Reaction (once per Battle, 10 uses)."
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

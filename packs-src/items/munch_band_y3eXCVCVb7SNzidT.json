@@ -5,7 +5,31 @@
   "system": {
     "description": "Boosts user's Attack and Special Attack modifier by 5, but you need to eat twice as much per day.",
     "category": "scarvesAndBands",
-    "price": null
+    "price": null,
+    "rules": [
+      {
+        "type": "statModifier",
+        "stat": [
+          "atk",
+          "spatk"
+        ],
+        "amount": 5
+      },
+      {
+        "type": "bellyNeed",
+        "multiplier": 2
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "flTbL5r9BQOlCHFW",

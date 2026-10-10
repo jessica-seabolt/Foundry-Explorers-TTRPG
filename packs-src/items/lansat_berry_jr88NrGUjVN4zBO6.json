@@ -5,7 +5,18 @@
   "system": {
     "description": "When held, and you fall below 25% HP, your Moves score a Critical Hit on a 5-6.",
     "category": "berries",
-    "price": 250
+    "price": 250,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Below 25% HP: Moves score a Critical Hit on a 5-6."
   },
   "effects": [],
   "folder": "74Pg5VCRPbJ17HpK",

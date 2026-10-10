@@ -5,7 +5,27 @@
   "system": {
     "description": "When held, you eat the Berry as a Reaction to taking damage from a Bug-Type Move. It deals half of the damage it would normally do instead.",
     "category": "berries",
-    "price": 50
+    "price": 50,
+    "rules": [
+      {
+        "type": "damageTaken",
+        "multiplier": 0.5,
+        "moveTypes": [
+          "bug"
+        ],
+        "consume": true
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "74Pg5VCRPbJ17HpK",

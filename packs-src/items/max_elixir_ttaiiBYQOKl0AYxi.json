@@ -5,7 +5,28 @@
   "system": {
     "description": "Recovers all PP. Can be used to fill half your belly for today.",
     "category": "medicines",
-    "price": 175
+    "price": 175,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "restorePP",
+        "full": true,
+        "all": true
+      },
+      {
+        "type": "belly",
+        "halves": 1
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "a6e2kWEJCnlOPoA2",

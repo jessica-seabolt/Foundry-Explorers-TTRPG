@@ -5,7 +5,18 @@
   "system": {
     "description": "Damage taken from the next Move deals double damage.",
     "category": "seeds",
-    "price": 300
+    "price": 300,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "straight",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "The next Move to hit deals double damage."
   },
   "effects": [],
   "folder": "uePSqJtUuLeN0nr5",

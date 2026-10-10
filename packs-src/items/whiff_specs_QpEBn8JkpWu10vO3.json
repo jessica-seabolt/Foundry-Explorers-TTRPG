@@ -5,7 +5,18 @@
   "system": {
     "description": "When the bearer throws an Item or uses a Move with a Range greater\nthan 1 tile, they roll a d6. On a 1-3, they miss the target.",
     "category": "scopes",
-    "price": 2500
+    "price": 2500,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Throws and Moves with a range over 1 tile miss on a 1-3."
   },
   "effects": [],
   "folder": "Ur1Tb7VuUE9rPmbA",

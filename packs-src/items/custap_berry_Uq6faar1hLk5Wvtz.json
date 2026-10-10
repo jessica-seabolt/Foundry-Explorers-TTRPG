@@ -5,7 +5,18 @@
   "system": {
     "description": "When held, you can eat the Berry as a Reaction when a Round of Battle begins. For this round, your Moves have Priority.",
     "category": "berries",
-    "price": 250
+    "price": 250,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Eat as a Reaction when a Round begins: your Moves have Priority this round."
   },
   "effects": [],
   "folder": "74Pg5VCRPbJ17HpK",

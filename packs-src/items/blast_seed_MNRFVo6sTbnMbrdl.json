@@ -5,7 +5,34 @@
   "system": {
     "description": "Deals 2d6 Fire-Type damage to the Pokémon 1-tile in front when used. Can be thrown to deal 2d6 Fire-Type damage to the Pokémon it hits. When held, and you are damaged by a Fire-Type Move, it explodes and deals 2d6 Fire-Type Damage to the User.",
     "category": "seeds",
-    "price": 30
+    "price": 30,
+    "rules": [
+      {
+        "type": "onDamaged",
+        "moveTypes": [
+          "fire"
+        ],
+        "selfDamage": "2d6",
+        "selfDamageType": "fire",
+        "consume": true
+      }
+    ],
+    "onUse": [
+      {
+        "type": "damage",
+        "formula": "2d6",
+        "moveType": "fire"
+      }
+    ],
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "throwMode": "straight",
+    "throwDamage": "2d6",
+    "throwType": "fire",
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "uePSqJtUuLeN0nr5",

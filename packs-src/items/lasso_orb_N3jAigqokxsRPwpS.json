@@ -5,7 +5,18 @@
   "system": {
     "description": "Pulls the target 1 tile towards you, Range: 2 tiles away",
     "category": "orbs",
-    "price": 100
+    "price": 100,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Pull a target up to 2 tiles away 1 tile towards you."
   },
   "effects": [],
   "folder": "nslHbFL6H8zczPA6",

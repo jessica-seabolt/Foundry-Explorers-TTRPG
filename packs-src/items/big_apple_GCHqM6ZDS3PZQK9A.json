@@ -5,7 +5,23 @@
   "system": {
     "description": "You do not need to eat for the next day.",
     "category": "foods",
-    "price": 50
+    "price": 50,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "belly",
+        "days": 1
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "XJqLVT4pGPp0Z0xQ",

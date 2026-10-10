@@ -5,7 +5,18 @@
   "system": {
     "description": "Arcs and hits a target Tile, whereupon it explodes, causing a smoke to erupt that Blinds Pokémon in a 1-Tile Range. The smoke clears after 2 Rounds of Battle.",
     "category": "thrownItems",
-    "price": 250
+    "price": 250,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "arc",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Blinds Pokémon within 1 tile of where it lands, for 2 Rounds."
   },
   "effects": [],
   "folder": "Gyv3hr6CX8Rs1589",

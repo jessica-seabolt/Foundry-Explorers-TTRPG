@@ -5,7 +5,24 @@
   "system": {
     "description": "Revives fainted Pokémon, and you restore all PP. Becomes Plain Seed afterwards.",
     "category": "seeds",
-    "price": 300
+    "price": 300,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "revive",
+        "hp": "full",
+        "restorePP": true
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "Plain Seed",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "uePSqJtUuLeN0nr5",

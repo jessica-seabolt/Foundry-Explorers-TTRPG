@@ -5,7 +5,27 @@
   "system": {
     "description": "Gives foe Taunted, Range: Foe in front",
     "category": "orbs",
-    "price": 150
+    "price": 150,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "effects",
+        "effects": [
+          {
+            "effect": "taunted"
+          }
+        ]
+      }
+    ],
+    "target": "foe",
+    "range": "front",
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "nslHbFL6H8zczPA6",

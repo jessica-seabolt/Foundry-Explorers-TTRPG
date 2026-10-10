@@ -5,7 +5,18 @@
   "system": {
     "description": "Your Team always knows your location.",
     "category": "scarvesAndBands",
-    "price": null
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "The Team always knows this Pokémon's location."
   },
   "effects": [],
   "folder": "flTbL5r9BQOlCHFW",

@@ -53,13 +53,13 @@ export function targetFilter(target) {
   switch (target) {
     case 'foe': case 'foes': return isFoe;
     case 'ally': case 'allies': case 'selfAllies': case 'selfOrAlly': return isAlly;
-    case 'all': return () => true;
+    case 'all': case 'any': return () => true;
     default: return () => false; // 'self' and moves with no target
   }
 }
 
 /** Whether the move picks one target (as opposed to every valid target). */
-export const isSingleTarget = target => ['foe', 'ally', 'selfOrAlly'].includes(target);
+export const isSingleTarget = target => ['foe', 'ally', 'selfOrAlly', 'any'].includes(target);
 /** Whether the user is one of the move's targets. */
 export const includesSelf = target => ['self', 'selfAllies', 'selfOrAlly'].includes(target);
 

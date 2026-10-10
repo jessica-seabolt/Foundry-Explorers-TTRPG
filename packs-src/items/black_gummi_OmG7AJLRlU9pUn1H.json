@@ -5,7 +5,31 @@
   "system": {
     "description": "Permanently raises IQ of Dark types by 5. Can be used to fill half your belly for today.",
     "category": "gummies",
-    "price": 250
+    "price": 250,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "stat",
+        "stat": "iq",
+        "amount": 5,
+        "types": [
+          "dark"
+        ]
+      },
+      {
+        "type": "belly",
+        "halves": 1
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "M4nON8JhXkGxExxT",

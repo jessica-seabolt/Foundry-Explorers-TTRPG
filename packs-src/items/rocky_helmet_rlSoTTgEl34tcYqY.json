@@ -5,7 +5,25 @@
   "system": {
     "description": "Attackers that damage you with a Physical Move take 1d6 damage.",
     "category": "battleItems",
-    "price": 3000
+    "price": 3000,
+    "rules": [
+      {
+        "type": "onDamaged",
+        "physical": true,
+        "damaged": true,
+        "attackerDamage": "1d6"
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

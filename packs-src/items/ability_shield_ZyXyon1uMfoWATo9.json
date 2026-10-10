@@ -5,7 +5,18 @@
   "system": {
     "description": "Your Ability cannot be affected or changed in any way.",
     "category": "battleItems",
-    "price": 2500
+    "price": 2500,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Your Ability can't be affected or changed."
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

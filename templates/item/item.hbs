@@ -1,4 +1,4 @@
-<section class="standard-form">
+<section class="standard-form feature-sheet">
     <div class="move-header">
       <div class="center">
         <img src="{{document.img}}" title="{{document.name}}" style="cursor: pointer;"
@@ -9,6 +9,44 @@
       </div>
     </div>
     {{formGroup systemFields.description value=document.system.description localize=true elementType="textarea"}}
-    {{formGroup systemFields.category value=document.system.category localize=true}}
-    {{formGroup systemFields.price value=document.system.price localize=true}}
+    <div class="feature-grid">
+      {{formGroup systemFields.category value=document.system.category localize=true}}
+      {{formGroup systemFields.price value=document.system.price localize=true}}
+      {{formGroup systemFields.consumable value=document.system.consumable localize=true}}
+      {{formGroup systemFields.becomes value=document.system.becomes localize=true}}
+    </div>
+
+    <fieldset>
+      <legend>{{localize "SYSTEM.Items.Targeting"}}</legend>
+      <div class="feature-grid">
+        {{formGroup systemFields.target value=document.system.target options=targets localize=true blank=""}}
+        {{formGroup systemFields.range value=document.system.range options=ranges localize=true blank=""}}
+        {{formGroup systemFields.rangeCount value=document.system.rangeCount localize=true}}
+        {{formGroup systemFields.throwMode value=document.system.throwMode localize=true}}
+        {{formGroup systemFields.throwDamage value=document.system.throwDamage localize=true}}
+        {{formGroup systemFields.throwType value=document.system.throwType options=types localize=true blank=""}}
+      </div>
+    </fieldset>
+
+    <fieldset class="feature-automation">
+      <legend>{{localize "SYSTEM.Features.Automation"}}</legend>
+      {{#if isAutomated}}
+      <p class="hint"><i class="fa-solid fa-gears"></i> {{localize "SYSTEM.Items.AutomatedHint"}}</p>
+      {{/if}}
+      {{formGroup systemFields.manualNote value=document.system.manualNote localize=true}}
+      {{#if canEditRules}}
+      <label>{{localize "SYSTEM.Models.Item.FIELDS.onUse.label"}}</label>
+      <textarea class="feature-rules" data-json-field="onUse" spellcheck="false" placeholder="[]">{{onUseText}}</textarea>
+      <details>
+        <summary>{{localize "SYSTEM.Items.UseReference"}}</summary>
+        <ul class="rule-reference">{{#each useEffects as |rule|}}<li><code>{{rule.example}}</code></li>{{/each}}</ul>
+      </details>
+      <label>{{localize "SYSTEM.Models.Item.FIELDS.rules.label"}}</label>
+      <textarea class="feature-rules" data-json-field="rules" spellcheck="false" placeholder="[]">{{rulesText}}</textarea>
+      <details>
+        <summary>{{localize "SYSTEM.Features.RuleReference"}}</summary>
+        <ul class="rule-reference">{{#each ruleTypes as |rule|}}<li><code>{{rule.example}}</code></li>{{/each}}</ul>
+      </details>
+      {{/if}}
+    </fieldset>
 </section>

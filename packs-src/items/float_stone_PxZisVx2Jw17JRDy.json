@@ -5,7 +5,23 @@
   "system": {
     "description": "User has the Levitate Rare Quality when they hold it.",
     "category": "battleItems",
-    "price": 3000
+    "price": 3000,
+    "rules": [
+      {
+        "type": "typeImmunity",
+        "moveType": "ground"
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Also has the rest of Levitate (Spikes, traps, terrain)."
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

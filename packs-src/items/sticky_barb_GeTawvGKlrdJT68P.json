@@ -5,7 +5,23 @@
   "system": {
     "description": "Holder takes 1d6 damage at the start of their turn in Battle.",
     "category": "battleItems",
-    "price": 1500
+    "price": 1500,
+    "rules": [
+      {
+        "type": "onTurnStart",
+        "damage": "1d6"
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

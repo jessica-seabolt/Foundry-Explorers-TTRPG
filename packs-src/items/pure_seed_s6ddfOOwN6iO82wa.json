@@ -5,7 +5,18 @@
   "system": {
     "description": "Warps the Team to the next dungeon floor.",
     "category": "seeds",
-    "price": 500
+    "price": 500,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Warp the Team to the next dungeon floor."
   },
   "effects": [],
   "folder": "uePSqJtUuLeN0nr5",

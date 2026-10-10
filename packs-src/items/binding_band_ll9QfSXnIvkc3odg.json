@@ -5,7 +5,18 @@
   "system": {
     "description": "Whenever you inflict the Trapped Condition, the target takes an additional 1d6 per turn.",
     "category": "battleItems",
-    "price": 2000
+    "price": 2000,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Trapped targets take an extra 1d6 per turn."
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

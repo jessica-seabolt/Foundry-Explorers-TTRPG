@@ -57,21 +57,21 @@ export const RULE_TYPES = {
   skillDice: '{"type":"skillDice","skill":"awareness","dice":1}',
   hpPerLevel: '{"type":"hpPerLevel","amount":5}',
   visibility: '{"type":"visibility","amount":5}',
-  statModifier: '{"type":"statModifier","stat":"def","amount":2,"whenUserStatus":"any"}',
+  statModifier: '{"type":"statModifier","stat":"def","amount":2,"whenUserStatus":"any","whenAura":null}  ("stat" can be a list)',
   permanentCondition: '{"type":"permanentCondition","condition":"magicCoat"}',
   conditionImmunity: '{"type":"conditionImmunity","conditions":["paralyzed"]}',
   bypassConditionImmunity: '{"type":"bypassConditionImmunity","conditions":["poisoned","badlyPoisoned"]}',
-  statLowerImmunity: '{"type":"statLowerImmunity","stats":["def"]}  (or ["all"])',
+  statLowerImmunity: '{"type":"statLowerImmunity","stats":["def"],"fromOthers":false}  (or ["all"])',
   statChange: '{"type":"statChange","mode":"double"}  (or "invert")',
   onStatLowered: '{"type":"onStatLowered","effects":[{"effect":"atkUp","effectCount":2}]}',
-  onConditionGained: '{"type":"onConditionGained","conditions":["flinched"],"effects":[{"effect":"speUp","effectCount":2}]}',
+  onConditionGained: '{"type":"onConditionGained","conditions":["flinched"],"effects":[{"effect":"speUp","effectCount":2}],"cure":false}  ("any" for any harmful one)',
   reflectConditions: '{"type":"reflectConditions","conditions":["burned","paralyzed","poisoned"]}',
-  damageTaken: '{"type":"damageTaken","multiplier":0.5,"moveTypes":["fire"],"physical":false,"special":false,"whenFullHp":false}',
+  damageTaken: '{"type":"damageTaken","multiplier":0.5,"moveTypes":["fire"],"physical":false,"special":false,"whenFullHp":false,"superEffective":false}',
   magicGuard: '{"type":"magicGuard"}',
-  endure: '{"type":"endure","fromFullHp":true}  (or {"type":"endure","once":true})',
+  endure: '{"type":"endure","fromFullHp":true}  (or "once":true, "key":"focusBand", "chance":3, "perBattle":true)',
   noRecoil: '{"type":"noRecoil"}',
-  onDamaged: '{"type":"onDamaged","physical":true,"moveTypes":["fire"],"tag":"wind","critical":false,"chance":5,"effects":[],"attackerEffects":[{"effect":"burned"}],"attackerDamage":"1d6"}',
-  onHpBelow: '{"type":"onHpBelow","fraction":0.5,"effects":[{"effect":"spatkUp","effectCount":2}]}',
+  onDamaged: '{"type":"onDamaged","physical":true,"moveTypes":["fire"],"tag":"wind","critical":false,"chance":5,"effects":[],"attackerEffects":[{"effect":"burned"}],"attackerDamage":"1d6","selfDamage":null}',
+  onHpBelow: '{"type":"onHpBelow","fraction":0.5,"effects":[{"effect":"spatkUp","effectCount":2}],"heal":{"percent":25}}',
   moveType: '{"type":"moveType","from":"normal","tag":null,"to":"flying"}  (no "from" or "tag" changes every move)',
   movePower: '{"type":"movePower","amount":1,"physical":true,"special":true,"tag":"punch","moveType":null,"healing":false,"stab":false,"maxLevel":null,"priority":false,"opportunity":false,"whenUserStatus":null,"whenUserHp":null,"whenTargetStatus":null,"removeSecondary":false}',
   critRange: '{"type":"critRange","min":5}',
@@ -91,26 +91,47 @@ export const RULE_TYPES = {
   range: '{"type":"range","physical":true,"special":false,"from":"front","to":"away","count":2}  (or "countBonus":1)',
   pierce: '{"type":"pierce"}',
   shootThroughAllies: '{"type":"shootThroughAllies"}',
-  onTurnEnd: '{"type":"onTurnEnd","effects":[{"effect":"speUp","effectCount":2}]}',
+  onTurnEnd: '{"type":"onTurnEnd","effects":[{"effect":"speUp","effectCount":2}],"damage":null}',
   poisonHeal: '{"type":"poisonHeal"}',
   earlyBird: '{"type":"earlyBird"}',
+  ignoreHeldItem: '{"type":"ignoreHeldItem"}  (Klutz)',
+  onTurnStart: '{"type":"onTurnStart","damage":"1d6","effects":[]}',
+  blockStatusMoves: '{"type":"blockStatusMoves"}  (Assault Vest)',
+  bellyNeed: '{"type":"bellyNeed","multiplier":2}  (Munch Band)',
+  onHeldItemLost: '{"type":"onHeldItemLost","effects":[{"effect":"speUp","effectCount":2}]}  (Unburden)',
+  _consume: 'Add "consume": true to a held item\'s rule to use the item up when it triggers (Berries, Gems).',
 };
 
 /* -------------------------------------------- */
 /*  Reading rules                               */
 /* -------------------------------------------- */
 
-/** All rules of a type from an actor's Features. */
+/**
+ * All rules of a type from an actor's Features and its held item (unless a Feature like Klutz ignores held items).
+ * Rules from the held item carry its id as `itemId`, so a trigger can use the item up (Berries, Gems).
+ */
 export function getRules(actor, type) {
   if (!actor?.items) return [];
   const rules = [];
-  for (const item of actor.items) {
-    if (item.type !== "Feature") continue;
+  const collect = (item, extra = {}) => {
     for (const rule of item.system.rules ?? []) {
-      if (rule?.type === type) rules.push({ ...rule, source: item.name });
+      if (rule?.type === type) rules.push({ ...rule, source: item.name, ...extra });
     }
-  }
+  };
+  const features = actor.items.filter(item => item.type === "Feature");
+  for (const feature of features) collect(feature);
+  const held = heldItemOf(actor);
+  const klutz = features.some(feature => (feature.system.rules ?? []).some(rule => rule?.type === "ignoreHeldItem"));
+  if (held && !klutz) collect(held, { itemId: held.id });
   return rules;
+}
+
+/** The Item an actor is holding, if any. */
+export function heldItemOf(actor) {
+  const id = actor?.system?.heldItem;
+  if (!id) return null;
+  const item = actor.items.get?.(id) ?? actor.items.find?.(other => other.id === id);
+  return item?.type === "Item" ? item : null;
 }
 
 export const hasRule = (actor, type) => getRules(actor, type).length > 0;
@@ -124,7 +145,7 @@ export function hasCondition(actor, condition) {
 
 // The harmful Status Conditions, which "has a Status Condition" (Guts, Marvel Scale) refers to.
 // Beneficial ones like Eyedrop, Magic Coat or Invulnerable don't count.
-const AFFLICTIONS = new Set([
+export const AFFLICTIONS = new Set([
   'paralyzed', 'burned', 'poisoned', 'badlyPoisoned', 'frozen', 'asleep', 'flinched', 'confused', 'restrained',
   'blinded', 'yawning', 'trapped', 'frightened', 'silenced', 'infatuated', 'taunted'
 ]);
@@ -188,7 +209,8 @@ export const hpPerLevelBonus = actor => getRules(actor, "hpPerLevel").reduce((su
 /** Flat modifier changes from Features (e.g. Marvel Scale: +2 Def while afflicted). */
 export function statModifierBonus(actor, stat) {
   return getRules(actor, "statModifier")
-    .filter(rule => rule.stat === stat && statusMatches(actor, rule.whenUserStatus))
+    .filter(rule => asArray(rule.stat).includes(stat) && statusMatches(actor, rule.whenUserStatus))
+    .filter(rule => !rule.whenAura || rule.whenAura === actor.system?.auraColor)
     .reduce((sum, rule) => sum + (rule.amount ?? 0), 0);
 }
 
@@ -209,13 +231,14 @@ export function effectiveMoveType(actor, move) {
 
 /**
  * Move Power changes from the user's Features, and the target's (No Guard), for one use of a move.
- * @returns {{amount: number, sources: string[], removeSecondary: boolean}}
+ * @returns {{amount: number, sources: string[], removeSecondary: boolean, consumed: string[]}}  consumed: held items used up
  */
 export function movePowerBonus(actor, move, { target = null, moveType, isPhysical, isStab, opportunity = false } = {}) {
   const context = { move, moveType, isPhysical, isStab, opportunity };
   let amount = 0;
   let removeSecondary = false;
   const sources = [];
+  const consumed = [];
   for (const rule of getRules(actor, "movePower")) {
     if (!moveMatches(rule, context)) continue;
     if (!statusMatches(actor, rule.whenUserStatus) || !hpMatches(actor, rule.whenUserHp)) continue;
@@ -223,6 +246,7 @@ export function movePowerBonus(actor, move, { target = null, moveType, isPhysica
     amount += rule.amount ?? 1;
     removeSecondary ||= !!rule.removeSecondary;
     sources.push(rule.source);
+    if (rule.consume && rule.itemId) consumed.push(rule.itemId);
   }
   if (target && move.system.power > 0) {
     for (const rule of getRules(target, "incomingMovePower")) {
@@ -230,7 +254,7 @@ export function movePowerBonus(actor, move, { target = null, moveType, isPhysica
       sources.push(rule.source);
     }
   }
-  return { amount, sources, removeSecondary };
+  return { amount, sources, removeSecondary, consumed };
 }
 
 /** Whether a target ignores a move entirely: a type immunity (Levitate, Water Absorb) or a tag immunity (Soundproof). */

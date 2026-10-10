@@ -5,7 +5,18 @@
   "system": {
     "description": "Your Super-Effective Moves deal an additional 1d6 damage. This additional Die cannot score a Critical Hit. However, your Not Very Effective Moves deal 1d6 less (to a minimum of 1).",
     "category": "battleItems",
-    "price": 4000
+    "price": 4000,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Super Effective Moves deal +1d6 (no crit); Not Very Effective ones deal 1d6 less."
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

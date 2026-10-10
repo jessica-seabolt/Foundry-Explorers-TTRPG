@@ -5,7 +5,34 @@
   "system": {
     "description": "Cures any Status. When held, you can use a Reaction to eat the Berry to cure the status. Can be used to fill half your belly for today.",
     "category": "berries",
-    "price": 100
+    "price": 100,
+    "rules": [
+      {
+        "type": "onConditionGained",
+        "conditions": "any",
+        "cure": true,
+        "consume": true
+      }
+    ],
+    "onUse": [
+      {
+        "type": "cure",
+        "all": true
+      },
+      {
+        "type": "belly",
+        "halves": 1
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "straight",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "74Pg5VCRPbJ17HpK",

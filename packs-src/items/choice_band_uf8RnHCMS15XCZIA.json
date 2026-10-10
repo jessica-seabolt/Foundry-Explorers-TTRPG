@@ -5,7 +5,18 @@
   "system": {
     "description": "Your first Physical Move in a Battle has its Move Power increased by 1, but you cannot use any other Move for the rest of the Battle.",
     "category": "scarvesAndBands",
-    "price": 5000
+    "price": 5000,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "First Physical Move in a Battle: +1 Move Power, then only that Move."
   },
   "effects": [],
   "folder": "flTbL5r9BQOlCHFW",

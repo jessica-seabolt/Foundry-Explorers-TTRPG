@@ -5,7 +5,28 @@
   "system": {
     "description": "Raises Speed modifier by 2, Range: All team members",
     "category": "orbs",
-    "price": 150
+    "price": 150,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "effects",
+        "effects": [
+          {
+            "effect": "speUp",
+            "effectCount": 2
+          }
+        ]
+      }
+    ],
+    "target": "selfAllies",
+    "range": "floor",
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "nslHbFL6H8zczPA6",

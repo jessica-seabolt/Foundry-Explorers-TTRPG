@@ -5,7 +5,18 @@
   "system": {
     "description": "No effect. Appears when a Reviver Seed or Tiny Reviver Seed has been used.",
     "category": "seeds",
-    "price": 5
+    "price": 5,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "uePSqJtUuLeN0nr5",

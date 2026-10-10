@@ -1,0 +1,22 @@
+<section class="tab standard-form {{tabs.members.cssClass}}" data-group="primary" data-tab="members">
+  {{#*inline "team-member"}}
+  <div class="team-member" data-uuid="{{member.uuid}}" data-list="{{member.list}}">
+    <img src="{{member.img}}" alt="">
+    <a data-action="openDocument">{{member.name}}</a>
+    <span>{{member.hp}}</span>
+    <span class="{{#if member.hungry}}over-limit{{/if}}">{{member.belly}}</span>
+    <button type="button" data-action="removeMember" class="icon fa-solid fa-xmark" data-tooltip="SYSTEM.Team.Remove"></button>
+  </div>
+  {{/inline}}
+  {{#if isGM}}
+  <button type="button" data-action="newDay" data-tooltip="SYSTEM.Belly.NewDayHint"><i class="fa-solid fa-sun"></i> {{localize "SYSTEM.Belly.NewDayButton"}}</button>
+  {{/if}}
+  <fieldset data-list="members">
+    <legend>{{localize "SYSTEM.Team.Members"}}</legend>
+    {{#each members as |member|}}{{> team-member member=member}}{{else}}<p class="hint">{{localize "SYSTEM.Team.DropMembers"}}</p>{{/each}}
+  </fieldset>
+  <fieldset data-list="reserve">
+    <legend>{{localize "SYSTEM.Team.Reserve"}}</legend>
+    {{#each reserve as |member|}}{{> team-member member=member}}{{else}}<p class="hint">{{localize "SYSTEM.Team.DropReserve"}}</p>{{/each}}
+  </fieldset>
+</section>

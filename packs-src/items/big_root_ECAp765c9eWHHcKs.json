@@ -5,7 +5,18 @@
   "system": {
     "description": "When you heal from Moves that drain foes of HP, restore an additional 1d6.",
     "category": "battleItems",
-    "price": 2000
+    "price": 2000,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "+1d6 when healing from draining Moves."
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

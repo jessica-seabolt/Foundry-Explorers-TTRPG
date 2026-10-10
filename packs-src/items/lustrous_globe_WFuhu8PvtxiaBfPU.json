@@ -6,7 +6,18 @@
   "system": {
     "description": "Changes Palkia between its Regular and Origin Formes.",
     "category": "formChangingItems",
-    "price": null
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Changes the form of the Pokémon it's for."
   },
   "effects": [],
   "ownership": {

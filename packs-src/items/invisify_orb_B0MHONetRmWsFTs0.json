@@ -5,7 +5,27 @@
   "system": {
     "description": "Gives Invisible status, Range: Self",
     "category": "orbs",
-    "price": 150
+    "price": 150,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "effects",
+        "effects": [
+          {
+            "effect": "invisible"
+          }
+        ]
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "nslHbFL6H8zczPA6",

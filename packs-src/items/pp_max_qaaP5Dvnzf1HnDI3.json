@@ -5,7 +5,18 @@
   "system": {
     "description": "Increase the Maximum PP of a Move of your choice by 75%. Can only be used once on a Move. Cannot stack with PP Up.",
     "category": "medicines",
-    "price": 1000
+    "price": 1000,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Raise one Move's Max PP by 75% (once per Move; not with PP Up)."
   },
   "effects": [],
   "folder": "a6e2kWEJCnlOPoA2",

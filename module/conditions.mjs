@@ -1,11 +1,11 @@
-import { SYSTEM_ID, getSkillDie, getDieString } from '../constants.mjs';
+import { SYSTEM_ID, getSkillDie, getDieString, isHungry } from '../constants.mjs';
 import { ExplorersRoll } from './explorers-roll.mjs';
 import { registerSocketHandler, requestFromGM } from './socket.mjs';
 import {
   stateConditions, statConditions, conditionIcons, conditionTypeImmunities, resistRerollConditions,
   durationEffects, untilNextTurnConditions, statKeys, weathers, terrains, effects, skills
 } from './types.mjs';
-import { getRules, hasRule } from './features.mjs';
+import { AFFLICTIONS, getRules, hasRule } from './features.mjs';
 
 const { Roll } = foundry.dice;
 const ACTOR_OP_ACTION = "actorOp";
@@ -45,7 +45,13 @@ const actorOps = {
   applyEffects: (actor, { effectList, context }) => applyEffectsLocal(actor, effectList, context),
   applyDamage: (actor, { options }) => actor.system.applyDamage?.(options),
   heal: (actor, { amount, label }) => actor.system.heal?.(amount, label),
+  cure: (actor, { conditions }) => cureConditionsLocal(actor, conditions),
 };
+
+/** Adds an operation that runAsOwner can run (other modules, e.g. item use effects). */
+export function registerActorOp(name, operation) {
+  actorOps[name] = operation;
+}
 
 /**
  * Runs an operation on an actor and returns its result. If the current user doesn't own the actor,
@@ -65,6 +71,59 @@ registerSocketHandler(ACTOR_OP_ACTION, async ({ op, uuid, args }) => {
 export const applyEffects = (actor, effectList, context = {}) => runAsOwner(actor, "applyEffects", { effectList, context });
 export const applyDamage = (actor, options) => runAsOwner(actor, "applyDamage", { options });
 export const healActor = (actor, amount, label = null) => runAsOwner(actor, "heal", { amount, label });
+export const cureConditions = (actor, conditions) => runAsOwner(actor, "cure", { conditions });
+
+/** Removes Conditions (Lum Berry, Heal Seed, ...) from an actor the current user owns. */
+export async function cureConditionsLocal(actor, conditions) {
+  const cured = conditions.filter(condition => actor.statuses.has(condition));
+  for (const condition of cured) await removeCondition(actor, condition);
+  if (cured.length) {
+    await postAutomationMessage(actor, [format("SYSTEM.Automation.Cured", { name: escape(actor.name), labels: cured.map(c => localize(effects[c])).join(", ") })]);
+  }
+}
+
+/**
+ * Uses up an item: deletes it (or turns it into another, like a Reviver Seed into a Plain Seed),
+ * and lets Features react to losing a held item (Unburden).
+ */
+export async function consumeItem(item) {
+  const actor = item?.actor;
+  if (!actor) return;
+  const wasHeld = actor.system?.heldItem === item.id;
+  let replacement = null;
+  if (item.system.becomes) {
+    const source = await findItemByName(item.system.becomes);
+    if (source) [replacement] = await actor.createEmbeddedDocuments("Item", [source]);
+  }
+  if (wasHeld) await actor.update({ "system.heldItem": replacement?.id ?? null });
+  await item.delete();
+  if (wasHeld && !replacement && actor.system?.hp) {
+    for (const rule of getRules(actor, "onHeldItemLost")) {
+      await postAutomationMessage(actor, [format("SYSTEM.Automation.FeatureTriggered", { name: escape(actor.name), feature: escape(rule.source) })]);
+      await applyEffectsLocal(actor, rule.effects ?? [], { sourceUuid: actor.uuid, sourceName: actor.name });
+    }
+  }
+}
+
+/** Uses up the held item a rule came from, if the rule says so. */
+export async function consumeRuleItem(actor, rule) {
+  if (!rule.consume || !rule.itemId) return;
+  const item = actor.items.get?.(rule.itemId) ?? actor.items.find?.(other => other.id === rule.itemId);
+  if (!item) return;
+  await postAutomationMessage(actor, [format("SYSTEM.Automation.ItemConsumed", { name: escape(actor.name), item: escape(item.name) })]);
+  await consumeItem(item);
+}
+
+/** An item's data by name, from the Items compendium or the world, for turning one item into another. */
+async function findItemByName(name) {
+  const pack = game.packs?.get("explorers.items");
+  const entry = pack?.index.find(e => e.name === name);
+  const document = entry ? await pack.getDocument(entry._id) : game.items?.getName(name);
+  if (!document) return null;
+  const data = document.toObject();
+  delete data._id;
+  return data;
+}
 
 /* -------------------------------------------- */
 /*  Applying effects                            */
@@ -98,7 +157,7 @@ export async function applyEffectsLocal(actor, effectList, context = {}) {
       if (modes.includes("invert")) isUp = !isUp;
       if (modes.includes("double")) amount *= 2;
       const changedLabel = localize(effects[`${stat}${isUp ? "Up" : "Down"}`] ?? effect);
-      if (!isUp && (actor.statuses.has("noLoweredStats") || statLowerBlocked(actor, stat))) {
+      if (!isUp && (actor.statuses.has("noLoweredStats") || statLowerBlocked(actor, stat, context))) {
         lines.push(format("SYSTEM.Automation.StatBlocked", { name, label: changedLabel }));
         continue;
       }
@@ -130,7 +189,8 @@ export async function applyEffectsLocal(actor, effectList, context = {}) {
       });
       lines.push(format("SYSTEM.Automation.ConditionApplied", { name, label }));
       for (const rule of getRules(actor, "onConditionGained")) {
-        if ((rule.conditions ?? []).includes(effect)) followUps.push({ rule, effects: rule.effects ?? [] });
+        const matches = rule.conditions === "any" ? AFFLICTIONS.has(effect) : (rule.conditions ?? []).includes(effect);
+        if (matches) followUps.push({ rule, effects: rule.effects ?? [], cure: rule.cure ? effect : null });
       }
       if (context.fromOther && context.sourceUuid && !context.reflected
         && getRules(actor, "reflectConditions").some(rule => (rule.conditions ?? []).includes(effect))) {
@@ -157,9 +217,12 @@ export async function applyEffectsLocal(actor, effectList, context = {}) {
   }
   await postAutomationMessage(actor, lines);
 
-  for (const { rule, effects: triggered } of followUps) {
+  for (const { rule, effects: triggered, cure } of followUps) {
+    if (rule.itemId && !actor.items.find?.(item => item.id === rule.itemId)) continue; // already eaten
     await postAutomationMessage(actor, [format("SYSTEM.Automation.FeatureTriggered", { name, feature: escape(rule.source) })]);
-    await applyEffectsLocal(actor, triggered, { sourceUuid: actor.uuid, sourceName: actor.name });
+    if (triggered.length) await applyEffectsLocal(actor, triggered, { sourceUuid: actor.uuid, sourceName: actor.name });
+    if (cure) await cureConditionsLocal(actor, [cure]);
+    await consumeRuleItem(actor, rule);
   }
   if (reflect.length) {
     const source = fromUuidSync(context.sourceUuid);
@@ -171,8 +234,9 @@ export async function applyEffectsLocal(actor, effectList, context = {}) {
 }
 
 /** Whether a Feature stops this stat being lowered (Big Pecks, Hyper Cutter, Clear Body). */
-function statLowerBlocked(actor, stat) {
-  return getRules(actor, "statLowerImmunity").some(rule => (rule.stats ?? []).some(blocked => blocked === stat || blocked === "all"));
+function statLowerBlocked(actor, stat, context = {}) {
+  return getRules(actor, "statLowerImmunity").some(rule => (!rule.fromOthers || context.fromOther)
+    && (rule.stats ?? []).some(blocked => blocked === stat || blocked === "all"));
 }
 
 /** Returns a message if the actor can't receive this Condition, or null if it can. */
@@ -269,6 +333,7 @@ export async function checkMoveConditions(actor, move, { targetsFoe = true } = {
   if (statuses.has("asleep")) return block("SYSTEM.Automation.CannotActAsleep");
   if (statuses.has("flinched")) return block("SYSTEM.Automation.CannotActFlinched");
   if (statuses.has("silenced") && move.system.hasTag?.("sound")) return block("SYSTEM.Automation.CannotActSilenced");
+  if (move.system.isStatus && hasRule(actor, "blockStatusMoves")) return block("SYSTEM.Automation.CannotUseStatusMoves");
 
   if (statuses.has("paralyzed")) {
     const result = await rollD6(actor, format("SYSTEM.Automation.ParalysisCheck", { name }));
@@ -359,6 +424,11 @@ export async function processStartOfTurn(actor) {
   await postAutomationMessage(actor, lines);
 
   if (actor.system.hp.raw <= 0) return;
+
+  for (const rule of getRules(actor, "onTurnStart")) {
+    if (rule.damage) await tickDamage(actor, rule.damage, rule.source);
+    if (rule.effects?.length) await applyEffectsLocal(actor, rule.effects, { sourceUuid: actor.uuid, sourceName: actor.name });
+  }
 
   // Damage over time. Tick damage isn't resisted by Defence and can't score a Critical Hit.
   if (actor.statuses.has("burned")) await tickDamage(actor, "1d6", localize("SYSTEM.Conditions.Burned"));
@@ -454,7 +524,7 @@ async function rerollResist(actor, statusId) {
     await postAutomationMessage(actor, [format("SYSTEM.Automation.RerollReminder", { name, label })]);
     return;
   }
-  const roll = new ExplorersRoll(getDieString(getSkillDie(actor, skill)), {}, { dc });
+  const roll = new ExplorersRoll(getDieString({ ...getSkillDie(actor, skill), advantage: isHungry(actor) ? 'disadvantage' : 'normal' }), {}, { dc });
   await roll.evaluate();
   await roll.toMessage({
     speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }),
@@ -475,7 +545,9 @@ export async function processEndOfTurn(actor) {
   }
   if (actor.system.hp.raw <= 0) return;
   for (const rule of getRules(actor, "onTurnEnd")) {
+    if (rule.damage) await tickDamage(actor, rule.damage, rule.source);
+    if (!rule.effects?.length) continue;
     await postAutomationMessage(actor, [format("SYSTEM.Automation.FeatureTriggered", { name: escape(actor.name), feature: escape(rule.source) })]);
-    await applyEffectsLocal(actor, rule.effects ?? [], { sourceUuid: actor.uuid, sourceName: actor.name });
+    await applyEffectsLocal(actor, rule.effects, { sourceUuid: actor.uuid, sourceName: actor.name });
   }
 }

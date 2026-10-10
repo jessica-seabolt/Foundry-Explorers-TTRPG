@@ -5,7 +5,28 @@
   "system": {
     "description": "Whenever you are targeted by a Move, roll a d6. On a 5-6, the attacker is Blinded. Has 10 uses, before it is consumed. \"Pocket Sand!\".",
     "category": "battleItems",
-    "price": 2500
+    "price": 2500,
+    "rules": [
+      {
+        "type": "onDamaged",
+        "chance": 5,
+        "attackerEffects": [
+          {
+            "effect": "blinded"
+          }
+        ]
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Used up after 10 uses."
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

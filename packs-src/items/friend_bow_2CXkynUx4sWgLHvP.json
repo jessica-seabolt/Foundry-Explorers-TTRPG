@@ -5,7 +5,18 @@
   "system": {
     "description": "You gain 2 Friendship Dice whenever you clear your Friendship Track. You roll 1 additional Skill Die when recruiting a Pokémon to your Team.",
     "category": "scarvesAndBands",
-    "price": 5000
+    "price": 5000,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "+2 Friendship Dice when clearing the Track; +1 die when recruiting."
   },
   "effects": [],
   "folder": "flTbL5r9BQOlCHFW",

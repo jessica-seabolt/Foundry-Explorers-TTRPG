@@ -5,7 +5,27 @@
   "system": {
     "description": "Gives Silenced status, range: Foes in a 2-tile range.",
     "category": "orbs",
-    "price": 150
+    "price": 150,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "effects",
+        "effects": [
+          {
+            "effect": "silenced"
+          }
+        ]
+      }
+    ],
+    "target": "foes",
+    "range": "range",
+    "rangeCount": 2,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "nslHbFL6H8zczPA6",

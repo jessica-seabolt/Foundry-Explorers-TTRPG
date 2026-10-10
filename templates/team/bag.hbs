@@ -1,0 +1,24 @@
+<section class="tab standard-form {{tabs.bag.cssClass}}" data-group="primary" data-tab="bag">
+  <p class="team-capacity {{#if bagFull}}over-limit{{/if}}">{{localize "SYSTEM.Team.Capacity"}}: {{document.system.bagCount}} / {{document.system.capacity}}</p>
+  {{#if items.length}}
+  <div class="team-bag scrollable">
+    {{#each items as |item|}}
+    <div class="team-item" data-item-id="{{item.id}}">
+      <img src="{{item.img}}" alt="">
+      <div class="team-item-main">
+        <a data-action="openDocument">{{item.name}}</a> <span class="hint">{{item.category}}</span>
+        <p>{{item.description}}</p>
+      </div>
+      <div class="team-item-buttons">
+        {{#if item.canUse}}<button type="button" data-action="useItem" data-tooltip="SYSTEM.Items.Use"><i class="fa-solid fa-hand-sparkles"></i></button>{{/if}}
+        {{#if item.canThrow}}<button type="button" data-action="throwItem" data-tooltip="SYSTEM.Items.Throw"><i class="fa-solid fa-baseball"></i></button>{{/if}}
+        <button type="button" data-action="giveItem" data-tooltip="SYSTEM.Items.Give"><i class="fa-solid fa-hand-holding"></i></button>
+        <button type="button" data-action="deleteItem" data-tooltip="SYSTEM.Items.Discard"><i class="fa-solid fa-trash"></i></button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{else}}
+  <p class="item-help">{{localize "SYSTEM.Team.BagEmpty"}}</p>
+  {{/if}}
+</section>

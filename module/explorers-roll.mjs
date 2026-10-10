@@ -51,6 +51,7 @@ export class DamageRoll extends ExplorersRoll {
       resistAbility: this.resistAbility,
       moveType: this.options.moveType ?? null,
       moveCategory: this.options.moveCategory ?? null,
+      matchup: this.options.matchup ?? null,
       attackerUuid: this.options.attackerUuid ?? null,
       tags: this.options.tags ?? [],
       isAttack: true,

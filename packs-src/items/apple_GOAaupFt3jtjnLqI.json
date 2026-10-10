@@ -6,7 +6,23 @@
   "system": {
     "description": "Can be used to fill half your belly for today.",
     "category": "foods",
-    "price": 25
+    "price": 25,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "belly",
+        "halves": 1
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "XJqLVT4pGPp0Z0xQ",

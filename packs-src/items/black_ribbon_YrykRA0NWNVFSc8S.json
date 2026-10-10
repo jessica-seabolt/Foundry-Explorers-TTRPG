@@ -5,7 +5,30 @@
   "system": {
     "description": "Raises Attack, Defense, Special Attack and Special Defense modifiers of users with black aura by 2 (Serious Nature)",
     "category": "ribbons",
-    "price": 1000
+    "price": 1000,
+    "rules": [
+      {
+        "type": "statModifier",
+        "stat": [
+          "atk",
+          "def",
+          "spatk",
+          "spdef"
+        ],
+        "amount": 2,
+        "whenAura": "Black"
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "ZlTprQlgnYa983wv",

@@ -5,7 +5,23 @@
   "system": {
     "description": "Reveals hidden traps and Invisible Pokémon.",
     "category": "scopes",
-    "price": 3500
+    "price": 3500,
+    "rules": [
+      {
+        "type": "permanentCondition",
+        "condition": "eyedrop"
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Also reveals hidden traps."
   },
   "effects": [],
   "folder": "Ur1Tb7VuUE9rPmbA",

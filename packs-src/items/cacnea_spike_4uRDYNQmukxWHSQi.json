@@ -5,7 +5,18 @@
   "system": {
     "description": "Hits target for 3d6 Damage. Deals damage as Grass Type. Thrown in a straight line.",
     "category": "thrownItems",
-    "price": 10
+    "price": 10,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "straight",
+    "throwDamage": "3d6",
+    "throwType": "grass",
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "Gyv3hr6CX8Rs1589",

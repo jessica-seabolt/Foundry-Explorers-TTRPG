@@ -5,7 +5,24 @@
   "system": {
     "description": "You roll 1 additional Skill Die when making an Endurance Check.",
     "category": "scarvesAndBands",
-    "price": null
+    "price": null,
+    "rules": [
+      {
+        "type": "skillDice",
+        "skill": "endurance",
+        "dice": 1
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "flTbL5r9BQOlCHFW",

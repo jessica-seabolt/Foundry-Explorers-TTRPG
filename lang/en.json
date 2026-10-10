@@ -1,6 +1,7 @@
 {
   "TYPES.Actor.Character": "Character",
   "TYPES.Actor.Player": "Player",
+  "TYPES.Actor.Team": "Team",
   "TYPES.Item.Move": "Move",
   "TYPES.RegionBehavior.room": "Room",
   "TYPES.Item.Feature": "Feature",
@@ -51,7 +52,34 @@
         "EvolutionItems": "Evolution Items",
         "FormChangingItems": "Form Changing Items",
         "TmsAndHms": "TMs & HMs"
-      }
+      },
+      "Throw": {
+        "None": "Can't be thrown",
+        "Straight": "Straight line",
+        "Arc": "Arc"
+      },
+      "Targeting": "Targeting and Throwing",
+      "NoHeldItem": "Not holding anything. Drag an item onto this sheet (from the Team's bag or a compendium) to hold it.",
+      "LooseItems": "Carried from before the shared Treasure Bag:",
+      "MoveToBag": "Move to the Team's bag",
+      "Use": "Use",
+      "Give": "Give to hold",
+      "Return": "Return to the Team's bag",
+      "Discard": "Discard",
+      "Used": "{name} used {item}",
+      "TrapsCheck": "Traps Check to throw {item}",
+      "ThrowMissed": "{name}'s {item} didn't hit anyone.",
+      "ChooseMove": "Which Move?",
+      "PPRestored": "{name}'s PP restored: {moves}.",
+      "MaxHpUp": "{name}'s Max HP increased by {amount}.",
+      "StatUp": "{name}'s {stat} increased by {amount} permanently.",
+      "NoBenefit": "{item} has no effect on {name}.",
+      "Ate": "{name} ate {item}.",
+      "NotFainted": "{name} hasn't fainted.",
+      "Revived": "{name} was revived!",
+      "ManualNote": "{item}: {note}",
+      "AutomatedHint": "The system applies this item's effects when it's used or held.",
+      "UseReference": "Use effect types"
     },
     "Abilities": {
       "HP.Full": "HP",
@@ -84,6 +112,15 @@
           "feats": { "label": "Feats" }
         }
       },
+      "Team": {
+        "FIELDS": {
+          "reputation": { "label": "Reputation" },
+          "poke": { "label": "Poké" },
+          "members": { "label": "Members" },
+          "reserve": { "label": "Reserve List" },
+          "notes": { "label": "Notes" }
+        }
+      },
       "Feature": {
         "FIELDS": {
           "description": { "label": "Effect" },
@@ -109,6 +146,12 @@
             "label": "HP",
             "bonus": { "label": "HP Bonus" }
           },
+          "belly": {
+            "label": "Belly",
+            "eaten": { "label": "Eaten Today" },
+            "fedDays": { "label": "Days Already Fed" },
+            "hungryDays": { "label": "Days Hungry" }
+          },
           "friendship": {
             "label": "Friendship",
             "track": { "label": "Friendship Track" },
@@ -126,7 +169,18 @@
         "FIELDS": {
           "description": { "label": "Description" },
           "category": { "label": "Category" },
-          "price": { "label": "Price" }
+          "price": { "label": "Price" },
+          "rules": {"label": "While Held (Rules, JSON)"},
+          "onUse": {"label": "When Used (JSON)"},
+          "target": {"label": "Target"},
+          "range": {"label": "Range"},
+          "rangeCount": {"label": "Range (Tiles)"},
+          "throwMode": {"label": "Throw"},
+          "throwDamage": {"label": "Thrown Damage"},
+          "throwType": {"label": "Thrown Damage Type"},
+          "consumable": {"label": "Used Up When Used"},
+          "becomes": {"label": "Becomes", "hint": "The item it turns into once used (e.g. Plain Seed)."},
+          "manualNote": {"label": "Left to the GM"}
         }
       },
       "Move": {
@@ -254,7 +308,8 @@
         "Self": "Self",
         "SelfAllies": "Self & Allies",
         "SelfOrAlly": "Self or Ally",
-        "All": "All"
+        "All": "All",
+        "Any": "Any Pokémon"
       },
       "Ranges": {
         "Front": "in front",
@@ -468,6 +523,9 @@
       "Synchronized": "{name} passes the Condition back to {target}!",
       "NoSecondary": "{move} has no secondary effect (Sheer Force).",
       "MovePower": "Move Power",
+      "Cured": "{name} is cured of {labels}.",
+      "ItemConsumed": "{name}'s {item} was used up.",
+      "CannotUseStatusMoves": "{name} can't use Status Moves while holding this item.",
       "ImmuneNoEffect": "{name} is immune to {move}, so it has no effect.",
       "MagicCoatReflect": "{name}'s Magic Coat reflects {move} back at the user!",
       "TookDamage": "{name} took {damage} damage.",
@@ -573,6 +631,55 @@
       "MaxHpHint": "Max HP: {hp}, plus {perLevel} for each Level after the first, plus Features and the HP Bonus.",
       "MinorSkills": "Minor Skills",
       "TooManyMoves": "{name} now knows more than 4 Moves. A Pokémon can only know 4 at a time, so one should be forgotten."
+    },
+    "Team": {
+      "Tabs": {
+        "Bag": "Treasure Bag",
+        "Members": "Members",
+        "Notes": "Notes"
+      },
+      "Ranks": {
+        "rookie": "Rookie Rank",
+        "normal": "Normal Rank",
+        "bronze": "Bronze Rank",
+        "silver": "Silver Rank",
+        "gold": "Gold Rank",
+        "platinum": "Platinum Rank",
+        "diamond": "Diamond Rank",
+        "ace": "Ace Rank",
+        "ultra": "Ultra Rank",
+        "master": "Master Rank",
+        "guildmaster": "Guildmaster Rank"
+      },
+      "NextRank": "Next:",
+      "Capacity": "Treasure Bag",
+      "BagFull": "The Treasure Bag is over its capacity of {capacity} items.",
+      "BagEmpty": "The Treasure Bag is empty. Drag items here from the Items compendium or a member's sheet.",
+      "Members": "Members",
+      "Reserve": "Reserve List",
+      "DropMembers": "Drag Pokémon here to add them to the Team.",
+      "DropReserve": "Drag Pokémon here to add them to the Reserve List.",
+      "Remove": "Remove",
+      "NoMember": "None of the Team's members are yours to use this item with.",
+      "ChooseUser": "Which Pokémon?",
+      "SharedBag": "Shared Treasure Bag:"
+    },
+    "Belly": {
+      "Hint": "Belly: a Pokémon needs 2 food items a day. Without food it rolls at Disadvantage and deals half damage.",
+      "Eaten": "Ate {eaten}/{needed}",
+      "FullDays": "Full ({days} days)",
+      "HungryDays": "Hungry ({days} days)",
+      "Hungry": "Hungry: half damage",
+      "NewDayButton": "New Day",
+      "NewDayHint": "Start a new day: check each member's Belly and reset what they've eaten.",
+      "NewDay": "A new day begins.",
+      "StillFull": "{name} is still full.",
+      "Fed": "{name} ate enough yesterday.",
+      "HalfFed": "{name} only ate half as much as they need, but isn't hungry.",
+      "WentHungry": "{name} hasn't eaten: Hungry ({days} days).",
+      "Starving": "{name} hasn't eaten for {days} days and can't survive much longer! A Reviver Seed can revive them with a full Belly.",
+      "TooHungryToRest": "{name} hasn't eaten today and can't recover by resting.",
+      "RestedHalf": "{name} rested, but only ate half as much as they need, so regained half their HP and PP."
     }
   }
 }

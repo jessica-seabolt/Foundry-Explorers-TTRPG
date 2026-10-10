@@ -21,6 +21,8 @@
   </div>
   <div class="status-strip">
     <div class="condition-chips">
+      {{#if heldItem}}<span class="condition-chip held-chip" data-tooltip="{{heldItem.description}}"><img src="{{heldItem.img}}" alt="">{{heldItem.name}}</span>{{/if}}
+      {{#if belly}}<span class="condition-chip belly-chip {{#if belly.hungry}}hungry{{/if}}" data-tooltip="SYSTEM.Belly.Hint"><i class="fa-solid fa-utensils"></i> {{belly.label}}</span>{{/if}}
       {{#each statChips as |chip|}}
       <span class="condition-chip stat-chip {{#if chip.up}}up{{else}}down{{/if}}">{{chip.label}} {{chip.value}}</span>
       {{/each}}

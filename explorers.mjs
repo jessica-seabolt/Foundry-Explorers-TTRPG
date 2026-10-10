@@ -4,6 +4,7 @@ import { ExplorersCombat, addTieChoiceListeners, registerCombatHooks } from './m
 import { FAINTED_STATUS, buildStatusEffects } from './module/conditions.mjs';
 import { CharacterDataModel, FeatureDataModel, ItemDataModel, MoveDataModel, PlayerDataModel } from "./module/data-models.mjs";
 import { FeatureSheet } from './module/feature-sheet.mjs';
+import { TeamDataModel, TeamSheet } from './module/team.mjs';
 import { SystemToken } from './module/documents.mjs';
 import { DamageRoll, ExplorersDie, ExplorersRoll, StatusRoll } from './module/explorers-roll.mjs';
 import { ItemSheet } from './module/item-sheet.mjs';
@@ -35,7 +36,8 @@ Hooks.once("init", () => {
   // Configure System Data Models.
   CONFIG.Actor.dataModels = {
     Character: CharacterDataModel,
-    Player: PlayerDataModel
+    Player: PlayerDataModel,
+    Team: TeamDataModel
   };
   CONFIG.Item.dataModels = {
     Item: ItemDataModel,
@@ -49,6 +51,7 @@ Hooks.once("init", () => {
   // Configure Sheets.
   Actors.registerSheet(SYSTEM_ID, PlayerSheet, { types: ["Player"], makeDefault: true });
   Actors.registerSheet(SYSTEM_ID, CharacterSheet, { types: ["Character"] });
+  Actors.registerSheet(SYSTEM_ID, TeamSheet, { types: ["Team"], makeDefault: true });
   Items.registerSheet(SYSTEM_ID, ItemSheet, { types: ["Item"], makeDefault: true });
   Items.registerSheet(SYSTEM_ID, MoveSheet, { types: ["Move"] });
   Items.registerSheet(SYSTEM_ID, FeatureSheet, { types: ["Feature"] });
@@ -117,6 +120,7 @@ function registerSettings() {
 Hooks.once("i18nInit", () => {
   Localization.localizeDataModel(CharacterDataModel);
   Localization.localizeDataModel(PlayerDataModel);
+  Localization.localizeDataModel(TeamDataModel);
   Localization.localizeDataModel(ItemDataModel);
   Localization.localizeDataModel(MoveDataModel);
   Localization.localizeDataModel(FeatureDataModel);

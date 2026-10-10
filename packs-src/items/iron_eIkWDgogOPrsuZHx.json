@@ -5,7 +5,28 @@
   "system": {
     "description": "Increases Defense permanently by 5. Can be used to fill half your belly for today.",
     "category": "medicines",
-    "price": 2000
+    "price": 2000,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "stat",
+        "stat": "def",
+        "amount": 5
+      },
+      {
+        "type": "belly",
+        "halves": 1
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "a6e2kWEJCnlOPoA2",

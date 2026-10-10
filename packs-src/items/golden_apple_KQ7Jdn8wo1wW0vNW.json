@@ -5,7 +5,23 @@
   "system": {
     "description": "You do not need to eat for the next week, and you gain 1 Minor Skill of your choice.",
     "category": "foods",
-    "price": 2000
+    "price": 2000,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "belly",
+        "days": 7
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Choose 1 Minor Skill to gain."
   },
   "effects": [],
   "folder": "XJqLVT4pGPp0Z0xQ",

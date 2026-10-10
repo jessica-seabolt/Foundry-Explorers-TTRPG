@@ -74,8 +74,12 @@ export function getSkillDie(actor, skill) {
   const proficiency = actor.system.proficiency?.[skill] ?? actor.system.skills[skill];
   const abilityName = skillToAbility[skill];
   const ability = abilityName === "hp" ? actor.system.hp : actor.system.abilities[abilityName];
-  return { sides: skillToDie[proficiency] + skillBonusDice(actor, skill), modifier: ability.mod }
+  // Going hungry for more than two days costs -1 per extra day on Skill Checks
+  const hunger = actor.system.belly?.skillPenalty ?? 0;
+  return { sides: skillToDie[proficiency] + skillBonusDice(actor, skill), modifier: ability.mod - hunger }
 }
+/** Whether a Pokemon hasn't eaten in the last day: it rolls at Disadvantage and its moves deal half damage. */
+export const isHungry = actor => !!actor?.system?.belly?.hungry;
 export function toMoveString(move) {
   const moveDie = getMoveDie(this.document, move);
   if (!moveDie) return "Use";

@@ -5,7 +5,18 @@
   "system": {
     "description": "Your Reflects and Light Screens persist for 10 Rounds instead of 5.",
     "category": "battleItems",
-    "price": 2000
+    "price": 2000,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Reflect and Light Screen last 10 Rounds."
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

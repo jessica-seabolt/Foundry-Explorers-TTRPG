@@ -6,7 +6,18 @@
   "system": {
     "description": "Evolves certain Pokémon.",
     "category": "evolutionItems",
-    "price": 1000
+    "price": 1000,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Use it to Evolve, if it's the item your Pokémon needs."
   },
   "effects": [],
   "ownership": {

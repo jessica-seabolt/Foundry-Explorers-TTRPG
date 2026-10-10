@@ -5,7 +5,18 @@
   "system": {
     "description": "Warps Pokémon to elsewhere on the Current Floor.",
     "category": "seeds",
-    "price": 75
+    "price": 75,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "straight",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Warp the Pokémon elsewhere on the Floor."
   },
   "effects": [],
   "folder": "uePSqJtUuLeN0nr5",

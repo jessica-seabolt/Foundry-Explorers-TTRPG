@@ -5,7 +5,30 @@
   "system": {
     "description": "Gives Counter and Mirror Coat status, which ends when reflecting damage for the first time, Range: Self",
     "category": "orbs",
-    "price": 150
+    "price": 150,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "effects",
+        "effects": [
+          {
+            "effect": "counter"
+          },
+          {
+            "effect": "mirrorCoat"
+          }
+        ]
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Counter and Mirror Coat end after reflecting damage once."
   },
   "effects": [],
   "folder": "nslHbFL6H8zczPA6",

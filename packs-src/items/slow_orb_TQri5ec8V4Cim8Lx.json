@@ -5,7 +5,28 @@
   "system": {
     "description": "Lowers Foes' Speed Modifier by 2, Range: Foes in room",
     "category": "orbs",
-    "price": 150
+    "price": 150,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "effects",
+        "effects": [
+          {
+            "effect": "speDown",
+            "effectCount": 2
+          }
+        ]
+      }
+    ],
+    "target": "foes",
+    "range": "room",
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "nslHbFL6H8zczPA6",

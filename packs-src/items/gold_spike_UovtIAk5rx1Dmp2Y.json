@@ -5,7 +5,18 @@
   "system": {
     "description": "Hits target for 4d6 damage. Deals damage as Steel Type. Thrown in a straight line.",
     "category": "thrownItems",
-    "price": 25
+    "price": 25,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "straight",
+    "throwDamage": "4d6",
+    "throwType": "steel",
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "Gyv3hr6CX8Rs1589",

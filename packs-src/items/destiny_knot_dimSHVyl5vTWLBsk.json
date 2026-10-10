@@ -5,7 +5,25 @@
   "system": {
     "description": "If you become Infatuated, the Pokémon that Infatuated you is now Infatuated by you.",
     "category": "battleItems",
-    "price": 2500
+    "price": 2500,
+    "rules": [
+      {
+        "type": "reflectConditions",
+        "conditions": [
+          "infatuated"
+        ]
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

@@ -5,7 +5,18 @@
   "system": {
     "description": "Reveals the number of unclaimed items on floor.",
     "category": "orbs",
-    "price": 200
+    "price": 200,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "nslHbFL6H8zczPA6",

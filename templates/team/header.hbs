@@ -1,0 +1,14 @@
+<div class="team-header">
+  <img src="{{document.img}}" title="{{document.name}}" height="70" width="70" data-action="editImage" data-edit="img" style="cursor: pointer;">
+  <div class="team-title">
+    <input type="text" name="name" value="{{document.name}}" class="character-name">
+    <div class="team-rank">
+      <strong>{{rankLabel}}</strong>
+      {{#if nextRankLabel}}<span class="hint">{{localize "SYSTEM.Team.NextRank" }} {{nextRankLabel}}: {{document.system.nextRank.reputation}}</span>{{/if}}
+    </div>
+  </div>
+  <div class="team-numbers">
+    {{formGroup systemFields.reputation value=document.system.reputation localize=true classes="slim inline"}}
+    {{formGroup systemFields.poke value=document.system.poke localize=true classes="slim inline"}}
+  </div>
+</div>

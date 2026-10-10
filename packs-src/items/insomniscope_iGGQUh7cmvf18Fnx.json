@@ -5,7 +5,26 @@
   "system": {
     "description": "Prevents Asleep and Yawning conditions.",
     "category": "scopes",
-    "price": 1250
+    "price": 1250,
+    "rules": [
+      {
+        "type": "conditionImmunity",
+        "conditions": [
+          "asleep",
+          "yawning"
+        ]
+      }
+    ],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "Ur1Tb7VuUE9rPmbA",

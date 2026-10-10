@@ -5,7 +5,18 @@
   "system": {
     "description": "When held, and you fall below 50% HP, roll a d6. The corresponding Stat Modifier raises by 4. On a 1, Attack. On a 2, Defense. On a 3, Special Attack. On a 4, Special Defence. On a 5, Speed. Reroll 6’s.",
     "category": "berries",
-    "price": 250
+    "price": 250,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": "Below 50% HP: roll a d6 for the stat that rises by 4."
   },
   "effects": [],
   "folder": "74Pg5VCRPbJ17HpK",

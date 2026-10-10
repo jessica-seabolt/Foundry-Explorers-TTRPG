@@ -4,12 +4,6 @@
     {{formGroup systemFields.type2 value=document.system.type2 options=types localize=true}}
     {{formGroup systemFields.species value=document.system.species}}
     {{formGroup systemFields.size value=document.system.size options=sizes localize=true}}
-    <div class="form-group">
-      <label>{{localize "SYSTEM.Models.Character.FIELDS.heldItem.label"}}</label>
-      <div class="form-fields">
-        <input type="text" disabled value="{{heldItemName}}">
-      </div>
-    </div>
     {{#if isPlayerSheet}}
     <div class="form-group">
       <label>{{localize "SYSTEM.Models.Player.FIELDS.nature.label"}}</label>
@@ -27,5 +21,33 @@
     {{formGroup systemFields.origin value=document.system.origin localize=true}}
     {{/if}}
   </div>
+  <fieldset class="held-item">
+    <legend>{{localize "SYSTEM.Models.Character.FIELDS.heldItem.label"}}</legend>
+    {{#if heldItem}}
+    <div class="held-item-card">
+      <img src="{{heldItem.img}}" alt="">
+      <div>
+        <a data-action="openItem" data-id="{{heldItem.id}}"><strong>{{heldItem.name}}</strong></a>
+        <p>{{heldItem.description}}</p>
+      </div>
+      <div class="item-buttons">
+        {{#if heldItem.canUse}}<button type="button" data-action="useItem" data-id="{{heldItem.id}}" class="icon fa-solid fa-hand-sparkles" data-tooltip="SYSTEM.Items.Use"></button>{{/if}}
+        {{#if heldItem.canThrow}}<button type="button" data-action="throwItem" data-id="{{heldItem.id}}" class="icon fa-solid fa-baseball" data-tooltip="SYSTEM.Items.Throw"></button>{{/if}}
+        {{#if team}}<button type="button" data-action="returnItem" data-id="{{heldItem.id}}" class="icon fa-solid fa-sack" data-tooltip="SYSTEM.Items.Return"></button>{{/if}}
+        <button type="button" data-action="removeItem" data-id="{{heldItem.id}}" class="icon fa-solid fa-trash" data-tooltip="SYSTEM.Items.Discard"></button>
+      </div>
+    </div>
+    {{else}}
+    <p class="hint">{{localize "SYSTEM.Items.NoHeldItem"}}</p>
+    {{/if}}
+    {{#if team}}<p class="hint">{{localize "SYSTEM.Team.SharedBag"}} <a data-action="openTeam">{{team.name}}</a> ({{team.system.bagCount}} / {{team.system.capacity}})</p>{{/if}}
+    {{#if looseItems.length}}
+    <div class="loose-items">
+      <p class="hint">{{localize "SYSTEM.Items.LooseItems"}}</p>
+      {{#each looseItems as |item|}}<span class="condition-chip"><img src="{{item.img}}" alt="">{{item.name}}</span>{{/each}}
+      {{#if team}}<button type="button" data-action="moveLooseItems"><i class="fa-solid fa-sack"></i> {{localize "SYSTEM.Items.MoveToBag"}}</button>{{/if}}
+    </div>
+    {{/if}}
+  </fieldset>
   {{formGroup systemFields.blurbText value=document.system.blurbText elementType="textarea" classes="blurb blurb-small"}}
 </section>

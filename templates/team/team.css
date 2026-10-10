@@ -1,0 +1,65 @@
+.explorers-team .team-header {
+  display: grid;
+  grid-template-columns: 76px 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.explorers-team .team-header img {
+  border: none;
+}
+
+.explorers-team .team-rank {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.explorers-team .team-capacity {
+  margin: 4px 0;
+  font-weight: bold;
+}
+
+.explorers-team .team-bag {
+  max-height: 440px;
+  overflow-y: auto;
+}
+
+.explorers-team .team-item {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 6px;
+  align-items: start;
+  padding: 3px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.explorers-team .team-item img,
+.explorers-team .team-member img {
+  width: 32px;
+  height: 32px;
+  border: none;
+}
+
+.explorers-team .team-item p {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+}
+
+.explorers-team .team-item-buttons {
+  display: flex;
+  gap: 2px;
+}
+
+.explorers-team .team-item-buttons button {
+  width: 30px;
+  padding: 0;
+}
+
+.explorers-team .team-member {
+  display: grid;
+  grid-template-columns: 32px 1fr auto auto auto;
+  gap: 8px;
+  align-items: center;
+  padding: 2px 0;
+}

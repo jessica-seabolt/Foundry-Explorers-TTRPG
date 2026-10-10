@@ -5,7 +5,31 @@
   "system": {
     "description": "Permanently raises IQ of Poison types by 5. Can be used to fill half your belly for today.",
     "category": "gummies",
-    "price": 500
+    "price": 500,
+    "rules": [],
+    "onUse": [
+      {
+        "type": "stat",
+        "stat": "iq",
+        "amount": 5,
+        "types": [
+          "poison"
+        ]
+      },
+      {
+        "type": "belly",
+        "halves": 1
+      }
+    ],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": true,
+    "becomes": "",
+    "manualNote": ""
   },
   "effects": [],
   "folder": "M4nON8JhXkGxExxT",
