@@ -1,0 +1,375 @@
+{
+  "name": "Gastly",
+  "type": "Character",
+  "_id": "hqoyKcb04ueCYldY",
+  "img": "systems/explorers/packs/enemies/assets/gastly.png",
+  "system": {
+    "species": "Gastly",
+    "type1": "ghost",
+    "type2": "poison",
+    "heldItem": "",
+    "size": "small",
+    "hp": {
+      "raw": 12,
+      "max": 12
+    },
+    "abilities": {
+      "atk": {
+        "raw": 5
+      },
+      "def": {
+        "raw": 5
+      },
+      "spatk": {
+        "raw": 15
+      },
+      "spdef": {
+        "raw": 10
+      },
+      "spe": {
+        "raw": 15
+      },
+      "iq": {
+        "raw": 10
+      }
+    },
+    "skills": {
+      "endurance": "untrained",
+      "strength": "untrained",
+      "physicalStatusResistance": "untrained",
+      "awareness": "untrained",
+      "specialStatusResistance": "untrained",
+      "movement": "untrained",
+      "iqSkills": "untrained",
+      "influence": "untrained",
+      "deceive": "untrained",
+      "intuition": "untrained",
+      "tracking": "untrained",
+      "ecology": "untrained",
+      "sneak": "minor",
+      "memory": "untrained",
+      "logic": "untrained",
+      "traps": "untrained"
+    },
+    "feats": [],
+    "blurbText": "Frail but tricky. Puts Foes to sleep, Paralyzes with Lick, and floats over Ground Moves and traps. Normal and Fighting Moves pass through it.",
+    "itemText": "",
+    "featText": ""
+  },
+  "prototypeToken": {
+    "name": "Gastly",
+    "displayName": 30,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "texture": {
+      "src": "systems/explorers/packs/enemies/assets/gastly.png",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "offsetX": 0,
+      "offsetY": 0,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "rotation": 0,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": true,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "hp.raw"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": true,
+      "range": 25,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": true,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "folder": "AMBeiwzDC6bkBD8M",
+  "sort": 900,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "explorers": {
+      "wildPokemon": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "items": [
+    {
+      "name": "Astonish",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/ghost.png",
+      "system": {
+        "description": "",
+        "type": "ghost",
+        "category": "special",
+        "power": 1,
+        "ppLeft": 20,
+        "pp": 20,
+        "effects": {
+          "Q864NaHRWvbgPSvR": {
+            "triggerType": "hit",
+            "appliedEffects": {
+              "W2sH88jgvtO5XD1H": {
+                "affectsUser": false,
+                "effect": "flinched",
+                "effectCount": null
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {},
+        "target": "foe",
+        "range": "ahead",
+        "rangeCount": 2,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.gfB2BugE3Vomj8Te",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "explorers",
+        "systemVersion": "1.1.0",
+        "createdTime": 1786623387600,
+        "modifiedTime": 1786623474913,
+        "lastModifiedBy": "DS0NWnqzUzstZn8l"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "gfB2BugE3Vomj8Te",
+      "sort": 0,
+      "_key": "!actors.items!hqoyKcb04ueCYldY.gfB2BugE3Vomj8Te"
+    },
+    {
+      "name": "Lick",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/ghost.png",
+      "system": {
+        "description": "",
+        "type": "ghost",
+        "category": "physical",
+        "power": 2,
+        "ppLeft": 20,
+        "pp": 20,
+        "effects": {
+          "8q3Fbztaavm0fF33": {
+            "triggerType": "hit",
+            "appliedEffects": {
+              "eYrJ7b8EaQLkrw2e": {
+                "affectsUser": false,
+                "effect": "paralyzed",
+                "effectCount": null
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {},
+        "target": "foe",
+        "range": "front",
+        "rangeCount": null,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.qm68fOyW3cQWSq7K",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "explorers",
+        "systemVersion": "1.1.0",
+        "createdTime": 1786620948038,
+        "modifiedTime": 1786621163914,
+        "lastModifiedBy": "DS0NWnqzUzstZn8l"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "qm68fOyW3cQWSq7K",
+      "sort": 0,
+      "_key": "!actors.items!hqoyKcb04ueCYldY.qm68fOyW3cQWSq7K"
+    },
+    {
+      "name": "Hypnosis",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/psychic.png",
+      "system": {
+        "description": "",
+        "type": "psychic",
+        "category": "specialStatus",
+        "power": 0,
+        "ppLeft": 15,
+        "pp": 15,
+        "effects": {
+          "D9zBFqmn82WyyJsf": {
+            "triggerType": "hit",
+            "appliedEffects": {
+              "ZNeyfIwW14zhGQeV": {
+                "affectsUser": false,
+                "effect": "asleep",
+                "effectCount": null
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {},
+        "target": "foe",
+        "range": "front",
+        "rangeCount": null,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.G4Z2HLeUN6LB9K9y",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "explorers",
+        "systemVersion": "1.1.0",
+        "createdTime": 1786624874881,
+        "modifiedTime": 1786624874881,
+        "lastModifiedBy": "DS0NWnqzUzstZn8l"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "G4Z2HLeUN6LB9K9y",
+      "sort": 0,
+      "_key": "!actors.items!hqoyKcb04ueCYldY.G4Z2HLeUN6LB9K9y"
+    },
+    {
+      "name": "Levitate",
+      "type": "Feature",
+      "img": "icons/svg/upgrade.svg",
+      "system": {
+        "description": "This Pokémon always levitates off the ground, is immune to Ground-Type moves, Spikes, Toxic Spikes, Sticky Web, Traps, and Terrain.",
+        "category": "rareQuality",
+        "class": null,
+        "specialization": null,
+        "level": null,
+        "prerequisite": "Pokémon that naturally float or have wings",
+        "prerequisiteLevel": 3,
+        "rules": [
+          {
+            "type": "typeImmunity",
+            "moveType": "ground"
+          }
+        ],
+        "manualNote": "Immunity to Spikes, Toxic Spikes, Sticky Web, Traps and Terrain."
+      },
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.features.Item.0JqUAQsF3P1885Pn",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": 1791590400000,
+        "modifiedTime": 1791590400000,
+        "lastModifiedBy": null
+      },
+      "_id": "0JqUAQsF3P1885Pn",
+      "sort": 0,
+      "_key": "!actors.items!hqoyKcb04ueCYldY.0JqUAQsF3P1885Pn"
+    }
+  ],
+  "_key": "!actors!hqoyKcb04ueCYldY"
+}

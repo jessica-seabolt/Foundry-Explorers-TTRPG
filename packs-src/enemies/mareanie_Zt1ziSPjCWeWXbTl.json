@@ -1,0 +1,325 @@
+{
+  "name": "Mareanie",
+  "type": "Character",
+  "_id": "Zt1ziSPjCWeWXbTl",
+  "img": "systems/explorers/packs/enemies/assets/mareanie.png",
+  "system": {
+    "species": "Mareanie",
+    "type1": "poison",
+    "type2": "water",
+    "heldItem": "",
+    "size": "small",
+    "hp": {
+      "raw": 14,
+      "max": 14
+    },
+    "abilities": {
+      "atk": {
+        "raw": 10
+      },
+      "def": {
+        "raw": 15
+      },
+      "spatk": {
+        "raw": 5
+      },
+      "spdef": {
+        "raw": 10
+      },
+      "spe": {
+        "raw": 5
+      },
+      "iq": {
+        "raw": 10
+      }
+    },
+    "skills": {
+      "endurance": "untrained",
+      "strength": "untrained",
+      "physicalStatusResistance": "untrained",
+      "awareness": "untrained",
+      "specialStatusResistance": "untrained",
+      "movement": "untrained",
+      "iqSkills": "untrained",
+      "influence": "untrained",
+      "deceive": "untrained",
+      "intuition": "untrained",
+      "tracking": "untrained",
+      "ecology": "untrained",
+      "sneak": "untrained",
+      "memory": "untrained",
+      "logic": "untrained",
+      "traps": "untrained"
+    },
+    "feats": [],
+    "blurbText": "Defensive Physical Attacker that Poisons its Foes. Can't be Paralyzed.",
+    "itemText": "",
+    "featText": ""
+  },
+  "prototypeToken": {
+    "name": "Mareanie",
+    "displayName": 30,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "texture": {
+      "src": "systems/explorers/packs/enemies/assets/mareanie.png",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "offsetX": 0,
+      "offsetY": 0,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "rotation": 0,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": true,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "hp.raw"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": true,
+      "range": 20,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": true,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "folder": "AMBeiwzDC6bkBD8M",
+  "sort": 2900,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "explorers": {
+      "wildPokemon": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "items": [
+    {
+      "name": "Poison Sting",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/poison.png",
+      "system": {
+        "description": "",
+        "type": "poison",
+        "category": "physical",
+        "power": 2,
+        "ppLeft": 20,
+        "pp": 20,
+        "effects": {
+          "Ge8h2fcVf27T8jH5": {
+            "triggerType": "hit",
+            "appliedEffects": {
+              "oq4xBS1xsFQIdyQZ": {
+                "affectsUser": false,
+                "effect": "poisoned",
+                "effectCount": null
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {},
+        "target": "foe",
+        "range": "front",
+        "rangeCount": null,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.0BWaZHIR5QERzNe1",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "explorers",
+        "systemVersion": "1.1.0",
+        "createdTime": 1786621220972,
+        "modifiedTime": 1786621220972,
+        "lastModifiedBy": "DS0NWnqzUzstZn8l"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "0BWaZHIR5QERzNe1",
+      "sort": 0,
+      "_key": "!actors.items!Zt1ziSPjCWeWXbTl.0BWaZHIR5QERzNe1"
+    },
+    {
+      "name": "Peck",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/flying.png",
+      "system": {
+        "description": "Roll a d6 after damage has been dealt. On a 6, the target is Flinched.",
+        "type": "flying",
+        "category": "physical",
+        "power": 2,
+        "ppLeft": 20,
+        "pp": 20,
+        "effects": {
+          "hJ1g7erQzq1y4r27": {
+            "triggerType": "d6",
+            "appliedEffects": {
+              "Gb6cNc3oZ2Ecddrh": {
+                "affectsUser": false,
+                "effect": "flinched",
+                "effectCount": null
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {},
+        "target": "foe",
+        "range": "front",
+        "rangeCount": null,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.lkCNopfkk3M8nhdG",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "explorers",
+        "systemVersion": "1.1.0",
+        "createdTime": 1786620790976,
+        "modifiedTime": 1786621163914,
+        "lastModifiedBy": "DS0NWnqzUzstZn8l"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "lkCNopfkk3M8nhdG",
+      "sort": 0,
+      "_key": "!actors.items!Zt1ziSPjCWeWXbTl.lkCNopfkk3M8nhdG"
+    },
+    {
+      "name": "Limber",
+      "type": "Feature",
+      "img": "icons/svg/upgrade.svg",
+      "system": {
+        "description": "This Pokémon cannot be Paralyzed.",
+        "category": "rareQuality",
+        "class": null,
+        "specialization": null,
+        "level": null,
+        "prerequisite": "",
+        "prerequisiteLevel": 3,
+        "rules": [
+          {
+            "type": "conditionImmunity",
+            "conditions": [
+              "paralyzed"
+            ]
+          }
+        ],
+        "manualNote": ""
+      },
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.features.Item.ttfd3tTjOIDAn2K4",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": 1791590400000,
+        "modifiedTime": 1791590400000,
+        "lastModifiedBy": null
+      },
+      "_id": "ttfd3tTjOIDAn2K4",
+      "sort": 0,
+      "_key": "!actors.items!Zt1ziSPjCWeWXbTl.ttfd3tTjOIDAn2K4"
+    }
+  ],
+  "_key": "!actors!Zt1ziSPjCWeWXbTl"
+}

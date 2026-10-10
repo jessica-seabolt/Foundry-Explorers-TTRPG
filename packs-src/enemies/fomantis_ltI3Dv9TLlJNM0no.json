@@ -1,0 +1,311 @@
+{
+  "name": "Fomantis",
+  "type": "Character",
+  "_id": "ltI3Dv9TLlJNM0no",
+  "img": "systems/explorers/packs/enemies/assets/fomantis.png",
+  "system": {
+    "species": "Fomantis",
+    "type1": "grass",
+    "type2": null,
+    "heldItem": "",
+    "size": "small",
+    "hp": {
+      "raw": 13,
+      "max": 13
+    },
+    "abilities": {
+      "atk": {
+        "raw": 15
+      },
+      "def": {
+        "raw": 10
+      },
+      "spatk": {
+        "raw": 5
+      },
+      "spdef": {
+        "raw": 10
+      },
+      "spe": {
+        "raw": 5
+      },
+      "iq": {
+        "raw": 10
+      }
+    },
+    "skills": {
+      "endurance": "untrained",
+      "strength": "untrained",
+      "physicalStatusResistance": "untrained",
+      "awareness": "untrained",
+      "specialStatusResistance": "untrained",
+      "movement": "untrained",
+      "iqSkills": "untrained",
+      "influence": "untrained",
+      "deceive": "untrained",
+      "intuition": "untrained",
+      "tracking": "untrained",
+      "ecology": "untrained",
+      "sneak": "minor",
+      "memory": "untrained",
+      "logic": "untrained",
+      "traps": "untrained"
+    },
+    "feats": [],
+    "blurbText": "Ambusher that strikes first with Leafage and roots itself to heal. Shrugs off Status Conditions in Harsh Sunlight.",
+    "itemText": "",
+    "featText": ""
+  },
+  "prototypeToken": {
+    "name": "Fomantis",
+    "displayName": 30,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "texture": {
+      "src": "systems/explorers/packs/enemies/assets/fomantis.png",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "offsetX": 0,
+      "offsetY": 0,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "rotation": 0,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": true,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "hp.raw"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": true,
+      "range": 20,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": true,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "folder": "AMBeiwzDC6bkBD8M",
+  "sort": 3000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "explorers": {
+      "wildPokemon": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "items": [
+    {
+      "name": "Leafage",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/grass.png",
+      "system": {
+        "description": "Has Priority.",
+        "type": "grass",
+        "category": "physical",
+        "power": 1,
+        "ppLeft": 20,
+        "pp": 20,
+        "effects": {},
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {
+          "fSFdFIwYbUwv62RI": "priority"
+        },
+        "target": "foe",
+        "range": "front",
+        "rangeCount": null,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.gz63MoIGts00ASVP",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "explorers",
+        "systemVersion": "1.1.0",
+        "createdTime": 1786620974512,
+        "modifiedTime": 1786621163914,
+        "lastModifiedBy": "DS0NWnqzUzstZn8l"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "gz63MoIGts00ASVP",
+      "sort": 0,
+      "_key": "!actors.items!ltI3Dv9TLlJNM0no.gz63MoIGts00ASVP"
+    },
+    {
+      "name": "Ingrain",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/grass.png",
+      "system": {
+        "description": "Heal for number rolled. User is Restrained until the end of their next turn.",
+        "type": "grass",
+        "category": "physicalStatus",
+        "power": 2,
+        "ppLeft": 15,
+        "pp": 15,
+        "effects": {
+          "kuSqR3xLoFpvzKBt": {
+            "triggerType": "hit",
+            "appliedEffects": {
+              "Ktu9w0cGETNE6wn2": {
+                "affectsUser": false,
+                "effect": "restrained",
+                "effectCount": null
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {
+          "Gamuol5MIJZsE0XJ": "healPower"
+        },
+        "target": "self",
+        "range": null,
+        "rangeCount": null,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.ZAunKtXzSKLzjiFn",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.2",
+        "createdTime": 1786621982844,
+        "modifiedTime": 1788124209989,
+        "lastModifiedBy": "MCdTXLOC9oShsYaY"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "ZAunKtXzSKLzjiFn",
+      "sort": 0,
+      "_key": "!actors.items!ltI3Dv9TLlJNM0no.ZAunKtXzSKLzjiFn"
+    },
+    {
+      "name": "Leaf Guard",
+      "type": "Feature",
+      "img": "icons/svg/upgrade.svg",
+      "system": {
+        "description": "If the Weather is Harsh Sunlight, this Pokémon cannot be affected by Status Conditions.",
+        "category": "rareQuality",
+        "class": null,
+        "specialization": null,
+        "level": null,
+        "prerequisite": "Grass-Type Pokémon",
+        "prerequisiteLevel": 3,
+        "rules": [],
+        "manualNote": ""
+      },
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.features.Item.EOGxPmaNbDkj6HzN",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": 1791590400000,
+        "modifiedTime": 1791590400000,
+        "lastModifiedBy": null
+      },
+      "_id": "EOGxPmaNbDkj6HzN",
+      "sort": 0,
+      "_key": "!actors.items!ltI3Dv9TLlJNM0no.EOGxPmaNbDkj6HzN"
+    }
+  ],
+  "_key": "!actors!ltI3Dv9TLlJNM0no"
+}

@@ -1,0 +1,326 @@
+{
+  "name": "Growlithe",
+  "type": "Character",
+  "_id": "hAjQKm6TknSLxc1A",
+  "img": "systems/explorers/packs/enemies/assets/growlithe.png",
+  "system": {
+    "species": "Growlithe",
+    "type1": "fire",
+    "type2": null,
+    "heldItem": "",
+    "size": "medium",
+    "hp": {
+      "raw": 15,
+      "max": 15
+    },
+    "abilities": {
+      "atk": {
+        "raw": 15
+      },
+      "def": {
+        "raw": 10
+      },
+      "spatk": {
+        "raw": 10
+      },
+      "spdef": {
+        "raw": 5
+      },
+      "spe": {
+        "raw": 10
+      },
+      "iq": {
+        "raw": 5
+      }
+    },
+    "skills": {
+      "endurance": "untrained",
+      "strength": "untrained",
+      "physicalStatusResistance": "untrained",
+      "awareness": "untrained",
+      "specialStatusResistance": "untrained",
+      "movement": "untrained",
+      "iqSkills": "untrained",
+      "influence": "untrained",
+      "deceive": "untrained",
+      "intuition": "untrained",
+      "tracking": "untrained",
+      "ecology": "untrained",
+      "sneak": "untrained",
+      "memory": "untrained",
+      "logic": "untrained",
+      "traps": "untrained"
+    },
+    "feats": [],
+    "blurbText": "Mixed attacker that Burns from range and Bites up close. Fire Moves only power it up.",
+    "itemText": "",
+    "featText": ""
+  },
+  "prototypeToken": {
+    "name": "Growlithe",
+    "displayName": 30,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "texture": {
+      "src": "systems/explorers/packs/enemies/assets/growlithe.png",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "offsetX": 0,
+      "offsetY": 0,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "rotation": 0,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": true,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "hp.raw"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": true,
+      "range": 25,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": true,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "folder": "AMBeiwzDC6bkBD8M",
+  "sort": 1400,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "explorers": {
+      "wildPokemon": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "items": [
+    {
+      "name": "Ember",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/fire.png",
+      "system": {
+        "description": "",
+        "type": "fire",
+        "category": "special",
+        "power": 1,
+        "ppLeft": 20,
+        "pp": 20,
+        "effects": {
+          "Q864NaHRWvbgPSvR": {
+            "triggerType": "hit",
+            "appliedEffects": {
+              "W2sH88jgvtO5XD1H": {
+                "affectsUser": false,
+                "effect": "burned",
+                "effectCount": null
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {},
+        "target": "foe",
+        "range": "ahead",
+        "rangeCount": 2,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.wwGsFSiMvTfQc1lw",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "explorers",
+        "systemVersion": "1.1.0",
+        "createdTime": 1786623364688,
+        "modifiedTime": 1786623474913,
+        "lastModifiedBy": "DS0NWnqzUzstZn8l"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "wwGsFSiMvTfQc1lw",
+      "sort": 0,
+      "_key": "!actors.items!hAjQKm6TknSLxc1A.wwGsFSiMvTfQc1lw"
+    },
+    {
+      "name": "Bite",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/dark.png",
+      "system": {
+        "description": "Roll a d6 after damage has been dealt. On a 6, the target is Flinched.",
+        "type": "dark",
+        "category": "physical",
+        "power": 2,
+        "ppLeft": 20,
+        "pp": 20,
+        "effects": {
+          "EzvOJZkBVVgzIzxr": {
+            "triggerType": "d6",
+            "appliedEffects": {
+              "2T4D2x6I4xAIpAl6": {
+                "affectsUser": false,
+                "effect": "flinched",
+                "booleanInput": false,
+                "effectCount": null
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {
+          "Nj2f2Z8HYtYt9gCQ": "biting"
+        },
+        "target": "foe",
+        "range": "front",
+        "rangeCount": null,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.RDJazVdWMfNIPJFe",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.1",
+        "createdTime": 1786620038550,
+        "modifiedTime": 1787944526662,
+        "lastModifiedBy": "MCdTXLOC9oShsYaY"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "RDJazVdWMfNIPJFe",
+      "sort": 0,
+      "_key": "!actors.items!hAjQKm6TknSLxc1A.RDJazVdWMfNIPJFe"
+    },
+    {
+      "name": "Flash Fire",
+      "type": "Feature",
+      "img": "icons/svg/upgrade.svg",
+      "system": {
+        "description": "Whenever this Pokémon is attacked by a Fire-Type Move, they take no damage, and the Move Power of their Fire Type Moves increases by 1.",
+        "category": "rareQuality",
+        "class": null,
+        "specialization": null,
+        "level": null,
+        "prerequisite": "Fire-Type Pokémon",
+        "prerequisiteLevel": 3,
+        "rules": [
+          {
+            "type": "typeImmunity",
+            "moveType": "fire"
+          }
+        ],
+        "manualNote": "The Fire-Type Move Power boost after being hit."
+      },
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.features.Item.HRdexHS2EB1kh8nd",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": 1791590400000,
+        "modifiedTime": 1791590400000,
+        "lastModifiedBy": null
+      },
+      "_id": "HRdexHS2EB1kh8nd",
+      "sort": 0,
+      "_key": "!actors.items!hAjQKm6TknSLxc1A.HRdexHS2EB1kh8nd"
+    }
+  ],
+  "_key": "!actors!hAjQKm6TknSLxc1A"
+}

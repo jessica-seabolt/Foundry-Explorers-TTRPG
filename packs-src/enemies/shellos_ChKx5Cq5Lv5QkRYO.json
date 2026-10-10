@@ -1,0 +1,381 @@
+{
+  "name": "Shellos",
+  "type": "Character",
+  "_id": "ChKx5Cq5Lv5QkRYO",
+  "img": "systems/explorers/packs/enemies/assets/shellos.png",
+  "system": {
+    "species": "Shellos",
+    "type1": "water",
+    "type2": null,
+    "heldItem": "",
+    "size": "small",
+    "hp": {
+      "raw": 15,
+      "max": 15
+    },
+    "abilities": {
+      "atk": {
+        "raw": 5
+      },
+      "def": {
+        "raw": 10
+      },
+      "spatk": {
+        "raw": 10
+      },
+      "spdef": {
+        "raw": 15
+      },
+      "spe": {
+        "raw": 5
+      },
+      "iq": {
+        "raw": 10
+      }
+    },
+    "skills": {
+      "endurance": "untrained",
+      "strength": "untrained",
+      "physicalStatusResistance": "untrained",
+      "awareness": "untrained",
+      "specialStatusResistance": "untrained",
+      "movement": "untrained",
+      "iqSkills": "untrained",
+      "influence": "untrained",
+      "deceive": "untrained",
+      "intuition": "untrained",
+      "tracking": "untrained",
+      "ecology": "untrained",
+      "sneak": "untrained",
+      "memory": "untrained",
+      "logic": "untrained",
+      "traps": "untrained"
+    },
+    "feats": [],
+    "blurbText": "Slow, bulky Special Attacker. Draws in Water Moves with Storm Drain and weakens Electric attackers with Mud Sport.",
+    "itemText": "",
+    "featText": ""
+  },
+  "prototypeToken": {
+    "name": "Shellos",
+    "displayName": 30,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "texture": {
+      "src": "systems/explorers/packs/enemies/assets/shellos.png",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "offsetX": 0,
+      "offsetY": 0,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "rotation": 0,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": true,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "hp.raw"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": true,
+      "range": 25,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": true,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "folder": "AMBeiwzDC6bkBD8M",
+  "sort": 500,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "explorers": {
+      "wildPokemon": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "items": [
+    {
+      "name": "Mud-Slap",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/ground.png",
+      "system": {
+        "description": "",
+        "type": "ground",
+        "category": "special",
+        "power": 1,
+        "ppLeft": 20,
+        "pp": 20,
+        "effects": {
+          "x3OLb7fn7KxuZME2": {
+            "triggerType": "hit",
+            "appliedEffects": {
+              "DpKqZPk68QofdBPz": {
+                "affectsUser": false,
+                "effect": "blinded",
+                "effectCount": null
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {},
+        "target": "foe",
+        "range": "ahead",
+        "rangeCount": 2,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.4igNoIbvgq7toHWi",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "explorers",
+        "systemVersion": "1.1.0",
+        "createdTime": 1786623474874,
+        "modifiedTime": 1786623474913,
+        "lastModifiedBy": "DS0NWnqzUzstZn8l"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "4igNoIbvgq7toHWi",
+      "sort": 0,
+      "_key": "!actors.items!ChKx5Cq5Lv5QkRYO.4igNoIbvgq7toHWi"
+    },
+    {
+      "name": "Bubble",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/water.png",
+      "system": {
+        "description": "",
+        "type": "water",
+        "category": "special",
+        "power": 1,
+        "ppLeft": 20,
+        "pp": 20,
+        "effects": {
+          "0PHlLk4OwI8hUnp2": {
+            "triggerType": "hit",
+            "appliedEffects": {
+              "D5K4M76EY3dZt7y7": {
+                "affectsUser": false,
+                "effect": "speDown",
+                "effectCount": 2
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {},
+        "target": "foe",
+        "range": "ahead",
+        "rangeCount": 2,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.xlALkp93q4dcp1Qp",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "explorers",
+        "systemVersion": "1.1.0",
+        "createdTime": 1786623594601,
+        "modifiedTime": 1786623594601,
+        "lastModifiedBy": "DS0NWnqzUzstZn8l"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "xlALkp93q4dcp1Qp",
+      "sort": 0,
+      "_key": "!actors.items!ChKx5Cq5Lv5QkRYO.xlALkp93q4dcp1Qp"
+    },
+    {
+      "name": "Mud Sport",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/ground.png",
+      "system": {
+        "description": "Electric type moves do half damage for 5 turns.",
+        "type": "ground",
+        "category": "physicalStatus",
+        "power": 0,
+        "ppLeft": 15,
+        "pp": 15,
+        "effects": {
+          "tuQ5Dza5pINRH8Sn": {
+            "triggerType": "hit",
+            "appliedEffects": {
+              "q4u41Exf9gtJjsMo": {
+                "affectsUser": false,
+                "effect": "mudSport",
+                "effectCount": 5
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {},
+        "target": "all",
+        "range": "room",
+        "rangeCount": null,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.QShZfGlp9wbBUToi",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "explorers",
+        "systemVersion": "1.1.0",
+        "createdTime": 1786622027983,
+        "modifiedTime": 1786663393136,
+        "lastModifiedBy": "DS0NWnqzUzstZn8l"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "QShZfGlp9wbBUToi",
+      "sort": 0,
+      "_key": "!actors.items!ChKx5Cq5Lv5QkRYO.QShZfGlp9wbBUToi"
+    },
+    {
+      "name": "Storm Drain",
+      "type": "Feature",
+      "img": "icons/svg/upgrade.svg",
+      "system": {
+        "description": "Whenever a Foe's Water-type Move is used in the same Room or Hallway as this Pokémon, it is redirected and deals no damage, and the Pokémon with this ability gets Sp.Atk Up 2.",
+        "category": "rareQuality",
+        "class": null,
+        "specialization": null,
+        "level": null,
+        "prerequisite": "Water-Type & Grass-Type Pokémon",
+        "prerequisiteLevel": 6,
+        "rules": [
+          {
+            "type": "typeImmunity",
+            "moveType": "water",
+            "effects": [
+              {
+                "effect": "spatkUp",
+                "effectCount": 2
+              }
+            ]
+          }
+        ],
+        "manualNote": "Redirecting Water-Type Moves used on others in the Room."
+      },
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.features.Item.ZvFuoUMOcIfwcgPu",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": 1791590400000,
+        "modifiedTime": 1791590400000,
+        "lastModifiedBy": null
+      },
+      "_id": "ZvFuoUMOcIfwcgPu",
+      "sort": 0,
+      "_key": "!actors.items!ChKx5Cq5Lv5QkRYO.ZvFuoUMOcIfwcgPu"
+    }
+  ],
+  "_key": "!actors!ChKx5Cq5Lv5QkRYO"
+}

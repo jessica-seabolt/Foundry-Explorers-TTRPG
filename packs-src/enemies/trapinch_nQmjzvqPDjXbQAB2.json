@@ -59,7 +59,7 @@
   "prototypeToken": {
     "name": "Trapinch",
     "displayName": 0,
-    "actorLink": true,
+    "actorLink": false,
     "width": 1,
     "height": 1,
     "texture": {
@@ -75,10 +75,10 @@
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
-    "lockRotation": false,
+    "lockRotation": true,
     "rotation": 0,
     "alpha": 1,
-    "disposition": 1,
+    "disposition": -1,
     "displayBars": 0,
     "bar1": {
       "attribute": "hp.raw"
@@ -147,7 +147,7 @@
     "movementAction": null,
     "flags": {},
     "randomImg": false,
-    "appendNumber": false,
+    "appendNumber": true,
     "prependAdjective": false
   },
   "items": [
@@ -303,7 +303,7 @@
     }
   ],
   "effects": [],
-  "folder": null,
+  "folder": "4PhOELcwPxXKi6fF",
   "sort": 0,
   "ownership": {
     "default": 0,

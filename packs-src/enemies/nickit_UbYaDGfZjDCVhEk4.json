@@ -1,0 +1,311 @@
+{
+  "name": "Nickit",
+  "type": "Character",
+  "_id": "UbYaDGfZjDCVhEk4",
+  "img": "systems/explorers/packs/enemies/assets/nickit.png",
+  "system": {
+    "species": "Nickit",
+    "type1": "dark",
+    "type2": null,
+    "heldItem": "",
+    "size": "small",
+    "hp": {
+      "raw": 12,
+      "max": 12
+    },
+    "abilities": {
+      "atk": {
+        "raw": 10
+      },
+      "def": {
+        "raw": 5
+      },
+      "spatk": {
+        "raw": 10
+      },
+      "spdef": {
+        "raw": 10
+      },
+      "spe": {
+        "raw": 15
+      },
+      "iq": {
+        "raw": 10
+      }
+    },
+    "skills": {
+      "endurance": "untrained",
+      "strength": "untrained",
+      "physicalStatusResistance": "untrained",
+      "awareness": "untrained",
+      "specialStatusResistance": "untrained",
+      "movement": "untrained",
+      "iqSkills": "untrained",
+      "influence": "untrained",
+      "deceive": "minor",
+      "intuition": "untrained",
+      "tracking": "untrained",
+      "ecology": "untrained",
+      "sneak": "minor",
+      "memory": "untrained",
+      "logic": "untrained",
+      "traps": "untrained"
+    },
+    "feats": [],
+    "blurbText": "Sly and quick: strikes first with Quick Attack and weakens Special Attackers with Snarl. Likes to steal food.",
+    "itemText": "",
+    "featText": ""
+  },
+  "prototypeToken": {
+    "name": "Nickit",
+    "displayName": 30,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "texture": {
+      "src": "systems/explorers/packs/enemies/assets/nickit.png",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "offsetX": 0,
+      "offsetY": 0,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "rotation": 0,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": true,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "hp.raw"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": true,
+      "range": 25,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": true,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "folder": "AMBeiwzDC6bkBD8M",
+  "sort": 3500,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "explorers": {
+      "wildPokemon": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "items": [
+    {
+      "name": "Quick Attack",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/normal.png",
+      "system": {
+        "description": "Has Priority.",
+        "type": "normal",
+        "category": "physical",
+        "power": 1,
+        "ppLeft": 20,
+        "pp": 20,
+        "effects": {},
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {
+          "IFDuvxVN3lnW9Qfw": "priority"
+        },
+        "target": "foe",
+        "range": "front",
+        "rangeCount": null,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.EYv2zEtxV0qqKIlD",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "explorers",
+        "systemVersion": "1.1.0",
+        "createdTime": 1786621175619,
+        "modifiedTime": 1786621175619,
+        "lastModifiedBy": "DS0NWnqzUzstZn8l"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "EYv2zEtxV0qqKIlD",
+      "sort": 0,
+      "_key": "!actors.items!UbYaDGfZjDCVhEk4.EYv2zEtxV0qqKIlD"
+    },
+    {
+      "name": "Snarl",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/dark.png",
+      "system": {
+        "description": "",
+        "type": "dark",
+        "category": "special",
+        "power": 1,
+        "ppLeft": 20,
+        "pp": 20,
+        "effects": {
+          "uD5wKrq5ueTQHKAe": {
+            "triggerType": "hit",
+            "appliedEffects": {
+              "UPxTOfTOyIvIDxi1": {
+                "affectsUser": false,
+                "effect": "spatkDown",
+                "effectCount": 2
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {
+          "NK4K3pOKx6qmeOuy": "sound"
+        },
+        "target": "foe",
+        "range": "ahead",
+        "rangeCount": 2,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.cvIEowlJddYH0253",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.1",
+        "createdTime": 1786623193997,
+        "modifiedTime": 1787944775745,
+        "lastModifiedBy": "MCdTXLOC9oShsYaY"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "cvIEowlJddYH0253",
+      "sort": 0,
+      "_key": "!actors.items!UbYaDGfZjDCVhEk4.cvIEowlJddYH0253"
+    },
+    {
+      "name": "Run Away",
+      "type": "Feature",
+      "img": "icons/svg/upgrade.svg",
+      "system": {
+        "description": "This Pokémon cannot be hit by a Move triggered by an Opportunity Strike.",
+        "category": "rareQuality",
+        "class": null,
+        "specialization": null,
+        "level": null,
+        "prerequisite": "",
+        "prerequisiteLevel": 3,
+        "rules": [],
+        "manualNote": ""
+      },
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.features.Item.8gr0sTjGXRqtNGbb",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": 1791590400000,
+        "modifiedTime": 1791590400000,
+        "lastModifiedBy": null
+      },
+      "_id": "8gr0sTjGXRqtNGbb",
+      "sort": 0,
+      "_key": "!actors.items!UbYaDGfZjDCVhEk4.8gr0sTjGXRqtNGbb"
+    }
+  ],
+  "_key": "!actors!UbYaDGfZjDCVhEk4"
+}

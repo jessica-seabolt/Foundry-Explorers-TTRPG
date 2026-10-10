@@ -1,0 +1,323 @@
+{
+  "name": "Roggenrola",
+  "type": "Character",
+  "_id": "7okKgju970imlFwn",
+  "img": "systems/explorers/packs/enemies/assets/roggenrola.png",
+  "system": {
+    "species": "Roggenrola",
+    "type1": "rock",
+    "type2": null,
+    "heldItem": "",
+    "size": "small",
+    "hp": {
+      "raw": 15,
+      "max": 15
+    },
+    "abilities": {
+      "atk": {
+        "raw": 15
+      },
+      "def": {
+        "raw": 20
+      },
+      "spatk": {
+        "raw": 5
+      },
+      "spdef": {
+        "raw": 5
+      },
+      "spe": {
+        "raw": 5
+      },
+      "iq": {
+        "raw": 5
+      }
+    },
+    "skills": {
+      "endurance": "untrained",
+      "strength": "untrained",
+      "physicalStatusResistance": "untrained",
+      "awareness": "untrained",
+      "specialStatusResistance": "untrained",
+      "movement": "untrained",
+      "iqSkills": "untrained",
+      "influence": "untrained",
+      "deceive": "untrained",
+      "intuition": "untrained",
+      "tracking": "untrained",
+      "ecology": "untrained",
+      "sneak": "untrained",
+      "memory": "untrained",
+      "logic": "untrained",
+      "traps": "untrained"
+    },
+    "feats": [],
+    "blurbText": "Slow, very sturdy Physical Attacker that slows Foes with Rock Tomb. Survives one big hit at full HP.",
+    "itemText": "",
+    "featText": ""
+  },
+  "prototypeToken": {
+    "name": "Roggenrola",
+    "displayName": 30,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "texture": {
+      "src": "systems/explorers/packs/enemies/assets/roggenrola.png",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "offsetX": 0,
+      "offsetY": 0,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "rotation": 0,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": true,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 20,
+    "bar1": {
+      "attribute": "hp.raw"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": true,
+      "range": 20,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": true,
+    "prependAdjective": false
+  },
+  "effects": [],
+  "folder": "AMBeiwzDC6bkBD8M",
+  "sort": 1900,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "explorers": {
+      "wildPokemon": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "items": [
+    {
+      "name": "Tackle",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/normal.png",
+      "system": {
+        "description": "Pushes the target up to 2 tiles away.  If they collide with a wall or a Pokemon, they take 1d6 damage.",
+        "type": "normal",
+        "category": "physical",
+        "power": 2,
+        "ppLeft": 20,
+        "pp": 20,
+        "effects": {
+          "QNYPQfveY2xXKP6q": {
+            "triggerType": "hit",
+            "appliedEffects": {
+              "biPIYFoe9FAF9E4S": {
+                "affectsUser": false,
+                "effect": "push",
+                "effectCount": 2
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {},
+        "target": "foe",
+        "range": "front",
+        "rangeCount": null,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.EKvLmKI7VEDcWJfc",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "explorers",
+        "systemVersion": "1.1.0",
+        "createdTime": 1786621163885,
+        "modifiedTime": 1786663211905,
+        "lastModifiedBy": "DS0NWnqzUzstZn8l"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "EKvLmKI7VEDcWJfc",
+      "sort": 0,
+      "_key": "!actors.items!7okKgju970imlFwn.EKvLmKI7VEDcWJfc"
+    },
+    {
+      "name": "Rock Tomb",
+      "type": "Move",
+      "img": "systems/explorers/assets/icons/rock.png",
+      "system": {
+        "description": "",
+        "type": "rock",
+        "category": "physical",
+        "power": 2,
+        "ppLeft": 20,
+        "pp": 20,
+        "effects": {
+          "6wpA3Q7LFIYS6czN": {
+            "triggerType": "hit",
+            "appliedEffects": {
+              "ScGIrUStBHR4EC5L": {
+                "affectsUser": false,
+                "effect": "speDown",
+                "effectCount": 2
+              }
+            }
+          }
+        },
+        "offensiveCheck": null,
+        "defensiveCheck": null,
+        "tags": {},
+        "target": "foe",
+        "range": "front",
+        "rangeCount": null,
+        "level": 1
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.moves.Item.IfTQAdxhKeHg7iwy",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.350",
+        "systemId": "explorers",
+        "systemVersion": "1.1.0",
+        "createdTime": 1786621271156,
+        "modifiedTime": 1786621271156,
+        "lastModifiedBy": "DS0NWnqzUzstZn8l"
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_id": "IfTQAdxhKeHg7iwy",
+      "sort": 0,
+      "_key": "!actors.items!7okKgju970imlFwn.IfTQAdxhKeHg7iwy"
+    },
+    {
+      "name": "Sturdy",
+      "type": "Feature",
+      "img": "icons/svg/upgrade.svg",
+      "system": {
+        "description": "This Pokémon cannot be knocked out by a single hit as long as its HP is full. One-hit KO moves will also fail to knock it out.",
+        "category": "rareQuality",
+        "class": null,
+        "specialization": null,
+        "level": null,
+        "prerequisite": "",
+        "prerequisiteLevel": 3,
+        "rules": [
+          {
+            "type": "endure",
+            "fromFullHp": true
+          }
+        ],
+        "manualNote": "One-hit KO moves failing to knock it out."
+      },
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "flags": {},
+      "_stats": {
+        "compendiumSource": "Compendium.explorers.features.Item.Vi3V7DZ3T6JIcJ1y",
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": 1791590400000,
+        "modifiedTime": 1791590400000,
+        "lastModifiedBy": null
+      },
+      "_id": "Vi3V7DZ3T6JIcJ1y",
+      "sort": 0,
+      "_key": "!actors.items!7okKgju970imlFwn.Vi3V7DZ3T6JIcJ1y"
+    }
+  ],
+  "_key": "!actors!7okKgju970imlFwn"
+}
