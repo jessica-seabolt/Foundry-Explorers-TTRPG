@@ -1,10 +1,10 @@
 {
   "name": "Bubble",
   "type": "Move",
-  "img": "systems/explorers/assets/icons/steel.png",
+  "img": "systems/explorers/assets/icons/water.png",
   "system": {
     "description": "",
-    "type": "steel",
+    "type": "water",
     "category": "special",
     "power": 1,
     "ppLeft": 20,
