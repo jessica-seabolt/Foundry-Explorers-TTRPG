@@ -6,6 +6,7 @@
 //   tools/packs.cmd build      JSON source -> LevelDB packs
 //   tools/packs.cmd extract    LevelDB packs -> JSON source
 // Or with Node.js installed: node tools/packs.mjs <build|extract> [pack ...]
+// Add --root=<folder> to work on another package's packs (a module folder with module.json and packs-src/).
 
 import fs from "node:fs";
 import path from "node:path";
@@ -13,7 +14,10 @@ import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const SOURCE_DIR = path.join(ROOT, "packs-src");
+const args = process.argv.slice(2);
+const rootArg = args.find(arg => arg.startsWith("--root="));
+const PACKAGE_ROOT = rootArg ? path.resolve(rootArg.slice("--root=".length)) : ROOT;
+const SOURCE_DIR = path.join(PACKAGE_ROOT, "packs-src");
 const PACK_FILES = /^(\d+\.(ldb|log)|CURRENT|LOCK|LOG|LOG\.old|MANIFEST-\d+)$/;
 
 // Which top-level collection each pack type stores; anything else in a pack is never loaded by Foundry
@@ -29,8 +33,10 @@ function loadClassicLevel() {
 }
 
 function readPackList() {
-  const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, "system.json"), "utf8"));
-  return manifest.packs.map(pack => ({ name: pack.name, type: pack.type, dir: path.join(ROOT, pack.path) }));
+  const manifestPath = ["system.json", "module.json"].map(name => path.join(PACKAGE_ROOT, name)).find(fs.existsSync);
+  if (!manifestPath) throw new Error(`No system.json or module.json in ${PACKAGE_ROOT}`);
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  return manifest.packs.map(pack => ({ name: pack.name, type: pack.type, dir: path.join(PACKAGE_ROOT, pack.path) }));
 }
 
 const slug = name => (name ?? "unnamed").normalize("NFKD").replace(/[^\w]+/g, "_").replace(/^_|_$/g, "").toLowerCase() || "unnamed";
@@ -151,7 +157,7 @@ async function buildPack(ClassicLevel, pack) {
 
 /* -------------------------------------------- */
 
-const [command, ...only] = process.argv.slice(2);
+const [command, ...only] = args.filter(arg => arg !== rootArg);
 if (!["build", "extract"].includes(command)) {
   console.error("Usage: packs.mjs <build|extract> [pack ...]");
   process.exit(1);
