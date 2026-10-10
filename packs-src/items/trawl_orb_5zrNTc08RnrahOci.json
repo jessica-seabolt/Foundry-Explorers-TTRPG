@@ -1,7 +1,7 @@
 {
   "name": "Trawl Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/trawl_orb.png",
   "system": {
     "description": "Draws all items to user, Range: Floor.",
     "category": "orbs",

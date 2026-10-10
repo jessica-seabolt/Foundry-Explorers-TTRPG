@@ -1,7 +1,7 @@
 {
   "name": "Smoke Ball",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/smoke_ball.png",
   "system": {
     "description": "Arcs and hits a target Tile, whereupon it explodes, causing a smoke to erupt that Blinds Pokémon in a 1-Tile Range. The smoke clears after 2 Rounds of Battle.",
     "category": "thrownItems",

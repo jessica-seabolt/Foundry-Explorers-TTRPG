@@ -1,7 +1,7 @@
 {
   "name": "Sneak Scarf",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/sneak_scarf.png",
   "system": {
     "description": "You roll 1 additional Skill Die when making a Sneak Check.",
     "category": "scarvesAndBands",

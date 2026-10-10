@@ -1,7 +1,7 @@
 {
   "name": "Sleep Seed",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/sleep_seed.png",
   "system": {
     "description": "Gives Asleep status.",
     "category": "seeds",

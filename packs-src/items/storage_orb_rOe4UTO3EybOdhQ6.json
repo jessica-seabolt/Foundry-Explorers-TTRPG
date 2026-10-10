@@ -1,7 +1,7 @@
 {
   "name": "Storage Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/storage_orb.png",
   "system": {
     "description": "Allows you to access your Storage.",
     "category": "orbs",

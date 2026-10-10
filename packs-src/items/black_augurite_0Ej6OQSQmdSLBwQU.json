@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Black Augurite",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/black_augurite.png",
   "system": {
     "description": "Evolves Scyther into Kleavor.",
     "category": "evolutionItems",

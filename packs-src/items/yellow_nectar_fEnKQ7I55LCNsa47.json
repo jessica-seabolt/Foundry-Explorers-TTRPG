@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "Yellow Nectar",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/yellow_nectar.png",
   "system": {
     "description": "Changes Oricorio into Pom-Pom Style.",
     "category": "formChangingItems",

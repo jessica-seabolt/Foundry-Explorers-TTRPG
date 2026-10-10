@@ -1,7 +1,7 @@
 {
   "name": "White Gummi",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/white_gummi.png",
   "system": {
     "description": "Permanently raises IQ of Normal types by 5. Can be used to fill half your belly for today.",
     "category": "gummies",

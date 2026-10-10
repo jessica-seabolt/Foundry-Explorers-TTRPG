@@ -1,7 +1,7 @@
 {
   "name": "Quick Claw",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/quick_claw.png",
   "system": {
     "description": "When you start a Round of Battle, roll a d6. On a 6, your Moves have Priority.",
     "category": "battleItems",

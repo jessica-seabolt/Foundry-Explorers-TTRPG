@@ -1,7 +1,7 @@
 {
   "name": "Mobile Scarf",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/mobile_scarf.png",
   "system": {
     "description": "Boosts user's Speed Modifier by 2, and allows the user to walk on any surface.",
     "category": "scarvesAndBands",

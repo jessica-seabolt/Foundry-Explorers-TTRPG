@@ -1,7 +1,7 @@
 {
   "name": "Silver Spike",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/silver_spike.png",
   "system": {
     "description": "Hits target for 3d6 damage. Deals damage as Steel Type. Thrown in a straight line.",
     "category": "thrownItems",

@@ -1,7 +1,7 @@
 {
   "name": "Shed Shell",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/shed_shell.png",
   "system": {
     "description": "You do not trigger Opportunity Strikes by moving out of range of a Foe.",
     "category": "battleItems",

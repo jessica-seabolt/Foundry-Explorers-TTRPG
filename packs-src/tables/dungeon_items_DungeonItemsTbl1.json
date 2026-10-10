@@ -1,0 +1,866 @@
+{
+  "name": "Dungeon Items",
+  "img": "systems/explorers/assets/items/oran_berry.png",
+  "description": "<p>Items found lying on dungeon floors. The dungeon floor generator draws from this table for each item spot; copy and edit it to give a dungeon its own items.</p>",
+  "results": [
+    {
+      "type": "document",
+      "weight": 12,
+      "range": [
+        1,
+        12
+      ],
+      "_id": "ijr2jVi0b8CwcaF7",
+      "name": "Oran Berry",
+      "img": "systems/explorers/assets/items/oran_berry.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.tz0GXd81Ewlqr5er",
+      "_key": "!tables.results!DungeonItemsTbl1.ijr2jVi0b8CwcaF7"
+    },
+    {
+      "type": "document",
+      "weight": 10,
+      "range": [
+        13,
+        22
+      ],
+      "_id": "IEcatuDfbuJrgBxG",
+      "name": "Apple",
+      "img": "systems/explorers/assets/items/apple.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.GOAaupFt3jtjnLqI",
+      "_key": "!tables.results!DungeonItemsTbl1.IEcatuDfbuJrgBxG"
+    },
+    {
+      "type": "document",
+      "weight": 8,
+      "range": [
+        23,
+        30
+      ],
+      "_id": "RkETeFJIlwAYncUH",
+      "name": "Geo Pebble",
+      "img": "systems/explorers/assets/items/geo_pebble.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.iodmYRwjCSQ6rj1H",
+      "_key": "!tables.results!DungeonItemsTbl1.RkETeFJIlwAYncUH"
+    },
+    {
+      "type": "document",
+      "weight": 6,
+      "range": [
+        31,
+        36
+      ],
+      "_id": "0GBiT8fqdlSKNAVf",
+      "name": "Gravelerock",
+      "img": "systems/explorers/assets/items/gravelerock.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.GCfEmZ0flcpHP9Hu",
+      "_key": "!tables.results!DungeonItemsTbl1.0GBiT8fqdlSKNAVf"
+    },
+    {
+      "type": "document",
+      "weight": 5,
+      "range": [
+        37,
+        41
+      ],
+      "_id": "QziZv71wcdGetC7b",
+      "name": "Blast Seed",
+      "img": "systems/explorers/assets/items/blast_seed.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.MNRFVo6sTbnMbrdl",
+      "_key": "!tables.results!DungeonItemsTbl1.QziZv71wcdGetC7b"
+    },
+    {
+      "type": "document",
+      "weight": 4,
+      "range": [
+        42,
+        45
+      ],
+      "_id": "Gn2mhFb8V48oIz7b",
+      "name": "Pecha Berry",
+      "img": "systems/explorers/assets/items/pecha_berry.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.nemodjqeBiHJlv5M",
+      "_key": "!tables.results!DungeonItemsTbl1.Gn2mhFb8V48oIz7b"
+    },
+    {
+      "type": "document",
+      "weight": 4,
+      "range": [
+        46,
+        49
+      ],
+      "_id": "VBjZ5X8c4sRis9FC",
+      "name": "Cheri Berry",
+      "img": "systems/explorers/assets/items/cheri_berry.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.IkR7UB9OFmOZgBC3",
+      "_key": "!tables.results!DungeonItemsTbl1.VBjZ5X8c4sRis9FC"
+    },
+    {
+      "type": "document",
+      "weight": 4,
+      "range": [
+        50,
+        53
+      ],
+      "_id": "cU1KdY2emI7lSEuo",
+      "name": "Rawst Berry",
+      "img": "systems/explorers/assets/items/rawst_berry.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.4xf9f6Aa0ozg49Xy",
+      "_key": "!tables.results!DungeonItemsTbl1.cU1KdY2emI7lSEuo"
+    },
+    {
+      "type": "document",
+      "weight": 4,
+      "range": [
+        54,
+        57
+      ],
+      "_id": "i8Qm7KFtafCGq7Yt",
+      "name": "Chesto Berry",
+      "img": "systems/explorers/assets/items/chesto_berry.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.EcRYohhBi3rm73Ff",
+      "_key": "!tables.results!DungeonItemsTbl1.i8Qm7KFtafCGq7Yt"
+    },
+    {
+      "type": "document",
+      "weight": 4,
+      "range": [
+        58,
+        61
+      ],
+      "_id": "rev3ggP7lqkN0nIE",
+      "name": "Heal Seed",
+      "img": "systems/explorers/assets/items/heal_seed.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.vb3JL2g1z0lVtOK7",
+      "_key": "!tables.results!DungeonItemsTbl1.rev3ggP7lqkN0nIE"
+    },
+    {
+      "type": "document",
+      "weight": 4,
+      "range": [
+        62,
+        65
+      ],
+      "_id": "L5vRe44pTCdA2GiB",
+      "name": "Plain Seed",
+      "img": "systems/explorers/assets/items/plain_seed.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.hiGkNDnn9y1Rig7c",
+      "_key": "!tables.results!DungeonItemsTbl1.L5vRe44pTCdA2GiB"
+    },
+    {
+      "type": "document",
+      "weight": 4,
+      "range": [
+        66,
+        69
+      ],
+      "_id": "R2VoBXgKms2L6qdk",
+      "name": "Silver Spike",
+      "img": "systems/explorers/assets/items/silver_spike.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.KrJRvYfgs20N3CeK",
+      "_key": "!tables.results!DungeonItemsTbl1.R2VoBXgKms2L6qdk"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        70,
+        72
+      ],
+      "_id": "q99cig2ZcdkFdxtD",
+      "name": "Big Apple",
+      "img": "systems/explorers/assets/items/big_apple.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.GCHqM6ZDS3PZQK9A",
+      "_key": "!tables.results!DungeonItemsTbl1.q99cig2ZcdkFdxtD"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        73,
+        75
+      ],
+      "_id": "r4r3vsghfp58p8eA",
+      "name": "Aspear Berry",
+      "img": "systems/explorers/assets/items/aspear_berry.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.9X8jjSBaa1iXu4yo",
+      "_key": "!tables.results!DungeonItemsTbl1.r4r3vsghfp58p8eA"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        76,
+        78
+      ],
+      "_id": "I3JgD5mvA5yobGZX",
+      "name": "Leppa Berry",
+      "img": "systems/explorers/assets/items/leppa_berry.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.r0jcBepRvNRwbuc3",
+      "_key": "!tables.results!DungeonItemsTbl1.I3JgD5mvA5yobGZX"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        79,
+        81
+      ],
+      "_id": "f93jor5wtIE1eFBQ",
+      "name": "Sleep Seed",
+      "img": "systems/explorers/assets/items/sleep_seed.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.4zRlgSHeVRz2cSNK",
+      "_key": "!tables.results!DungeonItemsTbl1.f93jor5wtIE1eFBQ"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        82,
+        84
+      ],
+      "_id": "wgNPqlD7o4ecFYpf",
+      "name": "Stun Seed",
+      "img": "systems/explorers/assets/items/stun_seed.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.f1E4YOJGsJCxyj41",
+      "_key": "!tables.results!DungeonItemsTbl1.wgNPqlD7o4ecFYpf"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        85,
+        87
+      ],
+      "_id": "fZ3K7ZsahOB9TeuG",
+      "name": "Warp Seed",
+      "img": "systems/explorers/assets/items/warp_seed.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.zFAF0ChuB6NpRb6i",
+      "_key": "!tables.results!DungeonItemsTbl1.fZ3K7ZsahOB9TeuG"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        88,
+        90
+      ],
+      "_id": "ZeoCk7yaWPyAKdNo",
+      "name": "Totter Seed",
+      "img": "systems/explorers/assets/items/totter_seed.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.3z9KwrNLOg8JIutx",
+      "_key": "!tables.results!DungeonItemsTbl1.ZeoCk7yaWPyAKdNo"
+    },
+    {
+      "type": "document",
+      "weight": 2,
+      "range": [
+        91,
+        92
+      ],
+      "_id": "3f5GAfK5LIZVpOSe",
+      "name": "Sitrus Berry",
+      "img": "systems/explorers/assets/items/sitrus_berry.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.f11phTfEKo5KNxQo",
+      "_key": "!tables.results!DungeonItemsTbl1.3f5GAfK5LIZVpOSe"
+    },
+    {
+      "type": "document",
+      "weight": 2,
+      "range": [
+        93,
+        94
+      ],
+      "_id": "wnq9xjCuE2tAk45T",
+      "name": "X-Eye Seed",
+      "img": "systems/explorers/assets/items/x_eye_seed.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.hidKtFGzjx0AQF3Y",
+      "_key": "!tables.results!DungeonItemsTbl1.wnq9xjCuE2tAk45T"
+    },
+    {
+      "type": "document",
+      "weight": 2,
+      "range": [
+        95,
+        96
+      ],
+      "_id": "tkwQ4Q0l5OskHE2F",
+      "name": "Escape Orb",
+      "img": "systems/explorers/assets/items/escape_orb.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.ZJ6LchwBqdoJCEDI",
+      "_key": "!tables.results!DungeonItemsTbl1.tkwQ4Q0l5OskHE2F"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        97,
+        97
+      ],
+      "_id": "oPB7g7IAFVb26Qd6",
+      "name": "Reviver Seed",
+      "img": "systems/explorers/assets/items/reviver_seed.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.UxcCq9SRdz9PlGet",
+      "_key": "!tables.results!DungeonItemsTbl1.oPB7g7IAFVb26Qd6"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        98,
+        98
+      ],
+      "_id": "XpTUO7fThVhC8sXg",
+      "name": "Slumber Orb",
+      "img": "systems/explorers/assets/items/slumber_orb.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.4RdZfaWcrAzXKNaO",
+      "_key": "!tables.results!DungeonItemsTbl1.XpTUO7fThVhC8sXg"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        99,
+        99
+      ],
+      "_id": "O3xZ2oPMTiqi5iSF",
+      "name": "Totter Orb",
+      "img": "systems/explorers/assets/items/totter_orb.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.pUzaQl9IDGjqPxPs",
+      "_key": "!tables.results!DungeonItemsTbl1.O3xZ2oPMTiqi5iSF"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        100,
+        100
+      ],
+      "_id": "EddeUUkUaYBfScqM",
+      "name": "Rollcall Orb",
+      "img": "systems/explorers/assets/items/rollcall_orb.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.Ikxnj0ARP4vXX7xh",
+      "_key": "!tables.results!DungeonItemsTbl1.EddeUUkUaYBfScqM"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        101,
+        101
+      ],
+      "_id": "dLPlCoaegF7oazMg",
+      "name": "Blue Gummi",
+      "img": "systems/explorers/assets/items/blue_gummi.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.CnWUejpvcBJtJurR",
+      "_key": "!tables.results!DungeonItemsTbl1.dLPlCoaegF7oazMg"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        102,
+        102
+      ],
+      "_id": "o7X78eQAGCMoWSxp",
+      "name": "Green Gummi",
+      "img": "systems/explorers/assets/items/green_gummi.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.Lb3kNuF2EqHcuW6P",
+      "_key": "!tables.results!DungeonItemsTbl1.o7X78eQAGCMoWSxp"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        103,
+        103
+      ],
+      "_id": "Ax9ARf3uCrBe8QlI",
+      "name": "Red Gummi",
+      "img": "systems/explorers/assets/items/red_gummi.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.dCB8XjZnf0SCALZo",
+      "_key": "!tables.results!DungeonItemsTbl1.Ax9ARf3uCrBe8QlI"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        104,
+        104
+      ],
+      "_id": "LCiB2NzzL4XJU9ow",
+      "name": "Elixir",
+      "img": "systems/explorers/assets/items/elixir.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.rO3WKV84YW6p1pqT",
+      "_key": "!tables.results!DungeonItemsTbl1.LCiB2NzzL4XJU9ow"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        105,
+        105
+      ],
+      "_id": "83V8P8k2BPGOQyI1",
+      "name": "Max Elixir",
+      "img": "systems/explorers/assets/items/max_elixir.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.items.Item.ttaiiBYQOKl0AYxi",
+      "_key": "!tables.results!DungeonItemsTbl1.83V8P8k2BPGOQyI1"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "formula": "1d105",
+  "_id": "DungeonItemsTbl1",
+  "sort": 0,
+  "_key": "!tables!DungeonItemsTbl1"
+}

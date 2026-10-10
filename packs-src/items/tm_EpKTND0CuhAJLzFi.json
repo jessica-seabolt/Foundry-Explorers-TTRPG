@@ -1,7 +1,7 @@
 {
   "name": "TM",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/tm.png",
   "system": {
     "description": "Teaches the User a new Move, even if they do not meet the Level Prerequisite.",
     "category": "tmsAndHms",

@@ -1,7 +1,7 @@
 {
   "name": "Cleanse Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/cleanse_orb.png",
   "system": {
     "description": "Cleans sticky and gummed up items, Range: All team members",
     "category": "orbs",

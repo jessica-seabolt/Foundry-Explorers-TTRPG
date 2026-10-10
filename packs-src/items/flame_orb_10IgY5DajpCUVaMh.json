@@ -1,7 +1,7 @@
 {
   "name": "Flame Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/flame_orb.png",
   "system": {
     "description": "User has the Burned Condition when they hold it.",
     "category": "battleItems",

@@ -1,7 +1,7 @@
 {
   "name": "Destiny Knot",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/destiny_knot.png",
   "system": {
     "description": "If you become Infatuated, the Pokémon that Infatuated you is now Infatuated by you.",
     "category": "battleItems",

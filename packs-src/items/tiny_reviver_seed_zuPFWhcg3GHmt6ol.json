@@ -1,7 +1,7 @@
 {
   "name": "Tiny Reviver Seed",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/tiny_reviver_seed.png",
   "system": {
     "description": "Revives fainted Pokémon. Becomes Plain Seed afterwards.",
     "category": "seeds",

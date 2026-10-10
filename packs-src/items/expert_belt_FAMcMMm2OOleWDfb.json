@@ -1,7 +1,7 @@
 {
   "name": "Expert Belt",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/expert_belt.png",
   "system": {
     "description": "Your Super-Effective Moves deal an additional 1d6 damage. This additional Die cannot score a Critical Hit. However, your Not Very Effective Moves deal 1d6 less (to a minimum of 1).",
     "category": "battleItems",

@@ -1,7 +1,7 @@
 {
   "name": "One-Room Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/one_room_orb.png",
   "system": {
     "description": "Breaks down all walls in the current floor.",
     "category": "orbs",

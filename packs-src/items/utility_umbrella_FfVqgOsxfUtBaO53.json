@@ -1,7 +1,7 @@
 {
   "name": "Utility Umbrella",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/utility_umbrella.png",
   "system": {
     "description": "You are unaffected by Rain and Harsh Sunlight.",
     "category": "battleItems",

@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "N-Lunarizer",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/n_lunarizer.png",
   "system": {
     "description": "Fuses Lunala with Necrozma.",
     "category": "formChangingItems",

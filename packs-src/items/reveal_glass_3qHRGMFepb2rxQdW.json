@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "Reveal Glass",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/reveal_glass.png",
   "system": {
     "description": "Changes Tornadus, Thundurus, Landorus and Enamorus between Incarnate and Therian Forms.",
     "category": "formChangingItems",

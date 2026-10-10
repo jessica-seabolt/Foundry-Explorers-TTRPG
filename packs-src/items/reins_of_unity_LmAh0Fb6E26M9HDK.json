@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "Reins of Unity",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/reins_of_unity.png",
   "system": {
     "description": "Fuses Glastrier or Spectrier with Calyrex.",
     "category": "formChangingItems",

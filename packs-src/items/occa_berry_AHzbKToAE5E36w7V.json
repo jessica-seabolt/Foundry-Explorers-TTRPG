@@ -1,7 +1,7 @@
 {
   "name": "Occa Berry",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/occa_berry.png",
   "system": {
     "description": "When held, you eat the Berry as a Reaction to taking damage from a Fire-Type Move. It deals half of the damage it would normally do instead.",
     "category": "berries",

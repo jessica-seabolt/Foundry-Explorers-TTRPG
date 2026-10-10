@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Protector",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/protector.png",
   "system": {
     "description": "Evolves Rhydon into Rhyperior.",
     "category": "evolutionItems",

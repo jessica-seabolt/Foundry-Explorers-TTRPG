@@ -1,7 +1,7 @@
 {
   "name": "Sandy Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/sandy_orb.png",
   "system": {
     "description": "Starts Sandstorm weather on the current floor.",
     "category": "orbs",

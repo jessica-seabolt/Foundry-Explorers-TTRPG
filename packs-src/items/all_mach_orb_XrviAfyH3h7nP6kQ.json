@@ -1,7 +1,7 @@
 {
   "name": "All-Mach Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/all_mach_orb.png",
   "system": {
     "description": "Raises Speed modifier by 2, Range: All team members",
     "category": "orbs",

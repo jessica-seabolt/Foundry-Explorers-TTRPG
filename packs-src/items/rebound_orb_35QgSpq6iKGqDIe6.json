@@ -1,7 +1,7 @@
 {
   "name": "Rebound Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/rebound_orb.png",
   "system": {
     "description": "Gives Counter and Mirror Coat status, which ends when reflecting damage for the first time, Range: Self",
     "category": "orbs",

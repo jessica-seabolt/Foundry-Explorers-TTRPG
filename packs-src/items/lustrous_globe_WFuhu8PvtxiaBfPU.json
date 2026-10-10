@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "Lustrous Globe",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/lustrous_globe.png",
   "system": {
     "description": "Changes Palkia between its Regular and Origin Formes.",
     "category": "formChangingItems",

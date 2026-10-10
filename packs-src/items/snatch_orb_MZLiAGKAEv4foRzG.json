@@ -1,7 +1,7 @@
 {
   "name": "Snatch Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/snatch_orb.png",
   "system": {
     "description": "Physical moves steal the Pokémon's held item, range: user",
     "category": "orbs",

@@ -1,0 +1,122 @@
+<section class="dungeon-options standard-form">
+  <div class="form-group">
+    <label>{{localize "SYSTEM.Dungeon.Name"}}</label>
+    <div class="form-fields"><input type="text" name="name" value="{{config.name}}"></div>
+  </div>
+  <div class="form-group stacked">
+    <label>{{localize "SYSTEM.Dungeon.Tileset"}}</label>
+    <file-picker name="tileset" type="image" value="{{config.tileset}}"></file-picker>
+    {{#if tilesetError}}<p class="notification error">{{tilesetError}}</p>
+    {{else if noTileset}}<p class="hint">{{localize "SYSTEM.Dungeon.TilesetHint"}}</p>{{/if}}
+  </div>
+  <div class="form-group stacked">
+    <label>{{localize "SYSTEM.Dungeon.Objects"}}</label>
+    <file-picker name="objects" type="image" value="{{config.objects}}"></file-picker>
+    {{#if objectsError}}<p class="notification error">{{objectsError}}</p>
+    {{else if noObjects}}<p class="hint">{{localize "SYSTEM.Dungeon.ObjectsHint"}}</p>{{/if}}
+  </div>
+  <div class="form-group">
+    <label>{{localize "SYSTEM.Dungeon.StairsDirection"}}</label>
+    <div class="form-fields">
+      <select name="stairs">{{selectOptions stairsDirections selected=config.stairs valueAttr="value" labelAttr="label" localize=true}}</select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>{{localize "SYSTEM.Dungeon.Scale"}}</label>
+    <div class="form-fields">
+      <select name="scale" data-dtype="Number">{{selectOptions scales selected=config.scale valueAttr="value" labelAttr="label"}}</select>
+    </div>
+  </div>
+
+  <fieldset>
+    <legend>{{localize "SYSTEM.Dungeon.Layout"}}</legend>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.LayoutType"}}</label>
+      <div class="form-fields">
+        <select name="props.layout" data-dtype="Number">{{selectOptions layouts selected=props.layout valueAttr="value" labelAttr="label" localize=true}}</select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label data-tooltip="SYSTEM.Dungeon.Props.room_density.Hint">{{localize "SYSTEM.Dungeon.Props.room_density.Label"}}</label>
+      <div class="form-fields"><input type="number" name="props.room_density" value="{{props.room_density}}" step="1"></div>
+    </div>
+    <div class="form-group">
+      <label data-tooltip="SYSTEM.Dungeon.Props.floor_connectivity.Hint">{{localize "SYSTEM.Dungeon.Props.floor_connectivity.Label"}}</label>
+      <div class="form-fields"><input type="number" name="props.floor_connectivity" value="{{props.floor_connectivity}}" min="0" step="1"></div>
+    </div>
+    <div class="form-group">
+      <label data-tooltip="SYSTEM.Dungeon.Props.num_extra_hallways.Hint">{{localize "SYSTEM.Dungeon.Props.num_extra_hallways.Label"}}</label>
+      <div class="form-fields"><input type="number" name="props.num_extra_hallways" value="{{props.num_extra_hallways}}" min="0" step="1"></div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.Props.allow_dead_ends.Label"}}</label>
+      <div class="form-fields"><input type="checkbox" name="props.allow_dead_ends" {{checked props.allow_dead_ends}}></div>
+    </div>
+    <div class="form-group">
+      <label data-tooltip="SYSTEM.Dungeon.Props.f_room_imperfections.Hint">{{localize "SYSTEM.Dungeon.Props.f_room_imperfections.Label"}}</label>
+      <div class="form-fields"><input type="checkbox" name="props.room_flags.f_room_imperfections" {{checked props.room_flags.f_room_imperfections}}></div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "SYSTEM.Dungeon.Contents"}}</legend>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.Props.f_secondary_terrain_generation.Label"}}</label>
+      <div class="form-fields"><input type="checkbox" name="props.room_flags.f_secondary_terrain_generation" {{checked props.room_flags.f_secondary_terrain_generation}}></div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.Props.secondary_terrain_density.Label"}}</label>
+      <div class="form-fields"><input type="number" name="props.secondary_terrain_density" value="{{props.secondary_terrain_density}}" min="0" step="1"></div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.Props.item_density.Label"}}</label>
+      <div class="form-fields"><input type="number" name="props.item_density" value="{{props.item_density}}" min="0" step="1"></div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.Props.buried_item_density.Label"}}</label>
+      <div class="form-fields"><input type="number" name="props.buried_item_density" value="{{props.buried_item_density}}" min="0" step="1"></div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.Props.trap_density.Label"}}</label>
+      <div class="form-fields"><input type="number" name="props.trap_density" value="{{props.trap_density}}" min="0" step="1"></div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.Props.enemy_density.Label"}}</label>
+      <div class="form-fields"><input type="number" name="props.enemy_density" value="{{props.enemy_density}}" step="1"></div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.Props.monster_house_chance.Label"}}</label>
+      <div class="form-fields"><input type="number" name="props.monster_house_chance" value="{{props.monster_house_chance}}" min="0" max="100" step="1"></div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.Props.kecleon_shop_chance.Label"}}</label>
+      <div class="form-fields"><input type="number" name="props.kecleon_shop_chance" value="{{props.kecleon_shop_chance}}" min="0" max="100" step="1"></div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>{{localize "SYSTEM.Dungeon.MarkersLegend"}}</legend>
+    {{#each markerGroups as |marker|}}
+    <div class="form-group">
+      <label>{{localize marker.label}}</label>
+      <div class="form-fields"><input type="checkbox" name="markers.{{marker.group}}" {{checked marker.checked}}></div>
+    </div>
+    {{/each}}
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.ItemTable"}}</label>
+      <div class="form-fields">
+        <select name="itemTable">
+          <option value="" {{#unless config.itemTable}}selected{{/unless}}>{{localize "SYSTEM.Dungeon.ItemTableNone"}}</option>
+          {{selectOptions itemTables selected=config.itemTable valueAttr="value" labelAttr="label"}}
+        </select>
+      </div>
+    </div>
+    <p class="hint">{{localize "SYSTEM.Dungeon.MarkersHint"}}</p>
+  </fieldset>
+
+  <div class="dungeon-settings-buttons">
+    <button type="button" data-action="importSettings"><i class="fa-solid fa-file-import"></i> {{localize "SYSTEM.Dungeon.Import"}}</button>
+    <button type="button" data-action="resetSettings"><i class="fa-solid fa-rotate-left"></i> {{localize "SYSTEM.Dungeon.Reset"}}</button>
+    <input type="file" class="dungeon-import" accept=".json,application/json" hidden>
+  </div>
+</section>

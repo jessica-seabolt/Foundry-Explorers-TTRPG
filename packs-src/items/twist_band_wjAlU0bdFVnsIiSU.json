@@ -1,7 +1,7 @@
 {
   "name": "Twist Band",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/twist_band.png",
   "system": {
     "description": "Prevents Attack and Special Attack from lowering.",
     "category": "scarvesAndBands",

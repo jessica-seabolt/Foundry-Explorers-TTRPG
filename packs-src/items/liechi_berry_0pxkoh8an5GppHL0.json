@@ -1,7 +1,7 @@
 {
   "name": "Liechi Berry",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/liechi_berry.png",
   "system": {
     "description": "When held, and you fall below 50% HP, your Attack Modifier raises by 2.",
     "category": "berries",

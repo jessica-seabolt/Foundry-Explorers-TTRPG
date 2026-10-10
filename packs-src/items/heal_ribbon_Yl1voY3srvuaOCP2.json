@@ -1,7 +1,7 @@
 {
   "name": "Heal Ribbon",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/heal_ribbon.png",
   "system": {
     "description": "When you use a Move that heals, you roll an additional dice.",
     "category": "scarvesAndBands",

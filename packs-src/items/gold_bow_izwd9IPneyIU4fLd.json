@@ -1,7 +1,7 @@
 {
   "name": "Gold Bow",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/gold_bow.png",
   "system": {
     "description": "High priced item.",
     "category": "scarvesAndBands",

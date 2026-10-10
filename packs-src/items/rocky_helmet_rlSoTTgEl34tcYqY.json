@@ -1,7 +1,7 @@
 {
   "name": "Rocky Helmet",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/rocky_helmet.png",
   "system": {
     "description": "Attackers that damage you with a Physical Move take 1d6 damage.",
     "category": "battleItems",

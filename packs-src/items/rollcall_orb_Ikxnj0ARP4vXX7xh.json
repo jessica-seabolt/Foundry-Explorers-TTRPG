@@ -1,7 +1,7 @@
 {
   "name": "Rollcall Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/rollcall_orb.png",
   "system": {
     "description": "Draws all team members next to user, Range: Floor",
     "category": "orbs",

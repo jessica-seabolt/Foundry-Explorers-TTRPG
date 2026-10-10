@@ -1,7 +1,7 @@
 {
   "name": "Slow Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/slow_orb.png",
   "system": {
     "description": "Lowers Foes' Speed Modifier by 2, Range: Foes in room",
     "category": "orbs",

@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "King's Rock",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/king_s_rock.png",
   "system": {
     "description": "Evolves certain Pokémon.",
     "category": "evolutionItems",

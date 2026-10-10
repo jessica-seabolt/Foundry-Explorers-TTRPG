@@ -1,7 +1,7 @@
 {
   "name": "Curve Band",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/curve_band.png",
   "system": {
     "description": "Makes items thrown in a straight-line ricochet off walls.",
     "category": "scarvesAndBands",

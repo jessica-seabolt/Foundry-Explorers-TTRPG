@@ -1,7 +1,7 @@
 {
   "name": "PP Up",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/pp_up.png",
   "system": {
     "description": "Increase the Maximum PP of a Move of your choice by 25%. Can only be used a maximum of 3 times on one move.",
     "category": "medicines",

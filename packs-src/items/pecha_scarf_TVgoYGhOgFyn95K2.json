@@ -1,7 +1,7 @@
 {
   "name": "Pecha Scarf",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/pecha_scarf.png",
   "system": {
     "description": "Prevents Poisoned and Badly Poisoned conditions.",
     "category": "scarvesAndBands",

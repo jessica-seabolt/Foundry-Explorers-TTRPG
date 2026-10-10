@@ -1,7 +1,7 @@
 {
   "name": "Brown Ribbon",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/brown_ribbon.png",
   "system": {
     "description": "Raises Attack, Defense, Special Attack and Special Defense modifiers of users with brown aura by 2 (Mild Nature)",
     "category": "ribbons",

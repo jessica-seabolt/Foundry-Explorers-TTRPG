@@ -1,7 +1,7 @@
 {
   "name": "See-Trap Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/see_trap_orb.png",
   "system": {
     "description": "Reveals all traps on floor.",
     "category": "orbs",

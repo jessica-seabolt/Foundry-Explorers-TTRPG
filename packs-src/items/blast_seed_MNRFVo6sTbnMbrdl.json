@@ -1,7 +1,7 @@
 {
   "name": "Blast Seed",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/blast_seed.png",
   "system": {
     "description": "Deals 2d6 Fire-Type damage to the Pokémon 1-tile in front when used. Can be thrown to deal 2d6 Fire-Type damage to the Pokémon it hits. When held, and you are damaged by a Fire-Type Move, it explodes and deals 2d6 Fire-Type Damage to the User.",
     "category": "seeds",

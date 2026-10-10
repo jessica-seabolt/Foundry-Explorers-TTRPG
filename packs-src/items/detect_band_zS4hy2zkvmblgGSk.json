@@ -1,7 +1,7 @@
 {
   "name": "Detect Band",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/detect_band.png",
   "system": {
     "description": "You roll 1 additional Skill Die when making an Awareness Check.",
     "category": "scarvesAndBands",

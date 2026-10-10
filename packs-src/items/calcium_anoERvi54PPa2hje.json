@@ -1,7 +1,7 @@
 {
   "name": "Calcium",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/calcium.png",
   "system": {
     "description": "Increases Special Attack permanently by 5. Can be used to fill half your belly for today.",
     "category": "medicines",

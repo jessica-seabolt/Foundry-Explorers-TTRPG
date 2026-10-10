@@ -1,7 +1,7 @@
 {
   "name": "Life Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/life_orb.png",
   "system": {
     "description": "You take 1d6 damage per Round of Battle you hold this (taken at end of turn), but your Moves have their Move Power increased by 1.",
     "category": "battleItems",

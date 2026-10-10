@@ -1,7 +1,7 @@
 {
   "name": "Warp Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/warp_orb.png",
   "system": {
     "description": "Warps foe to elsewhere on the same floor, Range: Foe in front",
     "category": "orbs",

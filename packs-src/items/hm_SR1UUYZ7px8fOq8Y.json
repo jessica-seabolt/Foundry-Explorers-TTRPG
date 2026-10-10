@@ -1,7 +1,7 @@
 {
   "name": "HM",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/hm.png",
   "system": {
     "description": "Teaches the User a new Hidden Technique Move. They must meet the Level Prerequisite.",
     "category": "tmsAndHms",

@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Sweet Apple",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/sweet_apple.png",
   "system": {
     "description": "Evolves Applin into Appletun.",
     "category": "evolutionItems",

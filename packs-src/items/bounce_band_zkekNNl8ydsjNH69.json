@@ -1,7 +1,7 @@
 {
   "name": "Bounce Band",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/bounce_band.png",
   "system": {
     "description": "Bounces off all thrown items.",
     "category": "scarvesAndBands",

@@ -1,7 +1,7 @@
 {
   "name": "Def. Scarf",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/def_scarf.png",
   "system": {
     "description": "Boosts user's Defense Modifier by 2.",
     "category": "scarvesAndBands",

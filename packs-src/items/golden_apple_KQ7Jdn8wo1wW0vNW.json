@@ -1,7 +1,7 @@
 {
   "name": "Golden Apple",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/golden_apple.png",
   "system": {
     "description": "You do not need to eat for the next week, and you gain 1 Minor Skill of your choice.",
     "category": "foods",

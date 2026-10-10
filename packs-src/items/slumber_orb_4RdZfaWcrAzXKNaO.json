@@ -1,7 +1,7 @@
 {
   "name": "Slumber Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/slumber_orb.png",
   "system": {
     "description": "Gives Asleep status, Range: Foe in front",
     "category": "orbs",

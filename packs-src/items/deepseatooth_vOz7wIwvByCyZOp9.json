@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Deepseatooth",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/deepseatooth.png",
   "system": {
     "description": "Evolves Clamperl into Huntail.",
     "category": "evolutionItems",

@@ -1,7 +1,7 @@
 {
   "name": "Grimy Food",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/grimy_food.png",
   "system": {
     "description": "Causes random Status Condition. Roll a 1d6.\n1 - Poisoned\n2 - Paralysed\n3- Asleep\n4 - Burned\n5 - Confused\n6 - Frozen",
     "category": "foods",

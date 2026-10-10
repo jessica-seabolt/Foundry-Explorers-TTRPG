@@ -1,7 +1,7 @@
 {
   "name": "Protein",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/protein.png",
   "system": {
     "description": "Increases Attack permanently by 5. Can be used to fill half your belly for today.",
     "category": "medicines",

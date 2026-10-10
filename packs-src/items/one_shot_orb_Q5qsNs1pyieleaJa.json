@@ -1,7 +1,7 @@
 {
   "name": "One-Shot Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/one_shot_orb.png",
   "system": {
     "description": "Roll a d6 for each Foe in the Room. On a 3-6, the Foe is knocked in one hit, Range: Room",
     "category": "orbs",

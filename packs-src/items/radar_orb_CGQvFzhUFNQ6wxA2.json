@@ -1,7 +1,7 @@
 {
   "name": "Radar Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/radar_orb.png",
   "system": {
     "description": "Reveals the number of foes on the current floor.",
     "category": "orbs",

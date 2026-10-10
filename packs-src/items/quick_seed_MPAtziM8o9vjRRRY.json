@@ -1,7 +1,7 @@
 {
   "name": "Quick Seed",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/quick_seed.png",
   "system": {
     "description": "Raises Battle Movement by 2 for this Floor.",
     "category": "seeds",

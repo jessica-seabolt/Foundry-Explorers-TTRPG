@@ -1,7 +1,7 @@
 {
   "name": "Purple Gummi",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/purple_gummi.png",
   "system": {
     "description": "Permanently raises IQ of Ghost types by 5. Can be used to fill half your belly for today.",
     "category": "gummies",

@@ -1,7 +1,7 @@
 {
   "name": "Sky Gummi",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/sky_gummi.png",
   "system": {
     "description": "Permanently raises IQ of Flying types by 5. Can be used to fill half your belly for today.",
     "category": "gummies",

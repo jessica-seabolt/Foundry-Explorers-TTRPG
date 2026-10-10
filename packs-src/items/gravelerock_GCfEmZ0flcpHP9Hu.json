@@ -1,7 +1,7 @@
 {
   "name": "Gravelerock",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/gravelerock.png",
   "system": {
     "description": "Arcs and hits target for 2d6 damage Deals damage as Rock Type.",
     "category": "thrownItems",

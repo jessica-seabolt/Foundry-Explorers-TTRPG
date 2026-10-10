@@ -1,7 +1,7 @@
 {
   "name": "Vanish Seed",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/vanish_seed.png",
   "system": {
     "description": "Gives Invisible status.",
     "category": "seeds",

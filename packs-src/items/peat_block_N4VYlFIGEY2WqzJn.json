@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Peat Block",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/peat_block.png",
   "system": {
     "description": "Evolves Ursaring into Ursaluna.",
     "category": "evolutionItems",

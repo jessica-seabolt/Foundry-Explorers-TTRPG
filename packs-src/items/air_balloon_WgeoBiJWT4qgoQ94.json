@@ -1,7 +1,7 @@
 {
   "name": "Air Balloon",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/air_balloon.png",
   "system": {
     "description": "You are Immune to Ground-Type Moves until you are hit by a non-Ground Type Move, whereupon it pops.",
     "category": "battleItems",

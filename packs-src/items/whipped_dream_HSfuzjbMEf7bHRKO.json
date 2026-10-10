@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Whipped Dream",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/whipped_dream.png",
   "system": {
     "description": "Evolves Swirlix into Slurpuff.",
     "category": "evolutionItems",

@@ -1,7 +1,7 @@
 {
   "name": "Heavy-Duty Boots",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/heavy_duty_boots.png",
   "system": {
     "description": "You cannot be affected by Spikes, Toxic Spikes, Stealth Rocks, or Traps.",
     "category": "battleItems",

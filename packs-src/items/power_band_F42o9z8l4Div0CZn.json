@@ -1,7 +1,7 @@
 {
   "name": "Power Band",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/power_band.png",
   "system": {
     "description": "Boosts user's Attack modifier by 2.",
     "category": "scarvesAndBands",

@@ -1,7 +1,7 @@
 {
   "name": "Pierce Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/pierce_orb.png",
   "system": {
     "description": "Items thrown in a straight line by the Pokémon will pass through obstacles, Range: User",
     "category": "orbs",

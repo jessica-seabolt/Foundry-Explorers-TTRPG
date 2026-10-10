@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "Prison Bottle",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/prison_bottle.png",
   "system": {
     "description": "Changes Hoopa between its Confined and Unbound Formes.",
     "category": "formChangingItems",

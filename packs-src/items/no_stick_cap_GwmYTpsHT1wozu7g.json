@@ -1,7 +1,7 @@
 {
   "name": "No-Stick Cap",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/no_stick_cap.png",
   "system": {
     "description": "Prevents Items from being Sticky.",
     "category": "scarvesAndBands",

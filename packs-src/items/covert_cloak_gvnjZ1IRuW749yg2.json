@@ -1,7 +1,7 @@
 {
   "name": "Covert Cloak",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/covert_cloak.png",
   "system": {
     "description": "You do not suffer additional effects of Physical and Special Moves.",
     "category": "scarvesAndBands",

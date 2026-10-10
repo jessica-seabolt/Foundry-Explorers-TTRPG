@@ -1,7 +1,7 @@
 {
   "name": "Warp Seed",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/warp_seed.png",
   "system": {
     "description": "Warps Pokémon to elsewhere on the Current Floor.",
     "category": "seeds",

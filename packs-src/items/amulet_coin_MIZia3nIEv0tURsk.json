@@ -1,7 +1,7 @@
 {
   "name": "Amulet Coin",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/amulet_coin.png",
   "system": {
     "description": "You earn 10% more Poké from Mission Rewards.",
     "category": "battleItems",

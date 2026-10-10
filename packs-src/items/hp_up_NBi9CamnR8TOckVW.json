@@ -1,7 +1,7 @@
 {
   "name": "HP UP",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/hp_up.png",
   "system": {
     "description": "Increases HP permanently by 10. Can be used to fill half your belly for today.",
     "category": "medicines",

@@ -1,7 +1,7 @@
 {
   "name": "Warp Scarf",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/warp_scarf.png",
   "system": {
     "description": "Every 10 steps, warps the bearer to elsewhere on the same floor.",
     "category": "scarvesAndBands",

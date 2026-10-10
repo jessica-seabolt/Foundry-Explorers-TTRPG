@@ -1,7 +1,7 @@
 {
   "name": "Turquoise Ribbon",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/turquoise_ribbon.png",
   "system": {
     "description": "Raises Attack, Defense, Special Attack and Special Defense modifiers of users with turquoise aura by 2 (Modest Nature)",
     "category": "ribbons",

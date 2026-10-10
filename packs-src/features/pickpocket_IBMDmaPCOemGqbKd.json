@@ -15,9 +15,14 @@
         "type": "skillDice",
         "skill": "sneak",
         "dice": 1
+      },
+      {
+        "type": "onDamaged",
+        "physical": true,
+        "stealAttackerItem": true
       }
     ],
-    "manualNote": "Stealing the Held Item of a Pokémon that makes a Physical Attack against it."
+    "manualNote": ""
   },
   "effects": [],
   "folder": "km7lMLkpOyOmoYSx",

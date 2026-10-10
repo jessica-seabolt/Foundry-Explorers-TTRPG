@@ -1,7 +1,7 @@
 {
   "name": "Lasso Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/lasso_orb.png",
   "system": {
     "description": "Pulls the target 1 tile towards you, Range: 2 tiles away",
     "category": "orbs",

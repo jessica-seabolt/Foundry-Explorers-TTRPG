@@ -1,7 +1,7 @@
 {
   "name": "Whiff Specs",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/whiff_specs.png",
   "system": {
     "description": "When the bearer throws an Item or uses a Move with a Range greater\nthan 1 tile, they roll a d6. On a 1-3, they miss the target.",
     "category": "scopes",

@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Oval Stone",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/oval_stone.png",
   "system": {
     "description": "Evolves Happiny into Chansey.",
     "category": "evolutionItems",

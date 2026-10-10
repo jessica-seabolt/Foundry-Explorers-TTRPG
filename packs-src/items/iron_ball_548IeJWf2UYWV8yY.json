@@ -1,7 +1,7 @@
 {
   "name": "Iron Ball",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/iron_ball.png",
   "system": {
     "description": "You cannot benefit from Flying or Levitating.",
     "category": "battleItems",

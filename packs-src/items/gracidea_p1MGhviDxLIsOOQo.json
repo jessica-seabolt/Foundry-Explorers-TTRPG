@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "Gracidea",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/gracidea.png",
   "system": {
     "description": "Changes Shaymin between Land and Sky Formes.",
     "category": "formChangingItems",

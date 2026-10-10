@@ -1,7 +1,7 @@
 {
   "name": "Pass Scarf",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/pass_scarf.png",
   "system": {
     "description": "Passes added effects of Moves and Status Conditions to adjacent Pokémon, but your Belly lowers twice as fast.",
     "category": "scarvesAndBands",

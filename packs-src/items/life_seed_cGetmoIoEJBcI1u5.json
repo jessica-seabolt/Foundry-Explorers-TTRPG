@@ -1,7 +1,7 @@
 {
   "name": "Life Seed",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/life_seed.png",
   "system": {
     "description": "Raises max HP by 5.",
     "category": "seeds",

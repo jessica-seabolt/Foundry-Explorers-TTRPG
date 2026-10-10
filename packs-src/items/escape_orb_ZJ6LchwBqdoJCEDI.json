@@ -1,7 +1,7 @@
 {
   "name": "Escape Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/escape_orb.png",
   "system": {
     "description": "Allows escape from dungeon, Range: All team members",
     "category": "orbs",

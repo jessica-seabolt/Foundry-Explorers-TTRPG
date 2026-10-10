@@ -1,7 +1,7 @@
 {
   "name": "Stun Seed",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/stun_seed.png",
   "system": {
     "description": "Gives Restrained status.",
     "category": "seeds",

@@ -1,7 +1,7 @@
 {
   "name": "Blue Ribbon",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/blue_ribbon.png",
   "system": {
     "description": "Raises Attack, Defense, Special Attack and Special Defense modifiers of users with blue aura by 2 (Quiet Nature)",
     "category": "ribbons",

@@ -1,7 +1,7 @@
 {
   "name": "Trap Scarf",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/trap_scarf.png",
   "system": {
     "description": "Prevents traps from going off if stepped on.",
     "category": "scarvesAndBands",

@@ -1,7 +1,7 @@
 {
   "name": "Perfect Apple",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/perfect_apple.png",
   "system": {
     "description": "You do not need to eat for the next week.",
     "category": "foods",

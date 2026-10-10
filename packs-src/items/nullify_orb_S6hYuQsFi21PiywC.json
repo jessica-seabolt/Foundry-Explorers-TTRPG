@@ -1,7 +1,7 @@
 {
   "name": "Nullify Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/nullify_orb.png",
   "system": {
     "description": "Nullifies all Abilities on the current floor.",
     "category": "orbs",

@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "Griseous Core",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/griseous_core.png",
   "system": {
     "description": "Changes Giratina between its Altered and Origin Formes. Giratina holding this Item has its Move Power of all Moves increased by 1.",
     "category": "formChangingItems",

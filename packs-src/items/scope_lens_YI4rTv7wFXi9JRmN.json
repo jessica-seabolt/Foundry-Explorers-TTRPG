@@ -1,7 +1,7 @@
 {
   "name": "Scope Lens",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/scope_lens.png",
   "system": {
     "description": "All your Moves score a Critical Hit on a 5-6.",
     "category": "scopes",

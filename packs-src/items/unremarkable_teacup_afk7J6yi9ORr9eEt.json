@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Unremarkable Teacup",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/unremarkable_teacup.png",
   "system": {
     "description": "Evolves Counterfeit Form Poltchageist into Unremarkable Form Sinistcha.",
     "category": "evolutionItems",

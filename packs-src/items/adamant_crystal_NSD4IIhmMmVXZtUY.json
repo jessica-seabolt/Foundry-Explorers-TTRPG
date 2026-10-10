@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "Adamant Crystal",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/adamant_crystal.png",
   "system": {
     "description": "Changes Dialga between its Regular and Origin Formes. Dialga holding this Item has its Move Power of all Moves increased by 1.",
     "category": "formChangingItems",

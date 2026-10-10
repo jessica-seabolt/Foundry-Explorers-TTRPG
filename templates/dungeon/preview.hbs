@@ -1,0 +1,15 @@
+<section class="dungeon-preview-pane">
+  <div class="dungeon-preview-frame"><canvas class="dungeon-preview"></canvas></div>
+  <p class="hint dungeon-summary">
+    <span>{{summary}}</span>
+    {{#each markerGroups as |marker|}}{{#if marker.checked}}
+    <span class="dungeon-legend"><i class="fa-solid fa-circle" style="color: {{marker.color}}"></i> {{localize marker.label}}: {{marker.count}}</span>
+    {{/if}}{{/each}}
+  </p>
+  <footer class="form-footer">
+    <button type="button" data-action="reroll"><i class="fa-solid fa-dice"></i> {{localize "SYSTEM.Dungeon.Reroll"}}</button>
+    <button type="button" data-action="createScene" {{disabled busy}}>
+      <i class="fa-solid {{#if busy}}fa-spinner fa-spin{{else}}fa-map{{/if}}"></i> {{localize "SYSTEM.Dungeon.CreateScene"}}
+    </button>
+  </footer>
+</section>

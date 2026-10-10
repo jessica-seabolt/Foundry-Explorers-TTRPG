@@ -15,6 +15,9 @@ import { MoveSheet } from './module/move-sheet.mjs';
 import { initSocket } from './module/socket.mjs';
 import { ROOM_BEHAVIOR, RoomRegionBehaviorType } from './module/rooms.mjs';
 import { ExplorersVisionSource, registerVisionHooks } from './module/vision.mjs';
+import { DungeonGenerator, addDungeonGeneratorButton, registerDungeonGeneratorSettings } from './module/dungeon/generator-app.mjs';
+import { registerFloorItemHooks } from './module/floor-items.mjs';
+import { registerMigrationSettings, runMigrations } from './module/migrations.mjs';
 
 const { Localization } = foundry.helpers;
 const { Die } = foundry.dice.terms;
@@ -23,6 +26,7 @@ const { Actors, Items } = foundry.documents.collections;
 
 globalThis.explorers = {
   macros,
+  generateDungeon: () => DungeonGenerator.open(),
 };
 
 Hooks.once("init", () => {
@@ -86,6 +90,7 @@ Hooks.once("init", () => {
   CONFIG.RegionBehavior.typeIcons[ROOM_BEHAVIOR] = "fa-solid fa-dungeon";
   CONFIG.Canvas.visionSourceClass = ExplorersVisionSource;
   registerSettings();
+  registerFloorItemHooks();
 });
 
 function registerSettings() {
@@ -115,6 +120,8 @@ function registerSettings() {
     hint: "SYSTEM.Settings.RevealWallTiles.Hint",
     scope: "world", config: true, type: Boolean, default: true, onChange: refreshVision
   });
+  registerDungeonGeneratorSettings();
+  registerMigrationSettings();
 }
 
 Hooks.once("i18nInit", () => {
@@ -128,6 +135,7 @@ Hooks.once("i18nInit", () => {
 
 Hooks.once("ready", async () => {
   initSocket();
+  await runMigrations();
   // Bring permanent Conditions and token vision up to date for actors whose Features predate this
   if (game.user.isActiveGM) {
     for (const actor of game.actors) {
@@ -182,6 +190,7 @@ async function renderChatMessageHTML(message, html, context) {
 }
 
 Hooks.on("renderChatMessageHTML", renderChatMessageHTML)
+Hooks.on("renderSceneDirectory", addDungeonGeneratorButton);
 registerCombatHooks();
 registerVisionHooks();
 registerStatusCheckHooks();

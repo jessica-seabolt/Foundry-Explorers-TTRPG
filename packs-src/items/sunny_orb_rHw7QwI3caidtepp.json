@@ -1,7 +1,7 @@
 {
   "name": "Sunny Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/sunny_orb.png",
   "system": {
     "description": "Starts Sunny weather on the current floor",
     "category": "orbs",

@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Dawn Stone",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/dawn_stone.png",
   "system": {
     "description": "Evolves certain Pokémon.",
     "category": "evolutionItems",

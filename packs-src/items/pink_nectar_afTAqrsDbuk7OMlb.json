@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "Pink Nectar",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/pink_nectar.png",
   "system": {
     "description": "Changes Oricorio into Pa'u Style.",
     "category": "formChangingItems",

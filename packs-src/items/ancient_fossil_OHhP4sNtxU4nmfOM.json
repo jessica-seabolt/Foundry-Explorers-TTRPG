@@ -1,7 +1,7 @@
 {
   "name": "Ancient Fossil",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/ancient_fossil.png",
   "system": {
     "description": "Arcs and hits target for 3d6 damage. Deals damage as Rock Type.",
     "category": "thrownItems",

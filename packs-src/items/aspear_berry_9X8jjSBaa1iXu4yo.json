@@ -1,7 +1,7 @@
 {
   "name": "Aspear Berry",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/aspear_berry.png",
   "system": {
     "description": "Cures Frozen Status. When held, you can use a Reaction to eat the Berry to cure the status. Can be used to fill half your belly for today.",
     "category": "berries",

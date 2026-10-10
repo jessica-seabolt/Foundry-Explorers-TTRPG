@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Galarica Cuff",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/galarica_cuff.png",
   "system": {
     "description": "Evolves Galarian Slowpoke into Galarian Slowbro.",
     "category": "evolutionItems",

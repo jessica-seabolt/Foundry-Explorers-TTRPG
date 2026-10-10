@@ -1,7 +1,7 @@
 {
   "name": "Invisify Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/invisify_orb.png",
   "system": {
     "description": "Gives Invisible status, Range: Self",
     "category": "orbs",

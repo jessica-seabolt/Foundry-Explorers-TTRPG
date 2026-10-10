@@ -1,7 +1,7 @@
 {
   "name": "Cacnea Spike",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/cacnea_spike.png",
   "system": {
     "description": "Hits target for 3d6 Damage. Deals damage as Grass Type. Thrown in a straight line.",
     "category": "thrownItems",

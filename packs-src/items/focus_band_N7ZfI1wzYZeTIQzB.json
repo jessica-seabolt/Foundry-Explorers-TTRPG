@@ -1,7 +1,7 @@
 {
   "name": "Focus Band",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/focus_band.png",
   "system": {
     "description": "If the User would be reduced to 0HP, roll a d6. On a 3-6, you drop to 1HP instead. You can only use this Item once per battle.",
     "category": "scarvesAndBands",

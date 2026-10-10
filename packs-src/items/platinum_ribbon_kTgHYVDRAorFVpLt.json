@@ -1,7 +1,7 @@
 {
   "name": "Platinum Ribbon",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/platinum_ribbon.png",
   "system": {
     "description": "Raises Attack, Defense, Special Attack and Special Defense modifiers of users with platinum aura by 2 (Lax Nature)",
     "category": "ribbons",

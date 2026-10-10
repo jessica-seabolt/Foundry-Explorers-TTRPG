@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "Rotom Catalog",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/rotom_catalog.png",
   "system": {
     "description": "Changes Rotom between its Standard, Heat, Wash, Frost, Fan, and Mow Forms.",
     "category": "formChangingItems",

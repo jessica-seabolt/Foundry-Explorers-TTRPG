@@ -1,7 +1,7 @@
 {
   "name": "Choice Scarf",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/choice_scarf.png",
   "system": {
     "description": "The first Move you use in a Battle becomes a Priority Move, but you cannot use any other Move for the rest of the Battle.",
     "category": "scarvesAndBands",

@@ -1,7 +1,7 @@
 {
   "name": "Black Ribbon",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/black_ribbon.png",
   "system": {
     "description": "Raises Attack, Defense, Special Attack and Special Defense modifiers of users with black aura by 2 (Serious Nature)",
     "category": "ribbons",

@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "Red Nectar",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/red_nectar.png",
   "system": {
     "description": "Changes Oricorio into Baile Style.",
     "category": "formChangingItems",

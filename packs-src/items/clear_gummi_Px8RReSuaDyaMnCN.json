@@ -1,7 +1,7 @@
 {
   "name": "Clear Gummi",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/clear_gummi.png",
   "system": {
     "description": "Permanently raises IQ of Ice types by 5. Can be used to fill half your belly for today.",
     "category": "gummies",

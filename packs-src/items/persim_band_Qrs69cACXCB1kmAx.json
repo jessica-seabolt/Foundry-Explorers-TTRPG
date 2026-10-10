@@ -1,7 +1,7 @@
 {
   "name": "Persim Band",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/persim_band.png",
   "system": {
     "description": "Prevents Confused condition.",
     "category": "scarvesAndBands",

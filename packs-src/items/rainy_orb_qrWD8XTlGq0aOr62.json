@@ -1,7 +1,7 @@
 {
   "name": "Rainy Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/rainy_orb.png",
   "system": {
     "description": "Starts Rain weather on the current floor.",
     "category": "orbs",

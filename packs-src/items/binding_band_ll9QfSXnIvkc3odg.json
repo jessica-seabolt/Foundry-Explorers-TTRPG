@@ -1,7 +1,7 @@
 {
   "name": "Binding Band",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/binding_band.png",
   "system": {
     "description": "Whenever you inflict the Trapped Condition, the target takes an additional 1d6 per turn.",
     "category": "battleItems",

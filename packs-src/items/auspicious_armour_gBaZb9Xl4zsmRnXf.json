@@ -3,7 +3,7 @@
   "name": "Auspicious Armour",
   "type": "Item",
   "_id": "gBaZb9Xl4zsmRnXf",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/auspicious_armour.png",
   "system": {
     "description": "Evolves Charcadet into Armarouge.",
     "category": "evolutionItems",

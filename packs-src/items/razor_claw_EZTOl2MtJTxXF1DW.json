@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Razor Claw",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/razor_claw.png",
   "system": {
     "description": "Evolves Sneasel into Weavile, and Hisuian Sneasel into Sneasler.",
     "category": "evolutionItems",

@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Metal Alloy",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/metal_alloy.png",
   "system": {
     "description": "Evolves Duraludon into Archaludon.",
     "category": "evolutionItems",

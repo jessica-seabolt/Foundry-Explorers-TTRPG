@@ -1,7 +1,7 @@
 {
   "name": "Lagging Tail",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/lagging_tail.png",
   "system": {
     "description": "You always go last in a Round of Battle.",
     "category": "battleItems",

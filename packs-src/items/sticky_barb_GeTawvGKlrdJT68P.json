@@ -1,7 +1,7 @@
 {
   "name": "Sticky Barb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/sticky_barb.png",
   "system": {
     "description": "Holder takes 1d6 damage at the start of their turn in Battle.",
     "category": "battleItems",

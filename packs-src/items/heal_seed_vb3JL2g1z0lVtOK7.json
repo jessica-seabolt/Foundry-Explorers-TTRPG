@@ -1,7 +1,7 @@
 {
   "name": "Heal Seed",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/heal_seed.png",
   "system": {
     "description": "Heals all Status Conditions, fills Belly by 20.",
     "category": "seeds",

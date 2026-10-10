@@ -1,7 +1,7 @@
 {
   "name": "Insomniscope",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/insomniscope.png",
   "system": {
     "description": "Prevents Asleep and Yawning conditions.",
     "category": "scopes",

@@ -1,7 +1,7 @@
 {
   "name": "Eject Button",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/eject_button.png",
   "system": {
     "description": "If your Stats are lowered, you can use a Reaction to leap 2 tiles away without provoking Opportunity Strikes.",
     "category": "battleItems",

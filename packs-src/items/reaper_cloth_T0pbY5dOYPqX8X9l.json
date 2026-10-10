@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Reaper Cloth",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/reaper_cloth.png",
   "system": {
     "description": "Evolves Dusclops into Dusknoir.",
     "category": "evolutionItems",

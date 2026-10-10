@@ -1,7 +1,7 @@
 {
   "name": "Light Clay",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/light_clay.png",
   "system": {
     "description": "Your Reflects and Light Screens persist for 10 Rounds instead of 5.",
     "category": "battleItems",

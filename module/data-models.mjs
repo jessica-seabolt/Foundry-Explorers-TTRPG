@@ -3,7 +3,8 @@ import { proficiencies, types, typeChart, abilities, skills, sizes, classes,
   itemCategories, statKeys} from './types.mjs';
 import { FAINTED_STATUS, applyDamage, applyEffects, consumeRuleItem, healActor, postAutomationMessage, removeCondition, syncPermanentConditions, syncStatChangeIcons } from './conditions.mjs';
 import { SYSTEM_ID } from '../constants.mjs';
-import { auraOfNature, classData, effectiveProficiencies, featureCategories, getRules, hasCondition, hasRule, hpPerLevelBonus, statModifierBonus, visibilityBonus } from './features.mjs';
+import { auraOfNature, classData, effectiveProficiencies, featureCategories, getRules, hasCondition, hasRule, heldItemOf, hpPerLevelBonus, statModifierBonus, visibilityBonus } from './features.mjs';
+import { stealHeldItem } from './items.mjs';
 
 // Tokens of Large Pokemon take up 2x2 Tiles, and Huge Pokemon take up 3x3
 const sizeToTiles = { tiny: 1, small: 1, medium: 1, large: 2, huge: 3 };
@@ -44,10 +45,12 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     if (isAllowed === false) return false;
 
     const tiles = sizeToTiles[this.size] ?? 1;
+    // New Pokemon get linked, neutral tokens; ones that say otherwise (like unlinked Wild Pokemon from a
+    // compendium, so each token has its own HP) keep their setting
     this.parent.updateSource({
       prototypeToken: {
-        actorLink: true,
-        disposition: CONST.TOKEN_DISPOSITIONS.NEUTRAL,
+        actorLink: data.prototypeToken?.actorLink ?? true,
+        disposition: data.prototypeToken?.disposition ?? CONST.TOKEN_DISPOSITIONS.NEUTRAL,
         lockRotation: true,
         width: tiles,
         height: tiles,
@@ -344,6 +347,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       if (rule.tag && !tags.includes(rule.tag)) continue;
       if (rule.critical && !isCritical) continue;
       if (rule.damaged && damage <= 0) continue;
+      if (rule.stealAttackerItem && !heldItemOf(attacker)) continue;
       if (rule.chance) {
         const roll = await new foundry.dice.Roll("1d6").evaluate();
         await roll.toMessage({
@@ -363,6 +367,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
         await roll.toMessage({ speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }), flavor: rule.source });
         await applyDamage(attacker, { amount: roll.total, label: rule.source, fromMove: true });
       }
+      if (rule.stealAttackerItem) await stealHeldItem(actor, attacker);
     }
     // Held items react too: a held Blast Seed explodes on its holder, and is used up
     for (const rule of getRules(actor, "onDamaged").filter(rule => rule.itemId)) {

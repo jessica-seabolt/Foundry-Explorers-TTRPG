@@ -1,7 +1,7 @@
 {
   "name": "Protective Pads",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/protective_pads.png",
   "system": {
     "description": "You suffer no effects from Abilities that trigger off you dealing Physical Damage.",
     "category": "battleItems",

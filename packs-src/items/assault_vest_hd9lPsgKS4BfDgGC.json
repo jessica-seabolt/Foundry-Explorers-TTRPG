@@ -1,7 +1,7 @@
 {
   "name": "Assault Vest",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/assault_vest.png",
   "system": {
     "description": "Your Sp.Def modifier increases by 3, but you cannot use Status Moves.",
     "category": "battleItems",

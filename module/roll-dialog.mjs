@@ -3,7 +3,8 @@ import { applyDamage, applyEffects, checkMoveConditions, consumeRuleItem, healAc
 import { DamageRoll, ExplorersRoll, StatusRoll } from './explorers-roll.mjs';
 import { emitToGM, registerSocketHandler } from './socket.mjs';
 import { pickTargets } from './targeting.mjs';
-import { critRangeMin, effectiveMoveType, getRules, hasCondition, hasRule, moveImmunity, movePowerBonus } from './features.mjs';
+import { critRangeMin, effectiveMoveType, getRules, hasCondition, hasRule, heldItemOf, moveImmunity, movePowerBonus } from './features.mjs';
+import { stealHeldItem } from './items.mjs';
 import { advantage, effects, skills, typeMatchups } from './types.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -491,9 +492,11 @@ export class MoveRollDialog extends RollDialog {
     for (const rule of getRules(this.user, "onHit")) {
       if (rule.physical && !isPhysical) continue;
       if (rule.special && isPhysical) continue;
+      if (rule.stealHeldItem && !heldItemOf(target)) continue;
       if (rule.chance && await this.#rollTriggerDie(null, target, rule) < rule.chance) continue;
       await postAutomationMessage(this.user, [format("SYSTEM.Automation.FeatureTriggered", { name: escape(this.user.name), feature: escape(rule.source) })]);
-      await applyEffects(target, rule.targetEffects ?? [], { sourceUuid: this.user.uuid, sourceName: this.user.name, fromOther: true });
+      if (rule.targetEffects?.length) await applyEffects(target, rule.targetEffects, { sourceUuid: this.user.uuid, sourceName: this.user.name, fromOther: true });
+      if (rule.stealHeldItem) await stealHeldItem(this.user, target);
     }
   }
 

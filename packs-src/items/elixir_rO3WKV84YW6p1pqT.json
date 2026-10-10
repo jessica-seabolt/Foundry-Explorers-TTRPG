@@ -1,7 +1,7 @@
 {
   "name": "Elixir",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/elixir.png",
   "system": {
     "description": "Recovers all PP of one Move. Can be used to fill half your belly for today.",
     "category": "medicines",

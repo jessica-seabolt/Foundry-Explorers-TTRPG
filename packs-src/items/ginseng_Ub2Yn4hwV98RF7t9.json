@@ -1,7 +1,7 @@
 {
   "name": "Ginseng",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/ginseng.png",
   "system": {
     "description": "Boosts the Move Power of a Move of your choice by 1. Can be used to fill half your belly for today.",
     "category": "medicines",

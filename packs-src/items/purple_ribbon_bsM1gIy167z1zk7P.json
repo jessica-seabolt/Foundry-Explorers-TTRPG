@@ -1,7 +1,7 @@
 {
   "name": "Purple Ribbon",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/purple_ribbon.png",
   "system": {
     "description": "Raises Attack, Defense, Special Attack and Special Defense modifiers of users with purple aura by 2 (Careful Nature)",
     "category": "ribbons",

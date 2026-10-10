@@ -1,7 +1,7 @@
 {
   "name": "Green Ribbon",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/green_ribbon.png",
   "system": {
     "description": "Raises Attack, Defense, Special Attack and Special Defense modifiers of users with green aura by 2 (Relaxed Nature)",
     "category": "ribbons",

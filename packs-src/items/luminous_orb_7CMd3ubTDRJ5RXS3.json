@@ -1,7 +1,7 @@
 {
   "name": "Luminous Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/luminous_orb.png",
   "system": {
     "description": "Reveals entire floor.",
     "category": "orbs",

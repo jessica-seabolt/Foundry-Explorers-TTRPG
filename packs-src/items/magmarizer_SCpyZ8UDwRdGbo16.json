@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Magmarizer",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/magmarizer.png",
   "system": {
     "description": "Evolves Magmar into Magmortar.",
     "category": "evolutionItems",

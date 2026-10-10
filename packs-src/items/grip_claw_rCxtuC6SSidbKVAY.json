@@ -1,7 +1,7 @@
 {
   "name": "Grip Claw",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/grip_claw.png",
   "system": {
     "description": "Whenever you inflict the Trapped Condition, the target cannot make a Status Resist Check for the first turn they are Trapped.",
     "category": "battleItems",

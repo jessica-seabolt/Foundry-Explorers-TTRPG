@@ -1,7 +1,7 @@
 {
   "name": "Leek",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/leek.png",
   "system": {
     "description": "Farfetch'd and Sirfetch'd holding this item Score a Critical Hit on a 5-6 on all their Physical Moves.",
     "category": "battleItems",

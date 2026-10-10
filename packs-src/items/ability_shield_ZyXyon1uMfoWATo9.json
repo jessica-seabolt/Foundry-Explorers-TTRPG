@@ -1,7 +1,7 @@
 {
   "name": "Ability Shield",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/ability_shield.png",
   "system": {
     "description": "Your Ability cannot be affected or changed in any way.",
     "category": "battleItems",

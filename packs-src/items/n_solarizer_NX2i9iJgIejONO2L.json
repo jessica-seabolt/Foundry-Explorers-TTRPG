@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "N-Solarizer",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/n_solarizer.png",
   "system": {
     "description": "Fuses Solgaleo with Necrozma.",
     "category": "formChangingItems",

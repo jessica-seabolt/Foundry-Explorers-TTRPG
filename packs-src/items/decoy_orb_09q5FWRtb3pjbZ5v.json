@@ -1,7 +1,7 @@
 {
   "name": "Decoy Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/decoy_orb.png",
   "system": {
     "description": "Gives foe Taunted, Range: Foe in front",
     "category": "orbs",

@@ -1,7 +1,7 @@
 {
   "name": "Big Apple",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/big_apple.png",
   "system": {
     "description": "You do not need to eat for the next day.",
     "category": "foods",

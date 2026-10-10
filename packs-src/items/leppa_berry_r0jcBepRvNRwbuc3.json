@@ -1,7 +1,7 @@
 {
   "name": "Leppa Berry",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/leppa_berry.png",
   "system": {
     "description": "One Move of your choice regains 10PP. When held, you can use a Reaction to eat the Berry to restore a Move that has 0PP. Can be used to fill half your belly for today.",
     "category": "berries",

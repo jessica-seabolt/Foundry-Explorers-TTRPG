@@ -1,7 +1,7 @@
 {
   "name": "Friend Bow",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/friend_bow.png",
   "system": {
     "description": "You gain 2 Friendship Dice whenever you clear your Friendship Track. You roll 1 additional Skill Die when recruiting a Pokémon to your Team.",
     "category": "scarvesAndBands",

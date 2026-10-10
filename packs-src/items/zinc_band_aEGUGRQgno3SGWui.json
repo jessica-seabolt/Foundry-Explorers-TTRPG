@@ -1,7 +1,7 @@
 {
   "name": "Zinc Band",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/zinc_band.png",
   "system": {
     "description": "Boosts user's Special Defense modifier by 2.",
     "category": "scarvesAndBands",

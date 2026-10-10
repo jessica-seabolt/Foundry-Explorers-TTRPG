@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Razor Fang",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/razor_fang.png",
   "system": {
     "description": "Evolves Gligar into Gliscor.",
     "category": "evolutionItems",

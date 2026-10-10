@@ -3,7 +3,8 @@ import {
   FAINTED_STATUS, applyDamage, applyEffects, consumeItem, cureConditions, healActor, postAutomationMessage, registerActorOp, runAsOwner
 } from './conditions.mjs';
 import { DamageRoll, ExplorersRoll, StatusRoll } from './explorers-roll.mjs';
-import { AFFLICTIONS, heldItemOf } from './features.mjs';
+import { AFFLICTIONS, getRules, heldItemOf } from './features.mjs';
+import { registerSocketHandler, requestFromGM } from './socket.mjs';
 import { includesSelf } from './targeting-geometry.mjs';
 import { pickTargets } from './targeting.mjs';
 import { abilities, typeMatchups } from './types.mjs';
@@ -359,6 +360,39 @@ export async function holdItem(actor, item) {
   await actor.update({ "system.heldItem": created.id });
   return created;
 }
+
+/**
+ * One Pokemon steals another's Held Item (Magician): it holds the item if its paws are empty, otherwise the item goes
+ * into its Team's bag. Sticky Hold keeps the item where it is. Runs on the GM, who can change both Pokemon.
+ */
+export async function stealHeldItem(thief, target) {
+  if (!thief || !target) return null;
+  if (!game.user.isGM) return requestFromGM(STEAL_ACTION, { thiefUuid: thief.uuid, targetUuid: target.uuid });
+  const item = heldItemOf(target);
+  if (!item) return null;
+  const name = escape(thief.name), targetName = escape(target.name), itemName = escape(item.name);
+  const guard = getRules(target, "keepHeldItem")[0];
+  if (guard) {
+    await postAutomationMessage(target, [format("SYSTEM.Items.StealBlocked", { name: targetName, feature: escape(guard.source), item: itemName })]);
+    return null;
+  }
+  const team = teamOf(thief);
+  let stolen = null;
+  if (!heldItemOf(thief)) stolen = await transferItem(item, thief, { hold: true });
+  else if (team && team.system.bagCount < team.system.capacity) stolen = await transferItem(item, team);
+  if (!stolen) {
+    await postAutomationMessage(thief, [format("SYSTEM.Items.StealNoRoom", { name, target: targetName, item: itemName })]);
+    return null;
+  }
+  await postAutomationMessage(thief, [format("SYSTEM.Items.Stole", { name, target: targetName, item: itemName })]);
+  return stolen.id;
+}
+
+const STEAL_ACTION = "stealHeldItem";
+registerSocketHandler(STEAL_ACTION, async ({ thiefUuid, targetUuid }) => {
+  const [thief, target] = await Promise.all([fromUuid(thiefUuid), fromUuid(targetUuid)]);
+  return stealHeldItem(thief, target);
+});
 
 /** The Team an actor belongs to, if any. */
 export function teamOf(actor) {

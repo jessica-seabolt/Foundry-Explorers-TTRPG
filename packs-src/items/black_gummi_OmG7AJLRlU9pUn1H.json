@@ -1,7 +1,7 @@
 {
   "name": "Black Gummi",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/black_gummi.png",
   "system": {
     "description": "Permanently raises IQ of Dark types by 5. Can be used to fill half your belly for today.",
     "category": "gummies",

@@ -1,7 +1,7 @@
 {
   "name": "Mobile Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/mobile_orb.png",
   "system": {
     "description": "Raises Speed Modifier by 2, Range: Self",
     "category": "orbs",

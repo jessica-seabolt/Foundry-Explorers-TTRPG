@@ -1,7 +1,7 @@
 {
   "name": "Clear Amulet",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/clear_amulet.png",
   "system": {
     "description": "Your Stats cannot be lowered by another Pokémon.",
     "category": "battleItems",

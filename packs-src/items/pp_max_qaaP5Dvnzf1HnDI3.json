@@ -1,7 +1,7 @@
 {
   "name": "PP Max",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/pp_max.png",
   "system": {
     "description": "Increase the Maximum PP of a Move of your choice by 75%. Can only be used once on a Move. Cannot stack with PP Up.",
     "category": "medicines",

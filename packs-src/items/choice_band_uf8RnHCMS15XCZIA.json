@@ -1,7 +1,7 @@
 {
   "name": "Choice Band",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/choice_band.png",
   "system": {
     "description": "Your first Physical Move in a Battle has its Move Power increased by 1, but you cannot use any other Move for the rest of the Battle.",
     "category": "scarvesAndBands",

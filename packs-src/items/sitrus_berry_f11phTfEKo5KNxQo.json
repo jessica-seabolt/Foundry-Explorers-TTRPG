@@ -1,7 +1,7 @@
 {
   "name": "Sitrus Berry",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/sitrus_berry.png",
   "system": {
     "description": "Restores HP fully, and permanently increases max HP by 5. When held, and you fall below 50% HP, you can use a Reaction to regain 50% of your HP. Can be used to fill half your belly for today.",
     "category": "berries",

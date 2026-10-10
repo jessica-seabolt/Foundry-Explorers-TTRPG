@@ -1,7 +1,7 @@
 {
   "name": "Max Elixir",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/max_elixir.png",
   "system": {
     "description": "Recovers all PP. Can be used to fill half your belly for today.",
     "category": "medicines",

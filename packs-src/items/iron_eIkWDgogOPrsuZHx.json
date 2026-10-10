@@ -1,7 +1,7 @@
 {
   "name": "Iron",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/iron.png",
   "system": {
     "description": "Increases Defense permanently by 5. Can be used to fill half your belly for today.",
     "category": "medicines",

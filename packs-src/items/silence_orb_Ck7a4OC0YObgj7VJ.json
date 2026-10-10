@@ -1,7 +1,7 @@
 {
   "name": "Silence Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/silence_orb.png",
   "system": {
     "description": "Gives Silenced status, range: Foes in a 2-tile range.",
     "category": "orbs",

@@ -1,7 +1,7 @@
 {
   "name": "Grass Gem",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/grass_gem.png",
   "system": {
     "description": "When held, and a Move of its Corresponding Type is used, it raises the Move Power of that Move by 1 for this turn only.",
     "category": "gems",

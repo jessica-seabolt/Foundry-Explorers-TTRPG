@@ -1,7 +1,7 @@
 {
   "name": "Plain Seed",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/plain_seed.png",
   "system": {
     "description": "No effect. Appears when a Reviver Seed or Tiny Reviver Seed has been used.",
     "category": "seeds",

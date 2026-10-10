@@ -1,7 +1,7 @@
 {
   "name": "Lansat Berry",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/lansat_berry.png",
   "system": {
     "description": "When held, and you fall below 25% HP, your Moves score a Critical Hit on a 5-6.",
     "category": "berries",

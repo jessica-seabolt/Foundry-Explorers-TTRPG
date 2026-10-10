@@ -1,7 +1,7 @@
 {
   "name": "Goggle Specs",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/goggle_specs.png",
   "system": {
     "description": "Reveals hidden traps and Invisible Pokémon.",
     "category": "scopes",

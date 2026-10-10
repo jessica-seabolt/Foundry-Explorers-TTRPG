@@ -1,7 +1,7 @@
 {
   "name": "Gold Spike",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/gold_spike.png",
   "system": {
     "description": "Hits target for 4d6 damage. Deals damage as Steel Type. Thrown in a straight line.",
     "category": "thrownItems",

@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Chipped Pot",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/chipped_pot.png",
   "system": {
     "description": "Evolves Antique Form Sinistea into Chipped Pot Polteageist.",
     "category": "evolutionItems",

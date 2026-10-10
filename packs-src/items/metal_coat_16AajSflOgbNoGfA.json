@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Metal Coat",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/metal_coat.png",
   "system": {
     "description": "Evolves certain Pokémon.",
     "category": "evolutionItems",

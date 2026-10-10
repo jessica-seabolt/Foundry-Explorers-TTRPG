@@ -1,7 +1,7 @@
 {
   "name": "Weather Lock Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/weather_lock_orb.png",
   "system": {
     "description": "Ends any Weather conditions on the current floor, and it cannot be changed.",
     "category": "orbs",

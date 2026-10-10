@@ -10,7 +10,16 @@
     "level": null,
     "prerequisite": "",
     "prerequisiteLevel": 6,
-    "rules": [],
+    "rules": [
+      {
+        "type": "onHit",
+        "stealHeldItem": true
+      },
+      {
+        "type": "pickupRange",
+        "tiles": 4
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

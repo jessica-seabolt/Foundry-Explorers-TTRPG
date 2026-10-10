@@ -1,7 +1,7 @@
 {
   "name": "Blowback Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/blowback_orb.png",
   "system": {
     "description": "Pushes a target back 6 tiles. If they collide with a wall or Pokémon, they take 1d6\ndamage, Range: Foe in front",
     "category": "orbs",

@@ -1,7 +1,7 @@
 {
   "name": "Red Card",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/red_card.png",
   "system": {
     "description": "If you are damaged by a Pokémon, present this Item as a Reaction. They are warped away to a different part of the Floor. This consumes the Item.",
     "category": "battleItems",

@@ -1,7 +1,7 @@
 {
   "name": "Drought Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/drought_orb.png",
   "system": {
     "description": "Dries up all water and magma on floor.",
     "category": "orbs",

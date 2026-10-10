@@ -1,7 +1,7 @@
 {
   "name": "Wooden Spike",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/wooden_spike.png",
   "system": {
     "description": "Hits target for 1d6 damage. Deals damage as Grass Type. Thrown in a straight line.",
     "category": "thrownItems",

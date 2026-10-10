@@ -1,7 +1,7 @@
 {
   "name": "Switcher Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/switcher_orb.png",
   "system": {
     "description": "Switches position with another Pokémon you can see, Range: Self",
     "category": "orbs",

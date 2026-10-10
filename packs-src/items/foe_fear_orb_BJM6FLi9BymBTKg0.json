@@ -1,7 +1,7 @@
 {
   "name": "Foe-Fear Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/foe_fear_orb.png",
   "system": {
     "description": "Gives foes Frightened status, Range: Foes in front",
     "category": "orbs",

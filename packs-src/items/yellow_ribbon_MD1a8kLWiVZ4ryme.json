@@ -1,7 +1,7 @@
 {
   "name": "Yellow Ribbon",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/yellow_ribbon.png",
   "system": {
     "description": "Raises Attack, Defense, Special Attack and Special Defense modifiers of users with yellow aura by 2 (Sassy Nature)",
     "category": "ribbons",

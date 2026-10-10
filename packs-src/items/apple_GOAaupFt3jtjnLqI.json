@@ -2,7 +2,7 @@
   "name": "Apple",
   "type": "Item",
   "_id": "GOAaupFt3jtjnLqI",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/apple.png",
   "system": {
     "description": "Can be used to fill half your belly for today.",
     "category": "foods",

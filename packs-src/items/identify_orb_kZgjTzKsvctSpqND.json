@@ -1,7 +1,7 @@
 {
   "name": "Identify Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/identify_orb.png",
   "system": {
     "description": "Reveals all held items of Pokémon, Range: Floor",
     "category": "orbs",

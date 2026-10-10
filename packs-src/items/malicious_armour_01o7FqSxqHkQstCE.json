@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Malicious Armour",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/malicious_armour.png",
   "system": {
     "description": "Evolves Charcadet into Ceruledge.",
     "category": "evolutionItems",

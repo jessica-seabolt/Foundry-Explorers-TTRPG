@@ -1,7 +1,7 @@
 {
   "name": "Violent Seed",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/violent_seed.png",
   "system": {
     "description": "Next Move deals double damage.",
     "category": "seeds",

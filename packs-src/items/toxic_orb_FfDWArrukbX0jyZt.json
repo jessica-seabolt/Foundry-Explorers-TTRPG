@@ -1,7 +1,7 @@
 {
   "name": "Toxic Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/toxic_orb.png",
   "system": {
     "description": "User has the Poisoned Condition when they hold it.",
     "category": "battleItems",

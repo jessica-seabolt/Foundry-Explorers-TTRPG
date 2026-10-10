@@ -1,7 +1,7 @@
 {
   "name": "Terrain Extender",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/terrain_extender.png",
   "system": {
     "description": "Your Terrain Moves persist for 10 Rounds instead of 5.",
     "category": "battleItems",

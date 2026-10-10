@@ -1,7 +1,7 @@
 {
   "name": "Scanner Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/scanner_orb.png",
   "system": {
     "description": "Reveals the number of unclaimed items on floor.",
     "category": "orbs",

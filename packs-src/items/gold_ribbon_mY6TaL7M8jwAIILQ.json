@@ -1,7 +1,7 @@
 {
   "name": "Gold Ribbon",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/gold_ribbon.png",
   "system": {
     "description": "Raises Attack, Defense, Special Attack and Special Defense modifiers of users with gold aura by 2 (Bashful Nature)",
     "category": "ribbons",

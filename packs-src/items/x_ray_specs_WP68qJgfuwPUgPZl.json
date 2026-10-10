@@ -1,7 +1,7 @@
 {
   "name": "X-Ray Specs",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/x_ray_specs.png",
   "system": {
     "description": "Enables Pokémon to see through walls.",
     "category": "scopes",

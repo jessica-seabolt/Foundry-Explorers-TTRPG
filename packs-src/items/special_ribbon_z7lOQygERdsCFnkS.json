@@ -1,7 +1,7 @@
 {
   "name": "Special Ribbon",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/special_ribbon.png",
   "system": {
     "description": "Boosts user's Special Attack modifier by 2.",
     "category": "scarvesAndBands",

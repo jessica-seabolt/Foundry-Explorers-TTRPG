@@ -1,7 +1,7 @@
 {
   "name": "Eyedrop Seed",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/eyedrop_seed.png",
   "system": {
     "description": "Gives Eyedrop status.",
     "category": "seeds",

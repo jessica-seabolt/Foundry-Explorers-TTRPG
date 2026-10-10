@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "Purple Nectar",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/purple_nectar.png",
   "system": {
     "description": "Changes Oricorio into Sensu Style.",
     "category": "formChangingItems",

@@ -2,7 +2,7 @@
   "folder": "9uLQfkGWNVf70Sxz",
   "name": "DNA Splicers",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/dna_splicers.png",
   "system": {
     "description": "Fuses Reshiram or Zekrom with Kyurem.",
     "category": "formChangingItems",

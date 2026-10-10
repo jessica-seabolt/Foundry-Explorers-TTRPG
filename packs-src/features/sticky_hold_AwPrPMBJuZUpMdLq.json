@@ -10,7 +10,11 @@
     "level": null,
     "prerequisite": "",
     "prerequisiteLevel": 3,
-    "rules": [],
+    "rules": [
+      {
+        "type": "keepHeldItem"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

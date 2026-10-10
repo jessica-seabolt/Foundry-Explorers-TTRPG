@@ -1,7 +1,7 @@
 {
   "name": "Chilan Berry",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/chilan_berry.png",
   "system": {
     "description": "When held, you eat the Berry as a Reaction to taking damage from a Normal-Type Move. It deals half of the damage it would normally do instead.",
     "category": "berries",

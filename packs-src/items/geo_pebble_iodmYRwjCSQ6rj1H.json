@@ -1,7 +1,7 @@
 {
   "name": "Geo Pebble",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/geo_pebble.png",
   "system": {
     "description": "Arcs and hits target for 1d6 damage Deals damage as Rock Type.",
     "category": "thrownItems",

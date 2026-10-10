@@ -1,7 +1,7 @@
 {
   "name": "Wide Lens",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/wide_lens.png",
   "system": {
     "description": "Prevents Blinded condition.",
     "category": "scopes",

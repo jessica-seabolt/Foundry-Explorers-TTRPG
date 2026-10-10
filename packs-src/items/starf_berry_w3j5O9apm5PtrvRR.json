@@ -1,7 +1,7 @@
 {
   "name": "Starf Berry",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/starf_berry.png",
   "system": {
     "description": "When held, and you fall below 50% HP, roll a d6. The corresponding Stat Modifier raises by 4. On a 1, Attack. On a 2, Defense. On a 3, Special Attack. On a 4, Special Defence. On a 5, Speed. Reroll 6’s.",
     "category": "berries",

@@ -1,7 +1,7 @@
 {
   "name": "Float Stone",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/float_stone.png",
   "system": {
     "description": "User has the Levitate Rare Quality when they hold it.",
     "category": "battleItems",

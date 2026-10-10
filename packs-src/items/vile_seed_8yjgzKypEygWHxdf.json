@@ -1,7 +1,7 @@
 {
   "name": "Vile Seed",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/vile_seed.png",
   "system": {
     "description": "Damage taken from the next Move deals double damage.",
     "category": "seeds",

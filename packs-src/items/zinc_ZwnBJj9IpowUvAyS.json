@@ -1,7 +1,7 @@
 {
   "name": "Zinc",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/zinc.png",
   "system": {
     "description": "Increases Special Defense permanently by 5. Can be used to fill half your belly for today.",
     "category": "medicines",

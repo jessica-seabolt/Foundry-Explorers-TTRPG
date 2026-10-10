@@ -1,7 +1,7 @@
 {
   "name": "Big Root",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/big_root.png",
   "system": {
     "description": "When you heal from Moves that drain foes of HP, restore an additional 1d6.",
     "category": "battleItems",

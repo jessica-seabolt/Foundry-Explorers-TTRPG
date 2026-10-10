@@ -1,7 +1,7 @@
 {
   "name": "Trapbust Orb",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/trapbust_orb.png",
   "system": {
     "description": "Destroys all Traps on the current floor.",
     "category": "orbs",

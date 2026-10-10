@@ -59,6 +59,9 @@
         "Arc": "Arc"
       },
       "Targeting": "Targeting and Throwing",
+      "Stole": "{name} stole {target}'s {item}!",
+      "StealNoRoom": "{name} could steal {target}'s {item}, but has nowhere to put it.",
+      "StealBlocked": "{name}'s {feature} kept its {item} from being stolen.",
       "NoHeldItem": "Not holding anything. Drag an item onto this sheet (from the Team's bag or a compendium) to hold it.",
       "LooseItems": "Carried from before the shared Treasure Bag:",
       "MoveToBag": "Move to the Team's bag",
@@ -631,6 +634,122 @@
       "MaxHpHint": "Max HP: {hp}, plus {perLevel} for each Level after the first, plus Features and the HP Bonus.",
       "MinorSkills": "Minor Skills",
       "TooManyMoves": "{name} now knows more than 4 Moves. A Pokémon can only know 4 at a time, so one should be forgotten."
+    },
+    "Migration": {
+      "Done": "Explorers updated {count} items and features in this world to match the latest system version.",
+      "Failed": "Explorers couldn't update this world's items: {error}"
+    },
+    "FloorItems": {
+      "PickedUp": "{name} picked up the {item} and put it in {team}'s bag.",
+      "PickedUpHeld": "{name} picked up the {item} and is holding it.",
+      "NoRoom": "{name} found the {item}, but the bag is full and their paws are too.",
+      "ForSale": "{name} is standing on the {item}. Kecleon is selling it for {price} Poké.",
+      "CantDrop": "You can only drop items your Pokémon or Team are carrying."
+    },
+    "Dungeon": {
+      "Generate": "Generate Dungeon Floor",
+      "Title": "Generate Dungeon Floor",
+      "DefaultName": "Dungeon B1F",
+      "Name": "Scene Name",
+      "Tileset": "Tileset Sheet",
+      "TilesetHint": "Pick a dungeon tileset sheet in SilverDeoxys563's format (The Spriters Resource, Explorers of Time/Darkness). Without one, the preview uses plain colours.",
+      "TilesetError": "That image couldn't be read as a tileset sheet: {error}",
+      "Objects": "Object Sheet",
+      "ObjectsHint": "Optional: the PMD2 Complete Items Sheet (by Null, The Spriters Resource, Explorers of Time/Darkness > Miscellaneous > Items). With it, the stairs are drawn with the game's stairs tile instead of an icon.",
+      "ObjectsError": "That image couldn't be read as the object sheet: {error}",
+      "StairsDirection": "Stairs",
+      "Stairs": {
+        "down": "Going down (B1F, B2F…)",
+        "up": "Going up (1F, 2F…)"
+      },
+      "Scale": "Grid Size",
+      "ScaleOption": "{pixels} px per tile",
+      "Layout": "Layout",
+      "LayoutType": "Floor Layout",
+      "Layouts": {
+        "Large": "Large",
+        "Small": "Small",
+        "OneRoomMonsterHouse": "One-Room Monster House",
+        "OuterRing": "Outer Ring",
+        "Crossroads": "Crossroads",
+        "TwoRoomsWithMonsterHouse": "Two Rooms with Monster House",
+        "Line": "Line",
+        "Cross": "Cross",
+        "LargeNo6x4": "Large (no 6 × 4 grid)",
+        "Beetle": "Beetle",
+        "OuterRooms": "Outer Rooms",
+        "Medium": "Medium"
+      },
+      "Contents": "Terrain and Contents",
+      "Props": {
+        "room_density": {
+          "Label": "Room Density",
+          "Hint": "Rooms to generate: this number plus 0–2 if positive, exactly this many if negative (always 2 to 36)."
+        },
+        "floor_connectivity": {
+          "Label": "Floor Connectivity",
+          "Hint": "How many main hallways try to connect the rooms."
+        },
+        "num_extra_hallways": {
+          "Label": "Extra Hallways",
+          "Hint": "Extra winding hallways that branch off rooms."
+        },
+        "allow_dead_ends": {
+          "Label": "Allow Dead Ends"
+        },
+        "f_room_imperfections": {
+          "Label": "Room Imperfections",
+          "Hint": "Allow rooms with corners chipped away, so they aren't perfect rectangles."
+        },
+        "f_secondary_terrain_generation": {
+          "Label": "Water / Lava"
+        },
+        "secondary_terrain_density": {
+          "Label": "Lakes"
+        },
+        "item_density": {
+          "Label": "Items"
+        },
+        "buried_item_density": {
+          "Label": "Buried Items"
+        },
+        "trap_density": {
+          "Label": "Traps"
+        },
+        "enemy_density": {
+          "Label": "Wild Pokémon"
+        },
+        "monster_house_chance": {
+          "Label": "Monster House Chance (%)"
+        },
+        "kecleon_shop_chance": {
+          "Label": "Kecleon Shop Chance (%)"
+        }
+      },
+      "MarkersLegend": "Markers",
+      "Markers": {
+        "stairs": "Stairs",
+        "items": "Item Spots",
+        "traps": "Traps",
+        "pokemon": "Pokémon Spawns and Team Start"
+      },
+      "MarkersHint": "Markers are Tiles placed where the game would put things. With an item table, item spots get real items that Team members pick up by walking onto them; buried items, traps and spawns are hidden markers for the GM. Markers are locked: unlock one from its Tile HUD (right-click) to move or delete it.",
+      "ItemTable": "Items on the Floor",
+      "ItemTableNone": "None (hidden markers only)",
+      "Import": "Import Dungeoneer Settings",
+      "Reset": "Reset",
+      "Reroll": "New Floor",
+      "CreateScene": "Create Scene",
+      "Summary": "{width} × {height} tiles, {rooms} rooms",
+      "NoTilesetConfirm": "No tileset sheet is selected, so the map will be plain colours. Create the Scene anyway?",
+      "NotSettingsFile": "This isn't a Pokémon Dungeoneer settings file.",
+      "Imported": "Imported settings from {name}.",
+      "ImportError": "Couldn't import those settings: {error}",
+      "Created": "Created the Scene {name}.",
+      "CreateError": "Couldn't create the Scene: {error}",
+      "RoomName": "Room {number}",
+      "MonsterHouse": "Monster House (Room {number})",
+      "KecleonShop": "Kecleon Shop (Room {number})"
     },
     "Team": {
       "Tabs": {

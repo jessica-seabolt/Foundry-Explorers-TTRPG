@@ -1,7 +1,7 @@
 {
   "name": "Racket Band",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/racket_band.png",
   "system": {
     "description": "Prevents Asleep condition.",
     "category": "scarvesAndBands",

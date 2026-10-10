@@ -2,7 +2,7 @@
   "folder": "AR8CkbQgJHBqmhQ6",
   "name": "Tart Apple",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/tart_apple.png",
   "system": {
     "description": "Evolves Applin into Flapple.",
     "category": "evolutionItems",

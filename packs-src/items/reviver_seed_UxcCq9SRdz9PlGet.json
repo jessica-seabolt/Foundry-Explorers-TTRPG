@@ -1,7 +1,7 @@
 {
   "name": "Reviver Seed",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/reviver_seed.png",
   "system": {
     "description": "Revives fainted Pokémon, and you restore all PP. Becomes Plain Seed afterwards.",
     "category": "seeds",

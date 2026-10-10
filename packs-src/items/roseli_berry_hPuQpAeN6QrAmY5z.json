@@ -1,7 +1,7 @@
 {
   "name": "Roseli Berry",
   "type": "Item",
-  "img": "icons/svg/item-bag.svg",
+  "img": "systems/explorers/assets/items/roseli_berry.png",
   "system": {
     "description": "When held, you eat the Berry as a Reaction to taking damage from a Fairy-Type Move. It deals half of the damage it would normally do instead.",
     "category": "berries",
