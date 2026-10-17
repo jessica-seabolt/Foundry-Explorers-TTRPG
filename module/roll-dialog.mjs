@@ -8,6 +8,7 @@ import { stealHeldItem } from './items.mjs';
 import { canAct, checkAction, recordAction } from './turns.mjs';
 import { advantage, effects, skills, typeMatchups } from './types.mjs';
 import { suggestAdventureToken } from './adventure-tokens.mjs';
+import { isPending, postRoll, rollSetup } from './roll-confirm.mjs';
 import { applyFieldEffect, awarenessHindered, fieldLabel, fieldMatchup, fieldPower, noChargeWeather, priorityBlocked } from './weather.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -23,11 +24,14 @@ const effectList = list => list.map(({ effect, effectCount }) =>
 export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   static DEFAULT_OPTIONS = {
     tag: "form",
+    classes: ["explorers", "roll-prompt"],
+    position: { width: 380 },
     form: {
       submitOnChange: true
     },
     actions: {
-      setMessageMode: RollDialog.#setMessageMode
+      setMessageMode: RollDialog.#setMessageMode,
+      step: RollDialog.#step
     }
   }
 
@@ -53,7 +57,26 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     context.dialogState = this.dialogState;
     context.advantage = advantage;
     context.messageMode = this.messageMode;
+    context.description = this.description;
+    context.showMore = this.showMore;
+    const base = this.baseDie;
+    if (base) {
+      context.formula = getDieString({
+        sides: base.sides + this.dialogState.extraDie, modifier: base.modifier + this.dialogState.extraModifier,
+        advantage: this.dialogState.advantage || 'normal', multiplier: this.dialogState.multiplier, highCrit: this.dialogState.highCrit
+      });
+      context.formulaLabel = this.formulaLabel;
+    }
     return context;
+  }
+
+  get baseDie() { return null; }
+  get description() { return ""; }
+  get formulaLabel() { return "SYSTEM.Confirm.Roll"; }
+
+  _onRender(context, options) {
+    super._onRender(context, options);
+    this.element.querySelector("details.roll-more")?.addEventListener("toggle", event => { this.showMore = event.target.open; });
   }
 
   _onChangeForm(config, event) {
@@ -70,6 +93,7 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         this.dialogState[inputName] = event.target.checked;
       }
       else this.dialogState[inputName] = event.target.value;
+      this.render();
     }
   }
 
@@ -92,7 +116,12 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     this.render();
   }
 
-  async toChatMessage(roll, chatData) {
+  static #step(event, target) {
+    this.dialogState.extraDie = Math.max(0, this.dialogState.extraDie + Number(target.dataset.step));
+    this.render();
+  }
+
+  async toChatMessage(roll, chatData, { confirm = false, purpose = null } = {}) {
     await roll.evaluate();
     const dcFlavor = roll.success === null ? "" : roll.success
       ? `<br><span style="color:green;font-weight:bold;">${localize("SYSTEM.Dice.Success")}</span>`
@@ -103,6 +132,11 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
       speaker: ChatMessage.implementation.getSpeaker({ actor: this.user }),
     }
     chatData.flavor = `${chatData.flavor}${dcFlavor}`;
+    if (confirm) {
+      const result = await postRoll(roll, chatData, { actor: this.user, rollMode: this.messageMode, purpose });
+      this.lastMessage = result.message;
+      return result.roll;
+    }
     ChatMessage.applyRollMode(chatData, this.messageMode);
     this.lastMessage = await ChatMessage.create(chatData);
     return roll;
@@ -117,9 +151,21 @@ export class SkillRollDialog extends RollDialog {
   }
 
   get title() {
-    const { sides, modifier } = getSkillDie(this.user, this.skill);
-    const title = `${this.user.name}: ${localize(skills[this.skill])} (Base ${sides}d6x+${modifier})`;
+    const title = `${this.user.name}: ${localize(skills[this.skill])}`;
     return this.statusRoll ? `${title} ${format("SYSTEM.Automation.ResistTitle", { move: this.statusRoll.options.moveName })}` : title;
+  }
+
+  get baseDie() { return getSkillDie(this.user, this.skill); }
+
+  get description() {
+    if (this.statusRoll) return resistPurpose(this.user, this.statusRoll, this.getDC()).text;
+    return format("SYSTEM.RollDialog.SkillCheck", { name: escape(this.user.name), skill: localize(skills[this.skill]) });
+  }
+
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options);
+    context.showDc = !this.statusRoll;
+    return context;
   }
 
   constructor(options={}) {
@@ -135,15 +181,6 @@ export class SkillRollDialog extends RollDialog {
     if (isHungry(user) || (skill === 'awareness' && awarenessHindered(user))) this.dialogState.advantage = 'disadvantage';
   }
 
-// A Dungeon Token can raise the attacker's roll before the target resists.
-  refreshStatusRoll({ render = true } = {}) {
-    const live = this.statusMessage ? game.messages.get(this.statusMessage.id)?.rolls.find(roll => roll instanceof StatusRoll) : null;
-    if (!live || live.total === this.dialogState.dc) return;
-    this.statusRoll = live;
-    this.dialogState.dc = live.total;
-    if (render && this.rendered) this.render();
-  }
-
   static async #rollSkill() {
     const die = this.getDialogDie();
     const { sides, modifier } = getSkillDie(this.user, this.skill);
@@ -152,11 +189,9 @@ export class SkillRollDialog extends RollDialog {
 
     if (!this.statusRoll && canAct(this.user, "skill").allowed) await recordAction(this.user, "skill");
     if (this.statusRoll) {
-      this.refreshStatusRoll({ render: false });
       const roll = await this.toChatMessage(new ExplorersRoll(getDieString(die), {}, { dc: this.getDC() }), {
-        flavor: `${localize(skills[this.skill])} ${format("SYSTEM.Automation.ResistTitle", { move: escape(this.statusRoll.options.moveName) })}`,
-        flags: { [SYSTEM_ID]: { resist: resistFlag(this.user, this.statusRoll) } }
-      });
+        flavor: `${localize(skills[this.skill])} ${format("SYSTEM.Automation.ResistTitle", { move: escape(this.statusRoll.options.moveName) })}`
+      }, { confirm: true, purpose: resistPurpose(this.user, this.statusRoll, this.getDC()) });
       await resolveStatusCheck(this.user, this.statusRoll, roll, this.statusMessage);
       this.close();
       return;
@@ -174,7 +209,17 @@ export class SkillRollDialog extends RollDialog {
   }
 }
 
-const resistFlag = (actor, statusRoll) => ({ actorUuid: actor.uuid, moveName: statusRoll.options.moveName, effects: statusRoll.options.effects ?? [] });
+function resistPurpose(actor, statusRoll, dc = statusRoll.total) {
+  const name = escape(actor.name);
+  const effects = effectList(statusRoll.options.effects ?? []);
+  return {
+    title: format("SYSTEM.Confirm.Titles.Resist", { name, move: escape(statusRoll.options.moveName) }),
+    text: format("SYSTEM.Confirm.Purpose.Resist", { name, move: escape(statusRoll.options.moveName), effects, dc }),
+    needs: dc,
+    success: format("SYSTEM.Confirm.Outcome.Resisted", { name }),
+    failure: format("SYSTEM.Confirm.Outcome.Afflicted", { name, effects })
+  };
+}
 
 function resistBonusDice(actor, statusRoll) {
   return (statusRoll.options.resistBonusDice ?? 0) + (actor.statuses.has('guarding') ? 1 : 0);
@@ -195,14 +240,11 @@ export function openResistDialog(statusRoll, statusMessage = null) {
 async function rollStatusCheck(actor, statusRoll, statusMessage) {
   const { sides, modifier } = getSkillDie(actor, statusRoll.options.resistSkill);
   const advantage = isHungry(actor) ? 'disadvantage' : 'normal';
-  const roll = new ExplorersRoll(getDieString({ sides: sides + resistBonusDice(actor, statusRoll), modifier, advantage }), {}, { dc: statusRoll.total });
-  await roll.evaluate();
-  await roll.toMessage({
+  const setup = { dice: sides + resistBonusDice(actor, statusRoll), modifier, advantage, rollClass: "ExplorersRoll", options: { dc: statusRoll.total } };
+  const { roll } = await postRoll(setup, {
     speaker: ChatMessage.implementation.getSpeaker({ actor }),
     flavor: `${localize(skills[statusRoll.options.resistSkill])} ${format("SYSTEM.Automation.ResistTitle", { move: escape(statusRoll.options.moveName) })}`
-      + `<br><span style="color:${roll.success ? "green" : "red"};font-weight:bold;">${localize(roll.success ? "SYSTEM.Dice.Success" : "SYSTEM.Dice.Failure")}</span>`,
-    flags: { [SYSTEM_ID]: { resist: resistFlag(actor, statusRoll) } }
-  });
+  }, { actor, purpose: resistPurpose(actor, statusRoll) });
   await resolveStatusCheck(actor, statusRoll, roll, statusMessage);
 }
 
@@ -223,19 +265,21 @@ function statusCheckResolver(message, actor) {
   return players.find(user => user.character === actor) ?? players.find(ownsDirectly) ?? players[0] ?? game.users.activeGM;
 }
 
+// The target resists once the attacker has accepted their roll.
+function startStatusCheck(message) {
+  if (isPending(message)) return;
+  const statusRoll = message.rolls.find(roll => roll instanceof StatusRoll);
+  if (!statusRoll?.options.targetId) return;
+  const actor = fromUuidSync(statusRoll.options.targetId);
+  if (!actor || statusCheckResolver(message, actor) !== game.user) return;
+  if (game.user.isGM && game.settings.get(SYSTEM_ID, "autoRollNpcStatusChecks")) rollStatusCheck(actor, statusRoll, message);
+  else openResistDialog(statusRoll, message);
+}
+
 export function registerStatusCheckHooks() {
-  Hooks.on("updateChatMessage", message => {
-    for (const app of foundry.applications.instances.values()) {
-      if (app instanceof SkillRollDialog && app.statusMessage?.id === message.id) app.refreshStatusRoll();
-    }
-  });
-  Hooks.on("createChatMessage", message => {
-    const statusRoll = message.rolls.find(roll => roll instanceof StatusRoll);
-    if (!statusRoll?.options.targetId) return;
-    const actor = fromUuidSync(statusRoll.options.targetId);
-    if (!actor || statusCheckResolver(message, actor) !== game.user) return;
-    if (game.user.isGM && game.settings.get(SYSTEM_ID, "autoRollNpcStatusChecks")) rollStatusCheck(actor, statusRoll, message);
-    else openResistDialog(statusRoll, message);
+  Hooks.on("createChatMessage", startStatusCheck);
+  Hooks.on("updateChatMessage", (message, changes) => {
+    if (foundry.utils.getProperty(changes, `flags.${SYSTEM_ID}.confirm.state`) === "accepted") startStatusCheck(message);
   });
 }
 
@@ -265,11 +309,12 @@ export class MoveRollDialog extends RollDialog {
   }
 
   get title() {
-    const moveDie = getMoveDie(this.user, this.move);
-    if (!moveDie) return `${this.user.name}: ${this.move.name}`;
-    const { sides, modifier } = moveDie;
-    return `${this.user.name}: ${this.move.name} (Base ${sides}d6x+${modifier})`;
+    return `${this.user.name}: ${this.move.name}`;
   }
+
+  get baseDie() { return getMoveDie(this.user, this.move); }
+  get formulaLabel() { return this.move.system.power > 0 ? "SYSTEM.RollDialog.BaseDamage" : "SYSTEM.RollDialog.StatusRoll"; }
+  get description() { return escape(this.move.system.description); }
 
   constructor(options={}) {
     const { userId, moveId } = options;
@@ -359,6 +404,7 @@ export class MoveRollDialog extends RollDialog {
     this.secondMove = !!turn.secondMove;
     if (!await this.#beginUse()) return;
     await recordAction(this.user, kind, { reaction, priority });
+    this.close();
     const system = this.move.system;
     const fieldEffects = this.isBasicAttack ? [] : system.getFieldEffects?.() ?? [];
     const hit = system.getSplitEffects('hit');
@@ -372,7 +418,6 @@ export class MoveRollDialog extends RollDialog {
     else await this.#postDescription();
     for (const effect of fieldEffects) await applyFieldEffect(this.user, effect, { fromMove: true });
     if (!this.isBasicAttack) await this.#applyUserEffects();
-    this.close();
   }
 
   async #rollPower() {
@@ -482,7 +527,7 @@ export class MoveRollDialog extends RollDialog {
         tags
       }), {
         flavor: `${additionString}${this.move.name}${target ? ` (${target.name})` : ""} - ${localize(isHealing ? "SYSTEM.Automation.Healing" : "SYSTEM.Automation.Power")}`,
-      });
+      }, { confirm: true, purpose: this.#purpose(isHealing ? "Heal" : target ? "Damage" : "DamageUntargeted", target) });
 
       for (const itemId of bonus.consumed ?? []) await consumeRuleItem(this.user, { consume: true, itemId });
       const result = await this.#applyRoll(roll, target, this.lastMessage);
@@ -539,7 +584,8 @@ export class MoveRollDialog extends RollDialog {
       die.advantage = die.advantage || 'normal';
       const roll = await this.toChatMessage(new DamageRoll(getDieString(die), {}, {
         targetId: target.uuid, isHealing: true, attackerUuid: this.user.uuid, moveName: rule.source
-      }), { flavor: `${this.move.name} (${target.name}) - ${format("SYSTEM.Automation.Absorbed", { name, feature: escape(rule.source) })}` });
+      }), { flavor: `${this.move.name} (${target.name}) - ${format("SYSTEM.Automation.Absorbed", { name, feature: escape(rule.source) })}` },
+      { confirm: true, purpose: this.#purpose("Absorb", target, { feature: escape(rule.source) }) });
       await this.#applyRoll(roll, target, this.lastMessage);
     }
     else await postAutomationMessage(target, [format("SYSTEM.Automation.FeatureImmune", { name, move: escape(this.move.name), feature: escape(rule.source) })]);
@@ -551,7 +597,8 @@ export class MoveRollDialog extends RollDialog {
       if (rule.physical && !isPhysical) continue;
       if (rule.special && isPhysical) continue;
       if (rule.stealHeldItem && !heldItemOf(target)) continue;
-      if (rule.chance && await this.#rollTriggerDie(null, target, rule) < rule.chance) continue;
+      const gets = rule.targetEffects?.length ? effectList(rule.targetEffects) : localize("SYSTEM.Confirm.ItsEffect");
+      if (rule.chance && await this.#rollTriggerDie(null, target, rule, gets) < rule.chance) continue;
       await postAutomationMessage(this.user, [format("SYSTEM.Automation.FeatureTriggered", { name: escape(this.user.name), feature: escape(rule.source) })]);
       if (rule.targetEffects?.length) await applyEffects(target, rule.targetEffects, { sourceUuid: this.user.uuid, sourceName: this.user.name, fromOther: true });
       if (rule.stealHeldItem) await stealHeldItem(this.user, target);
@@ -559,7 +606,7 @@ export class MoveRollDialog extends RollDialog {
   }
 
   async #applyRoll(roll, target, message) {
-    if (!target || !game.settings.get(SYSTEM_ID, "autoApplyDamage")) return null;
+    if (!target) return null;
     const result = roll.isHealing
       ? await healActor(target, roll.total, this.move.name)
       : await applyDamage(target, roll.damageOptions);
@@ -575,21 +622,36 @@ export class MoveRollDialog extends RollDialog {
     for (const [trigger, minimum] of [['d6', 6], ['d56', 5]]) {
       const { target: onTarget } = system.getSplitEffects(trigger);
       if (!onTarget.length) continue;
-      const roll = await this.#rollTriggerDie(trigger, target);
+      const roll = await this.#rollTriggerDie(trigger, target, null, effectList(onTarget));
       if (roll < minimum) continue;
       if (target) await applyEffects(target, onTarget, { sourceUuid: this.user.uuid, sourceName: this.user.name, fromOther: true });
       else await postAutomationMessage(this.user, [format("SYSTEM.Automation.ApplyManually", { effects: effectList(onTarget) })]);
     }
   }
 
-  async #rollTriggerDie(trigger, target, rule = null) {
-    const roll = await new Roll("1d6").evaluate();
+  #purpose(kind, target, extra = {}) {
+    const data = { user: escape(this.user.name), move: escape(this.move.name), target: escape(target?.name), ...extra };
+    return {
+      title: format("SYSTEM.Confirm.Titles.Move", data),
+      text: format(`SYSTEM.Confirm.Purpose.${kind}`, data)
+    };
+  }
+
+  async #rollTriggerDie(trigger, target, rule = null, effects = "") {
+    const needs = rule ? rule.chance : trigger === 'd6' ? 6 : 5;
     const what = rule ? format("SYSTEM.Automation.FeatureChance", { feature: escape(rule.source), chance: rule.chance })
       : localize(`SYSTEM.TriggerTypes.${trigger === 'd6' ? 'D6' : 'D56'}`);
-    await roll.toMessage({
+    const who = escape((target ?? this.user).name);
+    const purpose = {
+      ...this.#purpose(rule ? "FeatureChance" : "Chance", target, { feature: escape(rule?.source), needs, who, effects }),
+      needs,
+      success: format("SYSTEM.Confirm.Outcome.Gets", { who, effects }),
+      failure: localize("SYSTEM.Confirm.Outcome.NoEffect")
+    };
+    const { roll } = await postRoll(rollSetup("1d6"), {
       speaker: ChatMessage.implementation.getSpeaker({ actor: this.user }),
       flavor: `${this.move.name}${target ? ` (${target.name})` : ""} - ${what}`
-    });
+    }, { actor: this.user, purpose });
     return roll.total;
   }
 
@@ -600,7 +662,7 @@ export class MoveRollDialog extends RollDialog {
     for (const [trigger, minimum] of [['d6', 6], ['d56', 5]]) {
       const { user: chanceOnUser } = system.getSplitEffects(trigger);
       if (!chanceOnUser.length) continue;
-      if (await this.#rollTriggerDie(trigger, null) >= minimum) {
+      if (await this.#rollTriggerDie(trigger, this.user, null, effectList(chanceOnUser)) >= minimum) {
         await applyEffects(this.user, chanceOnUser, { sourceUuid: this.user.uuid, sourceName: this.user.name });
       }
     }
@@ -660,7 +722,7 @@ export class MoveRollDialog extends RollDialog {
       statusMove: system.power == 0
     }), { // not including adv/mult for status checks
       flavor: `${this.move.name}${target ? ` (${target.name})` : ""} - ${localize("SYSTEM.Automation.Status")}`,
-    });
+    }, { confirm: true, purpose: this.#purpose("Status", target, { effects: effectList([...landing, ...autoApply.target]) }) });
   }
 
   async #rollStatusEffects() {

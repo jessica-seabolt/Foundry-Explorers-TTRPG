@@ -9,6 +9,7 @@ import { checkAction, recordAction } from './turns.mjs';
 import { includesSelf, tileDistance } from './targeting-geometry.mjs';
 import { getActorToken, pickTargets } from './targeting.mjs';
 import { abilities, typeMatchups } from './types.mjs';
+import { postRoll, rollSetup } from './roll-confirm.mjs';
 import { applyFieldEffect } from './weather.mjs';
 
 const { DialogV2 } = foundry.applications.api;
@@ -176,22 +177,26 @@ async function throwDamage(user, target, item) {
     if (result) flavor = `${result > 0 ? "+" : "-"}${localize(typeMatchups[matchup])}<br>${flavor}`;
     rollFormula = getDieString(die);
   }
-  const roll = new DamageRoll(rollFormula, {}, { targetId: target.uuid, attackerUuid: user.uuid, moveType: throwType, moveName: item.name, resistAbility: null });
-  await roll.evaluate();
-  const message = await ChatMessage.implementation.create({
-    speaker: ChatMessage.implementation.getSpeaker({ actor: user }), flavor, rolls: [roll]
-  });
+  const options = { targetId: target.uuid, attackerUuid: user.uuid, moveType: throwType, moveName: item.name, resistAbility: null };
+  const purpose = { title: format("SYSTEM.Confirm.Titles.Throw", { name: escape(user.name), item: escape(item.name) }),
+    text: format("SYSTEM.Confirm.Purpose.Throw", { name: escape(user.name), item: escape(item.name), target: escape(target.name) }) };
+  const setup = rollSetup(rollFormula, { rollClass: "DamageRoll", options, explode: true });
+  const { roll, message } = await postRoll(setup ?? new DamageRoll(rollFormula, {}, options), {
+    speaker: ChatMessage.implementation.getSpeaker({ actor: user }), flavor
+  }, { actor: user, purpose });
   const result = await applyDamage(target, roll.damageOptions);
   if (result !== undefined) await message?.setFlag?.("explorers", "damageApplied", true);
 }
 
 async function rollTraps(user, item) {
-  const roll = new ExplorersRoll(getDieString(getSkillDie(user, 'traps')));
-  await roll.evaluate();
-  await roll.toMessage({
+  const { sides, modifier } = getSkillDie(user, 'traps');
+  const { roll } = await postRoll({ dice: sides, modifier, rollClass: "ExplorersRoll" }, {
     speaker: ChatMessage.implementation.getSpeaker({ actor: user }),
     flavor: format("SYSTEM.Items.TrapsCheck", { item: escape(item.name) })
-  });
+  }, { actor: user, purpose: {
+    title: format("SYSTEM.Confirm.Titles.Throw", { name: escape(user.name), item: escape(item.name) }),
+    text: format("SYSTEM.Confirm.Purpose.TrapsCheck", { name: escape(user.name), item: escape(item.name) })
+  } });
   return roll;
 }
 

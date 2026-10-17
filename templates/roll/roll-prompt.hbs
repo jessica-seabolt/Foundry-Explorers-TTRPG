@@ -1,0 +1,45 @@
+<section class="roll-prompt-body">
+  <p class="roll-prompt-text">{{{text}}}</p>
+  {{#if setup}}
+  <div class="form-group">
+    <label>{{localize "SYSTEM.Confirm.Roll"}}</label>
+    <div class="form-fields"><span class="roll-prompt-formula">{{formula}}</span></div>
+  </div>
+  <div class="form-group">
+    <label>{{localize "SYSTEM.Confirm.CircumstanceDice"}}</label>
+    <div class="form-fields roll-prompt-stepper">
+      <button type="button" data-action="bonus" data-step="-1" {{#unless bonus}}disabled{{/unless}}><i class="fa-solid fa-minus"></i></button>
+      <span>{{bonus}}</span>
+      <button type="button" data-action="bonus" data-step="1"><i class="fa-solid fa-plus"></i></button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>{{localize "SYSTEM.Confirm.Advantage"}}</label>
+    <div class="form-fields">
+      <select name="advantage">
+        {{#each advantages}}<option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>{{/each}}
+      </select>
+    </div>
+  </div>
+  <footer class="roll-prompt-buttons">
+    <button type="button" data-action="roll"><i class="fa-solid fa-dice"></i> {{localize "SYSTEM.Confirm.RollButton"}}</button>
+  </footer>
+  {{else}}
+  <div class="roll-prompt-dice">
+    {{#each faces}}
+    <div class="raise-die {{#if raised}}raised{{/if}} {{#unless active}}inactive{{/unless}}">
+      {{#if ../canSpend}}<button type="button" data-action="step" data-key="{{key}}" data-step="-1" {{#unless canLower}}disabled{{/unless}}><i class="fa-solid fa-minus"></i></button>{{/if}}
+      <span class="raise-face">{{value}}{{#if exploded}}<i class="fa-solid fa-burst"></i>{{/if}}</span>
+      {{#if ../canSpend}}<button type="button" data-action="step" data-key="{{key}}" data-step="1" {{#unless canRaise}}disabled{{/unless}}><i class="fa-solid fa-plus"></i></button>{{/if}}
+    </div>
+    {{/each}}
+  </div>
+  <p class="roll-prompt-total">{{formula}} = <strong>{{total}}</strong>{{#if preview}} <i class="fa-solid fa-arrow-right"></i> <strong>{{preview}}</strong>{{/if}}</p>
+  {{#if outcome}}<p class="roll-prompt-outcome {{outcomeClass}}">{{outcome}}</p>{{/if}}
+  {{#if canSpend}}<p class="raise-tracker">{{localize "SYSTEM.Confirm.TrackerLabel"}} {{spent}} · {{left}} {{tokens}} {{localize "SYSTEM.Confirm.Left"}}</p>{{/if}}
+  <footer class="roll-prompt-buttons">
+    {{#if spent}}<button type="button" data-action="raise"><i class="fa-solid fa-arrow-up"></i> {{localize "SYSTEM.Confirm.SpendButton"}} ({{spent}})</button>{{/if}}
+    {{#unless free}}<button type="button" data-action="accept"><i class="fa-solid fa-check"></i> {{localize "SYSTEM.Confirm.Accept"}}</button>{{/unless}}
+  </footer>
+  {{/if}}
+</section>

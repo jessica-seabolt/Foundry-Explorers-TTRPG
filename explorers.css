@@ -51,18 +51,127 @@
   opacity: 0.8;
 }
 
-.dungeon-token-dice {
+
+.roll-confirm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.roll-confirm button {
+  flex: 1 1 auto;
+  min-width: max-content;
+}
+
+.roll-confirm .hint {
+  margin: 0;
+}
+
+.raise-tracker {
+  font-weight: bold;
+}
+
+.raise-die {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+  border: 1px solid var(--color-border, #999);
+  border-radius: 6px;
+}
+
+.raise-die .raise-face {
+  min-width: 1.5em;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.raise-die.raised .raise-face {
+  color: #2e8b57;
+}
+
+.roll-prompt .roll-prompt-body,
+.roll-prompt .explorers-roll-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.roll-prompt details.roll-more {
+  border-top: 1px solid var(--color-border, #999);
+  padding-top: 4px;
+}
+
+.roll-prompt details.roll-more summary {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.roll-prompt .roll-mode-buttons {
+  flex: 0 0 auto;
+}
+
+.roll-prompt .roll-prompt-buttons button.roll-go {
+  flex: 1;
+}
+
+.roll-prompt .roll-prompt-text {
+  margin: 0;
+}
+
+.roll-prompt .roll-prompt-formula {
+  font-family: monospace;
+}
+
+.roll-prompt .roll-prompt-stepper {
+  align-items: center;
+  gap: 6px;
+}
+
+.roll-prompt .roll-prompt-stepper button,
+.roll-prompt .raise-die button {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  line-height: 1;
+}
+
+.roll-prompt .roll-prompt-dice {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.dungeon-token-die {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+.roll-prompt .raise-die.inactive {
+  opacity: 0.4;
 }
 
-.dungeon-token-die input {
-  width: 3.5em;
+.roll-prompt .roll-prompt-total,
+.roll-prompt .roll-prompt-outcome {
+  margin: 0;
+  text-align: center;
+}
+
+.roll-prompt .roll-prompt-outcome {
+  font-weight: bold;
+}
+
+.roll-prompt .roll-prompt-outcome.good {
+  color: #2e8b57;
+}
+
+.roll-prompt .roll-prompt-outcome.bad {
+  color: #c0392b;
+}
+
+.roll-prompt .roll-prompt-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.roll-prompt .roll-prompt-body .roll-prompt-buttons button {
+  flex: 1;
 }

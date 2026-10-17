@@ -12,20 +12,6 @@
   background: var(--control-active-border-color);
 }
 
-.roll-options {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  place-items: center;
-}
-
-.roll-types {
-  display: flex;
-}
-
-.roll-types > * {
-  flex: 1;
-}
-
 .initiative-tie-choice .initiative-tie-buttons {
   display: flex;
   flex-wrap: wrap;

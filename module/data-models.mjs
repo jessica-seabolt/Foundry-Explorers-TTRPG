@@ -5,6 +5,7 @@ import { FAINTED_STATUS, applyDamage, applyEffects, consumeRuleItem, healActor, 
 import { SYSTEM_ID } from '../constants.mjs';
 import { auraOfNature, classData, effectiveProficiencies, featureCategories, getRules, hasCondition, hasRule, heldItemOf, hpPerLevelBonus, statModifierBonus, visibilityBonus } from './features.mjs';
 import { stealHeldItem } from './items.mjs';
+import { postRoll, rollSetup } from './roll-confirm.mjs';
 import { fieldStatBonus, isFieldEffect, movementPenalty, statMultiplier } from './weather.mjs';
 
 const sizeToTiles = { tiny: 1, small: 1, medium: 1, large: 2, huge: 3 };
@@ -233,11 +234,15 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
         const key = `endure.${rule.key ?? "default"}`;
         if (rule.once && actor.getFlag(SYSTEM_ID, key)) continue;
         if (rule.chance) {
-          const roll = await new foundry.dice.Roll("1d6").evaluate();
-          await roll.toMessage({
+          const feature = foundry.utils.escapeHTML(rule.source);
+          const { roll } = await postRoll(rollSetup("1d6"), {
             speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }),
-            flavor: game.i18n.format("SYSTEM.Automation.FeatureChance", { feature: foundry.utils.escapeHTML(rule.source), chance: rule.chance })
-          });
+            flavor: game.i18n.format("SYSTEM.Automation.FeatureChance", { feature, chance: rule.chance })
+          }, { actor, purpose: {
+            title: format("SYSTEM.Confirm.Titles.Feature", { feature }),
+            text: format("SYSTEM.Confirm.Purpose.Endure", { feature, needs: rule.chance }),
+            needs: rule.chance, success: format("SYSTEM.Confirm.Outcome.Endures"), failure: game.i18n.localize("SYSTEM.Confirm.Outcome.NoEffect")
+          } });
           if (roll.total < rule.chance) continue;
         }
         damage = this.hp.raw - 1;
@@ -312,11 +317,15 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       if (rule.damaged && damage <= 0) continue;
       if (rule.stealAttackerItem && !heldItemOf(attacker)) continue;
       if (rule.chance) {
-        const roll = await new foundry.dice.Roll("1d6").evaluate();
-        await roll.toMessage({
+        const feature = foundry.utils.escapeHTML(rule.source);
+        const { roll } = await postRoll(rollSetup("1d6"), {
           speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }),
-          flavor: game.i18n.format("SYSTEM.Automation.FeatureChance", { feature: foundry.utils.escapeHTML(rule.source), chance: rule.chance })
-        });
+          flavor: game.i18n.format("SYSTEM.Automation.FeatureChance", { feature, chance: rule.chance })
+        }, { actor, purpose: {
+          title: game.i18n.format("SYSTEM.Confirm.Titles.Feature", { feature }),
+          text: game.i18n.format("SYSTEM.Confirm.Purpose.OnDamaged", { feature, needs: rule.chance }),
+          needs: rule.chance, success: game.i18n.format("SYSTEM.Confirm.Outcome.Triggers", { feature }), failure: game.i18n.localize("SYSTEM.Confirm.Outcome.NoEffect")
+        } });
         if (roll.total < rule.chance) continue;
       }
       await postAutomationMessage(actor, [game.i18n.format("SYSTEM.Automation.FeatureTriggered", { name, feature: foundry.utils.escapeHTML(rule.source) })]);
@@ -326,8 +335,10 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
         await applyEffects(attacker, rule.attackerEffects, { sourceUuid: actor.uuid, sourceName: actor.name, fromOther: true });
       }
       if (rule.attackerDamage) {
-        const roll = await new foundry.dice.Roll(rule.attackerDamage).evaluate();
-        await roll.toMessage({ speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }), flavor: rule.source });
+        const purpose = { title: game.i18n.format("SYSTEM.Confirm.Titles.Feature", { feature: foundry.utils.escapeHTML(rule.source) }),
+          text: game.i18n.format("SYSTEM.Confirm.Purpose.FeatureDamage", { feature: foundry.utils.escapeHTML(rule.source), target: foundry.utils.escapeHTML(attacker.name) }) };
+        const { roll } = await postRoll(rollSetup(rule.attackerDamage) ?? new foundry.dice.Roll(rule.attackerDamage),
+          { speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }), flavor: rule.source }, { actor, purpose });
         await applyDamage(attacker, { amount: roll.total, label: rule.source, fromMove: true });
       }
       if (rule.stealAttackerItem) await stealHeldItem(actor, attacker);

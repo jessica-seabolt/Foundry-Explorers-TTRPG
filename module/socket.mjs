@@ -19,19 +19,23 @@ export function emitToGM(action, data) {
   return true;
 }
 
-export function requestFromGM(action, data) {
+export function emitToUser(userId, action, data) {
+  game.socket.emit(socketName(), { ...data, action, toUserId: userId });
+}
+
+export function requestFromGM(action, data, { timeout = REQUEST_TIMEOUT_MS } = {}) {
   if (!game.users.activeGM) {
     ui.notifications.warn("SYSTEM.Socket.NoGM", { localize: true });
     return Promise.resolve(undefined);
   }
   const requestId = foundry.utils.randomID();
   return new Promise(resolve => {
-    const timeout = setTimeout(() => {
+    const timer = timeout ? setTimeout(() => {
       pendingRequests.delete(requestId);
       resolve(undefined);
-    }, REQUEST_TIMEOUT_MS);
+    }, timeout) : null;
     pendingRequests.set(requestId, result => {
-      clearTimeout(timeout);
+      clearTimeout(timer);
       resolve(result);
     });
     game.socket.emit(socketName(), { ...data, action, requestId, userId: game.user.id });
@@ -44,6 +48,10 @@ export function initSocket() {
       if (data.userId !== game.user.id) return;
       pendingRequests.get(data.requestId)?.(data.result);
       pendingRequests.delete(data.requestId);
+      return;
+    }
+    if (data?.toUserId) {
+      if (data.toUserId === game.user.id) await handlers[data.action]?.(data);
       return;
     }
     if (!game.user.isActiveGM) return;

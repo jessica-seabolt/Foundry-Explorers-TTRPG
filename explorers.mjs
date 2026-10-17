@@ -25,6 +25,7 @@ import { openFieldDialog, registerFieldHooks } from './module/weather.mjs';
 import { registerStairsHooks } from './module/stairs.mjs';
 import { registerDungeonTokenHooks, registerDungeonTokenSettings } from './module/dungeon-tokens.mjs';
 import { registerAdventureTokenHooks, registerAdventureTokenSettings } from './module/adventure-tokens.mjs';
+import { registerRollConfirmHooks, registerRollConfirmSettings } from './module/roll-confirm.mjs';
 
 const { Localization } = foundry.helpers;
 const { Die } = foundry.dice.terms;
@@ -107,6 +108,8 @@ Hooks.once("init", () => {
   registerDungeonTokenHooks();
   registerAdventureTokenSettings();
   registerAdventureTokenHooks();
+  registerRollConfirmSettings();
+  registerRollConfirmHooks();
 });
 
 function registerSettings() {
@@ -114,11 +117,6 @@ function registerSettings() {
   game.settings.register(SYSTEM_ID, "autoTargeting", {
     name: "SYSTEM.Settings.AutoTargeting.Name",
     hint: "SYSTEM.Settings.AutoTargeting.Hint",
-    scope: "world", config: true, type: Boolean, default: true
-  });
-  game.settings.register(SYSTEM_ID, "autoApplyDamage", {
-    name: "SYSTEM.Settings.AutoApplyDamage.Name",
-    hint: "SYSTEM.Settings.AutoApplyDamage.Hint",
     scope: "world", config: true, type: Boolean, default: true
   });
   game.settings.register(SYSTEM_ID, "autoRollNpcStatusChecks", {

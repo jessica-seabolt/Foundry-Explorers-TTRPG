@@ -1,5 +1,6 @@
 import { SYSTEM_ID } from '../constants.mjs';
-import { openRaiseDialog, raisable, speakerActor, teamLevel } from './dungeon-tokens.mjs';
+import { dungeonPool, teamLevel } from './dungeon-tokens.mjs';
+import { configureRollConfirm, freelyRaisable, raiseFreely, speakerActor } from './roll-confirm.mjs';
 import { setHudItem } from './hud.mjs';
 import { setsOffTraps } from './traps.mjs';
 
@@ -131,6 +132,7 @@ function onRenderChatMessage(message, html) {
 }
 
 export const adventurePool = actor => ({
+  label: "SYSTEM.AdventureTokens.Title",
   title: "SYSTEM.AdventureTokens.RaiseTitle",
   prompt: "SYSTEM.AdventureTokens.RaisePrompt",
   count: () => actor.system.tokens?.available ?? 0,
@@ -146,10 +148,15 @@ export const adventurePool = actor => ({
 function canSpendOwn(message) {
   const actor = message && speakerActor(message);
   if (!actor?.isOwner || !hasTokenTrack(actor) || actor.system.tokens.available < 1) return false;
-  return (message.isAuthor || game.user.isGM) && raisable(message);
+  return (message.isAuthor || game.user.isGM) && freelyRaisable(message);
 }
 
 export function registerAdventureTokenHooks() {
+// Team members spend their own Adventure Tokens; everyone else uses the GM's Dungeon Tokens.
+  configureRollConfirm({
+    poolFor: actor => actor && setsOffTraps(actor) && hasTokenTrack(actor) ? adventurePool(actor) : dungeonPool,
+    isTeam: actor => setsOffTraps(actor)
+  });
   Hooks.on("canvasReady", renderCounter);
   Hooks.on("updateActor", (actor, changes) => {
     if (foundry.utils.hasProperty(changes, "system.level")) renderCounter();
@@ -162,7 +169,7 @@ export function registerAdventureTokenHooks() {
       condition: li => canSpendOwn(game.messages.get(li.dataset.messageId)),
       callback: li => {
         const message = game.messages.get(li.dataset.messageId);
-        return openRaiseDialog(message, adventurePool(speakerActor(message)));
+        return raiseFreely(message, adventurePool(speakerActor(message)));
       }
     });
   });

@@ -1,47 +1,93 @@
-<section class="standard-form">
-  <div class="roll-options">
-    <label>DC</label><input type="number" data-name="dc" step="1" min="0" value="{{dialogState.dc}}">
-    <label>Extra Die</label><input type="number" data-name="extraDie" step="1" value="{{dialogState.extraDie}}">
-    <label>Extra Modifier</label><input type="number" data-name="extraModifier" step="1" value="{{dialogState.extraModifier}}">
-    <label>Multiplier</label><input type="number" data-name="multiplier" value="{{dialogState.multiplier}}">
-    <label>Advantage</label>
-    <select data-name="advantage">
-      {{#if isMove}}<option {{#if (equals dialogState.advantage "")}}selected{{/if}} value="">Default</option>{{/if}}
-      {{#each advantage as |advOption advValue|}}
-      {{#with ..}}
-        <option {{#if (equals dialogState.advantage advValue)}}selected{{/if}} value={{advValue}}>{{localize advOption}}</option>
-      {{/with}}
-      {{/each}}
-    </select>
-    <label>High Crit. Ratio</label><input type="checkbox" data-name="highCrit" {{checked dialogState.highCrit}}>
+<section class="explorers-roll-body">
+  {{#if description}}<p class="roll-prompt-text">{{{description}}}</p>{{/if}}
+  {{#if formula}}
+  <div class="form-group">
+    <label>{{localize formulaLabel}}</label>
+    <div class="form-fields"><span class="roll-prompt-formula">{{formula}}</span></div>
+  </div>
+  {{/if}}
+  <div class="form-group">
+    <label>{{localize "SYSTEM.Confirm.CircumstanceDice"}}</label>
+    <div class="form-fields roll-prompt-stepper">
+      <button type="button" data-action="step" data-step="-1" {{#unless dialogState.extraDie}}disabled{{/unless}}><i class="fa-solid fa-minus"></i></button>
+      <span>{{dialogState.extraDie}}</span>
+      <button type="button" data-action="step" data-step="1"><i class="fa-solid fa-plus"></i></button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>{{localize "SYSTEM.Confirm.Advantage"}}</label>
+    <div class="form-fields">
+      <select data-name="advantage">
+        {{#if isMove}}<option {{#if (equals dialogState.advantage "")}}selected{{/if}} value="">{{localize "SYSTEM.RollDialog.DefaultAdvantage"}}</option>{{/if}}
+        {{#each advantage as |advOption advValue|}}
+        {{#with ..}}
+          <option {{#if (equals dialogState.advantage advValue)}}selected{{/if}} value={{advValue}}>{{localize advOption}}</option>
+        {{/with}}
+        {{/each}}
+      </select>
+    </div>
+  </div>
+  {{#if showDc}}
+  <div class="form-group">
+    <label>{{localize "SYSTEM.RollDialog.DC"}}</label>
+    <div class="form-fields"><input type="number" data-name="dc" step="1" min="0" value="{{dialogState.dc}}" placeholder="—"></div>
+  </div>
+  {{/if}}
+  <details class="roll-more" {{#if showMore}}open{{/if}}>
+    <summary>{{localize "SYSTEM.RollDialog.MoreOptions"}}</summary>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.RollDialog.ExtraModifier"}}</label>
+      <div class="form-fields"><input type="number" data-name="extraModifier" step="1" value="{{dialogState.extraModifier}}"></div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.RollDialog.Multiplier"}}</label>
+      <div class="form-fields"><input type="number" data-name="multiplier" step="0.5" min="0" value="{{dialogState.multiplier}}"></div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.RollDialog.HighCrit"}}</label>
+      <div class="form-fields"><input type="checkbox" data-name="highCrit" {{checked dialogState.highCrit}}></div>
+    </div>
     {{#if isMove}}
-    <label>Type Matchup</label>
-    <select data-name="typeMatchup">
-      <option {{#if (equals dialogState.typeMatchup "")}}selected{{/if}} value="">Default</option>
-      {{#each typeMatchups as |typeMatchup matchupValue|}}
-      {{#with ..}}
-        <option {{#if (equals dialogState.typeMatchup matchupValue)}}selected{{/if}} value={{matchupValue}}>{{localize typeMatchup}}</option>
-      {{/with}}
-      {{/each}}
-    </select>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.RollDialog.TypeMatchup"}}</label>
+      <div class="form-fields">
+        <select data-name="typeMatchup">
+          <option {{#if (equals dialogState.typeMatchup "")}}selected{{/if}} value="">{{localize "SYSTEM.RollDialog.FromTypes"}}</option>
+          {{#each typeMatchups as |typeMatchup matchupValue|}}
+          {{#with ..}}
+            <option {{#if (equals dialogState.typeMatchup matchupValue)}}selected{{/if}} value={{matchupValue}}>{{localize typeMatchup}}</option>
+          {{/with}}
+          {{/each}}
+        </select>
+      </div>
+    </div>
     {{#unless isBasicAttack}}
-    <label>{{localize "SYSTEM.Actions.OpportunityStrike"}}</label><input type="checkbox" data-name="opportunity" {{checked dialogState.opportunity}}>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Actions.OpportunityStrike"}}</label>
+      <div class="form-fields"><input type="checkbox" data-name="opportunity" {{checked dialogState.opportunity}}></div>
+    </div>
     {{/unless}}
-    <label data-tooltip="SYSTEM.Automation.SkipChecksHint">{{localize "SYSTEM.Automation.SkipChecks"}}</label><input type="checkbox" data-name="skipChecks" {{checked dialogState.skipChecks}}>
+    <div class="form-group">
+      <label data-tooltip="SYSTEM.Automation.SkipChecksHint">{{localize "SYSTEM.Automation.SkipChecks"}}</label>
+      <div class="form-fields"><input type="checkbox" data-name="skipChecks" {{checked dialogState.skipChecks}}></div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.RollDialog.DC"}}</label>
+      <div class="form-fields"><input type="number" data-name="dc" step="1" min="0" value="{{dialogState.dc}}" placeholder="—"></div>
+    </div>
     {{/if}}
-  </div>
-  <div class="roll-types">
+  </details>
+  <footer class="roll-prompt-buttons">
+    <div class="roll-mode-buttons split-button">
+      <button type="button" class="{{#if (equals messageMode "publicroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-globe" data-action="setMessageMode" data-messagemode="publicroll" data-tooltip="CHAT.RollPublic"></button>
+      <button type="button" class="{{#if (equals messageMode "gmroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-user-secret" data-action="setMessageMode" data-messagemode="gmroll" data-tooltip="CHAT.RollPrivate"></button>
+      <button type="button" class="{{#if (equals messageMode "blindroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-eye-slash" data-action="setMessageMode" data-messagemode="blindroll" data-tooltip="CHAT.RollBlind"></button>
+      <button type="button" class="{{#if (equals messageMode "selfroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-user" data-action="setMessageMode" data-messagemode="selfroll" data-tooltip="CHAT.RollSelf"></button>
+    </div>
     {{#if isMove}}
-      <button data-action="use"><i class="icon fa-solid fa-hand-sparkles"></i>{{localize "SYSTEM.Automation.Use"}}</button>
+    <button type="button" class="roll-go" data-action="use"><i class="fa-solid fa-hand-sparkles"></i> {{localize "SYSTEM.Automation.Use"}}</button>
     {{else}}
-      <button data-action="roll"><i class="icon fa-solid fa-dice-d6"></i>Roll</button>
+    <button type="button" class="roll-go" data-action="roll"><i class="fa-solid fa-dice"></i> {{localize "SYSTEM.Confirm.RollButton"}}</button>
     {{/if}}
-
-  </div>
-  <div class="roll-mode-buttons split-button">
-    <button type="button" class="{{#if (equals messageMode "publicroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-globe" data-action="setMessageMode" data-messagemode="publicroll" data-tooltip="CHAT.RollPublic">
-    <button type="button" class="{{#if (equals messageMode "gmroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-user-secret" data-action="setMessageMode" data-messagemode="gmroll" data-tooltip="CHAT.RollPrivate">
-    <button type="button" class="{{#if (equals messageMode "blindroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-eye-slash" data-action="setMessageMode" data-messagemode="blindroll" data-tooltip="CHAT.RollBlind">
-    <button type="button" class="{{#if (equals messageMode "selfroll")}}selected{{/if}} roll-btn ui-control icon fa-solid fa-user" data-action="setMessageMode" data-messagemode="selfroll" data-tooltip="CHAT.RollSelf">
-  </div>
+  </footer>
 </section>

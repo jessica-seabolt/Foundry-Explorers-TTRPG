@@ -628,13 +628,17 @@
         "Name": "Suggest Adventure Token Awards",
         "Hint": "Whisper the GM a one-click award when a team member fails a skill check, finds an item, misses with a Status Move, or deals no damage with a Move."
       },
+      "PromptAutomaticRolls": {
+        "Name": "Ask Before Automatic Rolls",
+        "Hint": "Rolls the system makes on its own (paralysis and confusion checks, resists, chance rolls, trap avoidance) open a window first, so circumstance dice and Advantage can be added. Off: they roll straight away."
+      },
+      "ConfirmAllRolls": {
+        "Name": "Confirm Every Roll",
+        "Hint": "Every roll that has an effect waits for its roller to Accept it, even when they have no tokens to spend. Off: rolls only wait when there's a token to spend."
+      },
       "TurnLimits": {
         "Name": "Turn Limits in Battle",
         "Hint": "During a battle, each Pokémon can only move its Battle Movement and take one Action on its turn, and use one Reaction each Round. The GM can still move Pokémon off their turn (to push or pull them)."
-      },
-      "AutoApplyDamage": {
-        "Name": "Apply Damage Automatically",
-        "Hint": "Deal a move's damage (or healing) to its target as soon as it's rolled, before any secondary effects. Untargeted rolls keep their Damage button."
       },
       "AutoRollNpcStatusChecks": {
         "Name": "Auto-Roll GM Status Checks",
@@ -930,7 +934,7 @@
       "Give": "Give Adventure Token",
       "Given": "{name} got the Adventure Token.",
       "RaiseTitle": "Raise a Die (Adventure Tokens)",
-      "RaisePrompt": "Each face raised costs 1 Adventure Token. You have {count}. A die raised to its top face explodes as usual.",
+      "RaisePrompt": "Each +1 on a die costs 1 Adventure Token. A die raised to 6 explodes as usual.",
       "NotEnough": "That costs {cost} Adventure Tokens, but {name} only has {have}.",
       "Spent": "{name} spent {count} Adventure Tokens: {detail}.",
       "Reasons": {
@@ -943,6 +947,93 @@
         "other": "GM's call"
       }
     },
+    "RollDialog": {
+      "MoreOptions": "More options",
+      "ExtraModifier": "Extra Modifier",
+      "Multiplier": "Multiplier",
+      "HighCrit": "High Critical Ratio",
+      "TypeMatchup": "Type Matchup",
+      "FromTypes": "From the types",
+      "DefaultAdvantage": "Default (STAB)",
+      "DC": "Difficulty",
+      "BaseDamage": "Base roll (before type and power bonuses)",
+      "StatusRoll": "Status roll",
+      "SkillCheck": "{name} makes a {skill} check."
+    },
+    "Confirm": {
+      "Title": "Roll",
+      "Roll": "Roll",
+      "RollButton": "Roll",
+      "CircumstanceDice": "Circumstance Dice",
+      "Advantage": "Advantage",
+      "Accept": "Accept",
+      "SpendButton": "Spend Tokens",
+      "TrackerLabel": "Spending",
+      "Left": "left",
+      "Open": "Open",
+      "Waiting": "Waiting for {name} to accept this roll…",
+      "WaitingRoll": "Waiting for {name} to roll…",
+      "RaisedBy": "raised {name}'s roll by {count}",
+      "ItsEffect": "its effect",
+      "Titles": {
+        "Move": "{user}: {move}",
+        "Resist": "{name} resists {move}",
+        "Paralysis": "{name}: Paralysis check",
+        "Confusion": "{name}: Confusion check",
+        "Blind": "{name}: Blindness check",
+        "Wake": "{name}: waking up",
+        "ShakeOff": "{name}: shaking off {label}",
+        "Heal": "{name}: healing",
+        "Feature": "{feature}",
+        "Trap": "{name}: avoiding the {trap}",
+        "Throw": "{name}: {item}"
+      },
+      "Purpose": {
+        "Damage": "{user} is using {move} against {target}. Below are the resulting damage dice and the total (before subtracting {target}'s Defence).",
+        "DamageUntargeted": "{user}'s {move} damage. Nothing is targeted, so apply it from the chat card.",
+        "Heal": "{user}'s {move} heals {target} by this much.",
+        "Absorb": "{target}'s {feature} absorbs {move} and heals by this much.",
+        "Status": "{user}'s {move} tries to give {target} {effects}. {target} rolls to resist next, needing this total or more.",
+        "Chance": "{user}'s {move}: on a {needs} or higher, {who} gets {effects}.",
+        "FeatureChance": "{user}'s {feature}: on a {needs} or higher, {who} gets {effects}.",
+        "Resist": "{name} resists {move} ({effects}). It needs {dc} or more.",
+        "Paralysis": "{name} is Paralyzed and tries to use {move}. On a 1-2 it can't.",
+        "Confusion": "{name} is Confused and tries to use {move}. 1: hits an ally, 2: hurts itself, 3: hits a random target, 4: acts normally, 5-6: acts and snaps out of it.",
+        "Blind": "{name} is Blinded and attacks with {move}. 1-3: misses, 4-5: hits, 6: hits and can see again.",
+        "Wake": "{name} is Asleep. On a {needs} or higher it wakes up.",
+        "ShakeOff": "{name} tries to shake off {label} with {skill}. It needs {dc} or more.",
+        "TickHeal": "{source} heals {name} by this much.",
+        "Endure": "{feature}: on a {needs} or higher, it hangs on with 1 HP.",
+        "OnDamaged": "{feature}: on a {needs} or higher, it activates.",
+        "FeatureDamage": "{feature} deals this much damage to {target}.",
+        "AvoidTrap": "{name} tries to avoid the {trap} with {skill}. It needs {difficulty} or more.",
+        "Throw": "{name} throws the {item} at {target}. Accepting deals this much damage.",
+        "TrapsCheck": "{name} uses the {item}. The target resists against this total."
+      },
+      "Outcome": {
+        "Gets": "{who} gets {effects}",
+        "NoEffect": "No effect",
+        "Resisted": "{name} resists it",
+        "Afflicted": "{name} gets {effects}",
+        "CantAct": "{name} can't act",
+        "ActsNormally": "{name} acts normally",
+        "AttacksAlly": "{name} hits an ally",
+        "HitsItself": "{name} hurts itself",
+        "AttacksRandom": "{name} hits a random target",
+        "SnapsOut": "{name} acts and snaps out of it",
+        "Misses": "{name} misses",
+        "Hits": "{name} hits",
+        "HitsAndSees": "{name} hits and can see again",
+        "WakesUp": "{name} wakes up",
+        "StaysAsleep": "{name} stays asleep",
+        "ShakesOff": "{name} shakes off {label}",
+        "StillHas": "{name} is still {label}",
+        "Endures": "It endures",
+        "Triggers": "{feature} activates",
+        "Avoids": "{name} avoids it",
+        "SetsOff": "{name} sets it off"
+      }
+    },
     "DungeonTokens": {
       "Title": "Dungeon Tokens",
       "Counter": "Dungeon Tokens {count}/{limit}",
@@ -951,7 +1042,7 @@
       "Have": "You have {count} Dungeon Tokens.",
       "HowMany": "How many",
       "HowManyHint": "For a Monster House this is how many Pokémon appear (6 if left blank). Spawned Pokémon come from the Floor's enemy table, and new Traps from its trap table.",
-      "RaiseHint": "To raise the dice on a Foe's roll, right-click the roll in chat.",
+      "RaiseHint": "To raise the dice on a Foe's roll, press Raise on the roll in chat before accepting it. Skill checks can be raised any time by right-clicking them.",
       "Room": "Room",
       "Spend": "Spend",
       "Cost": "{cost}",
@@ -970,11 +1061,8 @@
       "Placed": "{label} ×{count}",
       "Spawned": "{label}: {count} Pokémon in {room}",
       "RaiseTitle": "Raise a Die (Dungeon Tokens)",
-      "RaisePrompt": "Each face raised costs 1 Dungeon Token. You have {count}. A die raised to its top face explodes as usual.",
+      "RaisePrompt": "Each +1 on a die costs 1 Dungeon Token. A die raised to 6 explodes as usual.",
       "Raise": "Raise",
-      "Raised": "raised {name}'s roll from {from} to {to}",
-      "ResistedAfterAll": "{name} resisted {move} after all!",
-      "UndoByHand": "Undo these by hand: {effects}.",
       "Spends": {
         "raiseRoll": "Raise a die on a Foe's roll",
         "field": "Change the Weather or Terrain on this Floor",

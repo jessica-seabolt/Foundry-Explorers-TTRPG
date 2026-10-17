@@ -1,11 +1,10 @@
 import { SYSTEM_ID } from '../constants.mjs';
-import { FAINTED_STATUS, applyDamage, cureConditions, healActor, postAutomationMessage } from './conditions.mjs';
-import { DamageRoll, StatusRoll } from './explorers-roll.mjs';
+import { FAINTED_STATUS } from './conditions.mjs';
 import { floorItemOf } from './floor-items.mjs';
 import { setHudItem } from './hud.mjs';
+import { freelyRaisable, raiseFreely, speakerActor } from './roll-confirm.mjs';
 import { getRooms } from './rooms.mjs';
 import { isGround, openSpacesOnFloor, setsOffTraps, syncTrapVisibility, tokenAt, trapOf, trapTileData } from './traps.mjs';
-import { effects, statConditions, stateConditions } from './types.mjs';
 import { openFieldDialog } from './weather.mjs';
 import { resolveDocument, rollTableDocument, wildTokenData, worldActorFor } from './dungeon/spawns.mjs';
 
@@ -244,47 +243,8 @@ export async function performSpend(scene, key, count = null, room = null) {
   }
 }
 
-export const speakerActor = message => foundry.documents.ChatMessage.implementation.getSpeakerActor(message.speaker);
-
-const explodeAt = die => {
-  const modifier = die.modifiers.find(modifier => modifier.startsWith("x"));
-  if (!modifier) return null;
-  const match = modifier.match(/^x(?:>=?(\d+))?/);
-  return match?.[1] ? Number(match[1]) : die.faces;
-};
-
-// Our formulas are "Nd6...+mod", optionally wrapped as "floor((...) * multiplier)".
-export function rollTotal(roll) {
-  const sum = roll.dice.reduce((total, die) => total + die.results.filter(result => result.active).reduce((t, result) => t + result.result, 0), 0);
-  const multiplier = roll.formula.match(/\* ([\d.]+)\)$/);
-  const modifier = roll.formula.match(/([+-]\s*\d+)\)?(?: \* [\d.]+\))?$/);
-  const base = sum + (modifier ? Number(modifier[1].replace(/\s/g, "")) : 0);
-  return multiplier ? Math.floor(base * Number(multiplier[1])) : base;
-}
-
-export async function raiseDice(roll, raises) {
-  const dice = roll.dice;
-  for (const { die, result, amount } of raises) {
-    const term = dice[die];
-    const face = term.results[result];
-    if (!face?.active) continue;
-    face.result = Math.min(term.faces, face.result + amount);
-    const threshold = explodeAt(term);
-    let current = face;
-    while (threshold && current.result >= threshold && !current.exploded) {
-      current.exploded = true;
-      const extra = (await new foundry.dice.Roll(`1d${term.faces}`).evaluate()).total;
-      current = { result: extra, active: true, fromExplosion: true };
-      term.results.push(current);
-    }
-  }
-  roll._total = rollTotal(roll);
-  return roll;
-}
-
-const SUCCESS_SPAN = /<br><span style="color:(?:green|red);font-weight:bold;">[^<]*<\/span>$/;
-
 export const dungeonPool = {
+  label: "SYSTEM.DungeonTokens.Title",
   title: "SYSTEM.DungeonTokens.RaiseTitle",
   prompt: "SYSTEM.DungeonTokens.RaisePrompt",
   count: () => currentTokens(),
@@ -292,80 +252,10 @@ export const dungeonPool = {
   notEnough: cost => ui.notifications.warn(format("SYSTEM.DungeonTokens.NotEnough", { cost, have: currentTokens() }))
 };
 
-// A status attack can't change once its target has resisted.
-export function raisable(message) {
-  if (!message?.rolls.length) return false;
-  if (message.rolls.some(roll => roll instanceof StatusRoll) && message.getFlag(SYSTEM_ID, "statusResolved")) return false;
-  return message.rolls.some(roll => roll.dice.some(die => die.results.some(result => result.active && result.result < die.faces)));
-}
-
 function canRaise(message) {
-  if (!game.user.isGM || currentTokens() < 1 || !raisable(message)) return false;
+  if (!game.user.isGM || currentTokens() < 1 || !freelyRaisable(message)) return false;
   const actor = speakerActor(message);
   return !!actor && actor.type !== "Team" && !setsOffTraps(actor);
-}
-
-export async function openRaiseDialog(message, pool = dungeonPool) {
-  const faces = [];
-  message.rolls.forEach((roll, rollIndex) => roll.dice.forEach((die, dieIndex) => die.results.forEach((result, resultIndex) => {
-    if (result.active && result.result < die.faces) faces.push({ rollIndex, dieIndex, resultIndex, value: result.result, max: die.faces });
-  })));
-  const inputs = faces.map((face, index) => `<label class="dungeon-token-die">
-      <span>${face.value}</span> <i class="fa-solid fa-arrow-right"></i>
-      <input type="number" name="face${index}" min="${face.value}" max="${face.max}" value="${face.value}">
-    </label>`).join("");
-  const data = await foundry.applications.api.DialogV2.prompt({
-    window: { title: pool.title },
-    content: `<p>${format(pool.prompt, { count: pool.count() })}</p><div class="dungeon-token-dice">${inputs}</div>`,
-    ok: { label: "SYSTEM.DungeonTokens.Raise", callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object },
-    rejectClose: false
-  });
-  if (!data) return;
-  const raises = faces.map((face, index) => ({ ...face, amount: Math.clamp(Math.floor(Number(data[`face${index}`]) || face.value), face.value, face.max) - face.value }))
-    .filter(face => face.amount > 0);
-  const cost = raises.reduce((sum, face) => sum + face.amount, 0);
-  if (cost) await raiseMessageRolls(message, raises, cost, pool);
-}
-
-export async function raiseMessageRolls(message, raises, cost, pool = dungeonPool) {
-  if (cost > pool.count()) return pool.notEnough(cost);
-  const rolls = message.rolls;
-  const before = rolls.map(roll => roll.total);
-  for (const [rollIndex, roll] of rolls.entries()) {
-    await raiseDice(roll, raises.filter(face => face.rollIndex === rollIndex).map(face => ({ die: face.dieIndex, result: face.resultIndex, amount: face.amount })));
-  }
-  const update = { rolls };
-  const roll = rolls[0];
-  if (roll.options?.dc != null && message.flavor && SUCCESS_SPAN.test(message.flavor)) {
-    const success = roll.total >= roll.options.dc;
-    update.flavor = message.flavor.replace(SUCCESS_SPAN,
-      `<br><span style="color:${success ? "green" : "red"};font-weight:bold;">${localize(success ? "SYSTEM.Dice.Success" : "SYSTEM.Dice.Failure")}</span>`);
-  }
-  await message.update(update);
-  const name = escape(speakerActor(message)?.name);
-  await pool.spend(cost, format("SYSTEM.DungeonTokens.Raised", { name, from: before[0], to: roll.total }));
-  await raiseConsequences(message, roll, before[0]);
-}
-
-async function raiseConsequences(message, roll, before) {
-  const target = roll.options?.targetId ? fromUuidSync(roll.options.targetId) : null;
-  if (roll instanceof DamageRoll && target && message.getFlag(SYSTEM_ID, "damageApplied")) {
-    if (roll.isHealing) return healActor(target, roll.total - before, localize("SYSTEM.DungeonTokens.Title"));
-    const resist = roll.resistAbility ? target.system.getResistMod?.(roll.resistAbility) ?? 0 : 0;
-    const extra = Math.max(roll.total - resist, 0) - Math.max(before - resist, 0);
-    if (extra > 0) await applyDamage(target, { amount: extra, label: localize("SYSTEM.DungeonTokens.Title"), fromMove: true });
-    return;
-  }
-  const resist = message.getFlag(SYSTEM_ID, "resist");
-  if (!resist || before >= roll.options.dc || roll.total < roll.options.dc) return;
-  const actor = fromUuidSync(resist.actorUuid);
-  if (!actor) return;
-  const isCondition = effect => stateConditions[effect] && !statConditions[effect];
-  const conditions = (resist.effects ?? []).map(entry => entry.effect).filter(isCondition);
-  const others = (resist.effects ?? []).filter(entry => !isCondition(entry.effect));
-  await postAutomationMessage(actor, [format("SYSTEM.DungeonTokens.ResistedAfterAll", { name: escape(actor.name), move: escape(resist.moveName) })]);
-  if (conditions.length) await cureConditions(actor, conditions);
-  if (others.length) await postAutomationMessage(actor, [format("SYSTEM.DungeonTokens.UndoByHand", { effects: others.map(entry => localize(effects[entry.effect] ?? entry.effect)).join(", ") })]);
 }
 
 export function registerDungeonTokenHooks() {
@@ -378,7 +268,7 @@ export function registerDungeonTokenHooks() {
       name: "SYSTEM.DungeonTokens.RaiseTitle",
       icon: '<i class="fa-solid fa-gem"></i>',
       condition: li => canRaise(game.messages.get(li.dataset.messageId)),
-      callback: li => openRaiseDialog(game.messages.get(li.dataset.messageId))
+      callback: li => raiseFreely(game.messages.get(li.dataset.messageId), dungeonPool)
     });
   });
 }

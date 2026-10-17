@@ -1,4 +1,4 @@
-import { SYSTEM_ID, getSkillDie, getDieString, isHungry } from '../constants.mjs';
+import { SYSTEM_ID, getSkillDie, isHungry } from '../constants.mjs';
 import { ExplorersRoll } from './explorers-roll.mjs';
 import { registerSocketHandler, requestFromGM } from './socket.mjs';
 import {
@@ -6,6 +6,7 @@ import {
   durationEffects, untilNextTurnConditions, statKeys, weathers, terrains, effects, skills
 } from './types.mjs';
 import { AFFLICTIONS, getRules, hasRule } from './features.mjs';
+import { postRoll, rollSetup } from './roll-confirm.mjs';
 import { applyFieldEffect, familyOf, fieldBlocksCondition, fieldLabel, harshWeatherFor, terrainFor, weatherFor } from './weather.mjs';
 
 const { Roll } = foundry.dice;
@@ -50,7 +51,8 @@ export function registerActorOp(name, operation) {
 export async function runAsOwner(actor, op, args) {
   if (!actor) return;
   if (actor.isOwner) return actorOps[op](actor, args);
-  return requestFromGM(ACTOR_OP_ACTION, { op, uuid: actor.uuid, args });
+// No timeout: the GM may stop to confirm rolls along the way.
+  return requestFromGM(ACTOR_OP_ACTION, { op, uuid: actor.uuid, args }, { timeout: null });
 }
 
 registerSocketHandler(ACTOR_OP_ACTION, async ({ op, uuid, args }) => {
@@ -266,11 +268,12 @@ export async function syncStatChangeIcons(actor) {
   }
 }
 
-async function rollD6(actor, flavor) {
-  const roll = await new Roll("1d6").evaluate();
-  await roll.toMessage({ speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }), flavor });
+async function rollD6(actor, flavor, { confirm = true, purpose = null } = {}) {
+  const { roll } = await postRoll(rollSetup("1d6"), { speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }), flavor }, { actor, confirm, purpose });
   return roll.total;
 }
+
+const outcome = (min, max, key, data, good) => ({ min, max, text: format(`SYSTEM.Confirm.Outcome.${key}`, data), good });
 
 export async function checkMoveConditions(actor, move, { targetsFoe = true } = {}) {
   const statuses = actor.statuses;
@@ -287,7 +290,11 @@ export async function checkMoveConditions(actor, move, { targetsFoe = true } = {
   if (move.system.isStatus && hasRule(actor, "blockStatusMoves")) return block("SYSTEM.Automation.CannotUseStatusMoves");
 
   if (statuses.has("paralyzed")) {
-    const result = await rollD6(actor, format("SYSTEM.Automation.ParalysisCheck", { name }));
+    const result = await rollD6(actor, format("SYSTEM.Automation.ParalysisCheck", { name }), { purpose: {
+      title: format("SYSTEM.Confirm.Titles.Paralysis", { name }),
+      text: format("SYSTEM.Confirm.Purpose.Paralysis", { name, move: escape(move.name) }),
+      outcomes: [outcome(1, 2, "CantAct", { name }, false), outcome(3, Infinity, "ActsNormally", { name }, true)]
+    } });
     if (result <= 2) {
       await postAutomationMessage(actor, [format("SYSTEM.Automation.ParalysisFail", { name, move: escape(move.name) })]);
       return { proceed: false, spendPP: false };
@@ -295,7 +302,12 @@ export async function checkMoveConditions(actor, move, { targetsFoe = true } = {
   }
 
   if (statuses.has("confused")) {
-    const result = await rollD6(actor, format("SYSTEM.Automation.ConfusionCheck", { name }));
+    const result = await rollD6(actor, format("SYSTEM.Automation.ConfusionCheck", { name }), { purpose: {
+      title: format("SYSTEM.Confirm.Titles.Confusion", { name }),
+      text: format("SYSTEM.Confirm.Purpose.Confusion", { name, move: escape(move.name) }),
+      outcomes: [outcome(1, 1, "AttacksAlly", { name }, false), outcome(2, 2, "HitsItself", { name }, false),
+        outcome(3, 3, "AttacksRandom", { name }, false), outcome(4, 4, "ActsNormally", { name }, true), outcome(5, Infinity, "SnapsOut", { name }, true)]
+    } });
     if (result === 2) {
       await postAutomationMessage(actor, [format("SYSTEM.Automation.ConfusionSelfHit", { name })]);
       const damage = await new Roll("1d6").evaluate();
@@ -314,7 +326,11 @@ export async function checkMoveConditions(actor, move, { targetsFoe = true } = {
   }
 
   if (statuses.has("blinded") && targetsFoe) {
-    const result = await rollD6(actor, format("SYSTEM.Automation.BlindCheck", { name }));
+    const result = await rollD6(actor, format("SYSTEM.Automation.BlindCheck", { name }), { purpose: {
+      title: format("SYSTEM.Confirm.Titles.Blind", { name }),
+      text: format("SYSTEM.Confirm.Purpose.Blind", { name, move: escape(move.name) }),
+      outcomes: [outcome(1, 3, "Misses", { name }, false), outcome(4, 5, "Hits", { name }, true), outcome(6, Infinity, "HitsAndSees", { name }, true)]
+    } });
     if (result <= 3) {
       await postAutomationMessage(actor, [format("SYSTEM.Automation.BlindMiss", { name, move: escape(move.name) })]);
       return { proceed: false, spendPP: true };
@@ -335,8 +351,9 @@ async function tickDamage(actor, formula, label) {
 }
 
 async function tickHeal(actor, formula, label) {
-  const roll = await new Roll(formula).evaluate();
-  await roll.toMessage({ speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }), flavor: label });
+  const name = escape(actor.name);
+  const purpose = { title: format("SYSTEM.Confirm.Titles.Heal", { name }), text: format("SYSTEM.Confirm.Purpose.TickHeal", { name, source: escape(label) }) };
+  const { roll } = await postRoll(rollSetup(formula) ?? new Roll(formula), { speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }), flavor: label }, { actor, purpose });
   await actor.system.heal?.(roll.total, label);
 }
 
@@ -387,11 +404,7 @@ export async function processStartOfTurn(actor) {
 
   if (actor.statuses.has("burned")) await tickDamage(actor, "1d6", localize("SYSTEM.Conditions.Burned"));
   const poisonHeals = hasRule(actor, "poisonHeal");
-  if (poisonHeals && (actor.statuses.has("poisoned") || actor.statuses.has("badlyPoisoned"))) {
-    const roll = await new Roll("1d6").evaluate();
-    await roll.toMessage({ speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }), flavor: getRules(actor, "poisonHeal")[0].source });
-    await actor.system.heal?.(roll.total, getRules(actor, "poisonHeal")[0].source);
-  }
+  if (poisonHeals && (actor.statuses.has("poisoned") || actor.statuses.has("badlyPoisoned"))) await tickHeal(actor, "1d6", getRules(actor, "poisonHeal")[0].source);
   if (actor.statuses.has("poisoned") && !poisonHeals) await tickDamage(actor, "1d6", localize("SYSTEM.Conditions.Poisoned"));
   if (actor.statuses.has("badlyPoisoned") && !poisonHeals) {
     const effect = conditionEffect(actor, "badlyPoisoned");
@@ -430,7 +443,7 @@ async function processSleep(actor) {
     return;
   }
   if (typeof duration !== "number") {
-    const rounds = await rollD6(actor, format("SYSTEM.Automation.SleepDuration", { name }));
+    const rounds = await rollD6(actor, format("SYSTEM.Automation.SleepDuration", { name }), { confirm: false });
     await effect.setFlag(SYSTEM_ID, "duration", rounds);
     await effect.setFlag(SYSTEM_ID, "turns", 0);
     return;
@@ -442,7 +455,11 @@ async function processSleep(actor) {
     return;
   }
   const target = 6 - turns;
-  const result = await rollD6(actor, format("SYSTEM.Automation.WakeCheck", { name, target }));
+  const result = await rollD6(actor, format("SYSTEM.Automation.WakeCheck", { name, target }), { purpose: {
+    title: format("SYSTEM.Confirm.Titles.Wake", { name }),
+    text: format("SYSTEM.Confirm.Purpose.Wake", { name, needs: target }),
+    needs: target, success: format("SYSTEM.Confirm.Outcome.WakesUp", { name }), failure: format("SYSTEM.Confirm.Outcome.StaysAsleep", { name })
+  } });
   if (result >= target) {
     await removeCondition(actor, "asleep");
     await postAutomationMessage(actor, [format("SYSTEM.Automation.WokeUp", { name })]);
@@ -456,7 +473,7 @@ async function processConfusion(actor) {
   const effect = conditionEffect(actor, "confused");
   const rounds = effect.getFlag(SYSTEM_ID, "rounds");
   if (typeof rounds !== "number") {
-    const result = await rollD6(actor, format("SYSTEM.Automation.ConfusionDuration", { name }));
+    const result = await rollD6(actor, format("SYSTEM.Automation.ConfusionDuration", { name }), { confirm: false });
     await effect.setFlag(SYSTEM_ID, "rounds", Math.ceil(result / 2));
     return;
   }
@@ -477,12 +494,16 @@ async function rerollResist(actor, statusId) {
     await postAutomationMessage(actor, [format("SYSTEM.Automation.RerollReminder", { name, label })]);
     return;
   }
-  const roll = new ExplorersRoll(getDieString({ ...getSkillDie(actor, skill), advantage: isHungry(actor) ? 'disadvantage' : 'normal' }), {}, { dc });
-  await roll.evaluate();
-  await roll.toMessage({
+  const { sides, modifier } = getSkillDie(actor, skill);
+  const setup = { dice: sides, modifier, advantage: isHungry(actor) ? 'disadvantage' : 'normal', rollClass: "ExplorersRoll", options: { dc } };
+  const { roll } = await postRoll(setup, {
     speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }),
     flavor: format("SYSTEM.Automation.RerollFlavor", { label, skill: localize(skills[skill]), dc })
-  });
+  }, { actor, purpose: {
+    title: format("SYSTEM.Confirm.Titles.ShakeOff", { name, label }),
+    text: format("SYSTEM.Confirm.Purpose.ShakeOff", { name, label, skill: localize(skills[skill]), dc }),
+    needs: dc, success: format("SYSTEM.Confirm.Outcome.ShakesOff", { name, label }), failure: format("SYSTEM.Confirm.Outcome.StillHas", { name, label })
+  } });
   if (roll.success) {
     await removeCondition(actor, statusId);
     await postAutomationMessage(actor, [format("SYSTEM.Automation.ConditionShaken", { name, label })]);

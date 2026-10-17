@@ -1,10 +1,11 @@
-import { SYSTEM_ID, getDieString, getSkillDie, isHungry } from '../constants.mjs';
+import { SYSTEM_ID, getSkillDie, isHungry } from '../constants.mjs';
 import { applyDamage, applyEffects, postAutomationMessage } from './conditions.mjs';
 import { heldItemOf } from './features.mjs';
 import { dropItemAt, floorItemOf, spacesPassed, wallBetween } from './floor-items.mjs';
 import { teamOf } from './items.mjs';
 import { getRooms } from './rooms.mjs';
 import { resolveDocument, rollTableDocument, wildTokenData, worldActorFor } from './dungeon/spawns.mjs';
+import { postRoll } from './roll-confirm.mjs';
 import { isGrounded } from './weather.mjs';
 
 export const TRAP_FLAG = "trap";
@@ -107,11 +108,17 @@ async function rollAvoid(actor, skills, difficulty, trapName) {
   const options = skills.map(skill => ({ skill, ...getSkillDie(actor, skill) }))
     .sort((a, b) => (b.sides * 3.5 + b.modifier) - (a.sides * 3.5 + a.modifier));
   const best = options[0];
-  const roll = await new foundry.dice.Roll(getDieString({ sides: best.sides, modifier: best.modifier, advantage: isHungry(actor) ? 'disadvantage' : 'normal' })).evaluate();
-  await roll.toMessage({
+  const skill = game.i18n.localize(`SYSTEM.Skills.${best.skill.charAt(0).toUpperCase()}${best.skill.slice(1)}`);
+  const name = escape(actor.name);
+  const setup = { dice: best.sides, modifier: best.modifier, advantage: isHungry(actor) ? 'disadvantage' : 'normal' };
+  const { roll } = await postRoll(setup, {
     speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }),
-    flavor: format("SYSTEM.Traps.AvoidRoll", { skill: game.i18n.localize(`SYSTEM.Skills.${best.skill.charAt(0).toUpperCase()}${best.skill.slice(1)}`), trap: escape(trapName), difficulty })
-  });
+    flavor: format("SYSTEM.Traps.AvoidRoll", { skill, trap: escape(trapName), difficulty })
+  }, { actor, purpose: {
+    title: format("SYSTEM.Confirm.Titles.Trap", { name, trap: escape(trapName) }),
+    text: format("SYSTEM.Confirm.Purpose.AvoidTrap", { name, trap: escape(trapName), skill, difficulty }),
+    needs: difficulty, success: format("SYSTEM.Confirm.Outcome.Avoids", { name }), failure: format("SYSTEM.Confirm.Outcome.SetsOff", { name })
+  } });
   return roll.total >= difficulty;
 }
 
