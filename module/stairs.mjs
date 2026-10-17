@@ -1,4 +1,5 @@
 import { SYSTEM_ID } from '../constants.mjs';
+import { gainGmAdventureToken } from './adventure-tokens.mjs';
 import { gainTokens, leftovers } from './dungeon-tokens.mjs';
 import { isGround, openSpacesNear, setsOffTraps, tokenAt, trapOf } from './traps.mjs';
 
@@ -95,6 +96,7 @@ async function promptStairs(tokenDocument) {
   const { foes, items, total } = leftovers(from, chosen);
   await takeStairs(from, to, chosen);
   await gainTokens(total, format("SYSTEM.DungeonTokens.LeftBehind", { foes, items }));
+  await gainGmAdventureToken();
 }
 
 async function onMoveToken(tokenDocument, movement) {

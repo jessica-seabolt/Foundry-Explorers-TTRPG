@@ -244,9 +244,7 @@ export async function performSpend(scene, key, count = null, room = null) {
   }
 }
 
-function speakerActor(message) {
-  return foundry.documents.ChatMessage.implementation.getSpeakerActor(message.speaker);
-}
+export const speakerActor = message => foundry.documents.ChatMessage.implementation.getSpeakerActor(message.speaker);
 
 const explodeAt = die => {
   const modifier = die.modifiers.find(modifier => modifier.startsWith("x"));
@@ -286,15 +284,28 @@ export async function raiseDice(roll, raises) {
 
 const SUCCESS_SPAN = /<br><span style="color:(?:green|red);font-weight:bold;">[^<]*<\/span>$/;
 
-function canRaise(message) {
-  if (!game.user.isGM || !message.rolls.length || currentTokens() < 1) return false;
-  const actor = speakerActor(message);
-  if (!actor || actor.type === "Team" || setsOffTraps(actor)) return false;
+export const dungeonPool = {
+  title: "SYSTEM.DungeonTokens.RaiseTitle",
+  prompt: "SYSTEM.DungeonTokens.RaisePrompt",
+  count: () => currentTokens(),
+  spend: (cost, detail) => spendTokens(cost, detail),
+  notEnough: cost => ui.notifications.warn(format("SYSTEM.DungeonTokens.NotEnough", { cost, have: currentTokens() }))
+};
+
+// A status attack can't change once its target has resisted.
+export function raisable(message) {
+  if (!message?.rolls.length) return false;
   if (message.rolls.some(roll => roll instanceof StatusRoll) && message.getFlag(SYSTEM_ID, "statusResolved")) return false;
   return message.rolls.some(roll => roll.dice.some(die => die.results.some(result => result.active && result.result < die.faces)));
 }
 
-export async function openRaiseDialog(message) {
+function canRaise(message) {
+  if (!game.user.isGM || currentTokens() < 1 || !raisable(message)) return false;
+  const actor = speakerActor(message);
+  return !!actor && actor.type !== "Team" && !setsOffTraps(actor);
+}
+
+export async function openRaiseDialog(message, pool = dungeonPool) {
   const faces = [];
   message.rolls.forEach((roll, rollIndex) => roll.dice.forEach((die, dieIndex) => die.results.forEach((result, resultIndex) => {
     if (result.active && result.result < die.faces) faces.push({ rollIndex, dieIndex, resultIndex, value: result.result, max: die.faces });
@@ -304,8 +315,8 @@ export async function openRaiseDialog(message) {
       <input type="number" name="face${index}" min="${face.value}" max="${face.max}" value="${face.value}">
     </label>`).join("");
   const data = await foundry.applications.api.DialogV2.prompt({
-    window: { title: "SYSTEM.DungeonTokens.RaiseTitle" },
-    content: `<p>${format("SYSTEM.DungeonTokens.RaisePrompt", { count: currentTokens() })}</p><div class="dungeon-token-dice">${inputs}</div>`,
+    window: { title: pool.title },
+    content: `<p>${format(pool.prompt, { count: pool.count() })}</p><div class="dungeon-token-dice">${inputs}</div>`,
     ok: { label: "SYSTEM.DungeonTokens.Raise", callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object },
     rejectClose: false
   });
@@ -313,12 +324,11 @@ export async function openRaiseDialog(message) {
   const raises = faces.map((face, index) => ({ ...face, amount: Math.clamp(Math.floor(Number(data[`face${index}`]) || face.value), face.value, face.max) - face.value }))
     .filter(face => face.amount > 0);
   const cost = raises.reduce((sum, face) => sum + face.amount, 0);
-  if (!cost) return;
-  if (cost > currentTokens()) return ui.notifications.warn(format("SYSTEM.DungeonTokens.NotEnough", { cost, have: currentTokens() }));
-  await raiseMessageRolls(message, raises, cost);
+  if (cost) await raiseMessageRolls(message, raises, cost, pool);
 }
 
-export async function raiseMessageRolls(message, raises, cost) {
+export async function raiseMessageRolls(message, raises, cost, pool = dungeonPool) {
+  if (cost > pool.count()) return pool.notEnough(cost);
   const rolls = message.rolls;
   const before = rolls.map(roll => roll.total);
   for (const [rollIndex, roll] of rolls.entries()) {
@@ -333,7 +343,7 @@ export async function raiseMessageRolls(message, raises, cost) {
   }
   await message.update(update);
   const name = escape(speakerActor(message)?.name);
-  if (!await spendTokens(cost, format("SYSTEM.DungeonTokens.Raised", { name, from: before[0], to: roll.total }))) return;
+  await pool.spend(cost, format("SYSTEM.DungeonTokens.Raised", { name, from: before[0], to: roll.total }));
   await raiseConsequences(message, roll, before[0]);
 }
 

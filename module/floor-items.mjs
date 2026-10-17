@@ -1,4 +1,5 @@
 import { SYSTEM_ID } from '../constants.mjs';
+import { suggestAdventureToken } from './adventure-tokens.mjs';
 import { FAINTED_STATUS, postAutomationMessage } from './conditions.mjs';
 import { getRules, heldItemOf } from './features.mjs';
 import { teamOf } from './items.mjs';
@@ -38,6 +39,13 @@ async function announce(actor, text) {
 }
 
 async function pickUp(actor, tile) {
+  const itemName = floorItemOf(tile)?.item?.name ?? "";
+  const found = await pickUpItem(actor, tile);
+  if (found) await suggestAdventureToken(actor, "foundItem", itemName);
+  return found;
+}
+
+async function pickUpItem(actor, tile) {
   const { item } = floorItemOf(tile);
   const name = foundry.utils.escapeHTML(actor.name);
   const itemName = foundry.utils.escapeHTML(item.name);

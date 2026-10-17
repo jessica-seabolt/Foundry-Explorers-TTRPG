@@ -624,6 +624,10 @@
       }
     },
     "Settings": {
+      "SuggestAdventureTokens": {
+        "Name": "Suggest Adventure Token Awards",
+        "Hint": "Whisper the GM a one-click award when a team member fails a skill check, finds an item, misses with a Status Move, or deals no damage with a Move."
+      },
       "TurnLimits": {
         "Name": "Turn Limits in Battle",
         "Hint": "During a battle, each Pokémon can only move its Battle Movement and take one Action on its turn, and use one Reaction each Round. The GM can still move Pokémon off their turn (to push or pull them)."
@@ -905,6 +909,39 @@
       "Arrived": "The team arrived on {floor}.",
       "Leftovers": "Leaving now gives you {total} Dungeon Tokens ({foes} Foes and {items} Items left on this Floor).",
       "NoNextFloor": "{name} is on the stairs, but there's no floor after {floor}. Generate it in the same Scene folder."
+    },
+    "AdventureTokens": {
+      "Title": "Adventure Tokens",
+      "Counter": "GM Adventure Tokens {count}/{limit}",
+      "Tooltip": "Click to award an Adventure Token to a team member. Right-click to set your pool.",
+      "PlayerTooltip": "The GM's pool of Adventure Tokens to award. It grows by 1 on each new Floor.",
+      "GmPool": "GM Adventure Tokens",
+      "Have": "Your pool has {count}/{limit} Adventure Tokens.",
+      "Who": "Award to",
+      "Why": "For",
+      "Award": "Award",
+      "AwardTitle": "Award an Adventure Token",
+      "GmGained": "The GM gained an Adventure Token for reaching a new Floor ({count}/{limit}).",
+      "Awarded": "{name} earned an Adventure Token: {reason}!",
+      "PoolEmpty": "Your Adventure Token pool is empty.",
+      "Full": "{name} can't hold any more Adventure Tokens.",
+      "NoMembers": "No team members with an Adventure Token track.",
+      "Suggest": "{name} could earn an Adventure Token: {reason}{detail}.",
+      "Give": "Give Adventure Token",
+      "Given": "{name} got the Adventure Token.",
+      "RaiseTitle": "Raise a Die (Adventure Tokens)",
+      "RaisePrompt": "Each face raised costs 1 Adventure Token. You have {count}. A die raised to its top face explodes as usual.",
+      "NotEnough": "That costs {cost} Adventure Tokens, but {name} only has {have}.",
+      "Spent": "{name} spent {count} Adventure Tokens: {detail}.",
+      "Reasons": {
+        "failedCheck": "Failed a skill check",
+        "foundItem": "Found an item",
+        "secret": "Uncovered a secret",
+        "failedStatus": "A Status Move failed to land",
+        "failedDamage": "A damaging Move dealt no damage",
+        "roleplay": "Good roleplaying",
+        "other": "GM's call"
+      }
     },
     "DungeonTokens": {
       "Title": "Dungeon Tokens",

@@ -377,7 +377,7 @@ function renderIndicator() {
     const rounds = typeof entry.rounds === "number" ? ` (${entry.rounds})` : "";
     parts.push(`<span><i class="fa-solid ${ICONS[entry.terrain]}"></i> ${fieldLabel(entry.terrain)}${where ? `: ${escape(where)}` : ""}${rounds}</span>`);
   }
-  setHudItem("explorers-field", parts.join(""), { order: 1 });
+  setHudItem("explorers-field", parts.join(""), { order: 2 });
 }
 
 function refreshActors(scene) {

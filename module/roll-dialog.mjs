@@ -7,6 +7,7 @@ import { critRangeMin, effectiveMoveType, getRules, hasCondition, hasRule, heldI
 import { stealHeldItem } from './items.mjs';
 import { canAct, checkAction, recordAction } from './turns.mjs';
 import { advantage, effects, skills, typeMatchups } from './types.mjs';
+import { suggestAdventureToken } from './adventure-tokens.mjs';
 import { applyFieldEffect, awarenessHindered, fieldLabel, fieldMatchup, fieldPower, noChargeWeather, priorityBlocked } from './weather.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -162,11 +163,14 @@ export class SkillRollDialog extends RollDialog {
     }
 
     const targetRolls = game.user.targets.size > 0 ? game.user.targets.map(target => target.actor?.system) : [null];
+    let failed = false;
     for (const target of targetRolls) {
-      this.toChatMessage(new ExplorersRoll(getDieString(die), {}, { dc: this.getDC() }), {
+      const roll = await this.toChatMessage(new ExplorersRoll(getDieString(die), {}, { dc: this.getDC() }), {
         flavor: `${localize(skills[this.skill])}${target ? ` (${target.parent.name})` : ""}`,
       });
+      failed ||= roll.success === false;
     }
+    if (failed) await suggestAdventureToken(this.user, "failedCheck", localize(skills[this.skill]));
   }
 }
 
@@ -240,6 +244,8 @@ async function resolveStatusCheck(actor, statusRoll, roll, statusMessage = null)
   await markStatusCheckResolved(statusMessage);
   if (roll.success) {
     await postAutomationMessage(actor, [format("SYSTEM.Automation.Resisted", { name: escape(actor.name), move: escape(moveName) })]);
+    const attacker = attackerUuid ? fromUuidSync(attackerUuid) : null;
+    if (attacker && statusRoll.options.statusMove) await suggestAdventureToken(attacker, "failedStatus", moveName);
     return;
   }
   const attacker = attackerUuid ? fromUuidSync(attackerUuid) : null;
@@ -383,6 +389,8 @@ export class MoveRollDialog extends RollDialog {
     let targets = this.#targetActors;
     if (isHealing && system.target === 'self') targets = [this.user];
     let knockedOut = false;
+    let damaged = false;
+    let dealtDamage = false;
 
     for (const target of targets) {
       const die = this.getDialogDie();
@@ -478,6 +486,10 @@ export class MoveRollDialog extends RollDialog {
 
       for (const itemId of bonus.consumed ?? []) await consumeRuleItem(this.user, { consume: true, itemId });
       const result = await this.#applyRoll(roll, target, this.lastMessage);
+      if (result && !isHealing) {
+        damaged = true;
+        dealtDamage ||= result.damage > 0;
+      }
       const fainted = result?.hp <= 0;
       if (fainted) knockedOut = true;
       if (matchup === 'immune') {
@@ -492,6 +504,7 @@ export class MoveRollDialog extends RollDialog {
       if (target) await this.#applyOnHit(target, isPhysical);
     }
 
+    if (damaged && !dealtDamage && !this.isBasicAttack) await suggestAdventureToken(this.user, "failedDamage", this.move.name);
     if (knockedOut && !this.isBasicAttack) {
       for (const rule of getRules(this.user, "onKnockOut")) {
         await postAutomationMessage(this.user, [format("SYSTEM.Automation.FeatureTriggered", { name: escape(this.user.name), feature: escape(rule.source) })]);
@@ -643,7 +656,8 @@ export class MoveRollDialog extends RollDialog {
       targetId: target?.uuid ?? null,
       moveName: this.move.name,
       moveType: effectiveMoveType(this.user, this.move),
-      resistBonusDice: this.dialogState.opportunity ? 1 : 0
+      resistBonusDice: this.dialogState.opportunity ? 1 : 0,
+      statusMove: system.power == 0
     }), { // not including adv/mult for status checks
       flavor: `${this.move.name}${target ? ` (${target.name})` : ""} - ${localize("SYSTEM.Automation.Status")}`,
     });
