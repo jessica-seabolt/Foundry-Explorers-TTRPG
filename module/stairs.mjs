@@ -1,4 +1,5 @@
 import { SYSTEM_ID } from '../constants.mjs';
+import { gainTokens, leftovers } from './dungeon-tokens.mjs';
 import { isGround, openSpacesNear, setsOffTraps, tokenAt, trapOf } from './traps.mjs';
 
 const USER_MOVEMENT = ["dragging", "keyboard"];
@@ -78,9 +79,11 @@ async function promptStairs(tokenDocument) {
   const candidates = from.tokens.filter(token => token.actor && token.actor.type !== "Team");
   const rows = candidates.map(token => `<label class="checkbox"><input type="checkbox" name="${token.id}" ${comesAlong(token) ? "checked" : ""}> ${escape(token.name)}</label>`).join("");
   const battle = game.combats.some(combat => combat.scene?.id === from.id) ? `<p>${localize("SYSTEM.Stairs.EndsBattle")}</p>` : "";
+  const left = leftovers(from, candidates.filter(comesAlong));
+  const earned = left.total ? `<p>${format("SYSTEM.Stairs.Leftovers", left)}</p>` : "";
   const chosen = await foundry.applications.api.DialogV2.wait({
     window: { title: "SYSTEM.Stairs.Title" },
-    content: `<p>${format("SYSTEM.Stairs.Prompt", { name, floor: escape(to.name) })}</p>${battle}<p>${localize("SYSTEM.Stairs.WhoGoes")}</p><div class="stairs-tokens">${rows}</div>`,
+    content: `<p>${format("SYSTEM.Stairs.Prompt", { name, floor: escape(to.name) })}</p>${battle}${earned}<p>${localize("SYSTEM.Stairs.WhoGoes")}</p><div class="stairs-tokens">${rows}</div>`,
     buttons: [
       { action: "go", label: format("SYSTEM.Stairs.Go", { floor: to.name }), icon: "fa-solid fa-stairs", default: true,
         callback: (event, button) => candidates.filter(token => button.form.elements[token.id]?.checked) },
@@ -89,7 +92,9 @@ async function promptStairs(tokenDocument) {
     rejectClose: false
   });
   if (!Array.isArray(chosen) || !chosen.length) return;
+  const { foes, items, total } = leftovers(from, chosen);
   await takeStairs(from, to, chosen);
+  await gainTokens(total, format("SYSTEM.DungeonTokens.LeftBehind", { foes, items }));
 }
 
 async function onMoveToken(tokenDocument, movement) {

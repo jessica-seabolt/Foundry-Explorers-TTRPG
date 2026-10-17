@@ -134,6 +134,15 @@ export class SkillRollDialog extends RollDialog {
     if (isHungry(user) || (skill === 'awareness' && awarenessHindered(user))) this.dialogState.advantage = 'disadvantage';
   }
 
+// A Dungeon Token can raise the attacker's roll before the target resists.
+  refreshStatusRoll({ render = true } = {}) {
+    const live = this.statusMessage ? game.messages.get(this.statusMessage.id)?.rolls.find(roll => roll instanceof StatusRoll) : null;
+    if (!live || live.total === this.dialogState.dc) return;
+    this.statusRoll = live;
+    this.dialogState.dc = live.total;
+    if (render && this.rendered) this.render();
+  }
+
   static async #rollSkill() {
     const die = this.getDialogDie();
     const { sides, modifier } = getSkillDie(this.user, this.skill);
@@ -142,8 +151,10 @@ export class SkillRollDialog extends RollDialog {
 
     if (!this.statusRoll && canAct(this.user, "skill").allowed) await recordAction(this.user, "skill");
     if (this.statusRoll) {
+      this.refreshStatusRoll({ render: false });
       const roll = await this.toChatMessage(new ExplorersRoll(getDieString(die), {}, { dc: this.getDC() }), {
         flavor: `${localize(skills[this.skill])} ${format("SYSTEM.Automation.ResistTitle", { move: escape(this.statusRoll.options.moveName) })}`,
+        flags: { [SYSTEM_ID]: { resist: resistFlag(this.user, this.statusRoll) } }
       });
       await resolveStatusCheck(this.user, this.statusRoll, roll, this.statusMessage);
       this.close();
@@ -158,6 +169,8 @@ export class SkillRollDialog extends RollDialog {
     }
   }
 }
+
+const resistFlag = (actor, statusRoll) => ({ actorUuid: actor.uuid, moveName: statusRoll.options.moveName, effects: statusRoll.options.effects ?? [] });
 
 function resistBonusDice(actor, statusRoll) {
   return (statusRoll.options.resistBonusDice ?? 0) + (actor.statuses.has('guarding') ? 1 : 0);
@@ -183,7 +196,8 @@ async function rollStatusCheck(actor, statusRoll, statusMessage) {
   await roll.toMessage({
     speaker: ChatMessage.implementation.getSpeaker({ actor }),
     flavor: `${localize(skills[statusRoll.options.resistSkill])} ${format("SYSTEM.Automation.ResistTitle", { move: escape(statusRoll.options.moveName) })}`
-      + `<br><span style="color:${roll.success ? "green" : "red"};font-weight:bold;">${localize(roll.success ? "SYSTEM.Dice.Success" : "SYSTEM.Dice.Failure")}</span>`
+      + `<br><span style="color:${roll.success ? "green" : "red"};font-weight:bold;">${localize(roll.success ? "SYSTEM.Dice.Success" : "SYSTEM.Dice.Failure")}</span>`,
+    flags: { [SYSTEM_ID]: { resist: resistFlag(actor, statusRoll) } }
   });
   await resolveStatusCheck(actor, statusRoll, roll, statusMessage);
 }
@@ -206,6 +220,11 @@ function statusCheckResolver(message, actor) {
 }
 
 export function registerStatusCheckHooks() {
+  Hooks.on("updateChatMessage", message => {
+    for (const app of foundry.applications.instances.values()) {
+      if (app instanceof SkillRollDialog && app.statusMessage?.id === message.id) app.refreshStatusRoll();
+    }
+  });
   Hooks.on("createChatMessage", message => {
     const statusRoll = message.rolls.find(roll => roll instanceof StatusRoll);
     if (!statusRoll?.options.targetId) return;

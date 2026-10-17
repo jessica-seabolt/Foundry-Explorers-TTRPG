@@ -63,7 +63,7 @@ export function openSpacesNear(scene, origin, radius) {
   return spaces.sort((a, b) => distance(a, origin) - distance(b, origin) || Math.random() - 0.5);
 }
 
-function openSpacesOnFloor(scene) {
+export function openSpacesOnFloor(scene) {
   const terrain = terrainOf(scene);
   const spaces = [];
   if (terrain) {

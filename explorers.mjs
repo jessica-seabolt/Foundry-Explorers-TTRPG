@@ -23,6 +23,7 @@ import { registerOpportunityHooks } from './module/targeting.mjs';
 import { registerTrapHooks } from './module/traps.mjs';
 import { openFieldDialog, registerFieldHooks } from './module/weather.mjs';
 import { registerStairsHooks } from './module/stairs.mjs';
+import { registerDungeonTokenHooks, registerDungeonTokenSettings } from './module/dungeon-tokens.mjs';
 
 const { Localization } = foundry.helpers;
 const { Die } = foundry.dice.terms;
@@ -101,6 +102,8 @@ Hooks.once("init", () => {
   registerTrapHooks();
   registerFieldHooks();
   registerStairsHooks();
+  registerDungeonTokenSettings();
+  registerDungeonTokenHooks();
 });
 
 function registerSettings() {

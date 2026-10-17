@@ -1,6 +1,7 @@
 import { SYSTEM_ID } from '../constants.mjs';
 import { AFFLICTIONS, getRules, hasRule } from './features.mjs';
 import { roomOfToken } from './rooms.mjs';
+import { setHudItem } from './hud.mjs';
 import { registerSocketHandler, requestFromGM } from './socket.mjs';
 import { terrains, typeChart, weathers } from './types.mjs';
 
@@ -330,7 +331,7 @@ export async function tickTerrains(scene) {
 }
 
 export async function openFieldDialog(scene = canvas?.scene) {
-  if (!scene) return;
+  if (!scene) return false;
   const field = fieldOf(scene);
   const option = (value, label, selected) => `<option value="${value}" ${selected ? "selected" : ""}>${escape(label)}</option>`;
   const weatherOptions = [option("", localize("SYSTEM.Weathers.ClearWeather"), !field.weather),
@@ -358,17 +359,16 @@ export async function openFieldDialog(scene = canvas?.scene) {
     ok: { label: "SYSTEM.Field.Apply", callback: (event, button) => new foundry.applications.ux.FormDataExtended(button.form).object },
     rejectClose: false
   });
-  if (!data) return;
+  if (!data) return false;
   const change = {};
   if ((data.weather || null) !== field.weather || !!data.locked !== field.locked) Object.assign(change, { weather: data.weather || null, locked: !!data.locked, force: true });
   if (data.terrain !== "keep") Object.assign(change, { terrain: data.terrain, room: data.where || null, rounds: Number(data.rounds) || null });
-  if (Object.keys(change).length) await changeField(scene, change);
+  return Object.keys(change).length ? changeField(scene, change) : false;
 }
 
 function renderIndicator() {
-  document.getElementById("explorers-field")?.remove();
   const scene = canvas?.scene;
-  if (!scene) return;
+  if (!scene) return setHudItem("explorers-field", null);
   const field = fieldOf(scene);
   const parts = [];
   if (field.weather) parts.push(`<span><i class="fa-solid ${ICONS[field.weather]}"></i> ${fieldLabel(field.weather)}${field.locked ? ` <i class="fa-solid fa-lock"></i>` : ""}</span>`);
@@ -377,11 +377,7 @@ function renderIndicator() {
     const rounds = typeof entry.rounds === "number" ? ` (${entry.rounds})` : "";
     parts.push(`<span><i class="fa-solid ${ICONS[entry.terrain]}"></i> ${fieldLabel(entry.terrain)}${where ? `: ${escape(where)}` : ""}${rounds}</span>`);
   }
-  if (!parts.length) return;
-  const element = document.createElement("div");
-  element.id = "explorers-field";
-  element.innerHTML = parts.join("");
-  (document.getElementById("ui-top") ?? document.body).append(element);
+  setHudItem("explorers-field", parts.join(""), { order: 1 });
 }
 
 function refreshActors(scene) {
