@@ -1,0 +1,56 @@
+{
+  "name": "Blast Trap",
+  "type": "Item",
+  "img": "systems/explorers/assets/traps/blast_trap.png",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_id": "SUE9IBkNkGzdhm1y",
+  "sort": 200,
+  "system": {
+    "description": "Stepping on this trap causes a blast within a 1-tile range, dealing 3d6 Fire-Type Damage.",
+    "category": "traps",
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "",
+    "trap": {
+      "avoid": [
+        "movement"
+      ],
+      "difficulty": 10,
+      "visible": false,
+      "effects": [
+        {
+          "type": "damage",
+          "formula": "3d6",
+          "moveType": "fire",
+          "radius": 1
+        }
+      ]
+    }
+  },
+  "_key": "!items!SUE9IBkNkGzdhm1y"
+}

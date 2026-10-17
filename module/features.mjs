@@ -1,8 +1,3 @@
-// Features (class abilities, class and specialization features, Rare Qualities, origins) are Items of type "Feature".
-// Each can carry `rules`: small JSON objects the system acts on. This module reads them and answers questions such as
-// "what's this Pokemon's proficiency in Influence?" or "how much extra Move Power does this move get?".
-// Rule types are documented in RULE_TYPES below, which the feature sheet also shows as a reference.
-
 export const featureCategories = {
   classAbility: "SYSTEM.Features.Categories.ClassAbility",
   classFeature: "SYSTEM.Features.Categories.ClassFeature",
@@ -12,7 +7,6 @@ export const featureCategories = {
   other: "SYSTEM.Features.Categories.Other",
 };
 
-// Class data from the rulebook (HP per level as corrected by the v1.1 update)
 export const classData = {
   explorer: { baseHp: 25, hpPerLevel: 15, majorSkills: ['tracking', 'ecology', 'sneak'],
     minorSkillOptions: ['memory', 'traps', 'logic', 'endurance', 'strength', 'awareness', 'movement'] },
@@ -31,7 +25,6 @@ export const classData = {
 };
 export const MINOR_SKILL_CHOICES = 3;
 
-// Natures and their Aura colours
 export const natures = {
   quiet: "Blue", bold: "Violet", mild: "Brown", modest: "Turquoise", relaxed: "Green", sassy: "Yellow",
   lonely: "Sapphire", rash: "Pearl", impish: "Magenta", serious: "Black", gentle: "Mint", hardy: "Scarlet",
@@ -45,13 +38,11 @@ export const auraColors = {
   Purple: "#7a3fb0", Gold: "#d4af37", Red: "#e03131", Ruby: "#9b111e", Silver: "#c0c0c0", Emerald: "#2e8b57", Lime: "#9acd32",
 };
 
-/** The Aura colour of a Nature written like "Quiet" or "Quiet Nature", or null for a custom Nature. */
 export function auraOfNature(nature = "") {
   const key = nature.trim().toLowerCase().replace(/\s*nature$/, "");
   return natures[key] ?? null;
 }
 
-/** Reference for the rule types, shown on the feature sheet. */
 export const RULE_TYPES = {
   skill: '{"type":"skill","skill":"influence","proficiency":"major"}',
   skillDice: '{"type":"skillDice","skill":"awareness","dice":1}',
@@ -80,6 +71,7 @@ export const RULE_TYPES = {
   liquidOoze: '{"type":"liquidOoze"}',
   ignoreTargetStatChanges: '{"type":"ignoreTargetStatChanges"}',
   onHit: '{"type":"onHit","physical":true,"chance":6,"targetEffects":[{"effect":"poisoned"}],"stealHeldItem":false}',
+  extraMove: '{"type":"extraMove","count":1}  (Rapid-Fire Cannon: a second Move on its turn, at half damage)',
   keepHeldItem: '{"type":"keepHeldItem"}  (Sticky Hold: its Held Item cannot be stolen)',
   pickupRange: '{"type":"pickupRange","tiles":4}  (picks up floor items this far from its path)',
   onKnockOut: '{"type":"onKnockOut","effects":[{"effect":"atkUp","effectCount":2}]}',
@@ -104,14 +96,6 @@ export const RULE_TYPES = {
   _consume: 'Add "consume": true to a held item\'s rule to use the item up when it triggers (Berries, Gems).',
 };
 
-/* -------------------------------------------- */
-/*  Reading rules                               */
-/* -------------------------------------------- */
-
-/**
- * All rules of a type from an actor's Features and its held item (unless a Feature like Klutz ignores held items).
- * Rules from the held item carry its id as `itemId`, so a trigger can use the item up (Berries, Gems).
- */
 export function getRules(actor, type) {
   if (!actor?.items) return [];
   const rules = [];
@@ -128,7 +112,6 @@ export function getRules(actor, type) {
   return rules;
 }
 
-/** The Item an actor is holding, if any. */
 export function heldItemOf(actor) {
   const id = actor?.system?.heldItem;
   if (!id) return null;
@@ -139,20 +122,16 @@ export function heldItemOf(actor) {
 export const hasRule = (actor, type) => getRules(actor, type).length > 0;
 const asArray = value => value == null ? [] : Array.isArray(value) ? value : [value];
 
-/** Whether an actor has a Condition, counting permanent ones from Features (e.g. Magic Bounce). */
 export function hasCondition(actor, condition) {
   if (actor?.statuses?.has(condition)) return true;
   return getRules(actor, "permanentCondition").some(rule => rule.condition === condition);
 }
 
-// The harmful Status Conditions, which "has a Status Condition" (Guts, Marvel Scale) refers to.
-// Beneficial ones like Eyedrop, Magic Coat or Invulnerable don't count.
 export const AFFLICTIONS = new Set([
   'paralyzed', 'burned', 'poisoned', 'badlyPoisoned', 'frozen', 'asleep', 'flinched', 'confused', 'restrained',
   'blinded', 'yawning', 'trapped', 'frightened', 'silenced', 'infatuated', 'taunted'
 ]);
 
-/** Checks a rule's "whenUserStatus" condition: a list of Conditions, or "any" for any harmful Status Condition. */
 function statusMatches(actor, wanted) {
   if (!wanted) return true;
   if (wanted === "any") return [...(actor?.statuses ?? [])].some(status => AFFLICTIONS.has(status));
@@ -168,7 +147,6 @@ function hpMatches(actor, wanted) {
   return true;
 }
 
-/** Whether a rule's move filters (physical/special, type, tag, healing, ...) match a move. */
 function moveMatches(rule, { move, moveType, isPhysical, isStab, opportunity }) {
   const system = move.system;
   const damaging = system.power > 0;
@@ -185,13 +163,8 @@ function moveMatches(rule, { move, moveType, isPhysical, isStab, opportunity }) 
   return true;
 }
 
-/* -------------------------------------------- */
-/*  Character data                              */
-/* -------------------------------------------- */
-
 const PROFICIENCY_RANK = { untrained: 0, minor: 1, major: 2 };
 
-/** Effective proficiency in every skill: the sheet's choice, raised by the class's Major Skills and skill rules. */
 export function effectiveProficiencies(actor, baseSkills, className) {
   const result = { ...baseSkills };
   const raise = (skill, proficiency) => {
@@ -208,7 +181,6 @@ export const skillBonusDice = (actor, skill) =>
 export const visibilityBonus = actor => getRules(actor, "visibility").reduce((sum, rule) => sum + (rule.amount ?? 0), 0);
 export const hpPerLevelBonus = actor => getRules(actor, "hpPerLevel").reduce((sum, rule) => sum + (rule.amount ?? 0), 0);
 
-/** Flat modifier changes from Features (e.g. Marvel Scale: +2 Def while afflicted). */
 export function statModifierBonus(actor, stat) {
   return getRules(actor, "statModifier")
     .filter(rule => asArray(rule.stat).includes(stat) && statusMatches(actor, rule.whenUserStatus))
@@ -216,11 +188,6 @@ export function statModifierBonus(actor, stat) {
     .reduce((sum, rule) => sum + (rule.amount ?? 0), 0);
 }
 
-/* -------------------------------------------- */
-/*  Using moves                                 */
-/* -------------------------------------------- */
-
-/** The Type a move has when this Pokemon uses it (Aerilate, Normalize, Liquid Voice, ...). */
 export function effectiveMoveType(actor, move) {
   let type = move.system.type;
   for (const rule of getRules(actor, "moveType")) {
@@ -231,10 +198,6 @@ export function effectiveMoveType(actor, move) {
   return type;
 }
 
-/**
- * Move Power changes from the user's Features, and the target's (No Guard), for one use of a move.
- * @returns {{amount: number, sources: string[], removeSecondary: boolean, consumed: string[]}}  consumed: held items used up
- */
 export function movePowerBonus(actor, move, { target = null, moveType, isPhysical, isStab, opportunity = false } = {}) {
   const context = { move, moveType, isPhysical, isStab, opportunity };
   let amount = 0;
@@ -259,21 +222,14 @@ export function movePowerBonus(actor, move, { target = null, moveType, isPhysica
   return { amount, sources, removeSecondary, consumed };
 }
 
-/** Whether a target ignores a move entirely: a type immunity (Levitate, Water Absorb) or a tag immunity (Soundproof). */
 export function moveImmunity(target, move, moveType) {
   const typeRule = getRules(target, "typeImmunity").find(rule => rule.moveType === moveType);
   if (typeRule) return typeRule;
   return getRules(target, "tagImmunity").find(rule => move.system.hasTag?.(rule.tag)) ?? null;
 }
 
-/** The lowest die face that scores a Critical Hit for this user (Super Luck lowers it to 5). */
 export const critRangeMin = actor => Math.min(6, ...getRules(actor, "critRange").map(rule => rule.min ?? 5));
 
-/* -------------------------------------------- */
-/*  Targeting                                   */
-/* -------------------------------------------- */
-
-/** A move's range after Features like Long Reach and Focused Shot. */
 export function effectiveRange(actor, move) {
   const system = move.system;
   let range = system.range;

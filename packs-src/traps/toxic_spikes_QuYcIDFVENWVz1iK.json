@@ -1,0 +1,59 @@
+{
+  "name": "Toxic Spikes",
+  "type": "Item",
+  "img": "systems/explorers/assets/traps/toxic_spikes.png",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_id": "QuYcIDFVENWVz1iK",
+  "sort": 2200,
+  "system": {
+    "description": "See the Toxic Spikes Move: spikes that Poison a Pokémon that enters the Tile. Flying Pokémon and those that Levitate are unaffected.",
+    "category": "traps",
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "",
+    "trap": {
+      "avoid": [
+        "endurance"
+      ],
+      "difficulty": 10,
+      "visible": false,
+      "effects": [
+        {
+          "type": "effects",
+          "effects": [
+            {
+              "effect": "poisoned"
+            }
+          ],
+          "grounded": true
+        }
+      ]
+    }
+  },
+  "_key": "!items!QuYcIDFVENWVz1iK"
+}

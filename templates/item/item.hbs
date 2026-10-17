@@ -28,6 +28,23 @@
       </div>
     </fieldset>
 
+    {{#if isTrap}}
+    <fieldset>
+      <legend>{{localize "SYSTEM.Items.TrapLegend"}}</legend>
+      {{formGroup trapFields.avoid value=document.system.trap.avoid name="system.trap.avoid" localize=true type="checkboxes"}}
+      {{formGroup trapFields.difficulty value=document.system.trap.difficulty name="system.trap.difficulty" localize=true}}
+      {{formGroup trapFields.visible value=document.system.trap.visible name="system.trap.visible" localize=true}}
+      {{#if canEditRules}}
+      <label>{{localize "SYSTEM.Models.Item.FIELDS.trap.effects.label"}}</label>
+      <textarea class="feature-rules" data-json-field="trap.effects" spellcheck="false" placeholder="[]">{{trapEffectsText}}</textarea>
+      <details>
+        <summary>{{localize "SYSTEM.Items.TrapReference"}}</summary>
+        <ul class="rule-reference">{{#each trapEffectTypes as |rule|}}<li><code>{{rule.example}}</code></li>{{/each}}</ul>
+      </details>
+      {{/if}}
+    </fieldset>
+    {{/if}}
+
     <fieldset class="feature-automation">
       <legend>{{localize "SYSTEM.Features.Automation"}}</legend>
       {{#if isAutomated}}

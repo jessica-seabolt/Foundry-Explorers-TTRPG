@@ -1,0 +1,51 @@
+{
+  "name": "Wonder Tile",
+  "type": "Item",
+  "img": "systems/explorers/assets/traps/wonder_tile.png",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_id": "Hgp5sFkosXbzNLby",
+  "sort": 2500,
+  "system": {
+    "description": "A Wonder Tile magically resets any Stat Changes that have occurred to the Pokémon that steps on this Tile.",
+    "category": "traps",
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "",
+    "trap": {
+      "avoid": [],
+      "difficulty": 10,
+      "visible": true,
+      "effects": [
+        {
+          "type": "resetStats"
+        }
+      ]
+    }
+  },
+  "_key": "!items!Hgp5sFkosXbzNLby"
+}

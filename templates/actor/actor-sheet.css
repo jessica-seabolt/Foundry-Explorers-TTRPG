@@ -431,3 +431,13 @@ input.character-name {
   gap: 4px;
   align-items: center;
 }
+
+.held-item-card.draggable {
+  cursor: grab;
+}
+
+.sticky-badge {
+  color: #b07a2a;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}

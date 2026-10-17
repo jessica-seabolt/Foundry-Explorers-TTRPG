@@ -24,16 +24,18 @@
   <fieldset class="held-item">
     <legend>{{localize "SYSTEM.Models.Character.FIELDS.heldItem.label"}}</legend>
     {{#if heldItem}}
-    <div class="held-item-card">
+    <div class="held-item-card draggable" data-item-id="{{heldItem.id}}">
       <img src="{{heldItem.img}}" alt="">
       <div>
         <a data-action="openItem" data-id="{{heldItem.id}}"><strong>{{heldItem.name}}</strong></a>
+        {{#if heldItem.sticky}}<span class="sticky-badge" data-tooltip="SYSTEM.Items.StickyHint"><i class="fa-solid fa-droplet"></i> {{localize "SYSTEM.Items.Sticky"}}</span>{{/if}}
         <p>{{heldItem.description}}</p>
       </div>
       <div class="item-buttons">
         {{#if heldItem.canUse}}<button type="button" data-action="useItem" data-id="{{heldItem.id}}" class="icon fa-solid fa-hand-sparkles" data-tooltip="SYSTEM.Items.Use"></button>{{/if}}
-        {{#if heldItem.canThrow}}<button type="button" data-action="throwItem" data-id="{{heldItem.id}}" class="icon fa-solid fa-baseball" data-tooltip="SYSTEM.Items.Throw"></button>{{/if}}
+        {{#if heldItem.canThrow}}<button type="button" data-action="throwItem" data-id="{{heldItem.id}}" class="icon fa-solid fa-baseball" data-tooltip="SYSTEM.Items.ThrowAction"></button>{{/if}}
         {{#if team}}<button type="button" data-action="returnItem" data-id="{{heldItem.id}}" class="icon fa-solid fa-sack" data-tooltip="SYSTEM.Items.Return"></button>{{/if}}
+        <button type="button" data-action="dropItem" data-id="{{heldItem.id}}" class="icon fa-solid fa-arrow-down" data-tooltip="SYSTEM.Items.Drop"></button>
         <button type="button" data-action="removeItem" data-id="{{heldItem.id}}" class="icon fa-solid fa-trash" data-tooltip="SYSTEM.Items.Discard"></button>
       </div>
     </div>

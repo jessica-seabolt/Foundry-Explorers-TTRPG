@@ -147,7 +147,7 @@
     "movementAction": null,
     "flags": {},
     "randomImg": false,
-    "appendNumber": true,
+    "appendNumber": false,
     "prependAdjective": false
   },
   "items": [

@@ -1,7 +1,28 @@
 <section class="dungeon-options standard-form">
   <div class="form-group">
-    <label>{{localize "SYSTEM.Dungeon.Name"}}</label>
-    <div class="form-fields"><input type="text" name="name" value="{{config.name}}"></div>
+    <label>{{localize "SYSTEM.Dungeon.DungeonName"}}</label>
+    <div class="form-fields"><input type="text" name="dungeon" value="{{config.dungeon}}"></div>
+  </div>
+  <div class="form-group">
+    <label>{{localize "SYSTEM.Dungeon.FirstFloor"}}</label>
+    <div class="form-fields"><input type="number" name="firstFloor" value="{{config.firstFloor}}" min="1" step="1"></div>
+  </div>
+  <div class="form-group">
+    <label>{{localize "SYSTEM.Dungeon.Floors"}}</label>
+    <div class="form-fields"><input type="number" name="floors" value="{{config.floors}}" min="1" max="99" step="1"></div>
+  </div>
+  <div class="form-group">
+    <label>{{localize "SYSTEM.Dungeon.Music"}}</label>
+    <div class="form-fields">
+      <select name="music">
+        <option value="" {{#unless config.music}}selected{{/unless}}>{{localize "SYSTEM.Dungeon.MusicNone"}}</option>
+        {{#each musicGroups as |group|}}
+        <optgroup label="{{group.name}}">
+          {{#each group.sounds as |sound|}}<option value="{{sound.value}}" {{#if sound.selected}}selected{{/if}}>{{sound.name}}</option>{{/each}}
+        </optgroup>
+        {{/each}}
+      </select>
+    </div>
   </div>
   <div class="form-group stacked">
     <label>{{localize "SYSTEM.Dungeon.Tileset"}}</label>
@@ -106,10 +127,32 @@
       <label>{{localize "SYSTEM.Dungeon.ItemTable"}}</label>
       <div class="form-fields">
         <select name="itemTable">
-          <option value="" {{#unless config.itemTable}}selected{{/unless}}>{{localize "SYSTEM.Dungeon.ItemTableNone"}}</option>
-          {{selectOptions itemTables selected=config.itemTable valueAttr="value" labelAttr="label"}}
+          <option value="" {{#unless config.itemTable}}selected{{/unless}}>{{localize "SYSTEM.Dungeon.TableNone"}}</option>
+          {{selectOptions rollTables selected=config.itemTable valueAttr="value" labelAttr="label"}}
         </select>
       </div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.EnemyTable"}}</label>
+      <div class="form-fields">
+        <select name="enemyTable">
+          <option value="" {{#unless config.enemyTable}}selected{{/unless}}>{{localize "SYSTEM.Dungeon.TableNone"}}</option>
+          {{selectOptions rollTables selected=config.enemyTable valueAttr="value" labelAttr="label"}}
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.TrapTable"}}</label>
+      <div class="form-fields">
+        <select name="trapTable">
+          <option value="" {{#unless config.trapTable}}selected{{/unless}}>{{localize "SYSTEM.Dungeon.TableNone"}}</option>
+          {{selectOptions rollTables selected=config.trapTable valueAttr="value" labelAttr="label"}}
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.AsleepChance"}}</label>
+      <div class="form-fields"><input type="number" name="asleepChance" value="{{config.asleepChance}}" min="0" max="100" step="5"></div>
     </div>
     <p class="hint">{{localize "SYSTEM.Dungeon.MarkersHint"}}</p>
   </fieldset>

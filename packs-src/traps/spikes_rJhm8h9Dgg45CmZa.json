@@ -1,0 +1,56 @@
+{
+  "name": "Spikes",
+  "type": "Item",
+  "img": "systems/explorers/assets/traps/spikes.png",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_id": "rJhm8h9Dgg45CmZa",
+  "sort": 1600,
+  "system": {
+    "description": "See the Spikes Move: spikes that damage a Pokémon that enters the Tile. Flying Pokémon and those that Levitate are unaffected.",
+    "category": "traps",
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "",
+    "trap": {
+      "avoid": [
+        "movement"
+      ],
+      "difficulty": 10,
+      "visible": false,
+      "effects": [
+        {
+          "type": "damage",
+          "formula": "1d6",
+          "moveType": "ground",
+          "grounded": true
+        }
+      ]
+    }
+  },
+  "_key": "!items!rJhm8h9Dgg45CmZa"
+}

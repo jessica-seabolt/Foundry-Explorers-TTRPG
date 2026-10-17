@@ -326,27 +326,25 @@ export const itemCategories = {
   evolutionItems: "SYSTEM.Items.Categories.EvolutionItems",
   formChangingItems: "SYSTEM.Items.Categories.FormChangingItems",
   tmsAndHms: "SYSTEM.Items.Categories.TmsAndHms",
+  traps: "SYSTEM.Items.Categories.Traps",
 };
 export const statKeys = ['atk', 'def', 'spatk', 'spdef', 'spe', 'iq'];
-// Pokemon of these Types cannot be afflicted with the Condition
 export const conditionTypeImmunities = {
   burned: ['fire'],
   poisoned: ['steel', 'poison'],
   badlyPoisoned: ['steel', 'poison'],
   frozen: ['ice'],
+  seeded: ['grass'],
 };
-// Conditions that let the afflicted Pokemon roll its Status Resistance Check again at the start of its turn
 export const resistRerollConditions = new Set([
   'frozen', 'restrained', 'blinded', 'trapped', 'frightened', 'silenced', 'infatuated', 'taunted'
 ]);
-// Value effects whose count is a number of turns, counted down at the start of the afflicted Pokemon's turn
 export const durationEffects = new Set([
   'insomnia', 'magicCoat', 'disabled', 'statusDisabled', 'flyingDisabled', 'noLoweredStats', 'embargo',
-  'levitating', 'aquaVeil', 'doubleDamage', 'recharging', 'abilitySuppressed', 'mudSport', 'waterSport'
+  'levitating', 'aquaVeil', 'doubleDamage', 'recharging', 'abilitySuppressed', 'mudSport', 'waterSport',
+  'restrained'
 ]);
-// Conditions that end at the start of the Pokemon's next turn ("this turn" effects)
 export const untilNextTurnConditions = new Set(['guarding', 'invulnerable', 'quickGuarded', 'wideGuarded']);
-// Token icons for each Condition, using Foundry's core icon set
 export const conditionIcons = {
   atkUp: 'icons/svg/sword.svg', atkDown: 'icons/svg/sword.svg',
   defUp: 'icons/svg/shield.svg', defDown: 'icons/svg/shield.svg',

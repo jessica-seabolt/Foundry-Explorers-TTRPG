@@ -5,6 +5,8 @@ import { SYSTEM_ID } from '../constants.mjs';
 import { MINOR_SKILL_CHOICES, auraColors, auraOfNature, classData, featureCategories, natures } from './features.mjs';
 import { holdItem, teamOf, throwItem, transferItem, useItem } from './items.mjs';
 import { heldItemOf } from './features.mjs';
+import { checkAction, recordAction, takeSimpleAction } from './turns.mjs';
+import { dropItemAt } from './floor-items.mjs';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
@@ -22,6 +24,9 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       removeItem: CharacterSheet.removeItem,
       basicAttack: CharacterSheet.basicAttack,
       guard: CharacterSheet.guard,
+      dash: CharacterSheet.dash,
+      dropItem: CharacterSheet.dropItem,
+      escape: CharacterSheet.escape,
       rest: CharacterSheet.rest,
       newFloor: CharacterSheet.newFloor,
       openItem: CharacterSheet.openItem,
@@ -58,13 +63,11 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
     context.moves = this.actor.items.filter(item => item.type === "Move");
-    // A Pokemon holds one item; the Team's Treasure Bag holds the rest
     const held = heldItemOf(this.actor);
     context.heldItem = held ? {
       id: held.id, name: held.name, img: held.img, description: held.system.description,
-      canUse: held.system.canUse, canThrow: held.system.canThrow
+      canUse: held.system.canUse, canThrow: held.system.canThrow, sticky: !!held.getFlag(SYSTEM_ID, "sticky")
     } : null;
-    // Items carried from before the shared bag, which should move to it
     context.looseItems = this.actor.items.filter(item => item.type === "Item" && item.id !== held?.id)
       .map(item => ({ id: item.id, name: item.name, img: item.img }));
     context.featureGroups = Object.entries(featureCategories).map(([category, label]) => ({
@@ -76,7 +79,6 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
           description: item.system.description, automated: item.system.isAutomated, manualNote: item.system.manualNote
         }))
     })).filter(group => group.features.length);
-    // Skills raised by the class's Major Skills or a Feature are marked on the sheet
     const system = this.document.system;
     context.skillGrants = Object.fromEntries(Object.keys(skills)
       .filter(skill => system.proficiency?.[skill] && system.proficiency[skill] !== system.skills[skill])
@@ -130,7 +132,7 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
         return { label: game.i18n.localize(abilities[stat]), value: value > 0 ? `+${value}` : `${value}`, up: value > 0 };
       });
     context.conditionChips = this.actor.effects.filter(effect => effect.active && effect.statuses.size
-      && ![...effect.statuses].some(status => statConditions[status])) // stat changes are shown as numbers instead
+      && ![...effect.statuses].some(status => statConditions[status]))
       .map(effect => ({
         id: effect.id,
         name: effect.name,
@@ -141,7 +143,6 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     return context;
   }
 
-  /** How long a Condition has left, from what the automation tracks. */
   static conditionDetail(effect) {
     const flags = effect.flags?.[SYSTEM_ID] ?? {};
     const format = (key, data) => game.i18n.format(key, data);
@@ -155,7 +156,6 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   _onRender(context, options) {
     super._onRender(context, options);
     if (!this.isEditable) return;
-    // Right-click a Condition to remove it
     for (const chip of this.element.querySelectorAll(".condition-chip[data-effect-id]")) {
       chip.addEventListener("contextmenu", event => {
         event.preventDefault();
@@ -198,7 +198,23 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
   }
 
   static async guard() {
+    const starting = !this.actor.statuses.has('guarding');
+    if (starting && !checkAction(this.actor, "guard").allowed) return;
     await this.actor.toggleStatusEffect('guarding');
+    if (starting) await recordAction(this.actor, "guard");
+  }
+
+  static async dropItem(event, target) {
+    const item = this.actor.items.get(target.dataset.id);
+    if (item) await dropItemAt(item, this.actor);
+  }
+
+  static async dash() {
+    await takeSimpleAction(this.actor, "dash");
+  }
+
+  static async escape() {
+    await takeSimpleAction(this.actor, "escape");
   }
 
   static async rest() {
@@ -219,14 +235,12 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     if (item) throwItem(item, { user: this.actor });
   }
 
-  /** Puts an item back in the Team's shared bag. */
   static async returnItem(event, target) {
     const item = this.actor.items.get(target.dataset.id);
     const team = teamOf(this.actor);
     if (item && team) await transferItem(item, team);
   }
 
-  /** Moves items carried from before the shared bag into the Team's bag. */
   static async moveLooseItems() {
     const team = teamOf(this.actor);
     if (!team) return;
@@ -235,7 +249,6 @@ export class CharacterSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     }
   }
 
-  /** Dropping an item on a Pokemon makes it the held item. */
   async _onDropItem(event, item) {
     if (item.type !== "Item") return super._onDropItem(event, item);
     if (!this.actor.isOwner) return;

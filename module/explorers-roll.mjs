@@ -13,7 +13,6 @@ export class ExplorersRoll extends Roll {
   }
 }
 
-/** Resolves the actors a chat card button applies to: its target if it has one, otherwise the selected tokens. */
 function getCardActors(targetId) {
   const actors = targetId ? [fromUuidSync(targetId)].filter(_ => _) : getSelectedActors();
   if (!actors?.length) ui.notifications.error("SYSTEM.Automation.NoActorSelected", { localize: true });
@@ -25,7 +24,7 @@ export class DamageRoll extends ExplorersRoll {
 
   get resistAbility() { return this.options.resistAbility; } // physical or special defense
   get targetId() { return this.options.targetId; } // target will take damage
-  get isHealing() { return !!this.options.isHealing; } // healing moves restore HP instead of dealing damage
+  get isHealing() { return !!this.options.isHealing; }
 
   constructor(formula, data, options={}) {
     super(formula, data, options);
@@ -44,7 +43,6 @@ export class DamageRoll extends ExplorersRoll {
     return context;
   }
 
-  /** The options to pass to CharacterDataModel#applyDamage for this roll. */
   get damageOptions() {
     return {
       amount: this.total,
@@ -60,29 +58,19 @@ export class DamageRoll extends ExplorersRoll {
     };
   }
 
-  /** Whether any die exploded, i.e. the roll scored a Critical Hit. */
   get isCritical() {
     return (this.dice ?? []).some(die => die.results?.some(result => result.exploded));
   }
 
-  /** Applies this roll's damage (or healing) to its target, or to the selected tokens if it has none. */
   applyToTargets() {
     for (const actor of getCardActors(this.targetId)) {
+      // TODO: remove duck typing and just check for character actor
       if (this.isHealing) actor.system.heal?.(this.total, this.options.moveName ?? null);
       else actor.system.applyDamage?.(this.damageOptions);
     }
   }
 }
 
-/**
- * The attacker's roll to land a move's Status Conditions or secondary effects.
- * The target makes a Status Check against it from the chat card's Resist button.
- * options.effects: [{effect, effectCount}] applied to the target if its Status Check fails
- * options.onLandEffects: [{effect, effectCount}] applied to the attacker if the effects land
- * options.resistSkill: the skill the target rolls to resist
- * options.attackerUuid, options.targetId, options.moveName, options.moveType
- * options.resistBonusDice: extra dice the target gets on its Status Check (e.g. from an Opportunity Strike)
- */
 export class StatusRoll extends ExplorersRoll {
   static CHAT_TEMPLATE = filePath("templates/roll/roll-chat-status.hbs");
 

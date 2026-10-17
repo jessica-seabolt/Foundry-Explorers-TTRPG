@@ -1,13 +1,13 @@
-import { filePath } from '../constants.mjs';
+import { SYSTEM_ID, filePath } from '../constants.mjs';
 import { postAutomationMessage } from './conditions.mjs';
 import { chooseUser, holdItem, throwItem, transferItem, useItem } from './items.mjs';
+import { dropItemAt } from './floor-items.mjs';
 import { itemCategories } from './types.mjs';
 
 const { NumberField, StringField, ArrayField } = foundry.data.fields;
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 
-// Team Ranks: the Reputation needed for each, and the Treasure Bag's size at that Rank
 export const TEAM_RANKS = [
   { id: "rookie", reputation: 0, capacity: 8 },
   { id: "normal", reputation: 400, capacity: 16 },
@@ -23,7 +23,6 @@ export const TEAM_RANKS = [
 ];
 const DAYS_WITHOUT_FOOD_LIMIT = 7;
 
-/** A Team: its shared Treasure Bag (the Team actor's items), Poké, Reputation and Rank, members and Reserve List. */
 export class TeamDataModel extends foundry.abstract.TypeDataModel {
   static LOCALIZATION_PREFIXES = ["SYSTEM.Models.Team"];
 
@@ -38,7 +37,6 @@ export class TeamDataModel extends foundry.abstract.TypeDataModel {
   }
 
   prepareDerivedData() {
-    // Rank follows Reputation
     const index = TEAM_RANKS.findLastIndex(rank => this.reputation >= rank.reputation);
     const rank = TEAM_RANKS[Math.max(index, 0)];
     this.rank = rank.id;
@@ -55,10 +53,6 @@ export class TeamDataModel extends foundry.abstract.TypeDataModel {
     return this.reserve.map(uuid => fromUuidSync(uuid)).filter(_ => _);
   }
 
-  /**
-   * A new day: each member's Belly is checked. A member who ate nothing yesterday (and had no big meal covering it)
-   * goes hungry: Disadvantage and half damage, -1 to Skill Checks for each day past the second.
-   */
   async newDay() {
     const lines = [game.i18n.localize("SYSTEM.Belly.NewDay")];
     for (const member of this.memberActors) {
@@ -97,6 +91,7 @@ export class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       throwItem: TeamSheet.#onThrowItem,
       giveItem: TeamSheet.#onGiveItem,
       deleteItem: TeamSheet.#onDeleteItem,
+      dropItem: TeamSheet.#onDropItem,
       openDocument: TeamSheet.#onOpenDocument,
       removeMember: TeamSheet.#onRemoveMember,
       newDay: TeamSheet.#onNewDay,
@@ -135,7 +130,7 @@ export class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
       .map(item => ({
         id: item.id, name: item.name, img: item.img, description: item.system.description,
         category: game.i18n.localize(itemCategories[item.system.category] ?? ""),
-        canUse: item.system.canUse, canThrow: item.system.canThrow
+        canUse: item.system.canUse, canThrow: item.system.canThrow, sticky: !!item.getFlag(SYSTEM_ID, "sticky")
       }));
     const describe = (actor, list) => ({
       uuid: actor.uuid, name: actor.name, img: actor.img, list,
@@ -150,7 +145,6 @@ export class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     return context;
   }
 
-  /** Dropping a Pokemon adds it to the Team, or to the Reserve List if dropped there. */
   async _onDropActor(event, actor) {
     if (!this.isEditable || actor.type === "Team") return;
     const list = event.target.closest("[data-list=reserve]") ? "reserve" : "members";
@@ -163,10 +157,8 @@ export class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     });
   }
 
-  /** Only plain Items go in the Treasure Bag. */
   async _onDropItem(event, item) {
     if (item.type !== "Item") return;
-    // Items dragged from a member's sheet move into the bag rather than being copied
     if (item.actor && item.actor !== this.document && item.actor.isOwner) return transferItem(item, this.document);
     return super._onDropItem(event, item);
   }
@@ -181,12 +173,18 @@ export class TeamSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
     if (item) throwItem(item);
   }
 
-  /** Gives an item from the bag to a member to hold. */
   static async #onGiveItem(event, target) {
     const item = this.document.items.get(target.closest("[data-item-id]").dataset.itemId);
     if (!item) return;
     const member = await chooseUser(this.document);
     if (member) await holdItem(member, item);
+  }
+
+  static async #onDropItem(event, target) {
+    const item = this.document.items.get(target.closest("[data-item-id]").dataset.itemId);
+    if (!item) return;
+    const member = await chooseUser(this.document);
+    if (member) await dropItemAt(item, member);
   }
 
   static async #onDeleteItem(event, target) {

@@ -1,6 +1,7 @@
 import { filePath, toFormGroup } from '../constants.mjs';
 import { RULE_TYPES } from './features.mjs';
 import { USE_EFFECTS } from './items.mjs';
+import { TRAP_EFFECT_TYPES } from './traps.mjs';
 import { itemCategories, ranges, targets, types } from './types.mjs';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
@@ -31,6 +32,10 @@ export class ItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     context.types = toFormGroup(types);
     context.rulesText = system.rules.length ? JSON.stringify(system.rules, null, 2) : "";
     context.onUseText = system.onUse.length ? JSON.stringify(system.onUse, null, 2) : "";
+    context.isTrap = system.isTrap;
+    context.trapEffectsText = system.trap.effects.length ? JSON.stringify(system.trap.effects, null, 2) : "";
+    context.trapEffectTypes = Object.values(TRAP_EFFECT_TYPES).map(example => ({ example }));
+    context.trapFields = system.schema.fields.trap.fields;
     context.ruleTypes = Object.entries(RULE_TYPES).map(([type, example]) => ({ type, example }));
     context.useEffects = Object.entries(USE_EFFECTS).map(([type, example]) => ({ type, example }));
     context.canEditRules = this.isEditable;
@@ -40,7 +45,6 @@ export class ItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
 
   _onRender(context, options) {
     super._onRender(context, options);
-    // Rules and use effects are edited as JSON, so they're parsed and saved separately from the rest of the form
     for (const textarea of this.element.querySelectorAll("textarea[data-json-field]")) {
       textarea.addEventListener("change", event => this.#saveJson(textarea.dataset.jsonField, event.target.value));
     }

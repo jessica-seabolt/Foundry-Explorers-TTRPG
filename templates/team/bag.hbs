@@ -3,16 +3,18 @@
   {{#if items.length}}
   <div class="team-bag scrollable">
     {{#each items as |item|}}
-    <div class="team-item" data-item-id="{{item.id}}">
+    <div class="team-item draggable" data-item-id="{{item.id}}">
       <img src="{{item.img}}" alt="">
       <div class="team-item-main">
         <a data-action="openDocument">{{item.name}}</a> <span class="hint">{{item.category}}</span>
+        {{#if item.sticky}}<span class="sticky-badge" data-tooltip="SYSTEM.Items.StickyHint"><i class="fa-solid fa-droplet"></i> {{localize "SYSTEM.Items.Sticky"}}</span>{{/if}}
         <p>{{item.description}}</p>
       </div>
       <div class="team-item-buttons">
         {{#if item.canUse}}<button type="button" data-action="useItem" data-tooltip="SYSTEM.Items.Use"><i class="fa-solid fa-hand-sparkles"></i></button>{{/if}}
-        {{#if item.canThrow}}<button type="button" data-action="throwItem" data-tooltip="SYSTEM.Items.Throw"><i class="fa-solid fa-baseball"></i></button>{{/if}}
+        {{#if item.canThrow}}<button type="button" data-action="throwItem" data-tooltip="SYSTEM.Items.ThrowAction"><i class="fa-solid fa-baseball"></i></button>{{/if}}
         <button type="button" data-action="giveItem" data-tooltip="SYSTEM.Items.Give"><i class="fa-solid fa-hand-holding"></i></button>
+        <button type="button" data-action="dropItem" data-tooltip="SYSTEM.Items.Drop"><i class="fa-solid fa-arrow-down"></i></button>
         <button type="button" data-action="deleteItem" data-tooltip="SYSTEM.Items.Discard"><i class="fa-solid fa-trash"></i></button>
       </div>
     </div>

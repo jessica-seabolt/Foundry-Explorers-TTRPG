@@ -6,13 +6,11 @@ import { SYSTEM_ID } from '../constants.mjs';
 import { auraOfNature, classData, effectiveProficiencies, featureCategories, getRules, hasCondition, hasRule, heldItemOf, hpPerLevelBonus, statModifierBonus, visibilityBonus } from './features.mjs';
 import { stealHeldItem } from './items.mjs';
 
-// Tokens of Large Pokemon take up 2x2 Tiles, and Huge Pokemon take up 3x3
 const sizeToTiles = { tiny: 1, small: 1, medium: 1, large: 2, huge: 3 };
 
 const { NumberField, SchemaField, StringField, HTMLField, ArrayField, TypedObjectField, BooleanField, ObjectField } = foundry.data.fields;
 
 export class CharacterDataModel extends foundry.abstract.TypeDataModel {
-
   static LOCALIZATION_PREFIXES = ["SYSTEM.Models.Character"];
 
   get tileVisibility() {
@@ -35,7 +33,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     return Math.max(result, 0);
   }
 
-  /** Sight range in scene distance units, from the Visibility table. Assumes the system's 5ft grid. */
   get sightRange() {
     return this.tileVisibility * (game.system.grid?.distance ?? 5);
   }
@@ -45,10 +42,9 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     if (isAllowed === false) return false;
 
     const tiles = sizeToTiles[this.size] ?? 1;
-    // New Pokemon get linked, neutral tokens; ones that say otherwise (like unlinked Wild Pokemon from a
-    // compendium, so each token has its own HP) keep their setting
     this.parent.updateSource({
       prototypeToken: {
+// Wild Pokemon from compendiums stay unlinked.
         actorLink: data.prototypeToken?.actorLink ?? true,
         disposition: data.prototypeToken?.disposition ?? CONST.TOKEN_DISPOSITIONS.NEUTRAL,
         lockRotation: true,
@@ -76,17 +72,12 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 
   _onUpdate(changed, options, userId) {
     super._onUpdate(changed, options, userId);
-    if (userId !== game.user.id) return; // only the user who made the change follows up on it
+    if (userId !== game.user.id) return;
     if (changed.system?.statChanges) syncStatChangeIcons(this.parent);
-    // A new held item can bring permanent Conditions (Goggle Specs) and change vision, like a Feature
     if (changed.system && "heldItem" in changed.system) this.onFeaturesChanged();
     else this.syncTokens({ resizeTiles: options[SYSTEM_ID]?.resizeTokens });
   }
 
-  /**
-   * Keeps the prototype and placed tokens in line with the actor: size, vision range from Visibility,
-   * and Foundry's "See Invisibility" detection while the Pokemon has Eyedrop.
-   */
   async syncTokens({ resizeTiles = null } = {}) {
     const actor = this.parent;
     const sightRange = this.sightRange;
@@ -115,7 +106,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     }
   }
 
-  /** After a Feature is added, removed or edited: show its permanent Conditions and update token vision. */
   async onFeaturesChanged() {
     await syncPermanentConditions(this.parent);
     await this.syncTokens();
@@ -156,22 +146,20 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
   prepareDerivedData() {
     this._prepareMaxHp();
     this.hp.mod = Math.floor(Math.ceil(this.hp.max / 5) / 2);
-    // Skills after class Major Skills and Features (the sheet's own choices stay in this.skills)
     this.proficiency = effectiveProficiencies(this.parent, this.skills, this.class);
     const statuses = this.parent?.statuses ?? new Set();
     for (const ability in this.abilities) {
       const abilitySettings = this.abilities[ability];
       abilitySettings.baseMod = Math.ceil(abilitySettings.raw / 5);
       let change = this.statChanges[ability] ?? 0;
-      if (ability === 'atk' && statuses.has('burned')) change -= 2; // Burned lowers the Atk modifier by 2
-      change += statModifierBonus(this.parent, ability); // e.g. Marvel Scale
+      if (ability === 'atk' && statuses.has('burned')) change -= 2;
+      change += statModifierBonus(this.parent, ability);
       abilitySettings.change = change;
       abilitySettings.mod = Math.max(abilitySettings.baseMod + change, 0);
       abilitySettings.value = abilitySettings.raw;
     }
   }
 
-  /** Characters (wild Pokemon, NPCs) have their Max HP set by hand. */
   _prepareMaxHp() {}
 
   getTypeMatchup(attackType) {
@@ -186,32 +174,12 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     return ['immune', 'mostlyIneffective', 'notVeryEffective', 'effective', 'superEffective', 'extremelyEffective'][result];
   }
 
-  /**
-   * The defensive modifier used against a move. "highest" picks the better of Def and Sp.Def.
-   * ignoreStatChanges uses the modifier before Stat Up/Down (the attacker has Ceaseless).
-   */
   getResistMod(resistAbility, { ignoreStatChanges = false } = {}) {
     const mod = stat => ignoreStatChanges ? this.abilities[stat]?.baseMod ?? 0 : this.abilities[stat]?.mod ?? 0;
     if (resistAbility === 'highest') return Math.max(mod('def'), mod('spdef'));
     return mod(resistAbility);
   }
 
-  /**
-   * Applies damage to this Pokemon.
-   * @param {object} options
-   * @param {number} options.amount                 The damage rolled
-   * @param {string|null} [options.resistAbility]   Defensive stat subtracted from the damage (none for tick damage)
-   * @param {string|null} [options.moveType]        Type of the move dealing the damage
-   * @param {string|null} [options.moveCategory]    "physical" or "special", for Features that react to one or the other
-   * @param {string|null} [options.attackerUuid]    The attacking Pokemon, for Counter, Mirror Coat, recoil and draining
-   * @param {string[]} [options.tags]               Tags of the attacking move
-   * @param {boolean} [options.isAttack]            Whether this comes from a move or attack (as opposed to tick damage)
-   * @param {boolean} [options.isCritical]          Whether the attack scored a Critical Hit
-   * @param {boolean} [options.fromMove]            Non-attack damage that still counts as coming from a move (Counter)
-   * @param {string|null} [options.matchup]         The move's Type matchup against this Pokemon (Enigma Berry)
-   * @param {string|null} [options.label]           What dealt the damage, for the chat message
-   * @returns {Promise<{damage: number, hp: number}>} The damage taken and the HP left
-   */
   async applyDamage({ amount, resistAbility = null, moveType = null, moveCategory = null, attackerUuid = null, tags = [],
     isAttack = false, isCritical = false, fromMove = false, matchup = null, label = null }) {
     const actor = this.parent;
@@ -227,7 +195,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       await postAutomationMessage(actor, [format("SYSTEM.Automation.FrozenNoDamage")]);
       return unchanged;
     }
-    // Magic Guard: only moves hurt this Pokemon (no Burn, Poison, recoil, ...)
     const magicGuard = getRules(actor, "magicGuard")[0];
     if (!isAttack && !fromMove && magicGuard) {
       await postAutomationMessage(actor, [format("SYSTEM.Automation.FeatureBlockedDamage", { feature: foundry.utils.escapeHTML(magicGuard.source) })]);
@@ -239,7 +206,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     const ignoreStatChanges = isAttack && hasRule(attacker, "ignoreTargetStatChanges");
     let damage = Math.max(amount - (resistAbility ? this.getResistMod(resistAbility, { ignoreStatChanges }) : 0), 0);
 
-    // Features that change damage taken (Thick Fat, Bastion, Fluffy, Multiscale, ...)
     const wasFullHp = this.hp.raw >= this.hp.max;
     if (isAttack) {
       for (const rule of getRules(actor, "damageTaken")) {
@@ -259,7 +225,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       lines.push(format("SYSTEM.Automation.GuardHalved"));
     }
 
-    // Sturdy (survives a hit from full HP) and Last Stand (once until revived or fully healed) leave 1 HP
     if (damage >= this.hp.raw && this.hp.raw > 0) {
       for (const rule of getRules(actor, "endure")) {
         if (rule.fromFullHp && !(wasFullHp && isAttack)) continue;
@@ -294,7 +259,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       await removeCondition(actor, 'frozen');
       lines.push(format("SYSTEM.Automation.Thawed"));
     }
-    if (isAttack && statuses.has('asleep')) { // attacking a sleeping Pokemon wakes it
+    if (isAttack && statuses.has('asleep')) {
       await removeCondition(actor, 'asleep');
       lines.push(format("SYSTEM.Automation.WokeUp"));
     }
@@ -305,12 +270,10 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       const reflected = (resistAbility === 'def' && statuses.has('counter')) ? "SYSTEM.Conditions.Counter"
         : (resistAbility === 'spdef' && statuses.has('mirrorCoat')) ? "SYSTEM.Conditions.MirrorCoat" : null;
       if (reflected) await applyDamage(attacker, { amount: half, label: game.i18n.localize(reflected), fromMove: true });
-      // Rock Head: no recoil damage
       if (tags.includes('recoil') && !hasRule(attacker, "noRecoil")) {
         await applyDamage(attacker, { amount: half, label: game.i18n.localize("SYSTEM.Tags.Recoil") });
       }
       if (tags.includes('healHalf')) {
-        // Liquid Ooze: draining this Pokemon hurts the attacker instead of healing it
         const ooze = getRules(actor, "liquidOoze")[0];
         if (ooze) await applyDamage(attacker, { amount: half, label: ooze.source, fromMove: true });
         else await healActor(attacker, half, game.i18n.localize("SYSTEM.Tags.HealHalf"));
@@ -319,7 +282,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
 
     if (newHP > 0) {
       if (isAttack) await this._onDamaged({ attacker, damage, moveType, moveCategory, tags, isCritical });
-      // Berserk: crossing below a fraction of Max HP
       for (const rule of getRules(actor, "onHpBelow")) {
         const threshold = this.hp.max * (rule.fraction ?? 0.5);
         if (this.hp.raw + damage >= threshold && newHP < threshold) {
@@ -336,7 +298,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     return { damage, hp: newHP };
   }
 
-  /** Features that react to this Pokemon being hit (Static, Rough Skin, Stamina, Anger Point, ...). */
   async _onDamaged({ attacker, damage, moveType, moveCategory, tags, isCritical }) {
     const actor = this.parent;
     const name = foundry.utils.escapeHTML(actor.name);
@@ -369,7 +330,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
       }
       if (rule.stealAttackerItem) await stealHeldItem(actor, attacker);
     }
-    // Held items react too: a held Blast Seed explodes on its holder, and is used up
     for (const rule of getRules(actor, "onDamaged").filter(rule => rule.itemId)) {
       if (rule.moveTypes && !rule.moveTypes.includes(moveType)) continue;
       if (rule.selfDamage) {
@@ -381,7 +341,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     }
   }
 
-  // Kept for macros written against the old API
   takeDamage(amount, resistAbility) {
     return this.applyDamage({ amount, resistAbility, isAttack: true });
   }
@@ -398,12 +357,6 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     return healed;
   }
 
-  /**
-   * Resets once-only endure Features. Last Stand recharges at full HP; Focus Band ("perBattle") when a battle ends.
-   * @param {object} options
-   * @param {boolean} [options.battleOnly]     Only reset per-battle ones (end of a battle)
-   * @param {boolean} [options.includeBattle]  Also reset per-battle ones (a full Rest resets everything)
-   */
   async clearEndure({ battleOnly = false, includeBattle = true } = {}) {
     const actor = this.parent;
     for (const rule of getRules(actor, "endure")) {
@@ -415,12 +368,10 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     }
   }
 
-  /** How much a Rest restores: all of it, or less for a Player who hasn't eaten enough today. */
   get restFraction() {
     return 1;
   }
 
-  /** A full Rest: regain all HP and PP (half if the Pokemon has only eaten half as much as it needs, none if nothing). */
   async rest() {
     const actor = this.parent;
     const name = foundry.utils.escapeHTML(actor.name);
@@ -431,14 +382,16 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     }
     await actor.update({ "system.hp.raw": Math.min(this.hp.max, this.hp.raw + Math.floor(this.hp.max * fraction)) });
     const moveUpdates = actor.items.filter(item => item.type === 'Move')
-      .map(move => ({ _id: move.id, "system.ppLeft": Math.min(move.system.pp, move.system.ppLeft + Math.floor(move.system.pp * fraction)) }));
+      .map(move => ({
+        _id: move.id, "system.ppLeft": Math.min(move.system.pp, move.system.ppLeft + Math.floor(move.system.pp * fraction)),
+        [`flags.${SYSTEM_ID}.-=sealed`]: null
+      }));
     if (moveUpdates.length) await actor.updateEmbeddedDocuments("Item", moveUpdates);
     await actor.toggleStatusEffect(FAINTED_STATUS, { active: false });
     await this.clearEndure();
     await postAutomationMessage(actor, [game.i18n.format(fraction < 1 ? "SYSTEM.Belly.RestedHalf" : "SYSTEM.Automation.Rested", { name })]);
   }
 
-  /** Moving to a new Floor resets temporary effects such as Stat Changes. */
   async newFloor() {
     const actor = this.parent;
     await actor.update(Object.fromEntries(statKeys.map(stat => [`system.statChanges.${stat}`, 0])));
@@ -463,7 +416,6 @@ export class PlayerDataModel extends CharacterDataModel {
   static defineSchema() {
     return {
       ...super.defineSchema(),
-      // Players' Max HP comes from their Class and Level (see _prepareMaxHp); bonus is any extra on top
       hp: new SchemaField({
         raw: new NumberField({ required: true, integer: true, min: 0, initial: 25 }),
         max: new NumberField({ required: true, integer: true, min: 1, initial: 25 }),
@@ -484,7 +436,6 @@ export class PlayerDataModel extends CharacterDataModel {
       tokens: new SchemaField({
         available: new NumberField({ required: true, integer: true, min: 0, initial: 0 })
       }),
-      // Belly: food eaten today (each half-belly item counts 1), days already covered by big meals, days gone hungry
       belly: new SchemaField({
         eaten: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
         fedDays: new NumberField({ required: true, integer: true, min: 0, initial: 0 }),
@@ -493,7 +444,6 @@ export class PlayerDataModel extends CharacterDataModel {
     };
   }
 
-  /** A Pokemon needs 2 food items a day (Munch Band doubles it). */
   get bellyNeeded() {
     return getRules(this.parent, "bellyNeed").reduce((need, rule) => need * (rule.multiplier ?? 1), 2);
   }
@@ -504,7 +454,6 @@ export class PlayerDataModel extends CharacterDataModel {
     return this.belly.eaten * 2 >= needed ? 0.5 : 0;
   }
 
-  /** Max HP: the Class's base HP, its HP per Level for each Level after the first, Features like Brick-Tough, and any bonus. */
   _prepareMaxHp() {
     const data = classData[this.class];
     if (!data) return;
@@ -515,7 +464,6 @@ export class PlayerDataModel extends CharacterDataModel {
   async _preUpdate(changes, options, user) {
     const allowed = await super._preUpdate(changes, options, user);
     if (allowed === false) return false;
-    // Friendship Dice are capped at the Pokemon's Level, and Adventure Tokens at 1 + Level
     const level = changes.system?.level ?? this.level;
     const dice = changes.system?.friendship?.dice ?? (changes.system?.level ? this.friendship.dice : null);
     if (dice != null && dice > level) foundry.utils.setProperty(changes, "system.friendship.dice", level);
@@ -524,10 +472,8 @@ export class PlayerDataModel extends CharacterDataModel {
   }
 
   prepareDerivedData() {
-    // The Aura first: Ribbons boost stats for a matching Aura
     this.auraColor = this.aura || auraOfNature(this.nature) || "";
     super.prepareDerivedData();
-    // Not having eaten in the last day: Disadvantage and half damage, plus -1 to Skill Checks per day past the second
     this.belly.hungry = this.belly.hungryDays >= 1;
     this.belly.skillPenalty = Math.max(this.belly.hungryDays - 2, 0);
     this.belly.needed = this.bellyNeeded;
@@ -551,26 +497,30 @@ export class ItemDataModel extends foundry.abstract.TypeDataModel {
       description: new StringField({ required: true }),
       category: new StringField({ required: true, choices: itemCategories, initial: 'foods' }),
       price: new NumberField({ required: true, nullable: true, integer: true, min: 0 }),
-      // Rules active while a Pokemon holds this item (same rule types as Features, see features.mjs)
       rules: new ArrayField(new ObjectField()),
-      // What happens when the item is used or eaten (see USE_EFFECTS in items.mjs)
       onUse: new ArrayField(new ObjectField()),
-      // Who using it affects; none means the Pokemon using it (e.g. Orbs aimed at foes)
       target: new StringField({ required: true, nullable: true, blank: false, choices: targets, initial: null }),
       range: new StringField({ required: true, nullable: true, blank: false, choices: ranges, initial: null }),
       rangeCount: new NumberField({ required: true, nullable: true, integer: true, min: 1, initial: null }),
-      // Throwing: in a straight line or an arc, and the damage it deals when it hits
       throwMode: new StringField({ required: true, choices: { none: "SYSTEM.Items.Throw.None", straight: "SYSTEM.Items.Throw.Straight", arc: "SYSTEM.Items.Throw.Arc" }, initial: 'none' }),
       throwDamage: new StringField({ required: true, blank: true }),
       throwType: new StringField({ required: true, nullable: true, blank: false, choices: types, initial: null }),
-      // Whether using it uses it up, and what it turns into (a Reviver Seed becomes a Plain Seed)
       consumable: new BooleanField({ required: true, initial: true }),
       becomes: new StringField({ required: true, blank: true }),
       manualNote: new StringField({ required: true, blank: true }),
+      trap: new SchemaField({
+        avoid: new ArrayField(new StringField({ required: true, choices: { endurance: "SYSTEM.Skills.Endurance", strength: "SYSTEM.Skills.Strength", movement: "SYSTEM.Skills.Movement" } })),
+        difficulty: new NumberField({ required: true, integer: true, min: 0, initial: 10 }),
+        visible: new BooleanField({ required: true, initial: false }),
+        effects: new ArrayField(new ObjectField())
+      }),
     };
   }
 
-  /** Items with automated use effects, and kinds of item that are used rather than held (TMs, Orbs, Evolution items). */
+  get isTrap() {
+    return this.category === 'traps';
+  }
+
   get canUse() {
     return this.onUse.length > 0 || !!this.target || USABLE_CATEGORIES.has(this.category);
   }
@@ -579,7 +529,6 @@ export class ItemDataModel extends foundry.abstract.TypeDataModel {
     return this.throwMode !== 'none';
   }
 
-  /** Warn when the shared Treasure Bag is over capacity. */
   async _preCreate(data, options, user) {
     const allowed = await super._preCreate(data, options, user);
     if (allowed === false) return false;
@@ -664,14 +613,12 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
     }
   }
 
-  /** Spends PP for using the move (more than 1 against a Pokemon with Pressure). Returns false if there isn't any left. */
   use(cost = 1) {
     if (this.ppLeft == 0) return false;
     this.parent.update({ "system.ppLeft": Math.max(this.ppLeft - cost, 0) });
     return true;
   }
 
-  /** Effects of a trigger, split into those that land on the target and those that affect the user. */
   getSplitEffects(triggerType) {
     const result = { target: [], user: [] };
     for (const trigger of Object.values(this.effects)) {
@@ -683,7 +630,6 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
     return result;
   }
 
-  /** Whether this move is aimed at foes, so its effects on the target must get past a Status Check. */
   get targetsFoe() {
     return ['foe', 'foes'].includes(this.target);
   }
@@ -701,9 +647,7 @@ export class FeatureDataModel extends foundry.abstract.TypeDataModel {
       level: new NumberField({ required: true, nullable: true, integer: true, min: 1, max: 10, initial: null }),
       prerequisite: new StringField({ required: true, blank: true }),
       prerequisiteLevel: new NumberField({ required: true, nullable: true, integer: true, min: 1, max: 10, initial: null }),
-      // Automation rules (see RULE_TYPES in features.mjs)
       rules: new ArrayField(new ObjectField()),
-      // What the automation leaves to the GM, shown on the sheet
       manualNote: new StringField({ required: true, blank: true }),
     };
   }

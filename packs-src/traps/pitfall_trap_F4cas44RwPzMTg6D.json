@@ -1,0 +1,56 @@
+{
+  "name": "Pitfall Trap",
+  "type": "Item",
+  "img": "systems/explorers/assets/traps/pitfall_trap.png",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_id": "F4cas44RwPzMTg6D",
+  "sort": 800,
+  "system": {
+    "description": "Stepping on this trap causes you to fall from a Medium Height into a Pit. You can climb out of a Pitfall Trap with a Strength or Movement check. Flying-Type and Levitating Pokémon cannot be affected by this trap.",
+    "category": "traps",
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "Climb out of the pit with a Strength or Movement Check.",
+    "trap": {
+      "avoid": [],
+      "difficulty": 10,
+      "visible": false,
+      "effects": [
+        {
+          "type": "fall",
+          "formula": "5d6",
+          "skill": "movement",
+          "difficulty": 10,
+          "condition": "restrained",
+          "grounded": true
+        }
+      ]
+    }
+  },
+  "_key": "!items!F4cas44RwPzMTg6D"
+}

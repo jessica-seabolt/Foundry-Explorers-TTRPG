@@ -20,9 +20,29 @@
   font-weight: bold;
 }
 
-.explorers-team .team-bag {
-  max-height: 440px;
+.explorers-team .window-content {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.explorers-team .tab.active {
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
+}
+
+.explorers-team .tab.active[data-tab="bag"] {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.explorers-team .team-bag {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-bottom: 4px;
 }
 
 .explorers-team .team-item {
@@ -62,4 +82,14 @@
   gap: 8px;
   align-items: center;
   padding: 2px 0;
+}
+
+.team-item.draggable {
+  cursor: grab;
+}
+
+.sticky-badge {
+  color: #b07a2a;
+  font-size: 0.8rem;
+  white-space: nowrap;
 }

@@ -6,12 +6,10 @@ const REQUEST_TIMEOUT_MS = 10000;
 const handlers = {};
 const pendingRequests = new Map();
 
-/** Registers a function the active GM runs when a player asks for `action` over the socket. Its return value is sent back. */
 export function registerSocketHandler(action, handler) {
   handlers[action] = handler;
 }
 
-/** Asks the active GM to run `action`. Returns false (and warns) if no GM is connected. */
 export function emitToGM(action, data) {
   if (!game.users.activeGM) {
     ui.notifications.warn("SYSTEM.Socket.NoGM", { localize: true });
@@ -21,10 +19,6 @@ export function emitToGM(action, data) {
   return true;
 }
 
-/**
- * Asks the active GM to run `action` and waits for it to finish.
- * Resolves with the handler's result, or undefined if no GM is connected or it takes too long.
- */
 export function requestFromGM(action, data) {
   if (!game.users.activeGM) {
     ui.notifications.warn("SYSTEM.Socket.NoGM", { localize: true });

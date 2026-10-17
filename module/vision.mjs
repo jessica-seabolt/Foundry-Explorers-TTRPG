@@ -3,12 +3,6 @@ import { offsetPolygons, polygonContaining, roomOfToken, roomVisionArea } from '
 
 const { PointVisionSource } = foundry.canvas.sources;
 
-/**
- * Token vision following the Explorers rules:
- * - In a Room, a Pokemon sees the entire Room and one Tile outside it, regardless of its Visibility.
- * - In a Hallway, it sees up to its Visibility, even in lit areas.
- * - Optionally, sight extends one Tile past walls so the wall Tiles of a dungeon map are visible.
- */
 export class ExplorersVisionSource extends PointVisionSource {
   _createShapes() {
     super._createShapes();
@@ -38,7 +32,6 @@ export class ExplorersVisionSource extends PointVisionSource {
   }
 }
 
-/** Grows a line-of-sight polygon outward, so the Tile just past each wall becomes visible. */
 function expandSourcePolygon(polygon, distance, origin) {
   const grown = polygonContaining(offsetPolygons([polygon], distance), origin);
   if (!grown) return polygon;
@@ -48,7 +41,6 @@ function expandSourcePolygon(polygon, distance, origin) {
   return expanded;
 }
 
-/** Recompute vision when Rooms change. */
 export function registerVisionHooks() {
   const refresh = () => canvas?.ready && canvas.perception.update({ initializeVision: true });
   for (const hook of ["createRegion", "updateRegion", "deleteRegion", "createRegionBehavior", "updateRegionBehavior", "deleteRegionBehavior"]) {

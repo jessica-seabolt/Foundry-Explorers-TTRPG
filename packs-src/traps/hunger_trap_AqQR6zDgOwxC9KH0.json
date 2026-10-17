@@ -1,0 +1,54 @@
+{
+  "name": "Hunger Trap",
+  "type": "Item",
+  "img": "systems/explorers/assets/traps/hunger_trap.png",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_id": "AqQR6zDgOwxC9KH0",
+  "sort": 600,
+  "system": {
+    "description": "Stepping on this trap empties your Belly, and you now treat your Belly as if you hadn't eaten in 2 days.",
+    "category": "traps",
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "",
+    "trap": {
+      "avoid": [
+        "endurance"
+      ],
+      "difficulty": 10,
+      "visible": false,
+      "effects": [
+        {
+          "type": "hunger",
+          "days": 2
+        }
+      ]
+    }
+  },
+  "_key": "!items!AqQR6zDgOwxC9KH0"
+}

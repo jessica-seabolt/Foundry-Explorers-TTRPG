@@ -1,12 +1,13 @@
-import { getSkillDie, getDieString, applyTypeMatchup } from '../constants.mjs';
+import { SYSTEM_ID, getSkillDie, getDieString, applyTypeMatchup } from '../constants.mjs';
 import {
   FAINTED_STATUS, applyDamage, applyEffects, consumeItem, cureConditions, healActor, postAutomationMessage, registerActorOp, runAsOwner
 } from './conditions.mjs';
 import { DamageRoll, ExplorersRoll, StatusRoll } from './explorers-roll.mjs';
 import { AFFLICTIONS, getRules, heldItemOf } from './features.mjs';
 import { registerSocketHandler, requestFromGM } from './socket.mjs';
-import { includesSelf } from './targeting-geometry.mjs';
-import { pickTargets } from './targeting.mjs';
+import { checkAction, recordAction } from './turns.mjs';
+import { includesSelf, tileDistance } from './targeting-geometry.mjs';
+import { getActorToken, pickTargets } from './targeting.mjs';
 import { abilities, typeMatchups } from './types.mjs';
 
 const { DialogV2 } = foundry.applications.api;
@@ -17,7 +18,6 @@ const localize = key => game.i18n.localize(key);
 const format = (key, data) => game.i18n.format(key, data);
 const escape = text => foundry.utils.escapeHTML(text ?? "");
 
-/** Reference for item "onUse" effects, shown on the item sheet. */
 export const USE_EFFECTS = {
   heal: '{"type":"heal","amount":100}  (or "full":true, "percent":25, "formula":"2d6")',
   cure: '{"type":"cure","conditions":["paralyzed"]}  (or "all":true)',
@@ -30,19 +30,11 @@ export const USE_EFFECTS = {
   hunger: '{"type":"hunger","days":2}',
   revive: '{"type":"revive","hp":"full","restorePP":true}  ("hp" can be "half")',
   damage: '{"type":"damage","formula":"2d6","moveType":"fire"}',
+  cleanse: '{"type":"cleanse"}  (un-sticks the Held Item and the Team bag)',
 };
 
-// Effects that hurt the target: thrown or aimed at a foe, these need the target to fail an Endurance Check (v1.1)
 const isHarmfulEffect = ({ effect }) => AFFLICTIONS.has(effect) || effect.endsWith("Down");
 
-/* -------------------------------------------- */
-/*  Who uses an item                            */
-/* -------------------------------------------- */
-
-/**
- * The Pokemon using an item. Items on a Pokemon are used by it; items in the Team's bag are used by
- * the user's own character, or whichever member they pick.
- */
 export async function chooseUser(holder) {
   if (holder.type !== "Team") return holder;
   const members = holder.system.memberActors.filter(actor => actor.isOwner);
@@ -56,7 +48,6 @@ export async function chooseUser(holder) {
     .then(uuid => uuid ? fromUuidSync(uuid) : null);
 }
 
-/** Asks the user to pick one of several options. Resolves with the chosen value, or null if dismissed. */
 async function chooseFrom(title, options) {
   const select = `<select name="choice">${options.map(o => `<option value="${o.value}">${escape(o.label)}</option>`).join("")}</select>`;
   try {
@@ -71,7 +62,15 @@ async function chooseFrom(title, options) {
   }
 }
 
-/** An item seen as a move, so it can use the move targeting (Orbs aimed at foes, thrown items). */
+function adjacentAllies(user) {
+  const token = globalThis.canvas?.ready ? getActorToken(user) : null;
+  if (!token) return [];
+  const cells = token.document.getOccupiedGridSpaceOffsets();
+  return canvas.tokens.placeables.filter(other => other !== token && other.actor && other.actor !== user
+    && other.document.disposition === token.document.disposition
+    && tileDistance(cells, other.document.getOccupiedGridSpaceOffsets()) <= 1).map(other => other.actor);
+}
+
 function itemAsMove(item, overrides = {}) {
   const system = item.system;
   return {
@@ -87,17 +86,12 @@ function itemAsMove(item, overrides = {}) {
 
 const targetedActors = () => Array.from(game.user.targets).map(token => token.actor).filter(_ => _);
 
-/* -------------------------------------------- */
-/*  Using items                                 */
-/* -------------------------------------------- */
-
-/** Uses (or eats) an item: applies its effects to whoever it affects, then uses it up. */
 export async function useItem(item, { user = null } = {}) {
+  if (isSticky(item)) return;
   user ??= await chooseUser(item.actor);
-  if (!user) return;
+  if (!user || !checkAction(user, "item").allowed) return;
   const system = item.system;
 
-  // Items aimed at others (Orbs) use move targeting
   let recipients = [user];
   if (system.target && system.target !== 'self') {
     if (!await pickTargets(user, itemAsMove(item))) return;
@@ -108,12 +102,23 @@ export async function useItem(item, { user = null } = {}) {
       return;
     }
   }
+  else {
+    const allies = adjacentAllies(user);
+    if (allies.length) {
+      const uuid = await chooseFrom(format("SYSTEM.Items.ChooseRecipient", { item: escape(item.name) }), [
+        { value: user.uuid, label: format("SYSTEM.Items.Yourself", { name: user.name }) },
+        ...allies.map(ally => ({ value: ally.uuid, label: ally.name }))
+      ]);
+      if (!uuid) return;
+      recipients = [fromUuidSync(uuid)];
+    }
+  }
 
+  await recordAction(user, "item");
   await postItemCard(user, item, "SYSTEM.Items.Used");
   const onUse = await resolveChoices(system.onUse, recipients[0]);
   const harmful = onUse.filter(rule => rule.type === "effects").flatMap(rule => rule.effects ?? []).filter(isHarmfulEffect);
   for (const recipient of recipients) {
-    // Aimed at a foe: a Traps Check sets the number its Endurance Check has to beat (v1.1)
     if (recipient !== user && harmful.length) {
       const traps = await rollTraps(user, item);
       await postStatusCheck(user, recipient, item, traps.total, harmful);
@@ -126,23 +131,28 @@ export async function useItem(item, { user = null } = {}) {
   if (system.consumable) await consumeItem(item);
 }
 
-/** Throws an item: a Traps Check sets the distance, then it hits the first Pokemon in the way. */
+function isSticky(item) {
+  if (!item.getFlag?.(SYSTEM_ID, "sticky")) return false;
+  ui.notifications.warn(format("SYSTEM.Traps.IsSticky", { item: escape(item.name) }));
+  return true;
+}
+
 export async function throwItem(item, { user = null } = {}) {
+  if (isSticky(item)) return;
   user ??= await chooseUser(item.actor);
-  if (!user) return;
+  if (!user || !checkAction(user, "item").allowed) return;
   const system = item.system;
   const traps = await rollTraps(user, item);
   const arc = system.throwMode === 'arc';
   const distance = Math.max(arc ? Math.floor(traps.total / 2) : traps.total, 1);
-  // Straight throws travel in a line and hit the first Pokemon; arcs land on a Pokemon within half the distance
   const move = itemAsMove(item, { target: 'any', range: arc ? 'away' : 'ahead', rangeCount: distance });
   if (!await pickTargets(user, move, { force: true })) return;
+  await recordAction(user, "item");
   const target = targetedActors().find(actor => actor !== user) ?? null;
 
   if (!target) await postAutomationMessage(user, [format("SYSTEM.Items.ThrowMissed", { name: escape(user.name), item: escape(item.name) })]);
   else {
     if (system.throwDamage) await throwDamage(user, target, item);
-    // A thrown item's damage comes from its thrown damage, not its "when used" damage (Blast Seed)
     const onUse = await resolveChoices(system.onUse.filter(rule => rule.type !== "damage"), target);
     const harmful = onUse.filter(rule => rule.type === "effects").flatMap(rule => rule.effects ?? []).filter(isHarmfulEffect);
     if (harmful.length) await postStatusCheck(user, target, item, traps.total, harmful);
@@ -152,7 +162,6 @@ export async function throwItem(item, { user = null } = {}) {
   if (system.consumable) await consumeItem(item);
 }
 
-/** A thrown item's damage: no modifier and not reduced by Defence, but it can score a Critical Hit (and has a Type). */
 async function throwDamage(user, target, item) {
   const { throwDamage: formula, throwType } = item.system;
   const match = formula.match(/^(\d+)d6$/);
@@ -184,7 +193,6 @@ async function rollTraps(user, item) {
   return roll;
 }
 
-/** The status card a target answers with an Endurance Check (resisting a thrown Seed or an Orb). */
 async function postStatusCheck(user, target, item, total, effects) {
   const roll = new StatusRoll(String(total), {}, {
     effects, onLandEffects: [], resistSkill: 'endurance', attackerUuid: user.uuid, targetId: target.uuid,
@@ -208,7 +216,6 @@ async function postItemCard(user, item, key) {
 
 const useContext = (user, item) => ({ sourceUuid: user.uuid, sourceName: user.name, itemName: item.name });
 
-/** Settles choices before the effects are sent to whoever applies them (e.g. which Move a Leppa Berry restores). */
 async function resolveChoices(rules, recipient) {
   const resolved = [];
   for (const rule of rules) {
@@ -225,11 +232,6 @@ async function resolveChoices(rules, recipient) {
   return resolved;
 }
 
-/* -------------------------------------------- */
-/*  Applying use effects (on the owner's client) */
-/* -------------------------------------------- */
-
-/** Applies an item's use effects to an actor the current user owns. */
 export async function applyUseEffectsLocal(actor, rules, context = {}) {
   const lines = [];
   const name = escape(actor.name);
@@ -266,7 +268,6 @@ export async function applyUseEffectsLocal(actor, rules, context = {}) {
         break;
       }
       case "maxHp": {
-        // Players' Max HP is calculated, so the increase goes into their HP Bonus
         const path = "bonus" in system.hp ? "system.hp.bonus" : "system.hp.max";
         const current = "bonus" in system.hp ? system.hp.bonus : system.hp.max;
         await actor.update({ [path]: current + rule.amount, "system.hp.raw": system.hp.raw + rule.amount });
@@ -313,6 +314,13 @@ export async function applyUseEffectsLocal(actor, rules, context = {}) {
         await system.applyDamage?.({ amount: roll.total, moveType: rule.moveType ?? null, label, isAttack: true, attackerUuid: context.sourceUuid });
         break;
       }
+      case "cleanse": {
+        const held = heldItemOf(actor);
+        const items = [...(held ? [held] : []), ...(teamOf(actor)?.items.contents ?? [])].filter(item => item.getFlag(SYSTEM_ID, "sticky"));
+        for (const item of items) await item.unsetFlag(SYSTEM_ID, "sticky");
+        lines.push(format("SYSTEM.Items.Cleansed", { count: items.length }));
+        break;
+      }
     }
   }
   await postAutomationMessage(actor, lines);
@@ -320,11 +328,6 @@ export async function applyUseEffectsLocal(actor, rules, context = {}) {
 
 registerActorOp("useEffects", (actor, { rules, context }) => applyUseEffectsLocal(actor, rules, context));
 
-/* -------------------------------------------- */
-/*  Moving items between the bag and a Pokemon  */
-/* -------------------------------------------- */
-
-/** Moves an item to another actor (e.g. from the Team's bag to a member to hold), optionally holding it. */
 export async function transferItem(item, toActor, { hold = false } = {}) {
   const fromActor = item.actor;
   const data = item.toObject();
@@ -336,11 +339,6 @@ export async function transferItem(item, toActor, { hold = false } = {}) {
   return created;
 }
 
-/**
- * Makes a Pokemon hold an item. A Pokemon holds one item and carries nothing else (the Team shares the Treasure Bag),
- * so whatever it held before goes back to its Team's bag, or is discarded if it has no Team.
- * Items moved from another sheet the user owns (like the bag) are moved; others (compendiums) are copied.
- */
 export async function holdItem(actor, item) {
   if (item.actor === actor && actor.system.heldItem === item.id) return item;
   const previous = heldItemOf(actor);
@@ -361,10 +359,6 @@ export async function holdItem(actor, item) {
   return created;
 }
 
-/**
- * One Pokemon steals another's Held Item (Magician): it holds the item if its paws are empty, otherwise the item goes
- * into its Team's bag. Sticky Hold keeps the item where it is. Runs on the GM, who can change both Pokemon.
- */
 export async function stealHeldItem(thief, target) {
   if (!thief || !target) return null;
   if (!game.user.isGM) return requestFromGM(STEAL_ACTION, { thiefUuid: thief.uuid, targetUuid: target.uuid });
@@ -394,7 +388,6 @@ registerSocketHandler(STEAL_ACTION, async ({ thiefUuid, targetUuid }) => {
   return stealHeldItem(thief, target);
 });
 
-/** The Team an actor belongs to, if any. */
 export function teamOf(actor) {
   return game.actors?.find(team => team.type === "Team" && team.system.members.includes(actor.uuid)) ?? null;
 }

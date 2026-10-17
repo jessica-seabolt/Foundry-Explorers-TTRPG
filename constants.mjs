@@ -9,18 +9,12 @@ export const skillToDie = {
 }
 export const filePath = path => `systems/${SYSTEM_ID}/${path}`;
 export const toModString = mod => mod >= 0 ? `+${mod}` : mod.toString();
-// explode: whether dice score Critical Hits (Battle Armour stops a foe's dice exploding)
 export function getDieString({ sides, modifier, advantage = 'normal', multiplier = 1, highCrit = false, explode = true }) {
   const modString = modifier !== 0 ? toModString(modifier) : "";
   const advString = advantage == 'normal' ? "" : advantage == 'advantage' ? "r<3" : "r>3";
   const explodeString = explode ? `x${highCrit ? ">=5" : ""}` : "";
   return `${multiplier != 1 ? "floor((" : ""}${sides}d6${advString}${explodeString}${modString}${multiplier != 1 ? `) * ${multiplier})` : ""}`;
 }
-// Applies a type matchup to a die in place, following the Type Effectiveness rules.
-// Not Very Effective lowers Move Power by 1, or halves damage if Move Power is already 1.
-// Mostly Ineffective (4x resist) also halves damage, or quarters it if Move Power is already 1.
-// Multistrike Moves cannot gain benefits from increasing Move Power, so pass isMultistrike to skip the +1.
-// Returns 1 for a bonus, -1 for a penalty, or 0 if the matchup changes nothing.
 export function applyTypeMatchup(die, matchup, { isMultistrike = false } = {}) {
   switch (matchup) {
     case 'extremelyEffective':
@@ -70,15 +64,12 @@ export function getStatusDie(actor, move) {
   return { sides: move.system.isStatus ? 2 : 1, modifier: baseModifier };
 }
 export function getSkillDie(actor, skill) {
-  // Effective proficiency includes class Major Skills and Features; Features can also add dice (e.g. Keen Eye)
   const proficiency = actor.system.proficiency?.[skill] ?? actor.system.skills[skill];
   const abilityName = skillToAbility[skill];
   const ability = abilityName === "hp" ? actor.system.hp : actor.system.abilities[abilityName];
-  // Going hungry for more than two days costs -1 per extra day on Skill Checks
   const hunger = actor.system.belly?.skillPenalty ?? 0;
   return { sides: skillToDie[proficiency] + skillBonusDice(actor, skill), modifier: ability.mod - hunger }
 }
-/** Whether a Pokemon hasn't eaten in the last day: it rolls at Disadvantage and its moves deal half damage. */
 export const isHungry = actor => !!actor?.system?.belly?.hungry;
 export function toMoveString(move) {
   const moveDie = getMoveDie(this.document, move);

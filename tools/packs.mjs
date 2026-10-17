@@ -1,13 +1,3 @@
-// Converts compendium packs between their LevelDB databases (packs/, built, not committed) and JSON source
-// files (packs-src/, committed: one file per document). The JSON layout matches Foundry's official CLI
-// (@foundryvtt/foundryvtt-cli): each document has a `_key`, with embedded documents nested inside their parent.
-//
-// Usage (Foundry must be closed, since it locks the databases):
-//   tools/packs.cmd build      JSON source -> LevelDB packs
-//   tools/packs.cmd extract    LevelDB packs -> JSON source
-// Or with Node.js installed: node tools/packs.mjs <build|extract> [pack ...]
-// Add --root=<folder> to work on another package's packs (a module folder with module.json and packs-src/).
-
 import fs from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
@@ -20,10 +10,8 @@ const PACKAGE_ROOT = rootArg ? path.resolve(rootArg.slice("--root=".length)) : R
 const SOURCE_DIR = path.join(PACKAGE_ROOT, "packs-src");
 const PACK_FILES = /^(\d+\.(ldb|log)|CURRENT|LOCK|LOG|LOG\.old|MANIFEST-\d+)$/;
 
-// Which top-level collection each pack type stores; anything else in a pack is never loaded by Foundry
 const PACK_COLLECTIONS = { Actor: "actors", Item: "items", RollTable: "tables", JournalEntry: "journal", Macro: "macros", Scene: "scenes", Adventure: "adventures", Cards: "cards", Playlist: "playlists" };
 
-/** Loads classic-level from the Foundry install named in foundry-config.yaml, so no npm install is needed. */
 function loadClassicLevel() {
   const config = fs.readFileSync(path.join(ROOT, "foundry-config.yaml"), "utf8");
   const installPath = config.match(/installPath:\s*["']?(.+?)["']?\s*$/m)?.[1]?.replace(/\\\\/g, "\\");
@@ -40,10 +28,6 @@ function readPackList() {
 }
 
 const slug = name => (name ?? "unnamed").normalize("NFKD").replace(/[^\w]+/g, "_").replace(/^_|_$/g, "").toLowerCase() || "unnamed";
-
-/* -------------------------------------------- */
-/*  Extract: LevelDB -> JSON                    */
-/* -------------------------------------------- */
 
 async function extractPack(ClassicLevel, pack) {
   await assertNotInUse(ClassicLevel, pack);
@@ -65,7 +49,6 @@ async function extractPack(ClassicLevel, pack) {
     else dropped[segments.join(".")] = (dropped[segments.join(".")] ?? 0) + 1;
   }
 
-  // Nest embedded documents inside their parents, deepest first, replacing the parent's list of ids
   const embedded = [...kept.keys()].filter(key => parse(key).segments.length > 1)
     .sort((a, b) => parse(b).segments.length - parse(a).segments.length);
   for (const key of embedded) {
@@ -80,7 +63,6 @@ async function extractPack(ClassicLevel, pack) {
     else parent[field][index] = document;
   }
 
-  // Write one file per top-level document; folders go in a _folders subfolder
   const outDir = path.join(SOURCE_DIR, pack.name);
   fs.rmSync(outDir, { recursive: true, force: true });
   let count = 0;
@@ -98,10 +80,6 @@ async function extractPack(ClassicLevel, pack) {
   console.log(`Extracted ${pack.name}: ${count} documents${droppedText}`);
 }
 
-/* -------------------------------------------- */
-/*  Build: JSON -> LevelDB                      */
-/* -------------------------------------------- */
-
 function readSourceFiles(dir) {
   if (!fs.existsSync(dir)) return [];
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
@@ -111,7 +89,6 @@ function readSourceFiles(dir) {
   });
 }
 
-/** Splits a document into LevelDB entries: embedded documents get their own keys, and parents keep their ids. */
 function flatten(document, batch) {
   const { _key, ...value } = document;
   if (!_key) throw new Error(`Document ${document._id} (${document.name}) has no _key`);
@@ -125,7 +102,6 @@ function flatten(document, batch) {
   batch.push({ type: "put", key: _key, value });
 }
 
-/** Fails before anything is touched if the pack is open elsewhere (Foundry locks the databases it has loaded). */
 async function assertNotInUse(ClassicLevel, pack) {
   if (!fs.existsSync(path.join(pack.dir, "CURRENT"))) return;
   const db = new ClassicLevel(pack.dir, { keyEncoding: "utf8", valueEncoding: "json" });
@@ -143,7 +119,6 @@ async function buildPack(ClassicLevel, pack) {
   const batch = [];
   for (const file of files) flatten(JSON.parse(fs.readFileSync(file, "utf8")), batch);
 
-  // Replace the database files, leaving anything else in the pack folder (like images) alone
   fs.mkdirSync(pack.dir, { recursive: true });
   for (const entry of fs.readdirSync(pack.dir)) {
     if (PACK_FILES.test(entry) || entry === "lost") fs.rmSync(path.join(pack.dir, entry), { recursive: true, force: true });
@@ -154,8 +129,6 @@ async function buildPack(ClassicLevel, pack) {
   await db.close();
   console.log(`Built ${pack.name}: ${files.length} documents (${batch.length} entries)`);
 }
-
-/* -------------------------------------------- */
 
 const [command, ...only] = args.filter(arg => arg !== rootArg);
 if (!["build", "extract"].includes(command)) {

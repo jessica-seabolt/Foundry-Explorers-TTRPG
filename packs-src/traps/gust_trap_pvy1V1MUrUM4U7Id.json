@@ -1,0 +1,55 @@
+{
+  "name": "Gust Trap",
+  "type": "Item",
+  "img": "systems/explorers/assets/traps/gust_trap.png",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_id": "pvy1V1MUrUM4U7Id",
+  "sort": 500,
+  "system": {
+    "description": "Stepping on this trap sends you flying in a direction for 10 Tiles, doing 2d6 damage when you impact a wall or other Pokémon. If you hit another Pokémon, it also does 2d6 damage to them.",
+    "category": "traps",
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "",
+    "trap": {
+      "avoid": [
+        "strength"
+      ],
+      "difficulty": 10,
+      "visible": false,
+      "effects": [
+        {
+          "type": "gust",
+          "tiles": 10,
+          "damage": "2d6"
+        }
+      ]
+    }
+  },
+  "_key": "!items!pvy1V1MUrUM4U7Id"
+}

@@ -1,12 +1,11 @@
-// The GM's "Generate Dungeon Floor" window: generates a floor, previews it with a tileset, and builds a Scene
-// with the map image, walls, Room regions and markers.
-
 import { SYSTEM_ID, filePath } from '../../constants.mjs';
 import { floorItemTileData } from '../floor-items.mjs';
+import { trapTileData } from '../traps.mjs';
 import { ROOM_BEHAVIOR } from '../rooms.mjs';
 import { FLOOR_LAYOUTS, cropBounds, generateFloor, markersIn, normalizeSettings, roomShapes, wallSegments } from './floor.mjs';
 import { renderFloor } from './render.mjs';
 import { readObjectSheet } from './objects.mjs';
+import { resolveDocument, rollTableDocument, wildTokenData, worldActorFor } from './spawns.mjs';
 import { parseTileset } from './tileset.mjs';
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
@@ -15,7 +14,6 @@ export const GENERATOR_SETTING = "dungeonGenerator";
 const UPLOAD_FOLDER = "dungeons";
 const SCALES = [3, 4, 5];
 
-/** Scene markers: which option includes them, their icon, and whether players can see them. */
 const MARKERS = {
   stairs: { group: "stairs", icon: "icons/svg/down.svg", tint: "#ffffff", size: 0.8, hidden: false },
   hiddenStairs: { group: "stairs", icon: "icons/svg/door-secret-outline.svg", tint: "#c8a2ff", size: 0.6, hidden: true },
@@ -29,20 +27,18 @@ const MARKER_GROUPS = ["stairs", "items", "traps", "pokemon"];
 
 const STAIRS_SPRITES = { down: "stairsDown", up: "stairsUp" };
 
-/** The system's default table of items found lying around dungeons. */
 export const DUNGEON_ITEMS_TABLE = "Compendium.explorers.tables.RollTable.DungeonItemsTbl1";
+export const DUNGEON_TRAPS_TABLE = "Compendium.explorers.tables.RollTable.DungeonTrapsTbl1";
 
 const DEFAULT_CONFIG = {
-  name: "", tileset: "", objects: "", stairs: "down", scale: 3, itemTable: DUNGEON_ITEMS_TABLE,
+  dungeon: "", firstFloor: 1, floors: 1, music: "", tileset: "", objects: "", stairs: "down", scale: 3, itemTable: DUNGEON_ITEMS_TABLE, enemyTable: "", asleepChance: 25, trapTable: DUNGEON_TRAPS_TABLE,
   markers: { stairs: true, items: true, traps: true, pokemon: true }, settings: {}
 };
 
-/** The generator's last-used options, kept per GM. */
 export function registerDungeonGeneratorSettings() {
   game.settings.register(SYSTEM_ID, GENERATOR_SETTING, { scope: "client", config: false, type: Object, default: DEFAULT_CONFIG });
 }
 
-/** Adds the button to the Scenes sidebar. */
 export function addDungeonGeneratorButton(app, html) {
   if (!game.user.isGM) return;
   const element = html instanceof HTMLElement ? html : html[0];
@@ -62,7 +58,6 @@ export function addDungeonGeneratorButton(app, html) {
 
 const sheetCache = new Map();
 
-/** Loads a sheet and reads it with a parser (cached by path and parser). */
 async function loadSheet(src, parse) {
   const key = `${parse.name}:${src}`;
   if (!sheetCache.has(key)) {
@@ -93,7 +88,6 @@ function loadImage(src) {
   });
 }
 
-/** Draws raw pixels onto a canvas, scaled up without smoothing so pixel art stays crisp. */
 function toCanvas(rendered, scale = 1) {
   const native = document.createElement("canvas");
   native.width = rendered.width;
@@ -141,7 +135,8 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
     const saved = game.settings.get(SYSTEM_ID, GENERATOR_SETTING);
     this.config = foundry.utils.mergeObject(foundry.utils.deepClone(DEFAULT_CONFIG), saved, { inplace: false });
     this.config.settings = normalizeSettings(this.config.settings);
-    this.config.name ||= game.i18n.localize("SYSTEM.Dungeon.DefaultName");
+    this.config.dungeon ||= (this.config.name ?? "").replace(/\s*B?\d+F$/, "") || game.i18n.localize("SYSTEM.Dungeon.DefaultName");
+    delete this.config.name;
     this.tileset = null;
     this.loadedTileset = "";
     this.tilesetError = null;
@@ -152,19 +147,16 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
     this.#generate();
   }
 
-  /** A new floor from the current settings. */
   #generate() {
     this.floor = generateFloor(this.config.settings);
     this.bounds = cropBounds(this.floor);
     this.#draw();
   }
 
-  /** Draws the floor with the current tileset (alternate tiles are picked again each time). */
   #draw() {
     this.mapImage = renderFloor(this.floor, this.bounds, this.tileset);
   }
 
-  /** Loads the chosen tileset, if it changed, and redraws the floor with it. */
   async #loadTileset() {
     if (this.loadedTileset === this.config.tileset) return;
     this.loadedTileset = this.config.tileset;
@@ -181,7 +173,6 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
     }
   }
 
-  /** Loads the chosen object sheet (for the stairs), if it changed. */
   async #loadObjects() {
     if (this.loadedObjects === this.config.objects) return;
     this.loadedObjects = this.config.objects;
@@ -196,7 +187,6 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
     }
   }
 
-  /** The stairs sprite to draw, if an object sheet is loaded. */
   get stairsSprite() {
     if (!this.objects) return null;
     const name = STAIRS_SPRITES[this.config.stairs] ?? STAIRS_SPRITES.down;
@@ -224,7 +214,7 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
       objectsError: this.objectsError,
       noObjects: !this.config.objects,
       stairsDirections: Object.keys(STAIRS_SPRITES).map(value => ({ value, label: `SYSTEM.Dungeon.Stairs.${value}` })),
-      itemTables: [
+      rollTables: [
         ...game.tables.map(table => ({ value: table.uuid, label: table.name })),
         ...game.packs.filter(pack => pack.documentName === "RollTable").flatMap(pack =>
           pack.index.map(entry => ({ value: `Compendium.${pack.collection}.RollTable.${entry._id}`, label: `${entry.name} (${pack.title})` })))
@@ -232,6 +222,16 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
       summary: game.i18n.format("SYSTEM.Dungeon.Summary", {
         width: this.bounds.width, height: this.bounds.height, rooms: roomShapes(this.floor, this.bounds).length
       }),
+      floorsSummary: this.config.floors > 1
+        ? game.i18n.format("SYSTEM.Dungeon.FloorsSummary", { first: this.floorName(this.config.firstFloor), last: this.floorName(this.config.firstFloor + this.config.floors - 1) })
+        : this.floorName(this.config.firstFloor),
+      createLabel: this.config.floors > 1 ? game.i18n.format("SYSTEM.Dungeon.CreateFloors", { count: this.config.floors }) : game.i18n.localize("SYSTEM.Dungeon.CreateScene"),
+      musicGroups: game.playlists.contents.map(playlist => ({
+        name: playlist.name,
+        sounds: playlist.sounds.contents.map(sound => ({
+          value: `${playlist.id}.${sound.id}`, name: sound.name, selected: this.config.music === `${playlist.id}.${sound.id}`
+        }))
+      })).filter(group => group.sounds.length),
       busy: this.busy
     };
   }
@@ -247,7 +247,6 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
     }
   }
 
-  /** The map, with the markers the Scene would get. */
   #drawPreview(preview) {
     const { width, height, data, tileSize } = this.mapImage;
     preview.width = width;
@@ -274,22 +273,26 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
   }
 
   static async #onChange(event, form, formData) {
-    // Ignore cleared number fields rather than passing nulls to the generator
     const data = foundry.utils.expandObject(Object.fromEntries(Object.entries(formData.object).filter(([, value]) => value !== null)));
     const before = JSON.stringify(this.config.settings.floor_props);
     const sheetsChanged = (data.tileset ?? "") !== this.config.tileset || (data.objects ?? "") !== this.config.objects;
-    this.config.name = data.name ?? this.config.name;
+    this.config.dungeon = data.dungeon ?? this.config.dungeon;
+    this.config.firstFloor = Math.max(1, Math.floor(Number(data.firstFloor ?? this.config.firstFloor) || 1));
+    this.config.floors = Math.clamp(Math.floor(Number(data.floors ?? this.config.floors) || 1), 1, 99);
+    this.config.music = data.music ?? "";
     this.config.tileset = data.tileset ?? "";
     this.config.objects = data.objects ?? "";
     this.config.stairs = data.stairs ?? this.config.stairs;
     this.config.itemTable = data.itemTable ?? "";
+    this.config.enemyTable = data.enemyTable ?? "";
+    this.config.trapTable = data.trapTable ?? "";
+    this.config.asleepChance = Math.clamp(Number(data.asleepChance ?? this.config.asleepChance) || 0, 0, 100);
     this.config.scale = Number(data.scale) || 3;
     this.config.markers = { ...this.config.markers, ...data.markers };
     foundry.utils.mergeObject(this.config.settings.floor_props, data.props ?? {});
     await game.settings.set(SYSTEM_ID, GENERATOR_SETTING, this.config);
 
     if (JSON.stringify(this.config.settings.floor_props) !== before) this.#generate();
-    // Re-render only the preview (so typing in the options keeps focus) unless a sheet's message changed
     await this.render({ parts: sheetsChanged ? ["options", "preview"] : ["preview"] });
   }
 
@@ -302,7 +305,6 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
     this.element.querySelector("input.dungeon-import")?.click();
   }
 
-  /** Imports a settings file exported from Pokemon Dungeoneer. */
   async #importFile(file) {
     if (!file) return;
     try {
@@ -325,6 +327,18 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
     this.render();
   }
 
+  floorName(number) {
+    return `${this.config.dungeon} ${this.config.stairs === "up" ? "" : "B"}${number}F`;
+  }
+
+  #settingsForFloor(number) {
+    const settings = foundry.utils.deepClone(this.config.settings);
+    settings.floor_props.floor_number = number;
+    settings.dungeon_data.floor = number;
+    settings.dungeon_data.n_floors_plus_one = Math.max(settings.dungeon_data.n_floors_plus_one ?? 0, this.config.firstFloor + this.config.floors);
+    return settings;
+  }
+
   static async #onCreateScene() {
     if (this.busy) return;
     if (!this.tileset && !(await foundry.applications.api.DialogV2.confirm({
@@ -333,14 +347,36 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
     }))) return;
     this.busy = true;
     this.render({ parts: ["preview"] });
+    const { firstFloor, floors } = this.config;
+    const progress = floors > 1 ? ui.notifications.info(game.i18n.format("SYSTEM.Dungeon.Creating", { done: 0, total: floors }), { progress: true }) : null;
     try {
-      const scene = await buildScene({
-        name: this.config.name, floor: this.floor, bounds: this.bounds, rendered: this.mapImage, stairs: this.stairsSprite,
-        scale: this.config.scale, markers: this.config.markers, settings: this.config.settings, tileset: this.config.tileset,
-        itemTable: this.config.itemTable
-      });
-      ui.notifications.info(game.i18n.format("SYSTEM.Dungeon.Created", { name: scene.name }));
-      await scene.view();
+      const folder = game.folders.find(folder => folder.type === "Scene" && folder.name === this.config.dungeon)
+        ?? await Folder.implementation.create({ name: this.config.dungeon, type: "Scene", sorting: "m" });
+      const [playlist, playlistSound] = (this.config.music || "").split(".");
+      let first = null;
+      for (let index = 0; index < floors; index++) {
+        const number = firstFloor + index;
+        const settings = this.#settingsForFloor(number);
+        let floor = this.floor, bounds = this.bounds, rendered = this.mapImage;
+        if (index > 0) {
+          floor = generateFloor(settings);
+          bounds = cropBounds(floor);
+          rendered = renderFloor(floor, bounds, this.tileset);
+        }
+        const scene = await buildScene({
+          name: this.floorName(number), floor, bounds, rendered, stairs: this.stairsSprite,
+          scale: this.config.scale, markers: this.config.markers, settings, tileset: this.config.tileset,
+          itemTable: this.config.itemTable, enemyTable: this.config.enemyTable, asleepChance: this.config.asleepChance,
+          trapTable: this.config.trapTable, folder: folder.id, sort: number * 100,
+          playlist: playlist || null, playlistSound: playlistSound || null
+        });
+        first ??= scene;
+        progress?.update({ pct: (index + 1) / floors, message: game.i18n.format("SYSTEM.Dungeon.Creating", { done: index + 1, total: floors }) });
+      }
+      ui.notifications.info(game.i18n.format(floors > 1 ? "SYSTEM.Dungeon.CreatedFloors" : "SYSTEM.Dungeon.Created", {
+        name: first.name, count: floors, dungeon: this.config.dungeon
+      }));
+      await first.view();
     } catch (error) {
       console.error(error);
       ui.notifications.error(game.i18n.format("SYSTEM.Dungeon.CreateError", { error: error.message }));
@@ -351,7 +387,14 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
   }
 }
 
-/** Uploads a canvas as a PNG into the world's dungeon folder, returning its path. */
+function terrainData(floor, bounds) {
+  let cells = "";
+  for (let y = bounds.y; y < bounds.y + bounds.height; y++) {
+    for (let x = bounds.x; x < bounds.x + bounds.width; x++) cells += floor.terrain[x + y * floor.width];
+  }
+  return { width: bounds.width, height: bounds.height, cells };
+}
+
 async function uploadPng(surface, fileName) {
   const FilePicker = foundry.applications.apps.FilePicker.implementation;
   const blob = await new Promise(resolve => surface.toBlob(resolve, "image/png"));
@@ -367,11 +410,10 @@ async function uploadPng(surface, fileName) {
   return response.path;
 }
 
-/** Uploads the map into the world's folder and creates its Scene. */
-export async function buildScene({ name, floor, bounds, rendered, stairs, scale, markers, settings, tileset, itemTable }) {
+export async function buildScene({ name, floor, bounds, rendered, stairs, scale, markers, settings, tileset, itemTable, enemyTable,
+  asleepChance = 0, trapTable, folder = null, sort = 0, playlist = null, playlistSound = null }) {
   const gridSize = rendered.tileSize * scale;
   const mapPath = await uploadPng(toCanvas(rendered, scale), `${name.slugify({ strict: true }) || "floor"}-${Date.now()}.png`);
-  // The stairs sprite, scaled up as crisply as the map; shared by every floor with the same stairs and grid size
   const stairsPath = stairs && markers.stairs
     ? await uploadPng(toCanvas(stairs, gridSize / stairs.width), `${stairs.name.slugify()}-${gridSize}px.png`)
     : null;
@@ -388,17 +430,35 @@ export async function buildScene({ name, floor, bounds, rendered, stairs, scale,
   }));
 
   const placed = markersIn(floor, bounds);
-  // Item spots get real items from the item table; buried items stay hidden markers
-  const table = markers.items && itemTable ? await fromUuid(itemTable) : null;
+  const table = markers.items && itemTable ? await resolveDocument(itemTable) : null;
   const floorItems = [];
   if (table) {
     for (const marker of placed.filter(marker => marker.type === "item")) {
-      const { results } = await table.roll();
-      const result = results.find(result => result.documentUuid);
-      const item = result ? await fromUuid(result.documentUuid) : null;
+      const item = await rollTableDocument(table);
       if (item?.type !== "Item") continue;
       const center = { x: (marker.x + 0.5) * gridSize, y: (marker.y + 0.5) * gridSize };
       floorItems.push(floorItemTileData(item.toObject(), center, gridSize, { forSale: marker.shop }));
+      marker.placed = true;
+    }
+  }
+  const trapTiles = [];
+  const traps = markers.traps && trapTable ? await resolveDocument(trapTable) : null;
+  if (traps) {
+    for (const marker of placed.filter(marker => marker.type === "trap")) {
+      const trap = await rollTableDocument(traps);
+      if (trap?.type !== "Item") continue;
+      trapTiles.push(trapTileData(trap.toObject(), { x: marker.x * gridSize, y: marker.y * gridSize }, gridSize));
+      marker.placed = true;
+    }
+  }
+
+  const tokens = [];
+  const enemies = markers.pokemon && enemyTable ? await resolveDocument(enemyTable) : null;
+  if (enemies) {
+    for (const marker of placed.filter(marker => marker.type === "pokemon")) {
+      const actor = await worldActorFor(await rollTableDocument(enemies));
+      if (!actor) continue;
+      tokens.push(await wildTokenData(actor, { x: marker.x * gridSize, y: marker.y * gridSize }, { asleepChance }));
       marker.placed = true;
     }
   }
@@ -421,7 +481,8 @@ export async function buildScene({ name, floor, bounds, rendered, stairs, scale,
 
   const start = placed.find(marker => marker.type === "start");
   return Scene.create({
-    name,
+    name, folder, sort, navigation: false,
+    playlist, playlistSound,
     width: bounds.width * gridSize,
     height: bounds.height * gridSize,
     padding: 0,
@@ -432,7 +493,7 @@ export async function buildScene({ name, floor, bounds, rendered, stairs, scale,
     fog: { exploration: true },
     environment: { globalLight: { enabled: true } },
     ...(start ? { initial: { x: (start.x + 0.5) * gridSize, y: (start.y + 0.5) * gridSize, scale: 1 } } : {}),
-    walls, regions, tiles: [...tiles, ...floorItems],
-    flags: { [SYSTEM_ID]: { dungeon: { settings, tileset } } }
+    walls, regions, tiles: [...trapTiles, ...tiles, ...floorItems], tokens,
+    flags: { [SYSTEM_ID]: { dungeon: { settings, tileset, itemTable, enemyTable, trapTable, terrain: terrainData(floor, bounds) } } }
   });
 }

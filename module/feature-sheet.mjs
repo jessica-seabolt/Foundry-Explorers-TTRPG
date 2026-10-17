@@ -35,7 +35,6 @@ export class FeatureSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
 
   _onRender(context, options) {
     super._onRender(context, options);
-    // Rules are edited as JSON, so they're parsed and saved separately from the rest of the form
     const rulesInput = this.element.querySelector("textarea.feature-rules");
     rulesInput?.addEventListener("change", event => this.#saveRules(event.target.value));
   }

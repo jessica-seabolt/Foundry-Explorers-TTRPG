@@ -5,24 +5,16 @@ import { processEndOfTurn, processStartOfTurn } from './conditions.mjs';
 const { Combat } = foundry.documents;
 const { Roll } = foundry.dice;
 
-// Initiative is a Pokemon's Speed stat. Ties are broken following the Battle Mechanics rules:
-// - Tied Pokemon on different Teams each roll 2d6, re-rolling until the tie is broken.
-// - Tied Pokemon on the same Team choose who goes first, which is prompted with a chat card.
-// The result of each tiebreaker is stored on the Combatant as an array (flags.explorers.tiebreak),
-// compared element by element, so no decimals are added to the displayed initiative.
-
 const TIE_CHOICE_ACTION = "chooseInitiativeTie";
 const MAX_TIE_REROLLS = 20;
 
 export class ExplorersCombat extends Combat {
-  /** Initiative is not random, so roll it for everyone who hasn't rolled yet when combat starts. */
   async startCombat() {
     const unrolled = this.combatants.filter(c => c.initiative === null).map(c => c.id);
     if (unrolled.length) await this.rollInitiative(unrolled, { updateTurn: false });
     return super.startCombat();
   }
 
-  /** Conditions such as Burned and Asleep act at the start of the afflicted Pokemon's turn. Runs for the active GM only. */
   async _onStartTurn(combatant, context) {
     await super._onStartTurn(combatant, context);
     if (combatant.actor && !combatant.isDefeated) await processStartOfTurn(combatant.actor);
@@ -33,7 +25,7 @@ export class ExplorersCombat extends Combat {
     if (combatant.actor) await processEndOfTurn(combatant.actor);
   }
 
-  // Called unbound by Combat#setupTurns, so this cannot use `this`.
+// Foundry calls this without `this`.
   _sortCombatants(a, b) {
     const ia = Number.isNumeric(a.initiative) ? a.initiative : -Infinity;
     const ib = Number.isNumeric(b.initiative) ? b.initiative : -Infinity;
@@ -47,20 +39,14 @@ export class ExplorersCombat extends Combat {
     return a.id > b.id ? 1 : -1;
   }
 
-  /** The Team a Combatant belongs to, for tiebreaking purposes. */
   static teamOf(combatant) {
     return combatant.token?.disposition ?? combatant.actor?.prototypeToken.disposition ?? CONST.TOKEN_DISPOSITIONS.NEUTRAL;
   }
 
-  /** A key identifying a group of tied Combatants, so a group is only resolved once. */
   static tieKey(initiative, combatants) {
     return `${String(initiative).replace(".", "_")}-${combatants.map(c => c.id).sort().join("-")}`;
   }
 
-  /**
-   * Find groups of Combatants with tied initiative and resolve any that haven't been resolved yet.
-   * Only the active GM should call this, since it updates every tied Combatant.
-   */
   async resolveInitiativeTies() {
     const groups = new Map();
     for (const combatant of this.combatants) {
@@ -102,10 +88,6 @@ export class ExplorersCombat extends Combat {
     for (const choice of choices) await this.#createTieChoiceMessage(choice);
   }
 
-  /**
-   * Orders a group of tied Combatants, writing each one's tiebreak array into `tiebreaks`.
-   * Pokemon on different Teams roll 2d6; Pokemon on the same Team are left for their players to choose.
-   */
   async #orderTiedGroup(members, prefix, tiebreaks, rollLines, choices, key, depth = 0) {
     const teams = new Set(members.map(ExplorersCombat.teamOf));
     if (teams.size === 1 || depth >= MAX_TIE_REROLLS) {
@@ -152,13 +134,11 @@ export class ExplorersCombat extends Combat {
     </div>`;
   }
 
-  /** Whether a user may pick the turn order for a tie card: the GM, or an owner of a still-undecided Combatant. */
   static canChooseTie(user, combat, tie) {
     if (user.isGM) return true;
     return tie.remaining.some(id => combat?.combatants.get(id)?.actor?.testUserPermission(user, "OWNER"));
   }
 
-  /** Applies a player's choice of who goes next in a same-Team tie. Runs on the active GM's client. */
   static async applyTieChoice(messageId, combatantId, userId) {
     const message = game.messages.get(messageId);
     const tie = message?.getFlag(SYSTEM_ID, "initiativeTie");
@@ -173,11 +153,10 @@ export class ExplorersCombat extends Combat {
 
     const chosen = [...tie.chosen, combatantId];
     let remaining = tie.remaining.filter(id => id !== combatantId);
-    if (remaining.length === 1) { // the last Pokemon goes last, no need to ask
+    if (remaining.length === 1) {
       chosen.push(remaining[0]);
       remaining = [];
     }
-    // Earlier picks get a higher number so they sort first; undecided Combatants keep the bare prefix and sort after.
     const updates = chosen.map((id, i) => ({ _id: id, [`flags.${SYSTEM_ID}.tiebreak`]: [...tie.prefix, 100 - i] }));
     const currentId = combat.combatant?.id;
     await combat.updateEmbeddedDocuments("Combatant", updates, { turnEvents: false });
@@ -198,7 +177,7 @@ function scheduleTieResolution(combat) {
   pendingResolutions.set(combat.id, setTimeout(() => {
     pendingResolutions.delete(combat.id);
     if (game.combats.has(combat.id)) combat.resolveInitiativeTies();
-  }, 250)); // wait for a batch of initiative rolls to finish before looking for ties
+  }, 250));
 }
 
 export function registerCombatHooks() {
@@ -209,13 +188,11 @@ export function registerCombatHooks() {
     if (combatant.initiative !== null) scheduleTieResolution(combatant.parent);
   });
   Hooks.on("deleteCombatant", combatant => scheduleTieResolution(combatant.parent));
-  // Once-per-battle Features and items (Focus Band) recharge when the battle ends
   Hooks.on("deleteCombat", combat => {
     if (!game.user.isActiveGM) return;
     for (const combatant of combat.combatants) combatant.actor?.system.clearEndure?.({ battleOnly: true });
   });
 
-  // Let the players involved in a same-Team tie know they need to choose
   Hooks.on("createChatMessage", message => {
     const tie = message.getFlag(SYSTEM_ID, "initiativeTie");
     if (!tie || game.user.isGM) return;
@@ -226,7 +203,6 @@ export function registerCombatHooks() {
   });
 }
 
-/** Adds click handling to an initiative tie card, hiding the buttons from anyone who can't choose. */
 export function addTieChoiceListeners(message, html) {
   const tie = message.getFlag(SYSTEM_ID, "initiativeTie");
   if (!tie) return;

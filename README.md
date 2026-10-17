@@ -41,5 +41,3 @@ This system is licensed under the GNU General Public License v3.0 or later (see 
 
 It is based on work by sec, released under the MIT License (see `LICENSE-MIT`); that original code remains
 available under the MIT License. `lib/dungeon-mystery` is EpicYoshiMaster's dungeon-mystery, GPL-3.0-or-later.
-The Wild Pokémon portraits listed in `packs/enemies/assets/CREDITS.md` are from
-[PMDCollab SpriteCollab](https://github.com/PMDCollab/SpriteCollab) and licensed under CC BY-NC 4.0, not the GPL.

@@ -10,8 +10,13 @@
     "level": 7,
     "prerequisite": "",
     "prerequisiteLevel": null,
-    "rules": [],
-    "manualNote": ""
+    "rules": [
+      {
+        "type": "extraMove",
+        "count": 1
+      }
+    ],
+    "manualNote": "The second Move can only target 1 Pokémon."
   },
   "effects": [],
   "folder": "eHFd4cKuGkPW44dS",

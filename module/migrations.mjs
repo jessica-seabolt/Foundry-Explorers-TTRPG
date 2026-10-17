@@ -1,13 +1,13 @@
-// One-time updates to a world's existing documents when the system changes, run by the active GM on load.
-
 import { SYSTEM_ID } from '../constants.mjs';
 
 const MIGRATION_SETTING = "migrationVersion";
 const DEFAULT_ITEM_IMG = "icons/svg/item-bag.svg";
 
-/** Each migration runs once per world, in order. */
 const MIGRATIONS = [
-  { version: 1, run: migrateItemIconsAndStealing }
+  { version: 1, run: migrateItemIconsAndStealing },
+  { version: 2, run: unnumberWildPokemon },
+  { version: 3, run: () => refreshFeatureRules(["Rapid-Fire Cannon"]) },
+  { version: 4, run: () => refreshMoveEffects(["Leech Seed", "Ingrain"]) }
 ];
 
 export function registerMigrationSettings() {
@@ -30,13 +30,11 @@ export async function runMigrations() {
   }
 }
 
-/** Every actor in the world, including the ones in Scenes' unlinked tokens. */
 function allActors() {
   const unlinked = game.scenes.contents.flatMap(scene => scene.tokens.contents.filter(token => !token.actorLink && token.actor).map(token => token.actor));
   return [...game.actors, ...unlinked];
 }
 
-/** Applies updates to world Items and every actor's Items: build(item) returns the changes for one item, or null. */
 async function updateItems(build) {
   let count = 0;
   const worldUpdates = game.items.contents.map(item => build(item) && { _id: item.id, ...build(item) }).filter(Boolean);
@@ -51,10 +49,6 @@ async function updateItems(build) {
   return count;
 }
 
-/**
- * Items still showing the default bag icon get their own from the Items compendium (matched by name), and Features
- * that gained automation (Magician, Sticky Hold and Pickpocket stealing Held Items) get their new rules.
- */
 async function migrateItemIconsAndStealing() {
   const items = await game.packs.get(`${SYSTEM_ID}.items`)?.getIndex({ fields: ["img"] });
   const icons = new Map((items ?? []).map(entry => [entry.name, entry.img]));
@@ -64,13 +58,46 @@ async function migrateItemIconsAndStealing() {
     return img && img !== DEFAULT_ITEM_IMG ? { img } : null;
   });
 
+  return count + await refreshFeatureRules(["Magician", "Sticky Hold", "Pickpocket"]);
+}
+
+async function refreshFeatureRules(names) {
   const features = await game.packs.get(`${SYSTEM_ID}.features`)?.getIndex({ fields: ["system.rules", "system.manualNote"] });
-  const updated = new Map((features ?? []).filter(entry => ["Magician", "Sticky Hold", "Pickpocket"].includes(entry.name))
-    .map(entry => [entry.name, entry.system]));
-  count += await updateItems(item => {
+  const updated = new Map((features ?? []).filter(entry => names.includes(entry.name)).map(entry => [entry.name, entry.system]));
+  return updateItems(item => {
     const source = item.type === "Feature" && updated.get(item.name);
     if (!source || JSON.stringify(item.system.rules) === JSON.stringify(source.rules)) return null;
     return { "system.rules": source.rules, "system.manualNote": source.manualNote ?? "" };
   });
+}
+
+async function refreshMoveEffects(names) {
+  const moves = await game.packs.get(`${SYSTEM_ID}.moves`)?.getIndex({ fields: ["system.effects"] });
+  const updated = new Map((moves ?? []).filter(entry => names.includes(entry.name)).map(entry => [entry.name, entry.system.effects]));
+  return updateItems(item => {
+    const effects = item.type === "Move" && updated.get(item.name);
+    if (!effects || JSON.stringify(item.system.effects) === JSON.stringify(effects)) return null;
+// == replaces the object instead of merging into it.
+    return { "system.==effects": effects };
+  });
+}
+
+async function unnumberWildPokemon() {
+  let count = 0;
+  const wild = game.actors.filter(actor => actor.prototypeToken?.appendNumber
+    && actor._stats?.compendiumSource?.startsWith(`Compendium.${SYSTEM_ID}.enemies.`));
+  for (const actor of wild) await actor.update({ "prototypeToken.appendNumber": false });
+  count += wild.length;
+  const wildIds = new Set(wild.map(actor => actor.id));
+  for (const scene of game.scenes.contents) {
+    const updates = scene.tokens.contents.flatMap(token => {
+      const base = token.actor?.prototypeToken?.name;
+      if (!wildIds.has(token.actorId) || !base) return [];
+      const numbered = token.name.match(/^(.*) \d+$/);
+      return numbered && numbered[1] === base ? [{ _id: token.id, name: base }] : [];
+    });
+    if (updates.length) await scene.updateEmbeddedDocuments("Token", updates);
+    count += updates.length;
+  }
   return count;
 }

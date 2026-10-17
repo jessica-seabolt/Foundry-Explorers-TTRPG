@@ -9,7 +9,18 @@
     "power": 0,
     "ppLeft": 15,
     "pp": 15,
-    "effects": {},
+    "effects": {
+      "LeechSeedHitEff1": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "LeechSeedSeeded1": {
+            "affectsUser": false,
+            "effect": "seeded",
+            "effectCount": null
+          }
+        }
+      }
+    },
     "offensiveCheck": null,
     "defensiveCheck": null,
     "tags": {},

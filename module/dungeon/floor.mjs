@@ -1,6 +1,3 @@
-// Dungeon floors from the Explorers of Sky generator (dungeon-mystery), turned into plain grids the renderer
-// and the Scene builder share. Nothing here touches Foundry, so it can be tested outside it.
-
 import { GenerateDungeon } from "../../lib/dungeon-mystery/dungeon-mystery.mjs";
 
 export const TERRAIN = { WALL: 0, GROUND: 1, LIQUID: 2 };
@@ -13,7 +10,6 @@ export const FLOOR_LAYOUTS = {
   6: "Line", 7: "Cross", 8: "LargeNo6x4", 9: "Beetle", 10: "OuterRooms", 11: "Medium"
 };
 
-/** The same defaults as Pokemon Dungeoneer, so its exported settings files mean the same thing here. */
 export function defaultSettings() {
   return {
     floor_props: {
@@ -41,7 +37,6 @@ export function defaultSettings() {
   };
 }
 
-/** Fills in anything missing from (possibly imported) settings, and drops a stored map, which the generator rebuilds anyway. */
 export function normalizeSettings(settings = {}) {
   const defaults = defaultSettings();
   const merge = (base, extra) => {
@@ -55,11 +50,6 @@ export function normalizeSettings(settings = {}) {
   return Object.fromEntries(Object.entries(defaults).map(([key, value]) => [key, merge(value, settings[key])]));
 }
 
-/**
- * Generates a floor.
- * @returns {{width: number, height: number, terrain: Uint8Array, room: Uint8Array, monsterHouse: Uint8Array,
- *   kecleonShop: Uint8Array, markers: {type: string, x: number, y: number}[], start: {x: number, y: number}}}
- */
 export function generateFloor(settings) {
   const { floor_props, dungeon_data, generation_constants, advanced_generation_settings } = normalizeSettings(settings);
   const dungeon = {
@@ -85,7 +75,6 @@ export function generateFloor(settings) {
     for (let y = 0; y < height; y++) {
       const tile = tiles[x][y];
       const i = x + y * width;
-      // Chasms and lava are both "secondary terrain", drawn from the same part of a tileset as water
       const type = tile.terrain_flags.terrain_type;
       floor.terrain[i] = type === 0 ? TERRAIN.WALL : type === 1 ? TERRAIN.GROUND : TERRAIN.LIQUID;
       if (type !== 0) floor.room[i] = tile.room_index;
@@ -108,10 +97,6 @@ export function generateFloor(settings) {
 export const terrainAt = (floor, x, y) =>
   (x < 0 || y < 0 || x >= floor.width || y >= floor.height) ? TERRAIN.WALL : floor.terrain[x + y * floor.width];
 
-/**
- * The part of the floor worth drawing: every walkable tile plus a margin of wall. The game's 56 x 32 map is mostly
- * solid wall, especially on Small and Medium layouts.
- */
 export function cropBounds(floor, margin = 2) {
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
   for (let y = 0; y < floor.height; y++) {
@@ -129,20 +114,14 @@ export function cropBounds(floor, margin = 2) {
 
 const inBounds = (bounds, x, y) => x >= bounds.x && y >= bounds.y && x < bounds.x + bounds.width && y < bounds.y + bounds.height;
 
-/**
- * Wall segments along every edge between a wall tile and an open one, merged into straight runs (the same approach
- * as the hand-tiled map maker's wall export). Coordinates are in tiles, relative to the bounds.
- * @returns {number[][]} [x0, y0, x1, y1] per wall
- */
 export function wallSegments(floor, bounds) {
   const isWall = (x, y) => terrainAt(floor, x, y) === TERRAIN.WALL;
-  const horizontal = new Map(); // y -> x positions of unit edges along that line
+  const horizontal = new Map();
   const vertical = new Map();
   const add = (map, line, at) => (map.get(line) ?? map.set(line, []).get(line)).push(at);
   for (let y = bounds.y; y < bounds.y + bounds.height; y++) {
     for (let x = bounds.x; x < bounds.x + bounds.width; x++) {
       if (isWall(x, y)) continue;
-      // Edges are recorded from the open side, so walls outside the bounds still close off the map
       if (isWall(x, y - 1)) add(horizontal, y, x);
       if (isWall(x, y + 1)) add(horizontal, y + 1, x);
       if (isWall(x - 1, y)) add(vertical, x, y);
@@ -169,11 +148,6 @@ export function wallSegments(floor, bounds) {
   return segments;
 }
 
-/**
- * Each room as rectangles covering exactly its open tiles: runs along each row, stacked where consecutive rows
- * share the same run. Coordinates are in tiles, relative to the bounds.
- * @returns {{index: number, monsterHouse: boolean, kecleonShop: boolean, rects: {x, y, width, height}[]}[]}
- */
 export function roomShapes(floor, bounds) {
   const rooms = new Map();
   for (let y = bounds.y; y < bounds.y + bounds.height; y++) {
@@ -202,7 +176,6 @@ export function roomShapes(floor, bounds) {
   });
 }
 
-/** Markers inside the bounds, in tiles relative to them. Buried items deep in the rock outside the bounds are dropped. */
 export function markersIn(floor, bounds) {
   const markers = floor.markers.filter(marker => inBounds(bounds, marker.x, marker.y))
     .map(marker => ({ ...marker, x: marker.x - bounds.x, y: marker.y - bounds.y }));

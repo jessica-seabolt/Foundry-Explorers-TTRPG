@@ -1,0 +1,731 @@
+{
+  "name": "Dungeon Traps",
+  "img": "systems/explorers/assets/traps/warp_trap.png",
+  "description": "<p>Traps hidden on dungeon floors. The dungeon floor generator draws from this table for each trap spot; copy and edit it to give a dungeon its own traps. Spiky Traps, Big Blast Traps and Grudge Traps are rare here, as they can floor a low-Level Team.</p>",
+  "results": [
+    {
+      "type": "document",
+      "weight": 6,
+      "range": [
+        1,
+        6
+      ],
+      "_id": "SSNvPIQOptPC8htD",
+      "name": "Wonder Tile",
+      "img": "systems/explorers/assets/traps/wonder_tile.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.Hgp5sFkosXbzNLby",
+      "_key": "!tables.results!DungeonTrapsTbl1.SSNvPIQOptPC8htD"
+    },
+    {
+      "type": "document",
+      "weight": 6,
+      "range": [
+        7,
+        12
+      ],
+      "_id": "XrA0vIIZxHeYLiHc",
+      "name": "Mud Trap",
+      "img": "systems/explorers/assets/traps/mud_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.OmRSJldzgEQG9Uyk",
+      "_key": "!tables.results!DungeonTrapsTbl1.XrA0vIIZxHeYLiHc"
+    },
+    {
+      "type": "document",
+      "weight": 6,
+      "range": [
+        13,
+        18
+      ],
+      "_id": "RgulNbFaX6QtOjQv",
+      "name": "Poison Trap",
+      "img": "systems/explorers/assets/traps/poison_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.fGut1CmiZdRiiWmM",
+      "_key": "!tables.results!DungeonTrapsTbl1.RgulNbFaX6QtOjQv"
+    },
+    {
+      "type": "document",
+      "weight": 5,
+      "range": [
+        19,
+        23
+      ],
+      "_id": "Q6ZBm6z2Guhi66vy",
+      "name": "Slumber Trap",
+      "img": "systems/explorers/assets/traps/slumber_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.xXms2s3C9cYmY17G",
+      "_key": "!tables.results!DungeonTrapsTbl1.Q6ZBm6z2Guhi66vy"
+    },
+    {
+      "type": "document",
+      "weight": 5,
+      "range": [
+        24,
+        28
+      ],
+      "_id": "aXbsNHxnBLiHFeZs",
+      "name": "Spin Trap",
+      "img": "systems/explorers/assets/traps/spin_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.hnz4SRAJDPiEU2IF",
+      "_key": "!tables.results!DungeonTrapsTbl1.aXbsNHxnBLiHFeZs"
+    },
+    {
+      "type": "document",
+      "weight": 5,
+      "range": [
+        29,
+        33
+      ],
+      "_id": "a3ccoLaohaWPSfVT",
+      "name": "Trip Trap",
+      "img": "systems/explorers/assets/traps/trip_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.EhHCYQNxYJzK2xdr",
+      "_key": "!tables.results!DungeonTrapsTbl1.a3ccoLaohaWPSfVT"
+    },
+    {
+      "type": "document",
+      "weight": 5,
+      "range": [
+        34,
+        38
+      ],
+      "_id": "dXJbm9cR60sksmla",
+      "name": "Warp Trap",
+      "img": "systems/explorers/assets/traps/warp_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.GPPFzTbYaz50qmxf",
+      "_key": "!tables.results!DungeonTrapsTbl1.dXJbm9cR60sksmla"
+    },
+    {
+      "type": "document",
+      "weight": 4,
+      "range": [
+        39,
+        42
+      ],
+      "_id": "zc9Th0kEd8lu6U9Z",
+      "name": "Sticky Trap",
+      "img": "systems/explorers/assets/traps/sticky_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.9L8D4CXSdhvJqqas",
+      "_key": "!tables.results!DungeonTrapsTbl1.zc9Th0kEd8lu6U9Z"
+    },
+    {
+      "type": "document",
+      "weight": 4,
+      "range": [
+        43,
+        46
+      ],
+      "_id": "6hqN12zfWVk3EaX5",
+      "name": "Slow Trap",
+      "img": "systems/explorers/assets/traps/slow_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.X2NEPkDYc4D52tHU",
+      "_key": "!tables.results!DungeonTrapsTbl1.6hqN12zfWVk3EaX5"
+    },
+    {
+      "type": "document",
+      "weight": 4,
+      "range": [
+        47,
+        50
+      ],
+      "_id": "acxXwMOFcNIHgweS",
+      "name": "Spikes",
+      "img": "systems/explorers/assets/traps/spikes.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.rJhm8h9Dgg45CmZa",
+      "_key": "!tables.results!DungeonTrapsTbl1.acxXwMOFcNIHgweS"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        51,
+        53
+      ],
+      "_id": "r1Cxf1ami8Whw8qa",
+      "name": "Blast Trap",
+      "img": "systems/explorers/assets/traps/blast_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.SUE9IBkNkGzdhm1y",
+      "_key": "!tables.results!DungeonTrapsTbl1.r1Cxf1ami8Whw8qa"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        54,
+        56
+      ],
+      "_id": "SEwKql0FK24qufNe",
+      "name": "Toxic Spikes",
+      "img": "systems/explorers/assets/traps/toxic_spikes.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.QuYcIDFVENWVz1iK",
+      "_key": "!tables.results!DungeonTrapsTbl1.SEwKql0FK24qufNe"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        57,
+        59
+      ],
+      "_id": "db1Nv8ForNKZ6hDZ",
+      "name": "Stealth Rocks",
+      "img": "systems/explorers/assets/traps/stealth_rocks.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.d0wXLDswSqyaztGw",
+      "_key": "!tables.results!DungeonTrapsTbl1.db1Nv8ForNKZ6hDZ"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        60,
+        62
+      ],
+      "_id": "wTaE03irbPxiA1ag",
+      "name": "Gust Trap",
+      "img": "systems/explorers/assets/traps/gust_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.pvy1V1MUrUM4U7Id",
+      "_key": "!tables.results!DungeonTrapsTbl1.wTaE03irbPxiA1ag"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        63,
+        65
+      ],
+      "_id": "WeMjFdKIIeC0HoBd",
+      "name": "Seal Trap",
+      "img": "systems/explorers/assets/traps/seal_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.bXVcU2onfYbqYIaP",
+      "_key": "!tables.results!DungeonTrapsTbl1.WeMjFdKIIeC0HoBd"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        66,
+        68
+      ],
+      "_id": "KeFjgRhSzLh9PiMQ",
+      "name": "Summon Trap",
+      "img": "systems/explorers/assets/traps/summon_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.iL1cmmkIZnkOgxum",
+      "_key": "!tables.results!DungeonTrapsTbl1.KeFjgRhSzLh9PiMQ"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        69,
+        71
+      ],
+      "_id": "2SJmkb2IFvza6btQ",
+      "name": "Pitfall Trap",
+      "img": "systems/explorers/assets/traps/pitfall_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.F4cas44RwPzMTg6D",
+      "_key": "!tables.results!DungeonTrapsTbl1.2SJmkb2IFvza6btQ"
+    },
+    {
+      "type": "document",
+      "weight": 3,
+      "range": [
+        72,
+        74
+      ],
+      "_id": "i2MeaHmrSLcucy4N",
+      "name": "Grimy Trap",
+      "img": "systems/explorers/assets/traps/grimy_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.4orSldzYWz2hQJGH",
+      "_key": "!tables.results!DungeonTrapsTbl1.i2MeaHmrSLcucy4N"
+    },
+    {
+      "type": "document",
+      "weight": 2,
+      "range": [
+        75,
+        76
+      ],
+      "_id": "xNdAKPNSs1C6FNJR",
+      "name": "PP Leech Trap",
+      "img": "systems/explorers/assets/traps/pp_leech_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.bJwHWi2Za1pASzNj",
+      "_key": "!tables.results!DungeonTrapsTbl1.xNdAKPNSs1C6FNJR"
+    },
+    {
+      "type": "document",
+      "weight": 2,
+      "range": [
+        77,
+        78
+      ],
+      "_id": "bCbJQozwrPtq0Ryp",
+      "name": "Apple Trap",
+      "img": "systems/explorers/assets/traps/apple_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.SfazCC7CbIAxM8LR",
+      "_key": "!tables.results!DungeonTrapsTbl1.bCbJQozwrPtq0Ryp"
+    },
+    {
+      "type": "document",
+      "weight": 2,
+      "range": [
+        79,
+        80
+      ],
+      "_id": "CgJM1qZEpUH7gcwF",
+      "name": "Random Trap",
+      "img": "systems/explorers/assets/traps/random_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.yGIolJey8imzJ8tw",
+      "_key": "!tables.results!DungeonTrapsTbl1.CgJM1qZEpUH7gcwF"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        81,
+        81
+      ],
+      "_id": "ccJ21rvH9btnNk13",
+      "name": "Hunger Trap",
+      "img": "systems/explorers/assets/traps/hunger_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.AqQR6zDgOwxC9KH0",
+      "_key": "!tables.results!DungeonTrapsTbl1.ccJ21rvH9btnNk13"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        82,
+        82
+      ],
+      "_id": "YLRVAUad6ouBmUfs",
+      "name": "Big Blast Trap",
+      "img": "systems/explorers/assets/traps/big_blast_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.8RQeNnlWdsqOqcSH",
+      "_key": "!tables.results!DungeonTrapsTbl1.YLRVAUad6ouBmUfs"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        83,
+        83
+      ],
+      "_id": "PGfRpbvsrpb7wQ74",
+      "name": "Spiky Trap",
+      "img": "systems/explorers/assets/traps/spiky_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.mYpJF6Hg1NPQHDVY",
+      "_key": "!tables.results!DungeonTrapsTbl1.PGfRpbvsrpb7wQ74"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        84,
+        84
+      ],
+      "_id": "VSrCPasc644xbuBh",
+      "name": "Pokémon Trap",
+      "img": "systems/explorers/assets/traps/pokemon_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.lThvaJO4hzgtq8Wy",
+      "_key": "!tables.results!DungeonTrapsTbl1.VSrCPasc644xbuBh"
+    },
+    {
+      "type": "document",
+      "weight": 1,
+      "range": [
+        85,
+        85
+      ],
+      "_id": "thr9aZ3hYlwhfMSB",
+      "name": "Grudge Trap",
+      "img": "systems/explorers/assets/traps/grudge_trap.png",
+      "description": "",
+      "drawn": false,
+      "flags": {},
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null,
+        "coreVersion": "13.351",
+        "systemId": "explorers",
+        "systemVersion": "1.6.6",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null
+      },
+      "documentUuid": "Compendium.explorers.traps.Item.YmoaanQrRFAaUt2x",
+      "_key": "!tables.results!DungeonTrapsTbl1.thr9aZ3hYlwhfMSB"
+    }
+  ],
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "formula": "1d85",
+  "_id": "DungeonTrapsTbl1",
+  "sort": 0,
+  "_key": "!tables!DungeonTrapsTbl1"
+}

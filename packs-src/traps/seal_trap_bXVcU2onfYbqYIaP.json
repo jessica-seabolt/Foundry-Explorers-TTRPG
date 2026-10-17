@@ -1,0 +1,53 @@
+{
+  "name": "Seal Trap",
+  "type": "Item",
+  "img": "systems/explorers/assets/traps/seal_trap.png",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_id": "bXVcU2onfYbqYIaP",
+  "sort": 1300,
+  "system": {
+    "description": "Stepping on this trap seals one move so you can't use it until restored.",
+    "category": "traps",
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "A sealed move is restored when the Pokémon Rests.",
+    "trap": {
+      "avoid": [
+        "endurance"
+      ],
+      "difficulty": 10,
+      "visible": false,
+      "effects": [
+        {
+          "type": "seal"
+        }
+      ]
+    }
+  },
+  "_key": "!items!bXVcU2onfYbqYIaP"
+}

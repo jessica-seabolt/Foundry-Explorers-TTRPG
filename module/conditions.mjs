@@ -15,7 +15,6 @@ const localize = key => game.i18n.localize(key);
 const format = (key, data) => game.i18n.format(key, data);
 const escape = text => foundry.utils.escapeHTML(text ?? "");
 
-/** The status effects shown on tokens. Stat changes are tracked as numbers on the sheet, so they're hidden from the HUD. */
 export function buildStatusEffects() {
   const statusEffects = Object.entries(stateConditions).map(([id, name]) => ({
     id,
@@ -27,7 +26,6 @@ export function buildStatusEffects() {
   return statusEffects;
 }
 
-/** Posts an automation message to chat, spoken by the given actor. */
 export async function postAutomationMessage(actor, lines) {
   lines = lines.filter(Boolean);
   if (!lines.length) return;
@@ -37,10 +35,6 @@ export async function postAutomationMessage(actor, lines) {
   });
 }
 
-/* -------------------------------------------- */
-/*  Running actions on actors you may not own   */
-/* -------------------------------------------- */
-
 const actorOps = {
   applyEffects: (actor, { effectList, context }) => applyEffectsLocal(actor, effectList, context),
   applyDamage: (actor, { options }) => actor.system.applyDamage?.(options),
@@ -48,15 +42,10 @@ const actorOps = {
   cure: (actor, { conditions }) => cureConditionsLocal(actor, conditions),
 };
 
-/** Adds an operation that runAsOwner can run (other modules, e.g. item use effects). */
 export function registerActorOp(name, operation) {
   actorOps[name] = operation;
 }
 
-/**
- * Runs an operation on an actor and returns its result. If the current user doesn't own the actor,
- * the active GM runs it instead (e.g. a player's move inflicting a Condition on an enemy), and this waits for it.
- */
 export async function runAsOwner(actor, op, args) {
   if (!actor) return;
   if (actor.isOwner) return actorOps[op](actor, args);
@@ -73,7 +62,6 @@ export const applyDamage = (actor, options) => runAsOwner(actor, "applyDamage", 
 export const healActor = (actor, amount, label = null) => runAsOwner(actor, "heal", { amount, label });
 export const cureConditions = (actor, conditions) => runAsOwner(actor, "cure", { conditions });
 
-/** Removes Conditions (Lum Berry, Heal Seed, ...) from an actor the current user owns. */
 export async function cureConditionsLocal(actor, conditions) {
   const cured = conditions.filter(condition => actor.statuses.has(condition));
   for (const condition of cured) await removeCondition(actor, condition);
@@ -82,10 +70,6 @@ export async function cureConditionsLocal(actor, conditions) {
   }
 }
 
-/**
- * Uses up an item: deletes it (or turns it into another, like a Reviver Seed into a Plain Seed),
- * and lets Features react to losing a held item (Unburden).
- */
 export async function consumeItem(item) {
   const actor = item?.actor;
   if (!actor) return;
@@ -105,7 +89,6 @@ export async function consumeItem(item) {
   }
 }
 
-/** Uses up the held item a rule came from, if the rule says so. */
 export async function consumeRuleItem(actor, rule) {
   if (!rule.consume || !rule.itemId) return;
   const item = actor.items.get?.(rule.itemId) ?? actor.items.find?.(other => other.id === rule.itemId);
@@ -114,7 +97,6 @@ export async function consumeRuleItem(actor, rule) {
   await consumeItem(item);
 }
 
-/** An item's data by name, from the Items compendium or the world, for turning one item into another. */
 async function findItemByName(name) {
   const pack = game.packs?.get("explorers.items");
   const entry = pack?.index.find(e => e.name === name);
@@ -125,26 +107,12 @@ async function findItemByName(name) {
   return data;
 }
 
-/* -------------------------------------------- */
-/*  Applying effects                            */
-/* -------------------------------------------- */
-
-/**
- * Applies move effects ({effect, effectCount}) to an actor the current user owns.
- * @param {object} context
- * @param {string} [context.sourceName]   Name of the Pokemon that applied the effects
- * @param {string} [context.sourceUuid]   UUID of that Pokemon's actor
- * @param {boolean} [context.fromOther]   Whether another Pokemon applied this (Invulnerable blocks those)
- * @param {number} [context.dc]           The applying roll, used as the target for later resist re-rolls
- * @param {string} [context.resistSkill]  The skill used to resist, for later re-rolls
- * @param {string} [context.moveType]     The move's Type (Trapped deals damage of this Type)
- */
 export async function applyEffectsLocal(actor, effectList, context = {}) {
   const lines = [];
   const name = escape(actor.name);
   const statChanges = {};
-  const followUps = []; // effects that Features trigger in response, applied after this batch
-  const reflect = []; // Conditions sent back to the source by Synchronize
+  const followUps = [];
+  const reflect = [];
   for (const { effect, effectCount } of effectList) {
     const label = localize(effects[effect] ?? effect);
 
@@ -152,7 +120,6 @@ export async function applyEffectsLocal(actor, effectList, context = {}) {
       let isUp = effect.endsWith("Up");
       const stat = effect.slice(0, isUp ? -2 : -4);
       let amount = effectCount ?? 1;
-      // Contrary turns boosts into drops and back; Simple doubles them
       const modes = getRules(actor, "statChange").map(rule => rule.mode);
       if (modes.includes("invert")) isUp = !isUp;
       if (modes.includes("double")) amount *= 2;
@@ -164,7 +131,6 @@ export async function applyEffectsLocal(actor, effectList, context = {}) {
       const current = statChanges[stat] ?? actor.system.statChanges?.[stat] ?? 0;
       statChanges[stat] = Math.clamp(current + (isUp ? amount : -amount), -10, 10);
       lines.push(format("SYSTEM.Automation.StatChanged", { name, label: changedLabel, amount, total: statChanges[stat] }));
-      // Defiant, Competitive: a foe lowering this Pokemon's stats triggers a boost
       if (!isUp && context.fromOther) for (const rule of getRules(actor, "onStatLowered")) followUps.push({ rule, effects: rule.effects ?? [] });
       continue;
     }
@@ -196,7 +162,7 @@ export async function applyEffectsLocal(actor, effectList, context = {}) {
         && getRules(actor, "reflectConditions").some(rule => (rule.conditions ?? []).includes(effect))) {
         reflect.push({ effect, effectCount });
       }
-      if (effect === "burned" && actor.statuses.has("frozen")) { // the Burned Condition thaws a Frozen Pokemon early
+      if (effect === "burned" && actor.statuses.has("frozen")) {
         await removeCondition(actor, "frozen");
         lines.push(format("SYSTEM.Automation.Thawed", { name }));
       }
@@ -208,7 +174,6 @@ export async function applyEffectsLocal(actor, effectList, context = {}) {
       continue;
     }
 
-    // Push, Size Change, Instant KO, Mud Sport, etc. are left to the GM
     lines.push(format("SYSTEM.Automation.ManualEffect", { name, label, count: effectCount ?? "" }));
   }
 
@@ -218,7 +183,7 @@ export async function applyEffectsLocal(actor, effectList, context = {}) {
   await postAutomationMessage(actor, lines);
 
   for (const { rule, effects: triggered, cure } of followUps) {
-    if (rule.itemId && !actor.items.find?.(item => item.id === rule.itemId)) continue; // already eaten
+    if (rule.itemId && !actor.items.find?.(item => item.id === rule.itemId)) continue;
     await postAutomationMessage(actor, [format("SYSTEM.Automation.FeatureTriggered", { name, feature: escape(rule.source) })]);
     if (triggered.length) await applyEffectsLocal(actor, triggered, { sourceUuid: actor.uuid, sourceName: actor.name });
     if (cure) await cureConditionsLocal(actor, [cure]);
@@ -233,13 +198,11 @@ export async function applyEffectsLocal(actor, effectList, context = {}) {
   }
 }
 
-/** Whether a Feature stops this stat being lowered (Big Pecks, Hyper Cutter, Clear Body). */
 function statLowerBlocked(actor, stat, context = {}) {
   return getRules(actor, "statLowerImmunity").some(rule => (!rule.fromOthers || context.fromOther)
     && (rule.stats ?? []).some(blocked => blocked === stat || blocked === "all"));
 }
 
-/** Returns a message if the actor can't receive this Condition, or null if it can. */
 function conditionBlockedReason(actor, effect, context) {
   const name = escape(actor.name);
   const label = localize(effects[effect]);
@@ -248,7 +211,6 @@ function conditionBlockedReason(actor, effect, context) {
   }
   const immuneTypes = conditionTypeImmunities[effect] ?? [];
   const actorTypes = [actor.system.type1, actor.system.type2];
-  // Corrosion lets its user Poison Steel and Poison types
   const source = context.sourceUuid ? fromUuidSync(context.sourceUuid) : null;
   const bypassed = getRules(source, "bypassConditionImmunity").some(rule => (rule.conditions ?? []).includes(effect));
   if (!bypassed && immuneTypes.some(type => actorTypes.includes(type))) {
@@ -269,16 +231,11 @@ export async function addCondition(actor, statusId, data = {}) {
   return ActiveEffect.create(effect.toObject(), { parent: actor });
 }
 
-/** Removes a Condition, leaving any copy a Feature keeps on permanently. */
 export async function removeCondition(actor, statusId) {
   const ids = actor.effects.filter(e => e.statuses.has(statusId) && !e.getFlag(SYSTEM_ID, "permanent")).map(e => e.id);
   if (ids.length) await actor.deleteEmbeddedDocuments("ActiveEffect", ids);
 }
 
-/**
- * Gives an actor the Conditions its Features keep on permanently (Illuminate's Eyedrop, Magic Bounce's Magic Coat),
- * and removes ones whose Feature is gone, so they show on the token and sheet like any other Condition.
- */
 export async function syncPermanentConditions(actor) {
   if (!actor?.isOwner) return;
   const wanted = new Map();
@@ -298,7 +255,6 @@ function conditionEffect(actor, statusId) {
   return actor.effects.find(e => e.statuses.has(statusId));
 }
 
-/** Shows the Stat Up/Down icons on the token to match the actor's stat changes. */
 export async function syncStatChangeIcons(actor) {
   for (const stat of statKeys) {
     const change = actor.system.statChanges?.[stat] ?? 0;
@@ -307,20 +263,12 @@ export async function syncStatChangeIcons(actor) {
   }
 }
 
-/* -------------------------------------------- */
-/*  Using a move while afflicted                */
-/* -------------------------------------------- */
-
 async function rollD6(actor, flavor) {
   const roll = await new Roll("1d6").evaluate();
   await roll.toMessage({ speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }), flavor });
   return roll.total;
 }
 
-/**
- * Checks Conditions that stop or change a Pokemon using a move.
- * @returns {Promise<{proceed: boolean, spendPP: boolean}>}
- */
 export async function checkMoveConditions(actor, move, { targetsFoe = true } = {}) {
   const statuses = actor.statuses;
   const name = escape(actor.name);
@@ -377,30 +325,23 @@ export async function checkMoveConditions(actor, move, { targetsFoe = true } = {
   return { proceed: true, spendPP: true };
 }
 
-/* -------------------------------------------- */
-/*  Start and end of turn                       */
-/* -------------------------------------------- */
-
 async function tickDamage(actor, formula, label) {
   const roll = await new Roll(formula).evaluate();
   await roll.toMessage({ speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }), flavor: label });
   await actor.system.applyDamage?.({ amount: roll.total, label });
 }
 
-/** Runs the start-of-turn effects of an actor's Conditions. Only the active GM calls this. */
 export async function processStartOfTurn(actor) {
   if (!actor?.system?.hp) return;
   const name = escape(actor.name);
   const lines = [];
 
-  // Effects that last "this turn" end when the Pokemon's next turn starts
   for (const statusId of untilNextTurnConditions) {
     if (!actor.statuses.has(statusId)) continue;
     await removeCondition(actor, statusId);
     lines.push(format("SYSTEM.Automation.ConditionEnded", { name, label: localize(effects[statusId]) }));
   }
 
-  // Count down effects that last a number of turns
   for (const effect of actor.effects.contents) {
     const remaining = effect.getFlag(SYSTEM_ID, "remaining");
     if (typeof remaining !== "number") continue;
@@ -411,7 +352,6 @@ export async function processStartOfTurn(actor) {
     else await effect.setFlag(SYSTEM_ID, "remaining", remaining - 1);
   }
 
-  // Yawning becomes Asleep
   if (actor.statuses.has("yawning")) {
     const data = conditionEffect(actor, "yawning")?.flags?.[SYSTEM_ID] ?? {};
     await removeCondition(actor, "yawning");
@@ -430,7 +370,6 @@ export async function processStartOfTurn(actor) {
     if (rule.effects?.length) await applyEffectsLocal(actor, rule.effects, { sourceUuid: actor.uuid, sourceName: actor.name });
   }
 
-  // Damage over time. Tick damage isn't resisted by Defence and can't score a Critical Hit.
   if (actor.statuses.has("burned")) await tickDamage(actor, "1d6", localize("SYSTEM.Conditions.Burned"));
   const poisonHeals = hasRule(actor, "poisonHeal");
   if (poisonHeals && (actor.statuses.has("poisoned") || actor.statuses.has("badlyPoisoned"))) {
@@ -458,7 +397,6 @@ export async function processStartOfTurn(actor) {
   await processSleep(actor);
   await processConfusion(actor);
 
-  // Status Resistance re-rolls to shake off a Condition
   for (const statusId of resistRerollConditions) {
     if (!actor.statuses.has(statusId)) continue;
     if (statusId === "trapped" && skipTrappedReroll) continue;
@@ -476,7 +414,7 @@ async function processSleep(actor) {
     await postAutomationMessage(actor, [format("SYSTEM.Automation.FeatureTriggered", { name, feature: escape(getRules(actor, "earlyBird")[0].source) }), format("SYSTEM.Automation.WokeUp", { name })]);
     return;
   }
-  if (typeof duration !== "number") { // first turn asleep: roll how many rounds
+  if (typeof duration !== "number") {
     const rounds = await rollD6(actor, format("SYSTEM.Automation.SleepDuration", { name }));
     await effect.setFlag(SYSTEM_ID, "duration", rounds);
     await effect.setFlag(SYSTEM_ID, "turns", 0);
@@ -502,7 +440,7 @@ async function processConfusion(actor) {
   const name = escape(actor.name);
   const effect = conditionEffect(actor, "confused");
   const rounds = effect.getFlag(SYSTEM_ID, "rounds");
-  if (typeof rounds !== "number") { // first turn confused: 1-2 is 1 round, 3-4 is 2, 5-6 is 3
+  if (typeof rounds !== "number") {
     const result = await rollD6(actor, format("SYSTEM.Automation.ConfusionDuration", { name }));
     await effect.setFlag(SYSTEM_ID, "rounds", Math.ceil(result / 2));
     return;
@@ -520,7 +458,7 @@ async function rerollResist(actor, statusId) {
   const effect = conditionEffect(actor, statusId);
   const dc = effect?.getFlag(SYSTEM_ID, "dc");
   const skill = effect?.getFlag(SYSTEM_ID, "resistSkill");
-  if (typeof dc !== "number" || !skill) { // applied by hand, so there's no roll to beat
+  if (typeof dc !== "number" || !skill) {
     await postAutomationMessage(actor, [format("SYSTEM.Automation.RerollReminder", { name, label })]);
     return;
   }
@@ -536,7 +474,6 @@ async function rerollResist(actor, statusId) {
   }
 }
 
-/** Runs end-of-turn effects. Only the active GM calls this. */
 export async function processEndOfTurn(actor) {
   if (!actor?.system?.hp) return;
   if (actor.statuses.has("flinched")) {
@@ -544,6 +481,15 @@ export async function processEndOfTurn(actor) {
     await postAutomationMessage(actor, [format("SYSTEM.Automation.ConditionEnded", { name: escape(actor.name), label: localize(effects.flinched) })]);
   }
   if (actor.system.hp.raw <= 0) return;
+  if (actor.statuses.has("seeded")) {
+    const { sourceUuid } = conditionEffect(actor, "seeded")?.flags?.[SYSTEM_ID] ?? {};
+    const label = localize(effects.seeded);
+    const roll = await new Roll("1d6").evaluate();
+    await roll.toMessage({ speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }), flavor: label });
+    await actor.system.applyDamage?.({ amount: roll.total, label });
+    const seeder = sourceUuid ? await fromUuid(sourceUuid) : null;
+    if (seeder && seeder !== actor && seeder.system?.hp?.raw > 0) await healActor(seeder, roll.total, label);
+  }
   for (const rule of getRules(actor, "onTurnEnd")) {
     if (rule.damage) await tickDamage(actor, rule.damage, rule.source);
     if (!rule.effects?.length) continue;

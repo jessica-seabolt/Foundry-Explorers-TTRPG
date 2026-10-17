@@ -18,6 +18,9 @@ import { ExplorersVisionSource, registerVisionHooks } from './module/vision.mjs'
 import { DungeonGenerator, addDungeonGeneratorButton, registerDungeonGeneratorSettings } from './module/dungeon/generator-app.mjs';
 import { registerFloorItemHooks } from './module/floor-items.mjs';
 import { registerMigrationSettings, runMigrations } from './module/migrations.mjs';
+import { registerTurnHooks, registerTurnSettings } from './module/turns.mjs';
+import { registerOpportunityHooks } from './module/targeting.mjs';
+import { registerTrapHooks } from './module/traps.mjs';
 
 const { Localization } = foundry.helpers;
 const { Die } = foundry.dice.terms;
@@ -85,12 +88,14 @@ Hooks.once("init", () => {
   CONFIG.statusEffects = buildStatusEffects();
   CONFIG.specialStatusEffects.DEFEATED = FAINTED_STATUS;
 
-  // Dungeon Rooms are Regions with the Room behavior, and token vision follows the Visibility rules
   CONFIG.RegionBehavior.dataModels[ROOM_BEHAVIOR] = RoomRegionBehaviorType;
   CONFIG.RegionBehavior.typeIcons[ROOM_BEHAVIOR] = "fa-solid fa-dungeon";
   CONFIG.Canvas.visionSourceClass = ExplorersVisionSource;
   registerSettings();
   registerFloorItemHooks();
+  registerTurnHooks();
+  registerOpportunityHooks();
+  registerTrapHooks();
 });
 
 function registerSettings() {
@@ -122,6 +127,7 @@ function registerSettings() {
   });
   registerDungeonGeneratorSettings();
   registerMigrationSettings();
+  registerTurnSettings();
 }
 
 Hooks.once("i18nInit", () => {
@@ -136,7 +142,6 @@ Hooks.once("i18nInit", () => {
 Hooks.once("ready", async () => {
   initSocket();
   await runMigrations();
-  // Bring permanent Conditions and token vision up to date for actors whose Features predate this
   if (game.user.isActiveGM) {
     for (const actor of game.actors) {
       if (actor.items.some(item => item.type === "Feature")) await actor.system.onFeaturesChanged?.();
@@ -195,7 +200,6 @@ registerCombatHooks();
 registerVisionHooks();
 registerStatusCheckHooks();
 
-// Adding, removing or editing a Feature can change Visibility, permanent Conditions and so on
 function onFeatureChanged(item, userId) {
   if (item.type !== "Feature" || !item.actor || userId !== game.user.id) return;
   item.actor.system.onFeaturesChanged?.();
@@ -205,7 +209,6 @@ Hooks.on("deleteItem", (item, options, userId) => onFeatureChanged(item, userId)
 Hooks.on("updateItem", (item, changes, options, userId) => {
   if (changes.system?.rules) onFeatureChanged(item, userId);
 });
-// Eyedrop added or removed by hand also changes what the token can detect
 function onEyedropChanged(effect, userId) {
   if (userId !== game.user.id || !effect.statuses?.has("eyedrop") || !(effect.parent instanceof Actor)) return;
   effect.parent.system.syncTokens?.();

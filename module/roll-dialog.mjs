@@ -2,9 +2,10 @@ import { SYSTEM_ID, filePath, getSkillDie, getMoveDie, getStatusDie, getDieStrin
 import { applyDamage, applyEffects, checkMoveConditions, consumeRuleItem, healActor, postAutomationMessage, removeCondition } from './conditions.mjs';
 import { DamageRoll, ExplorersRoll, StatusRoll } from './explorers-roll.mjs';
 import { emitToGM, registerSocketHandler } from './socket.mjs';
-import { pickTargets } from './targeting.mjs';
+import { aimOpportunityStrike, pickTargets } from './targeting.mjs';
 import { critRangeMin, effectiveMoveType, getRules, hasCondition, hasRule, heldItemOf, moveImmunity, movePowerBonus } from './features.mjs';
 import { stealHeldItem } from './items.mjs';
+import { canAct, checkAction, recordAction } from './turns.mjs';
 import { advantage, effects, skills, typeMatchups } from './types.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
@@ -57,7 +58,7 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     super._onChangeForm(config, event);
     const inputName = event.target.dataset.name;
     if (this.dialogState[inputName] !== undefined) {
-      if (inputName === 'dc') { // an empty DC means no DC, not a DC of 0
+      if (inputName === 'dc') {
         this.dialogState.dc = event.target.value === '' ? null : Number(event.target.value);
       }
       else if (typeof this.dialogState[inputName] == 'number') {
@@ -89,7 +90,6 @@ export class RollDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     this.render();
   }
 
-  /** Evaluates a roll and posts it to chat. Returns the evaluated roll. */
   async toChatMessage(roll, chatData) {
     await roll.evaluate();
     const dcFlavor = roll.success === null ? "" : roll.success
@@ -120,11 +120,6 @@ export class SkillRollDialog extends RollDialog {
     return this.statusRoll ? `${title} ${format("SYSTEM.Automation.ResistTitle", { move: this.statusRoll.options.moveName })}` : title;
   }
 
-  /**
-   * @param {object} options
-   * @param {StatusRoll} [options.statusRoll]   If given, this is a Status Check against that roll,
-   *                                            and failing it applies the roll's effects.
-   */
   constructor(options={}) {
     const { userId, skill } = options;
     const user = options.user ?? game.actors.get(userId);
@@ -144,6 +139,7 @@ export class SkillRollDialog extends RollDialog {
     die.sides += sides;
     die.modifier += modifier;
 
+    if (!this.statusRoll && canAct(this.user, "skill").allowed) await recordAction(this.user, "skill");
     if (this.statusRoll) {
       const roll = await this.toChatMessage(new ExplorersRoll(getDieString(die), {}, { dc: this.getDC() }), {
         flavor: `${localize(skills[this.skill])} ${format("SYSTEM.Automation.ResistTitle", { move: escape(this.statusRoll.options.moveName) })}`,
@@ -162,24 +158,22 @@ export class SkillRollDialog extends RollDialog {
   }
 }
 
-/** Extra dice a Pokemon gets on a Status Check: from an Opportunity Strike, and 1d6 while Guarding. */
 function resistBonusDice(actor, statusRoll) {
   return (statusRoll.options.resistBonusDice ?? 0) + (actor.statuses.has('guarding') ? 1 : 0);
 }
 
-/** Opens a Status Check for the target of a StatusRoll (or the selected tokens if it has no target). */
 export function openResistDialog(statusRoll, statusMessage = null) {
   const { targetId, resistSkill } = statusRoll.options;
   const actors = targetId ? [fromUuidSync(targetId)].filter(_ => _) : (getSelectedActors() ?? []);
   if (!actors.length) ui.notifications.error("SYSTEM.Automation.NoActorSelected", { localize: true });
   for (const actor of actors) {
-    new SkillRollDialog({
+    const dialog = new SkillRollDialog({
       user: actor, skill: resistSkill, dc: statusRoll.total, extraDie: resistBonusDice(actor, statusRoll), statusRoll, statusMessage
-    }).render({ force: true });
+    });
+    Promise.resolve(dialog.render({ force: true })).then(() => dialog.bringToFront?.());
   }
 }
 
-/** Rolls a Status Check straight away, without a dialog (used for Pokemon only the GM controls). */
 async function rollStatusCheck(actor, statusRoll, statusMessage) {
   const { sides, modifier } = getSkillDie(actor, statusRoll.options.resistSkill);
   const advantage = isHungry(actor) ? 'disadvantage' : 'normal';
@@ -196,25 +190,20 @@ async function rollStatusCheck(actor, statusRoll, statusMessage) {
 const MARK_RESOLVED_ACTION = "markStatusResolved";
 registerSocketHandler(MARK_RESOLVED_ACTION, ({ messageId }) => game.messages.get(messageId)?.setFlag(SYSTEM_ID, "statusResolved", true));
 
-/** Marks a Status Check card as answered, which hides its Resist button. */
 async function markStatusCheckResolved(message) {
   if (!message) return;
   if (message.isOwner) await message.setFlag(SYSTEM_ID, "statusResolved", true);
   else emitToGM(MARK_RESOLVED_ACTION, { messageId: message.id });
 }
 
-/**
- * Who answers a Status Check card: a connected player who owns the target (preferring the one playing it)
- * and can see the card, otherwise the active GM.
- */
 function statusCheckResolver(message, actor) {
   const canSee = user => !message.whisper.length || message.whisper.includes(user.id);
   const players = game.users.filter(user => user.active && !user.isGM && canSee(user) && actor.testUserPermission(user, "OWNER"))
     .sort((a, b) => a.id.localeCompare(b.id));
-  return players.find(user => user.character === actor) ?? players[0] ?? game.users.activeGM;
+  const ownsDirectly = user => (actor.ownership?.[user.id] ?? 0) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER;
+  return players.find(user => user.character === actor) ?? players.find(ownsDirectly) ?? players[0] ?? game.users.activeGM;
 }
 
-/** When a Status Check card is posted, prompt (or roll) the target's Status Check automatically. */
 export function registerStatusCheckHooks() {
   Hooks.on("createChatMessage", message => {
     const statusRoll = message.rolls.find(roll => roll instanceof StatusRoll);
@@ -226,10 +215,6 @@ export function registerStatusCheckHooks() {
   });
 }
 
-/**
- * Resolves a Status Check. The target resists if it meets or beats the attacker's roll;
- * otherwise the move's effects are applied.
- */
 async function resolveStatusCheck(actor, statusRoll, roll, statusMessage = null) {
   const { attackerUuid, moveName, moveType, resistSkill, effects: landed = [], onLandEffects = [] } = statusRoll.options;
   await markStatusCheckResolved(statusMessage);
@@ -243,6 +228,8 @@ async function resolveStatusCheck(actor, statusRoll, roll, statusMessage = null)
   });
   if (attacker && onLandEffects.length) await applyEffects(attacker, onLandEffects, { sourceUuid: attackerUuid });
 }
+
+const FRIENDLY_TARGETS = new Set(['self', 'selfOrAlly', 'selfAllies', 'allies', 'ally']);
 
 export class MoveRollDialog extends RollDialog {
   static DEFAULT_OPTIONS = {
@@ -275,7 +262,6 @@ export class MoveRollDialog extends RollDialog {
     this.dialogState.skipChecks = false;
   }
 
-  /** A Basic Attack: 1d6 + ATK, with no Type, unaffected by Type Effectiveness, and costing no PP. */
   static basicAttack(actor) {
     const Item = getDocumentClass("Item");
     const move = new Item({
@@ -302,17 +288,15 @@ export class MoveRollDialog extends RollDialog {
   }
 
   #spendPP() {
-    if (this.isBasicAttack || this.move.actor?.id !== this.user.id) return true; // no PP to track
+    if (this.isBasicAttack || this.move.actor?.id !== this.user.id) return true;
     const extra = Math.max(0, ...this.#targetActors.filter(_ => _).flatMap(target => getRules(target, "extraPpCost").map(rule => rule.amount ?? 1)));
     if (this.move.system.use(1 + extra)) return true;
     ui.notifications.error("SYSTEM.Automation.OutOfPP", { localize: true });
     return false;
   }
 
-  /** Aims the move, checks Conditions and spends PP before a move is used. Returns whether the move goes ahead. */
   async #beginUse() {
-    // An Opportunity Strike's target is the retreating foe, which the user targets by hand
-    if (!this.dialogState.opportunity && !await pickTargets(this.user, this.move)) return false;
+    if (this.dialogState.opportunity ? !await aimOpportunityStrike(this.user) : !await pickTargets(this.user, this.move)) return false;
     if (!this.dialogState.skipChecks) {
       const { proceed, spendPP } = await checkMoveConditions(this.user, this.move, { targetsFoe: this.move.system.targetsFoe });
       if (!proceed) {
@@ -321,7 +305,7 @@ export class MoveRollDialog extends RollDialog {
       }
     }
     if (!this.#spendPP()) return false;
-    if (this.move.system.targetsFoe && this.user.statuses.has('invisible')) { // attacking ends Invisible
+    if (this.move.system.targetsFoe && this.user.statuses.has('invisible')) {
       await removeCondition(this.user, 'invisible');
       await postAutomationMessage(this.user, [format("SYSTEM.Automation.ConditionEnded", { name: escape(this.user.name), label: localize(effects.invisible) })]);
     }
@@ -336,14 +320,24 @@ export class MoveRollDialog extends RollDialog {
     return isPhysical ? 'def' : 'spdef';
   }
 
-  /**
-   * Uses the move: aims it, checks Conditions and spends PP, then makes every roll it needs:
-   * damage (with any secondary effects), or a Status roll for status moves, then effects on the user.
-   */
   static async #use() {
+    if (!this.isBasicAttack && this.move.getFlag?.(SYSTEM_ID, "sealed")) {
+      ui.notifications.warn(format("SYSTEM.Traps.MoveSealed", { move: escape(this.move.name) }));
+      return;
+    }
+    const kind = this.isBasicAttack ? "basicAttack" : "move";
+    const reaction = !!this.dialogState.opportunity;
+    const priority = !this.isBasicAttack && !!this.move.system.hasTag?.('priority');
+    const turn = checkAction(this.user, kind, { reaction, priority });
+    if (!turn.allowed) return;
+    this.secondMove = !!turn.secondMove;
     if (!await this.#beginUse()) return;
+    await recordAction(this.user, kind, { reaction, priority });
     const system = this.move.system;
-    if (system.power > 0) await this.#rollPower();
+    if (system.power > 0) {
+      await this.#rollPower();
+      if (FRIENDLY_TARGETS.has(system.target)) await this.#applyFriendlyEffects(system.getSplitEffects('hit').target);
+    }
     else if (system.getTriggerTypes().has('hit')) await this.#rollStatusEffects();
     else await this.#postDescription();
     if (!this.isBasicAttack) await this.#applyUserEffects();
@@ -356,7 +350,6 @@ export class MoveRollDialog extends RollDialog {
     const tags = Object.values(system.tags);
     const userSystem = this.user.system;
     const { sides, modifier } = getMoveDie(this.user, this.move);
-    // Features can change the move's Type (Aerilate, Normalize, ...)
     const moveType = this.isBasicAttack ? null : effectiveMoveType(this.user, this.move);
     const isPhysical = system.isPhysical;
     const isStab = !this.isBasicAttack && (userSystem.type1 === moveType || userSystem.type2 === moveType);
@@ -367,13 +360,11 @@ export class MoveRollDialog extends RollDialog {
     let knockedOut = false;
 
     for (const target of targets) {
-      // Build a fresh die per target so one target's matchup doesn't carry over to the next
       const die = this.getDialogDie();
       die.sides += sides;
-      die.modifier += isHealing ? 0 : modifier; // Healing moves don't add a modifier
+      die.modifier += isHealing ? 0 : modifier;
       let additionString = "";
 
-      // Feature immunities: Levitate, Flash Fire, Water Absorb, Soundproof, ...
       const immunity = target && !this.isBasicAttack && !isHealing ? moveImmunity(target, this.move, moveType) : null;
       if (immunity) {
         await this.#resolveImmunity(target, immunity, die);
@@ -384,8 +375,6 @@ export class MoveRollDialog extends RollDialog {
       if (!this.isBasicAttack && !isHealing) {
         matchup = this.dialogState.typeMatchup;
         if (matchup === '' && target) matchup = target.system.getTypeMatchup?.(moveType) ?? '';
-        // Steamroll: resisted (or even immune) hits deal regular damage. Filter: no benefit from Super Effective hits.
-        // (Scrappy is a narrower Steamroll: Normal and Fighting moves against Ghost types)
         const steamroll = getRules(this.user, "steamroll").find(rule => (!rule.moveTypes || rule.moveTypes.includes(moveType))
           && (rule.matchups ?? ['notVeryEffective', 'mostlyIneffective', 'immune']).includes(matchup));
         if (steamroll) {
@@ -402,7 +391,6 @@ export class MoveRollDialog extends RollDialog {
         else if (matchupResult < 0) additionString += note(`-${localize(typeMatchups[matchup])}`, false);
       }
       if (die.advantage === '') {
-        // STAB gives Advantage and hunger Disadvantage; together they cancel out
         const hungry = isHungry(this.user);
         die.advantage = isStab && !hungry ? 'advantage' : hungry && !isStab ? 'disadvantage' : 'normal';
         if (isStab) additionString += note("+STAB", true);
@@ -412,7 +400,6 @@ export class MoveRollDialog extends RollDialog {
         additionString += note(localize("SYSTEM.Belly.Hungry"), false);
       }
 
-      // Move Power from Features (Multistrike Moves can't gain Move Power)
       const bonus = this.isBasicAttack ? { amount: 0, sources: [], removeSecondary: false }
         : movePowerBonus(this.user, this.move, { target, moveType, isPhysical, isStab, opportunity: this.dialogState.opportunity });
       if (bonus.amount && !isMultistrike) {
@@ -420,14 +407,16 @@ export class MoveRollDialog extends RollDialog {
         additionString += note(`${bonus.amount > 0 ? "+" : ""}${bonus.amount} ${localize("SYSTEM.Automation.MovePower")} (${bonus.sources.join(", ")})`, bonus.amount > 0);
       }
 
-      // Critical Hits: Super Luck scores them on a 5-6; Battle Armour stops the attacker's dice exploding
       if (critRangeMin(this.user) <= 5) die.highCrit = true;
       if (hasRule(target, "noCritsAgainst")) die.explode = false;
 
-      // Opportunity Strikes deal half damage, except with a Basic Attack
       if (this.dialogState.opportunity && !this.isBasicAttack && !isHealing) {
         die.multiplier *= 0.5;
         additionString += note(localize("SYSTEM.Actions.OpportunityStrike"), false);
+      }
+      if (this.secondMove && !isHealing) {
+        die.multiplier *= 0.5;
+        additionString += note(localize("SYSTEM.Turns.SecondMove"), false);
       }
 
       const roll = await this.toChatMessage(new DamageRoll(getDieString(die), {}, {
@@ -445,8 +434,6 @@ export class MoveRollDialog extends RollDialog {
         flavor: `${additionString}${this.move.name}${target ? ` (${target.name})` : ""} - ${localize(isHealing ? "SYSTEM.Automation.Healing" : "SYSTEM.Automation.Power")}`,
       });
 
-      // Damage is dealt before secondary effects ("roll a d6 after damage has been dealt"), and a fainted target gets none
-      // Gems are used up once they boost a move
       for (const itemId of bonus.consumed ?? []) await consumeRuleItem(this.user, { consume: true, itemId });
       const result = await this.#applyRoll(roll, target, this.lastMessage);
       const fainted = result?.hp <= 0;
@@ -456,7 +443,6 @@ export class MoveRollDialog extends RollDialog {
         continue;
       }
       if (this.isBasicAttack || isHealing || fainted) continue;
-      // Sheer Force drops secondary effects; Shield Dust ignores them
       const shielded = getRules(target, "ignoreSecondary")[0];
       if (bonus.removeSecondary) await postAutomationMessage(this.user, [format("SYSTEM.Automation.NoSecondary", { move: escape(this.move.name) })]);
       else if (shielded) await postAutomationMessage(target, [format("SYSTEM.Automation.FeatureBlockedSecondary", { name: escape(target.name), feature: escape(shielded.source) })]);
@@ -464,7 +450,6 @@ export class MoveRollDialog extends RollDialog {
       if (target) await this.#applyOnHit(target, isPhysical);
     }
 
-    // Moxie: knocking out a foe boosts the user
     if (knockedOut && !this.isBasicAttack) {
       for (const rule of getRules(this.user, "onKnockOut")) {
         await postAutomationMessage(this.user, [format("SYSTEM.Automation.FeatureTriggered", { name: escape(this.user.name), feature: escape(rule.source) })]);
@@ -473,7 +458,6 @@ export class MoveRollDialog extends RollDialog {
     }
   }
 
-  /** A target immune to the move through a Feature takes no damage, or absorbs it as healing (Water Absorb). */
   async #resolveImmunity(target, rule, die) {
     const name = escape(target.name);
     if (rule.heal) {
@@ -487,7 +471,6 @@ export class MoveRollDialog extends RollDialog {
     if (rule.effects?.length) await applyEffects(target, rule.effects, { sourceUuid: target.uuid, sourceName: target.name });
   }
 
-  /** Poison Touch and similar: a chance to afflict the target after hitting it. */
   async #applyOnHit(target, isPhysical) {
     for (const rule of getRules(this.user, "onHit")) {
       if (rule.physical && !isPhysical) continue;
@@ -500,7 +483,6 @@ export class MoveRollDialog extends RollDialog {
     }
   }
 
-  /** Deals a damage (or healing) roll to its target straight away, and hides the card's button. */
   async #applyRoll(roll, target, message) {
     if (!target || !game.settings.get(SYSTEM_ID, "autoApplyDamage")) return null;
     const result = roll.isHealing
@@ -510,13 +492,11 @@ export class MoveRollDialog extends RollDialog {
     return result;
   }
 
-  /** Rolls for a damaging move's secondary effects on one target, after its damage. */
   async #applySecondaryEffects(target) {
     const system = this.move.system;
     const hit = system.getSplitEffects('hit');
     if (hit.target.length && system.targetsFoe) await this.#rollStatusAgainst(target, hit.target);
 
-    // "Roll a d6 after damage has been dealt. On a 6 (or 5-6) ..." effects land without a Status Check
     for (const [trigger, minimum] of [['d6', 6], ['d56', 5]]) {
       const { target: onTarget } = system.getSplitEffects(trigger);
       if (!onTarget.length) continue;
@@ -538,7 +518,6 @@ export class MoveRollDialog extends RollDialog {
     return roll.total;
   }
 
-  /** Applies the effects a move has on its user, and lists effects that need the GM's judgement. */
   async #applyUserEffects() {
     const system = this.move.system;
     const { user: onUser } = system.getSplitEffects('hit');
@@ -553,7 +532,6 @@ export class MoveRollDialog extends RollDialog {
     await this.#postManualEffects();
   }
 
-  /** Flexible and room-wide effects depend on the situation, so they're listed for the GM to apply. */
   async #postManualEffects() {
     const system = this.move.system;
     const lines = [];
@@ -568,7 +546,6 @@ export class MoveRollDialog extends RollDialog {
     await postAutomationMessage(this.user, lines);
   }
 
-  /** Rolls to land effects on a target, posting a card the target uses to make its Status Check. */
   async #rollStatusAgainst(target, landing) {
     const system = this.move.system;
     const statusDie = getStatusDie(this.user, this.move);
@@ -578,20 +555,16 @@ export class MoveRollDialog extends RollDialog {
       statusDie.sides += sides;
       statusDie.modifier += modifier;
     }
-    // An Opportunity Strike with a Status Move only rolls 1 die
     if (this.dialogState.opportunity && system.isStatus) statusDie.sides = 1;
     if (isHungry(this.user)) statusDie.advantage = 'disadvantage';
-    // Serene Grace: extra dice to land a Physical or Special Move's secondary effect
     if (!system.isStatus) statusDie.sides += getRules(this.user, "statusCheckDice").reduce((sum, rule) => sum + (rule.dice ?? 1), 0);
 
-    // Feature immunities also stop status moves (Soundproof against Growl, Levitate against Sand Attack)
     const immunity = target && system.power == 0 ? moveImmunity(target, this.move, effectiveMoveType(this.user, this.move)) : null;
     if (immunity) {
       await postAutomationMessage(target, [format("SYSTEM.Automation.FeatureImmune", { name: escape(target.name), move: escape(this.move.name), feature: escape(immunity.source) })]);
       return;
     }
 
-    // Magic Coat (or Magic Bounce) reflects Status Moves back at the attacker
     if (target && hasCondition(target, 'magicCoat') && system.isStatus) {
       await postAutomationMessage(target, [format("SYSTEM.Automation.MagicCoatReflect", { name: escape(target.name), move: escape(this.move.name) })]);
       target = this.user;
@@ -607,13 +580,12 @@ export class MoveRollDialog extends RollDialog {
       targetId: target?.uuid ?? null,
       moveName: this.move.name,
       moveType: effectiveMoveType(this.user, this.move),
-      resistBonusDice: this.dialogState.opportunity ? 1 : 0 // the target gains 1d6 against an Opportunity Strike
+      resistBonusDice: this.dialogState.opportunity ? 1 : 0
     }), { // not including adv/mult for status checks
       flavor: `${this.move.name}${target ? ` (${target.name})` : ""} - ${localize("SYSTEM.Automation.Status")}`,
     });
   }
 
-  /** A status move's effects: a Status roll against each foe, or applied directly to the user and allies. */
   async #rollStatusEffects() {
     const system = this.move.system;
     const { target: landing } = system.getSplitEffects('hit');
@@ -621,24 +593,26 @@ export class MoveRollDialog extends RollDialog {
     if (system.targetsFoe) {
       for (const target of this.#targetActors) await this.#rollStatusAgainst(target, landing);
     }
-    else if (landing.length) {
-      // Moves on yourself or allies don't need a Status Check
-      const targeted = this.#targetActors.filter(_ => _);
-      let recipients;
-      switch (system.target) {
-        case 'self': recipients = [this.user]; break;
-        case 'selfOrAlly': recipients = targeted.length ? targeted : [this.user]; break;
-        case 'selfAllies': recipients = [this.user, ...targeted.filter(actor => actor !== this.user)]; break;
-        default: recipients = targeted;
-      }
-      if (!recipients.length) await postAutomationMessage(this.user, [format("SYSTEM.Automation.ApplyManually", { effects: effectList(landing) })]);
-      for (const recipient of recipients) {
-        await applyEffects(recipient, landing, { sourceUuid: this.user.uuid, sourceName: this.user.name });
-      }
+    else await this.#applyFriendlyEffects(landing);
+  }
+
+  async #applyFriendlyEffects(landing) {
+    if (!landing.length) return;
+    const system = this.move.system;
+    const targeted = this.#targetActors.filter(_ => _);
+    let recipients;
+    switch (system.target) {
+      case 'self': recipients = [this.user]; break;
+      case 'selfOrAlly': recipients = targeted.length ? targeted : [this.user]; break;
+      case 'selfAllies': recipients = [this.user, ...targeted.filter(actor => actor !== this.user)]; break;
+      default: recipients = targeted;
+    }
+    if (!recipients.length) await postAutomationMessage(this.user, [format("SYSTEM.Automation.ApplyManually", { effects: effectList(landing) })]);
+    for (const recipient of recipients) {
+      await applyEffects(recipient, landing, { sourceUuid: this.user.uuid, sourceName: this.user.name });
     }
   }
 
-  /** A move with no roll (no power and no on-hit effect) just posts its description. */
   async #postDescription() {
     const description = this.move.system.description ? `<p>${escape(this.move.system.description)}</p>` : "";
     const chatData = {

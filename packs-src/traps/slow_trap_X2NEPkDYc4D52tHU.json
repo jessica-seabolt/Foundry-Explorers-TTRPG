@@ -1,0 +1,59 @@
+{
+  "name": "Slow Trap",
+  "type": "Item",
+  "img": "systems/explorers/assets/traps/slow_trap.png",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_id": "X2NEPkDYc4D52tHU",
+  "sort": 1400,
+  "system": {
+    "description": "Stepping on this trap lowers your Movement Modifier by 6.",
+    "category": "traps",
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "",
+    "trap": {
+      "avoid": [
+        "endurance"
+      ],
+      "difficulty": 10,
+      "visible": false,
+      "effects": [
+        {
+          "type": "effects",
+          "effects": [
+            {
+              "effect": "speDown",
+              "effectCount": 6
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "_key": "!items!X2NEPkDYc4D52tHU"
+}

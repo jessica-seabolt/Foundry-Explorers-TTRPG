@@ -17,7 +17,8 @@
     "Features": "Features",
     "Items": "Items",
     "Enemies": "Enemies",
-    "Tables": "Tables"
+    "Tables": "Tables",
+    "Traps": "Traps"
   },
   "SYSTEM": {
     "Dice": {
@@ -51,7 +52,8 @@
         "ThrownItems": "Thrown Items",
         "EvolutionItems": "Evolution Items",
         "FormChangingItems": "Form Changing Items",
-        "TmsAndHms": "TMs & HMs"
+        "TmsAndHms": "TMs & HMs",
+        "Traps": "Traps"
       },
       "Throw": {
         "None": "Can't be thrown",
@@ -59,6 +61,15 @@
         "Arc": "Arc"
       },
       "Targeting": "Targeting and Throwing",
+      "Drop": "Drop on the floor (or drag the item onto the map)",
+      "ChooseRecipient": "Who gets the {item}?",
+      "Yourself": "{name} (yourself)",
+      "ThrowAction": "Throw",
+      "Sticky": "Sticky",
+      "TrapLegend": "Trap",
+      "TrapReference": "Trap effect reference",
+      "StickyHint": "Can't be used or thrown until cleansed: use a Cleanse Orb, or leave the Dungeon.",
+      "Cleansed": "{count} Sticky Items were cleansed.",
       "Stole": "{name} stole {target}'s {item}!",
       "StealNoRoom": "{name} could steal {target}'s {item}, but has nowhere to put it.",
       "StealBlocked": "{name}'s {feature} kept its {item} from being stolen.",
@@ -183,7 +194,13 @@
           "throwType": {"label": "Thrown Damage Type"},
           "consumable": {"label": "Used Up When Used"},
           "becomes": {"label": "Becomes", "hint": "The item it turns into once used (e.g. Plain Seed)."},
-          "manualNote": {"label": "Left to the GM"}
+          "manualNote": {"label": "Left to the GM"},
+          "trap": {
+            "avoid": { "label": "Avoided With", "hint": "The Skills a Pokémon can roll to avoid this trap; it rolls its best. None means it can't be avoided." },
+            "difficulty": { "label": "Difficulty", "hint": "The Skill Check needed to avoid it (Easy 5, Medium 10, Hard 15, Very Hard 20)." },
+            "visible": { "label": "Always Visible", "hint": "Seen from the start, like a Wonder Tile. Other traps are hidden until stepped on." },
+            "effects": { "label": "Trap Effects" }
+          }
         }
       },
       "Move": {
@@ -483,7 +500,26 @@
       "RestHint": "Regain all HP and PP.",
       "NewFloor": "New Floor",
       "NewFloorHint": "Reset Stat Changes, as when moving to a new Floor.",
-      "OpportunityStrike": "Opportunity Strike"
+      "OpportunityStrike": "Opportunity Strike",
+      "Dash": "Dash",
+      "DashHint": "Your Action: double your Movement for this turn.",
+      "Escape": "Escape",
+      "EscapeHint": "Your Action: step away from a Pokémon without it getting an Opportunity Strike."
+    },
+    "Turns": {
+      "Toggle": "Turn Limits in Battle",
+      "NotYourTurn": "It isn't {name}'s turn.",
+      "ActionUsed": "{name} has already taken its Action this turn.",
+      "ReactionUsed": "{name} has already used its Reaction this Round.",
+      "TooFar": "{name} can only move {tiles} more tiles this turn.",
+      "NoMovement": "{name} can't move any further this turn.",
+      "Dashed": "{name} dashes, doubling its Movement: {tiles} tiles left this turn.",
+      "Escaped": "{name} focuses on escaping, and can step away without an Opportunity Strike.",
+      "SecondMove": "Second Move (half damage)",
+      "PriorityTitle": "Priority",
+      "PriorityPrompt": "It isn't {name}'s turn yet. Act now with a Priority Move? {name} can move first, then must use a Priority Move, and won't act again this Round.",
+      "PriorityDeclared": "{name} acts with Priority: drag its token again to move into place, then use a Priority Move.",
+      "PriorityOnly": "{name} is acting with Priority, so it has to use a Priority Move."
     },
     "Automation": {
       "Power": "Power",
@@ -566,6 +602,8 @@
       "RerollFlavor": "{skill} to end {label} (vs. {dc})"
     },
     "Targeting": {
+      "NoOpportunityTarget": "No foe has stepped away from this Pokémon. Target the Pokémon to strike first.",
+      "ChooseOpportunityTarget": "Several foes stepped away. Which one does the Opportunity Strike hit?",
       "Title": "Targeting",
       "ChooseDirection": "Choose a direction.",
       "PickLocation": "Pick a location",
@@ -586,6 +624,10 @@
       }
     },
     "Settings": {
+      "TurnLimits": {
+        "Name": "Turn Limits in Battle",
+        "Hint": "During a battle, each Pokémon can only move its Battle Movement and take one Action on its turn, and use one Reaction each Round. The GM can still move Pokémon off their turn (to push or pull them)."
+      },
       "AutoApplyDamage": {
         "Name": "Apply Damage Automatically",
         "Hint": "Deal a move's damage (or healing) to its target as soon as it's rolled, before any secondary effects. Untargeted rolls keep their Damage button."
@@ -636,21 +678,58 @@
       "TooManyMoves": "{name} now knows more than 4 Moves. A Pokémon can only know 4 at a time, so one should be forgotten."
     },
     "Migration": {
-      "Done": "Explorers updated {count} items and features in this world to match the latest system version.",
+      "Done": "Explorers updated {count} items, features, Pokémon and tokens in this world to match the latest system version.",
       "Failed": "Explorers couldn't update this world's items: {error}"
+    },
+    "Traps": {
+      "SteppedOn": "<img src=\"{img}\" width=\"32\" height=\"32\" style=\"vertical-align: middle; border: none\"> {name} stepped on a {trap}!",
+      "SteppedOnTile": "<img src=\"{img}\" width=\"32\" height=\"32\" style=\"vertical-align: middle; border: none\"> {name} stepped on a {trap}.",
+      "AvoidRoll": "{skill} Check to avoid the {trap} (Difficulty {difficulty})",
+      "Avoided": "{name} avoided the {trap}!",
+      "FloatedOver": "{name} floats over the {trap}, unaffected.",
+      "Hungry": "{name}'s Belly is suddenly empty!",
+      "PPLeeched": "{name}'s {move} lost all its PP!",
+      "Sealed": "{name}'s {move} is sealed until it Rests!",
+      "MoveSealed": "{move} is sealed and can't be used until the Pokémon Rests.",
+      "Stuck": "{name}'s {item} became Sticky!",
+      "IsSticky": "The {item} is Sticky: it can't be used or thrown until it's cleansed (leave the Dungeon or use a Cleanse Orb).",
+      "Grimy": "{count} of {name}'s Food Items became Grimy Food!",
+      "Transformed": "{name}'s {item} turned into a {to}!",
+      "StatsReset": "{name}'s Stat Changes went back to normal.",
+      "Warped": "{name} was warped somewhere else on the Floor!",
+      "WarpManual": "{name} is warped somewhere else on the Floor. (This scene has no floor data, so move the token by hand.)",
+      "BlownAway": "{name} was blown away!",
+      "Impact": "{trap} impact",
+      "Summoned": "{count} wild Pokémon appeared around {name}!",
+      "ItemsBecamePokemon": "{count} nearby Items turned into wild Pokémon!",
+      "Gathered": "{count} wild Pokémon gathered around {name}!",
+      "Grudge": "{count} wild Pokémon gathered around {name}, holding a Grudge!",
+      "BecameTrap": "The trap turned into a {trap}!",
+      "NoPokemonTable": "This floor has no Wild Pokémon table, so place the Pokémon by hand."
     },
     "FloorItems": {
       "PickedUp": "{name} picked up the {item} and put it in {team}'s bag.",
       "PickedUpHeld": "{name} picked up the {item} and is holding it.",
       "NoRoom": "{name} found the {item}, but the bag is full and their paws are too.",
       "ForSale": "{name} is standing on the {item}. Kecleon is selling it for {price} Poké.",
-      "CantDrop": "You can only drop items your Pokémon or Team are carrying."
+      "CantDrop": "You can only drop items your Pokémon or Team are carrying.",
+      "Dropped": "{name} dropped its {item}!",
+      "NotOnScene": "{name} isn't on the scene you're viewing, so there's nowhere to drop it.",
+      "NoSpace": "There's no free space around {name} to drop it."
     },
     "Dungeon": {
       "Generate": "Generate Dungeon Floor",
       "Title": "Generate Dungeon Floor",
-      "DefaultName": "Dungeon B1F",
-      "Name": "Scene Name",
+      "DefaultName": "Dungeon",
+      "DungeonName": "Dungeon Name",
+      "FirstFloor": "First Floor",
+      "Floors": "Number of Floors",
+      "Music": "Music",
+      "MusicNone": "None",
+      "FloorsSummary": "{first} to {last}",
+      "CreateFloors": "Create {count} Floors",
+      "Creating": "Creating dungeon floors: {done} of {total}",
+      "CreatedFloors": "Created {count} floors of {dungeon}.",
       "Tileset": "Tileset Sheet",
       "TilesetHint": "Pick a dungeon tileset sheet in SilverDeoxys563's format (The Spriters Resource, Explorers of Time/Darkness). Without one, the preview uses plain colours.",
       "TilesetError": "That image couldn't be read as a tileset sheet: {error}",
@@ -733,9 +812,12 @@
         "traps": "Traps",
         "pokemon": "Pokémon Spawns and Team Start"
       },
-      "MarkersHint": "Markers are Tiles placed where the game would put things. With an item table, item spots get real items that Team members pick up by walking onto them; buried items, traps and spawns are hidden markers for the GM. Markers are locked: unlock one from its Tile HUD (right-click) to move or delete it.",
+      "MarkersHint": "Markers are Tiles placed where the game would put things. With an item table, item spots get real items that Team members pick up by walking onto them; with a Wild Pokémon table, spawn points get Pokémon tokens (imported into the Wild Pokémon actor folder the first time). Buried items, traps and the Team's start are hidden markers for the GM. Markers are locked: unlock one from its Tile HUD (right-click) to move or delete it.",
       "ItemTable": "Items on the Floor",
-      "ItemTableNone": "None (hidden markers only)",
+      "EnemyTable": "Wild Pokémon",
+      "TrapTable": "Traps",
+      "AsleepChance": "Wild Pokémon Asleep (%)",
+      "TableNone": "None (hidden markers only)",
       "Import": "Import Dungeoneer Settings",
       "Reset": "Reset",
       "Reroll": "New Floor",

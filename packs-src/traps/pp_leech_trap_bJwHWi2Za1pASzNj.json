@@ -1,0 +1,53 @@
+{
+  "name": "PP Leech Trap",
+  "type": "Item",
+  "img": "systems/explorers/assets/traps/pp_leech_trap.png",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_id": "bJwHWi2Za1pASzNj",
+  "sort": 1100,
+  "system": {
+    "description": "Stepping on this trap lowers the PP of one of your moves to 0.",
+    "category": "traps",
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "",
+    "trap": {
+      "avoid": [
+        "endurance"
+      ],
+      "difficulty": 10,
+      "visible": false,
+      "effects": [
+        {
+          "type": "ppLeech"
+        }
+      ]
+    }
+  },
+  "_key": "!items!bJwHWi2Za1pASzNj"
+}

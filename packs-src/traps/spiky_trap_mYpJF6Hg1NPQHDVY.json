@@ -1,0 +1,54 @@
+{
+  "name": "Spiky Trap",
+  "type": "Item",
+  "img": "systems/explorers/assets/traps/spiky_trap.png",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_id": "mYpJF6Hg1NPQHDVY",
+  "sort": 1700,
+  "system": {
+    "description": "Stepping on this trap drops Spikes on you, causing 25 damage.",
+    "category": "traps",
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "",
+    "trap": {
+      "avoid": [
+        "movement"
+      ],
+      "difficulty": 10,
+      "visible": false,
+      "effects": [
+        {
+          "type": "damage",
+          "amount": 25
+        }
+      ]
+    }
+  },
+  "_key": "!items!mYpJF6Hg1NPQHDVY"
+}

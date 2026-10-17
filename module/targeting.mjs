@@ -15,10 +15,8 @@ const DIRECTION_ICONS = {
   w: "fa-arrow-left", e: "fa-arrow-right",
   sw: "fa-arrow-down-left", s: "fa-arrow-down", se: "fa-arrow-down-right",
 };
-// Remembers each token's last facing for this session, to preselect it next time
 const lastFacing = new Map();
 
-/** The token representing an actor on the current scene, preferring a controlled one. */
 export function getActorToken(actor) {
   const tokens = actor?.getActiveTokens(true) ?? [];
   return tokens.find(token => token.controlled) ?? tokens[0] ?? null;
@@ -37,7 +35,6 @@ function tokenInfo(token) {
   };
 }
 
-/** Everything targeting needs to know about the scene, from the user's point of view. */
 function buildScene(actor) {
   const userToken = getActorToken(actor);
   if (!userToken) return null;
@@ -72,23 +69,17 @@ function setUserTargets(tokens) {
   canvas.tokens.setTargets(tokens.map(token => token.id), { mode: "replace" });
 }
 
-/** A short description of a move's targeting, e.g. "Foe up to 4 tiles ahead". */
 export function describeTargeting(system, { range: rangeId = system.range, rangeCount = system.rangeCount } = {}) {
   const target = system.target ? game.i18n.localize(targets[system.target]) : "";
   const range = rangeId ? game.i18n.format(ranges[rangeId], { X: rangeCount ?? "" }) : "";
   return [target, range].filter(Boolean).join(" ");
 }
 
-/**
- * Picks the targets for a move from its Target and Range, setting them as the user's targets.
- * Asks the user only when there's a real choice (a direction, a location, or which of several targets).
- * @returns {Promise<boolean>}  false if the user cancelled
- */
 export async function pickTargets(actor, move, { force = false } = {}) {
   const system = move.system;
   if (!force && !game.settings.get(SYSTEM_ID, "autoTargeting")) return true;
-  if (system.target === 'self' || (!system.target && system.range !== 'special')) return true; // nothing to aim
-  if (!canvas?.ready || !canvas.grid.isSquare) return true; // targeting only understands square grids
+  if (system.target === 'self' || (!system.target && system.range !== 'special')) return true;
+  if (!canvas?.ready || !canvas.grid.isSquare) return true;
 
   const scene = buildScene(actor);
   if (!scene) {
@@ -96,20 +87,17 @@ export async function pickTargets(actor, move, { force = false } = {}) {
     return true;
   }
   const location = system.range === 'special' ? parseLocationMove(system.description) : null;
-  if (system.range === 'special' && !location) return true; // other special moves are aimed by hand
+  if (system.range === 'special' && !location) return true;
 
-  // Features can extend a move's range (Long Reach, Focused Shot)
   const { range, rangeCount } = effectiveRange(actor, move);
   const moveSpec = { target: system.target ?? 'foes', range, rangeCount };
   const lineOptions = { pierce: hasRule(actor, "pierce") && range === 'ahead', throughAllies: hasRule(actor, "shootThroughAllies") };
   const compute = (direction = null, chosenLocation = null) => {
     const result = computeTargets({ ...scene, ...lineOptions, move: moveSpec, direction, location: chosenLocation, burst: location?.burst });
-    // "Self or Ally" moves can also be used on yourself
     if (moveSpec.target === 'selfOrAlly') result.candidates.unshift(scene.user);
     return result;
   };
 
-  // Resolve without asking when there's only one sensible choice
   if (!location) {
     if (needsDirection(range)) {
       const withTargets = Object.keys(DIRECTIONS).map(direction => ({ direction, result: compute(direction) }))
@@ -127,6 +115,62 @@ export async function pickTargets(actor, move, { force = false } = {}) {
   }
 
   return new TargetingDialog({ actor, move, scene, compute, location, range, rangeCount }).wait();
+}
+
+const RETREAT_MEMORY_MS = 5 * 60 * 1000;
+const retreats = new Map();
+
+const battleRound = scene => game.combats?.find(combat => combat.scene === scene && combat.started)?.round ?? null;
+
+function rememberRetreats(tokenDocument, movement) {
+  const scene = tokenDocument.parent;
+  if (!scene || !movement.origin || !movement.destination) return;
+  const from = tokenDocument.getOccupiedGridSpaceOffsets(movement.origin);
+  const to = tokenDocument.getOccupiedGridSpaceOffsets(movement.destination);
+  const now = Date.now();
+  for (const other of scene.tokens) {
+    if (other === tokenDocument || !other.actor || other.disposition === tokenDocument.disposition) continue;
+    const cells = other.getOccupiedGridSpaceOffsets();
+    if (tileDistance(from, cells) > 1 || tileDistance(to, cells) <= 1) continue;
+    const list = (retreats.get(other.id) ?? []).filter(entry => entry.tokenId !== tokenDocument.id && now - entry.time < RETREAT_MEMORY_MS);
+    list.push({ tokenId: tokenDocument.id, sceneId: scene.id, round: battleRound(scene), time: now });
+    retreats.set(other.id, list);
+  }
+}
+
+export function registerOpportunityHooks() {
+  Hooks.on("moveToken", rememberRetreats);
+}
+
+export async function aimOpportunityStrike(actor) {
+  if (!globalThis.canvas?.ready) return true;
+  const userToken = getActorToken(actor);
+  if (!userToken) return true;
+  const scene = canvas.scene;
+  const round = battleRound(scene);
+  const isFoe = token => token !== userToken && token.actor && token.document.disposition !== userToken.document.disposition
+    && !token.actor.statuses.has(FAINTED_STATUS);
+  let choices = (retreats.get(userToken.id) ?? [])
+    .filter(entry => entry.sceneId === scene.id && Date.now() - entry.time < RETREAT_MEMORY_MS && (round === null || entry.round === round))
+    .reverse().map(entry => canvas.tokens.get(entry.tokenId)).filter(token => token && isFoe(token));
+  if (!choices.length) choices = [...game.user.targets].filter(isFoe);
+  if (!choices.length) {
+    ui.notifications.warn("SYSTEM.Targeting.NoOpportunityTarget", { localize: true });
+    return false;
+  }
+  let chosen = choices[0];
+  if (choices.length > 1) {
+    const id = await foundry.applications.api.DialogV2.wait({
+      window: { title: "SYSTEM.Actions.OpportunityStrike" },
+      content: `<p>${game.i18n.localize("SYSTEM.Targeting.ChooseOpportunityTarget")}</p>`,
+      buttons: choices.map(token => ({ action: token.id, label: token.name })),
+      rejectClose: false
+    });
+    chosen = choices.find(token => token.id === id);
+    if (!chosen) return false;
+  }
+  setUserTargets([chosen]);
+  return true;
 }
 
 function confirmAutomatically(scene, result, direction) {
@@ -195,7 +239,6 @@ class TargetingDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     context.description = describeTargeting(system, { range: this.range, rangeCount: this.rangeCount });
     context.needsDirection = needsDirection(this.range);
     if (context.needsDirection) {
-      // Lay out the 8 directions around the user's token, with how many targets each would hit
       const order = ['nw', 'n', 'ne', 'w', null, 'e', 'sw', 's', 'se'];
       context.directions = order.map(direction => direction ? {
         direction,
@@ -222,7 +265,6 @@ class TargetingDialog extends HandlebarsApplicationMixin(ApplicationV2) {
   _onRender(context, options) {
     super._onRender(context, options);
     highlightCells(this.result?.cells ?? []);
-    // Preview each direction's area while hovering it
     for (const button of this.element.querySelectorAll("[data-action=direction]")) {
       button.addEventListener("mouseenter", () => highlightCells(this.compute(button.dataset.direction).cells));
       button.addEventListener("mouseleave", () => highlightCells(this.result?.cells ?? []));
@@ -277,7 +319,6 @@ class TargetingDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     const selected = new Set(Array.from(this.element.querySelectorAll("input[name=target]:checked"), input => input.value));
     const candidates = this.result?.candidates ?? [];
     const chosen = candidates.filter(candidate => selected.has(candidate.id)).map(candidate => candidate.token);
-    // With no valid targets the move can still be used ("Use anyway"); otherwise at least one must be picked
     if (!chosen.length && candidates.length && !includesSelf(this.move.system.target)) {
       ui.notifications.warn("SYSTEM.Targeting.NoneChosen", { localize: true });
       return;

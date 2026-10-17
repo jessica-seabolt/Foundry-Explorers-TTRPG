@@ -2,6 +2,8 @@
   <div class="action-buttons">
     <button type="button" data-action="basicAttack"><i class="fa-solid fa-hand-fist"></i> {{localize "SYSTEM.Actions.BasicAttack"}}</button>
     <button type="button" data-action="guard" class="{{#if isGuarding}}active{{/if}}" data-tooltip="SYSTEM.Actions.GuardHint"><i class="fa-solid fa-shield"></i> {{localize "SYSTEM.Actions.Guard"}}</button>
+    <button type="button" data-action="dash" data-tooltip="SYSTEM.Actions.DashHint"><i class="fa-solid fa-person-running"></i> {{localize "SYSTEM.Actions.Dash"}}</button>
+    <button type="button" data-action="escape" data-tooltip="SYSTEM.Actions.EscapeHint"><i class="fa-solid fa-person-walking-arrow-right"></i> {{localize "SYSTEM.Actions.Escape"}}</button>
   </div>
   {{#if moves}}
   <div class="move-grid scrollable">

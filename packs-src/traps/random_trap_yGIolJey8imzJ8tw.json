@@ -1,0 +1,51 @@
+{
+  "name": "Random Trap",
+  "type": "Item",
+  "img": "systems/explorers/assets/traps/random_trap.png",
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "explorers",
+    "systemVersion": "1.6.6",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "ownership": {
+    "default": 0
+  },
+  "_id": "yGIolJey8imzJ8tw",
+  "sort": 1200,
+  "system": {
+    "description": "Stepping on this trap has a random effect on your party. This turns the trap into any other trap.",
+    "category": "traps",
+    "price": null,
+    "rules": [],
+    "onUse": [],
+    "target": null,
+    "range": null,
+    "rangeCount": null,
+    "throwMode": "none",
+    "throwDamage": "",
+    "throwType": null,
+    "consumable": false,
+    "becomes": "",
+    "manualNote": "",
+    "trap": {
+      "avoid": [],
+      "difficulty": 10,
+      "visible": false,
+      "effects": [
+        {
+          "type": "random"
+        }
+      ]
+    }
+  },
+  "_key": "!items!yGIolJey8imzJ8tw"
+}

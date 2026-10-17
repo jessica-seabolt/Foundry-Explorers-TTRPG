@@ -1,5 +1,3 @@
-# Runs tools/packs.mjs with the Node.js runtime bundled in Foundry, so Node doesn't need to be installed.
-# Usage: tools/packs.ps1 build|extract [pack ...]   (close Foundry first; it locks the packs)
 param([Parameter(Mandatory = $true)][ValidateSet("build", "extract")][string]$Command, [string[]]$Packs = @())
 
 $root = Split-Path -Parent $PSScriptRoot
@@ -11,7 +9,7 @@ if (-not $exe) { throw "No Foundry executable found in $installPath" }
 
 $env:ELECTRON_RUN_AS_NODE = "1"
 try {
-  # Foundry's exe is a GUI program, so PowerShell only waits for it (and shows its output) when the output is piped
+  # Piped so PowerShell waits for the exe
   & $exe.FullName (Join-Path $PSScriptRoot "packs.mjs") $Command @Packs 2>&1 | ForEach-Object { "$_" }
   exit $LASTEXITCODE
 } finally {
