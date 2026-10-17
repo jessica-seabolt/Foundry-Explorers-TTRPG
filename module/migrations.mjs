@@ -7,7 +7,18 @@ const MIGRATIONS = [
   { version: 1, run: migrateItemIconsAndStealing },
   { version: 2, run: unnumberWildPokemon },
   { version: 3, run: () => refreshFeatureRules(["Rapid-Fire Cannon"]) },
-  { version: 4, run: () => refreshMoveEffects(["Leech Seed", "Ingrain"]) }
+  { version: 4, run: () => refreshMoveEffects(["Leech Seed", "Ingrain"]) },
+  { version: 5, run: refreshWeatherRules }
+];
+
+const WEATHER_FEATURES = [
+  "Air Lock", "Chlorophyll", "Drizzle", "Drought", "Dry Skin", "Electric Surge", "Flower Gift", "Grass Pelt", "Grassy Surge",
+  "Hydration", "Ice Body", "Leaf Guard", "Misty Surge", "Overcoat", "Protected from the Elements", "Protosynthesis",
+  "Psychic Surge", "Rain Dish", "Sand Force", "Sand Rush", "Sand Stream", "Sand Veil", "Slush Rush", "Snow Cloak",
+  "Snow Warning", "Solar Powered", "Surge Surfer", "Swift Swim"
+];
+const WEATHER_ITEMS = [
+  "Rainy Orb", "Sandy Orb", "Snowy Orb", "Sunny Orb", "Weather Lock Orb", "Weather Band", "Utility Umbrella", "Terrain Extender"
 ];
 
 export function registerMigrationSettings() {
@@ -68,6 +79,21 @@ async function refreshFeatureRules(names) {
     const source = item.type === "Feature" && updated.get(item.name);
     if (!source || JSON.stringify(item.system.rules) === JSON.stringify(source.rules)) return null;
     return { "system.rules": source.rules, "system.manualNote": source.manualNote ?? "" };
+  });
+}
+
+async function refreshWeatherRules() {
+  return await refreshFeatureRules(WEATHER_FEATURES) + await refreshItemRules(WEATHER_ITEMS) + await refreshMoveEffects(["Snowscape"]);
+}
+
+async function refreshItemRules(names) {
+  const items = await game.packs.get(`${SYSTEM_ID}.items`)?.getIndex({ fields: ["system.rules", "system.onUse", "system.manualNote"] });
+  const updated = new Map((items ?? []).filter(entry => names.includes(entry.name)).map(entry => [entry.name, entry.system]));
+  return updateItems(item => {
+    const source = item.type === "Item" && updated.get(item.name);
+    if (!source) return null;
+    if (JSON.stringify(item.system.rules) === JSON.stringify(source.rules) && JSON.stringify(item.system.onUse) === JSON.stringify(source.onUse)) return null;
+    return { "system.rules": source.rules, "system.onUse": source.onUse, "system.manualNote": source.manualNote ?? "" };
   });
 }
 

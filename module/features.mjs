@@ -1,3 +1,5 @@
+import { fieldMatches, fieldMoveType, tokenOf } from './weather.mjs';
+
 export const featureCategories = {
   classAbility: "SYSTEM.Features.Categories.ClassAbility",
   classFeature: "SYSTEM.Features.Categories.ClassFeature",
@@ -48,9 +50,9 @@ export const RULE_TYPES = {
   skillDice: '{"type":"skillDice","skill":"awareness","dice":1}',
   hpPerLevel: '{"type":"hpPerLevel","amount":5}',
   visibility: '{"type":"visibility","amount":5}',
-  statModifier: '{"type":"statModifier","stat":"def","amount":2,"whenUserStatus":"any","whenAura":null}  ("stat" can be a list)',
+  statModifier: '{"type":"statModifier","stat":"def","amount":2,"whenUserStatus":"any","whenAura":null}  ("stat" can be a list, or "highest")',
   permanentCondition: '{"type":"permanentCondition","condition":"magicCoat"}',
-  conditionImmunity: '{"type":"conditionImmunity","conditions":["paralyzed"]}',
+  conditionImmunity: '{"type":"conditionImmunity","conditions":["paralyzed"]}  (or "any")',
   bypassConditionImmunity: '{"type":"bypassConditionImmunity","conditions":["poisoned","badlyPoisoned"]}',
   statLowerImmunity: '{"type":"statLowerImmunity","stats":["def"],"fromOthers":false}  (or ["all"])',
   statChange: '{"type":"statChange","mode":"double"}  (or "invert")',
@@ -64,7 +66,7 @@ export const RULE_TYPES = {
   onDamaged: '{"type":"onDamaged","stealAttackerItem":false,"physical":true,"moveTypes":["fire"],"tag":"wind","critical":false,"chance":5,"effects":[],"attackerEffects":[{"effect":"burned"}],"attackerDamage":"1d6","selfDamage":null}',
   onHpBelow: '{"type":"onHpBelow","fraction":0.5,"effects":[{"effect":"spatkUp","effectCount":2}],"heal":{"percent":25}}',
   moveType: '{"type":"moveType","from":"normal","tag":null,"to":"flying"}  (no "from" or "tag" changes every move)',
-  movePower: '{"type":"movePower","amount":1,"physical":true,"special":true,"tag":"punch","moveType":null,"healing":false,"stab":false,"maxLevel":null,"priority":false,"opportunity":false,"whenUserStatus":null,"whenUserHp":null,"whenTargetStatus":null,"removeSecondary":false}',
+  movePower: '{"type":"movePower","amount":1,"physical":true,"special":true,"tag":"punch","moveType":null,"healing":false,"stab":false,"maxLevel":null,"priority":false,"opportunity":false,"whenUserStatus":null,"whenUserHp":null,"whenTargetStatus":null,"removeSecondary":false,"team":false}  ("team" also boosts allies)',
   critRange: '{"type":"critRange","min":5}',
   statusCheckDice: '{"type":"statusCheckDice","dice":1}',
   steamroll: '{"type":"steamroll","moveTypes":null,"matchups":["notVeryEffective","mostlyIneffective","immune"]}',
@@ -85,7 +87,7 @@ export const RULE_TYPES = {
   range: '{"type":"range","physical":true,"special":false,"from":"front","to":"away","count":2}  (or "countBonus":1)',
   pierce: '{"type":"pierce"}',
   shootThroughAllies: '{"type":"shootThroughAllies"}',
-  onTurnEnd: '{"type":"onTurnEnd","effects":[{"effect":"speUp","effectCount":2}],"damage":null}',
+  onTurnEnd: '{"type":"onTurnEnd","effects":[{"effect":"speUp","effectCount":2}],"damage":null,"heal":null,"cure":null}  ("cure" can be "any")',
   poisonHeal: '{"type":"poisonHeal"}',
   earlyBird: '{"type":"earlyBird"}',
   ignoreHeldItem: '{"type":"ignoreHeldItem"}  (Klutz)',
@@ -93,6 +95,13 @@ export const RULE_TYPES = {
   blockStatusMoves: '{"type":"blockStatusMoves"}  (Assault Vest)',
   bellyNeed: '{"type":"bellyNeed","multiplier":2}  (Munch Band)',
   onHeldItemLost: '{"type":"onHeldItemLost","effects":[{"effect":"speUp","effectCount":2}]}  (Unburden)',
+  statMultiplier: '{"type":"statMultiplier","stat":"spe","multiplier":2}',
+  ignoreWeather: '{"type":"ignoreWeather","weathers":["harshSunlight","rain"]}  (no "weathers" ignores all)',
+  weatherImmunity: '{"type":"weatherImmunity","weathers":["sandstorm"]}',
+  evasion: '{"type":"evasion","chance":3}  (attacks miss on a d6 roll of this or lower)',
+  onBattleStart: '{"type":"onBattleStart","weather":"rain"}  (or "terrain":"electricTerrain")',
+  terrainRounds: '{"type":"terrainRounds","rounds":10}',
+  _field: 'Add "whenWeather":"rain" or "whenTerrain":"grassyTerrain" to any rule to limit it to that Weather or Terrain.',
   _consume: 'Add "consume": true to a held item\'s rule to use the item up when it triggers (Berries, Gems).',
 };
 
@@ -101,7 +110,7 @@ export function getRules(actor, type) {
   const rules = [];
   const collect = (item, extra = {}) => {
     for (const rule of item.system.rules ?? []) {
-      if (rule?.type === type) rules.push({ ...rule, source: item.name, ...extra });
+      if (rule?.type === type && fieldMatches(actor, rule)) rules.push({ ...rule, source: item.name, ...extra });
     }
   };
   const features = actor.items.filter(item => item.type === "Feature");
@@ -154,7 +163,7 @@ function moveMatches(rule, { move, moveType, isPhysical, isStab, opportunity }) 
   if (rule.special === true && rule.physical !== true && !(!isPhysical && damaging)) return false;
   if (rule.physical === true && rule.special === true && !damaging) return false;
   if (rule.tag && !system.hasTag?.(rule.tag)) return false;
-  if (rule.moveType && rule.moveType !== moveType) return false;
+  if (rule.moveType && !asArray(rule.moveType).includes(moveType)) return false;
   if (rule.healing && !system.hasTag?.('healPower')) return false;
   if (rule.stab && !isStab) return false;
   if (rule.maxLevel && system.level > rule.maxLevel) return false;
@@ -181,9 +190,16 @@ export const skillBonusDice = (actor, skill) =>
 export const visibilityBonus = actor => getRules(actor, "visibility").reduce((sum, rule) => sum + (rule.amount ?? 0), 0);
 export const hpPerLevelBonus = actor => getRules(actor, "hpPerLevel").reduce((sum, rule) => sum + (rule.amount ?? 0), 0);
 
+const HIGHEST_STATS = ['atk', 'def', 'spatk', 'spdef', 'spe'];
+// Ties go to the first stat; the rulebook rolls a d6.
+function highestStat(actor) {
+  const abilities = actor.system?.abilities ?? {};
+  return HIGHEST_STATS.reduce((best, stat) => (abilities[stat]?.raw ?? 0) > (abilities[best]?.raw ?? 0) ? stat : best);
+}
+
 export function statModifierBonus(actor, stat) {
   return getRules(actor, "statModifier")
-    .filter(rule => asArray(rule.stat).includes(stat) && statusMatches(actor, rule.whenUserStatus))
+    .filter(rule => (asArray(rule.stat).includes(stat) || (rule.stat === "highest" && highestStat(actor) === stat)) && statusMatches(actor, rule.whenUserStatus))
     .filter(rule => !rule.whenAura || rule.whenAura === actor.system?.auraColor)
     .reduce((sum, rule) => sum + (rule.amount ?? 0), 0);
 }
@@ -195,7 +211,14 @@ export function effectiveMoveType(actor, move) {
     if (rule.from && rule.from !== type) continue;
     type = rule.to;
   }
-  return type;
+  return fieldMoveType(actor, move, type);
+}
+
+function teamRules(actor, type) {
+  const token = tokenOf(actor);
+  if (!token?.parent) return [];
+  return token.parent.tokens.filter(other => other !== token && other.actor && other.disposition === token.disposition)
+    .flatMap(other => getRules(other.actor, type).filter(rule => rule.team));
 }
 
 export function movePowerBonus(actor, move, { target = null, moveType, isPhysical, isStab, opportunity = false } = {}) {
@@ -204,7 +227,7 @@ export function movePowerBonus(actor, move, { target = null, moveType, isPhysica
   let removeSecondary = false;
   const sources = [];
   const consumed = [];
-  for (const rule of getRules(actor, "movePower")) {
+  for (const rule of [...getRules(actor, "movePower"), ...teamRules(actor, "movePower")]) {
     if (!moveMatches(rule, context)) continue;
     if (!statusMatches(actor, rule.whenUserStatus) || !hpMatches(actor, rule.whenUserHp)) continue;
     if (rule.whenTargetStatus && !(target && statusMatches(target, rule.whenTargetStatus))) continue;

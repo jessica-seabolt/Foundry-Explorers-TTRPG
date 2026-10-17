@@ -1,5 +1,6 @@
 import { SYSTEM_ID } from '../constants.mjs';
 import { offsetPolygons, polygonContaining, roomOfToken, roomVisionArea } from './rooms.mjs';
+import { visibilityPenalty } from './weather.mjs';
 
 const { PointVisionSource } = foundry.canvas.sources;
 
@@ -25,7 +26,10 @@ export class ExplorersVisionSource extends PointVisionSource {
         return;
       }
     }
-    if (dungeonRules && this.data.radius > 0) los = los.applyConstraint(new PIXI.Circle(origin.x, origin.y, this.data.radius));
+    if (dungeonRules && this.data.radius > 0) {
+      const radius = Math.max(this.data.radius - visibilityPenalty(token.actor) * canvas.grid.size, canvas.grid.size / 2);
+      los = los.applyConstraint(new PIXI.Circle(origin.x, origin.y, radius));
+    }
     this.los = los;
     this.light = this._createLightPolygon();
     this.shape = this._createRestrictedPolygon();

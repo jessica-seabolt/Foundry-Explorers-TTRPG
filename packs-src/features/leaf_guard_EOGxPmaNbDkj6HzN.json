@@ -10,7 +10,13 @@
     "level": null,
     "prerequisite": "Grass-Type Pokémon",
     "prerequisiteLevel": 3,
-    "rules": [],
+    "rules": [
+      {
+        "type": "conditionImmunity",
+        "conditions": "any",
+        "whenWeather": "harshSunlight"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

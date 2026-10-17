@@ -1,6 +1,7 @@
 import { SYSTEM_ID } from '../constants.mjs';
 import { emitToGM, registerSocketHandler } from './socket.mjs';
 import { processEndOfTurn, processStartOfTurn } from './conditions.mjs';
+import { startBattleField, tickTerrains } from './weather.mjs';
 
 const { Combat } = foundry.documents;
 const { Roll } = foundry.dice;
@@ -12,7 +13,14 @@ export class ExplorersCombat extends Combat {
   async startCombat() {
     const unrolled = this.combatants.filter(c => c.initiative === null).map(c => c.id);
     if (unrolled.length) await this.rollInitiative(unrolled, { updateTurn: false });
+    await startBattleField(this.combatants.contents);
     return super.startCombat();
+  }
+
+  async _onEndRound(context) {
+    await super._onEndRound(context);
+    const scene = this.scene ?? canvas?.scene;
+    if (scene) await tickTerrains(scene);
   }
 
   async _onStartTurn(combatant, context) {
@@ -186,6 +194,7 @@ export function registerCombatHooks() {
   });
   Hooks.on("createCombatant", combatant => {
     if (combatant.initiative !== null) scheduleTieResolution(combatant.parent);
+    if (game.user.isActiveGM && combatant.parent.started) startBattleField([combatant]);
   });
   Hooks.on("deleteCombatant", combatant => scheduleTieResolution(combatant.parent));
   Hooks.on("deleteCombat", combat => {

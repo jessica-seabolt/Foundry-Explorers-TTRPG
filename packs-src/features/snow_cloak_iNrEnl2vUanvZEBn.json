@@ -10,7 +10,13 @@
     "level": null,
     "prerequisite": "Ice-Type Pokémon",
     "prerequisiteLevel": 3,
-    "rules": [],
+    "rules": [
+      {
+        "type": "evasion",
+        "chance": 3,
+        "whenWeather": "snowstorm"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

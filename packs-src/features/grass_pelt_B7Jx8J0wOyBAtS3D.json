@@ -10,7 +10,14 @@
     "level": null,
     "prerequisite": "Grass-Type Pokémon",
     "prerequisiteLevel": 3,
-    "rules": [],
+    "rules": [
+      {
+        "type": "statModifier",
+        "stat": "def",
+        "amount": 2,
+        "whenTerrain": "grassyTerrain"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

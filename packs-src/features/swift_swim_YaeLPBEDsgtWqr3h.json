@@ -10,8 +10,15 @@
     "level": null,
     "prerequisite": "Water-Type Pokémon",
     "prerequisiteLevel": 3,
-    "rules": [],
-    "manualNote": ""
+    "rules": [
+      {
+        "type": "statMultiplier",
+        "stat": "spe",
+        "multiplier": 2,
+        "whenWeather": "rain"
+      }
+    ],
+    "manualNote": "Doubled Speed in water tiles."
   },
   "effects": [],
   "folder": "km7lMLkpOyOmoYSx",

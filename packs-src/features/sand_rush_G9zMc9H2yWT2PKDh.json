@@ -10,7 +10,20 @@
     "level": null,
     "prerequisite": "",
     "prerequisiteLevel": 3,
-    "rules": [],
+    "rules": [
+      {
+        "type": "weatherImmunity",
+        "weathers": [
+          "sandstorm"
+        ]
+      },
+      {
+        "type": "statMultiplier",
+        "stat": "spe",
+        "multiplier": 2,
+        "whenWeather": "sandstorm"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

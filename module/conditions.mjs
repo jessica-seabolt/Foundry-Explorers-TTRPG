@@ -6,6 +6,7 @@ import {
   durationEffects, untilNextTurnConditions, statKeys, weathers, terrains, effects, skills
 } from './types.mjs';
 import { AFFLICTIONS, getRules, hasRule } from './features.mjs';
+import { applyFieldEffect, familyOf, fieldBlocksCondition, fieldLabel, harshWeatherFor, terrainFor, weatherFor } from './weather.mjs';
 
 const { Roll } = foundry.dice;
 const ACTOR_OP_ACTION = "actorOp";
@@ -170,7 +171,7 @@ export async function applyEffectsLocal(actor, effectList, context = {}) {
     }
 
     if (weathers[effect] || terrains[effect]) {
-      lines.push(format("SYSTEM.Automation.WeatherChanged", { label }));
+      await applyFieldEffect(actor, effect);
       continue;
     }
 
@@ -216,10 +217,12 @@ function conditionBlockedReason(actor, effect, context) {
   if (!bypassed && immuneTypes.some(type => actorTypes.includes(type))) {
     return format("SYSTEM.Automation.BlockedType", { name, label });
   }
+  const field = fieldBlocksCondition(actor, effect);
+  if (field) return format("SYSTEM.Automation.BlockedField", { name, label, field: fieldLabel(field) });
   if ((effect === "asleep" || effect === "yawning") && actor.statuses.has("insomnia")) {
     return format("SYSTEM.Automation.BlockedInsomnia", { name, label });
   }
-  const immunity = getRules(actor, "conditionImmunity").find(rule => (rule.conditions ?? []).includes(effect));
+  const immunity = getRules(actor, "conditionImmunity").find(rule => rule.conditions === "any" ? AFFLICTIONS.has(effect) : (rule.conditions ?? []).includes(effect));
   if (immunity) return format("SYSTEM.Automation.BlockedFeature", { name, label, feature: escape(immunity.source) });
   return null;
 }
@@ -331,6 +334,12 @@ async function tickDamage(actor, formula, label) {
   await actor.system.applyDamage?.({ amount: roll.total, label });
 }
 
+async function tickHeal(actor, formula, label) {
+  const roll = await new Roll(formula).evaluate();
+  await roll.toMessage({ speaker: foundry.documents.ChatMessage.implementation.getSpeaker({ actor }), flavor: label });
+  await actor.system.heal?.(roll.total, label);
+}
+
 export async function processStartOfTurn(actor) {
   if (!actor?.system?.hp) return;
   const name = escape(actor.name);
@@ -364,6 +373,12 @@ export async function processStartOfTurn(actor) {
   await postAutomationMessage(actor, lines);
 
   if (actor.system.hp.raw <= 0) return;
+
+  if (actor.statuses.has("frozen") && familyOf(weatherFor(actor)) === "harshSunlight") {
+    await removeCondition(actor, "frozen");
+    await postAutomationMessage(actor, [format("SYSTEM.Automation.Thawed", { name })]);
+  }
+  if (terrainFor(actor) === "grassyTerrain" && actor.system.hp.raw < actor.system.hp.max) await tickHeal(actor, "1d6", fieldLabel("grassyTerrain"));
 
   for (const rule of getRules(actor, "onTurnStart")) {
     if (rule.damage) await tickDamage(actor, rule.damage, rule.source);
@@ -490,8 +505,12 @@ export async function processEndOfTurn(actor) {
     const seeder = sourceUuid ? await fromUuid(sourceUuid) : null;
     if (seeder && seeder !== actor && seeder.system?.hp?.raw > 0) await healActor(seeder, roll.total, label);
   }
+  if (harshWeatherFor(actor) === "sandstorm") await tickDamage(actor, "1d6", fieldLabel("sandstorm"));
   for (const rule of getRules(actor, "onTurnEnd")) {
+    if (actor.system.hp.raw <= 0) return;
     if (rule.damage) await tickDamage(actor, rule.damage, rule.source);
+    if (rule.heal) await tickHeal(actor, rule.heal, rule.source);
+    if (rule.cure) await cureConditionsLocal(actor, rule.cure === "any" ? [...AFFLICTIONS] : rule.cure);
     if (!rule.effects?.length) continue;
     await postAutomationMessage(actor, [format("SYSTEM.Automation.FeatureTriggered", { name: escape(actor.name), feature: escape(rule.source) })]);
     await applyEffectsLocal(actor, rule.effects, { sourceUuid: actor.uuid, sourceName: actor.name });

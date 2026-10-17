@@ -1,6 +1,6 @@
 import { SYSTEM_ID } from '../constants.mjs';
 
-const SOCKET_NAME = `system.${SYSTEM_ID}`;
+const socketName = () => `system.${SYSTEM_ID}`;
 const RESPONSE_ACTION = "response";
 const REQUEST_TIMEOUT_MS = 10000;
 const handlers = {};
@@ -15,7 +15,7 @@ export function emitToGM(action, data) {
     ui.notifications.warn("SYSTEM.Socket.NoGM", { localize: true });
     return false;
   }
-  game.socket.emit(SOCKET_NAME, { ...data, action });
+  game.socket.emit(socketName(), { ...data, action });
   return true;
 }
 
@@ -34,12 +34,12 @@ export function requestFromGM(action, data) {
       clearTimeout(timeout);
       resolve(result);
     });
-    game.socket.emit(SOCKET_NAME, { ...data, action, requestId, userId: game.user.id });
+    game.socket.emit(socketName(), { ...data, action, requestId, userId: game.user.id });
   });
 }
 
 export function initSocket() {
-  game.socket.on(SOCKET_NAME, async data => {
+  game.socket.on(socketName(), async data => {
     if (data?.action === RESPONSE_ACTION) {
       if (data.userId !== game.user.id) return;
       pendingRequests.get(data.requestId)?.(data.result);
@@ -49,7 +49,7 @@ export function initSocket() {
     if (!game.user.isActiveGM) return;
     const result = await handlers[data?.action]?.(data);
     if (data.requestId) {
-      game.socket.emit(SOCKET_NAME, { action: RESPONSE_ACTION, requestId: data.requestId, userId: data.userId, result: result ?? null });
+      game.socket.emit(socketName(), { action: RESPONSE_ACTION, requestId: data.requestId, userId: data.userId, result: result ?? null });
     }
   });
 }

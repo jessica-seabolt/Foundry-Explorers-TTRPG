@@ -10,7 +10,12 @@
     "level": null,
     "prerequisite": "",
     "prerequisiteLevel": 6,
-    "rules": [],
+    "rules": [
+      {
+        "type": "onBattleStart",
+        "weather": "harshSunlight"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

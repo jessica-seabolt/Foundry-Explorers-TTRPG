@@ -21,6 +21,7 @@ import { registerMigrationSettings, runMigrations } from './module/migrations.mj
 import { registerTurnHooks, registerTurnSettings } from './module/turns.mjs';
 import { registerOpportunityHooks } from './module/targeting.mjs';
 import { registerTrapHooks } from './module/traps.mjs';
+import { openFieldDialog, registerFieldHooks } from './module/weather.mjs';
 
 const { Localization } = foundry.helpers;
 const { Die } = foundry.dice.terms;
@@ -30,6 +31,7 @@ const { Actors, Items } = foundry.documents.collections;
 globalThis.explorers = {
   macros,
   generateDungeon: () => DungeonGenerator.open(),
+  weather: () => openFieldDialog(),
 };
 
 Hooks.once("init", () => {
@@ -96,6 +98,7 @@ Hooks.once("init", () => {
   registerTurnHooks();
   registerOpportunityHooks();
   registerTrapHooks();
+  registerFieldHooks();
 });
 
 function registerSettings() {

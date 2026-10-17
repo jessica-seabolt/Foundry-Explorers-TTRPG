@@ -10,7 +10,13 @@
     "level": null,
     "prerequisite": "Grass-Type & Water-Type Pokémon",
     "prerequisiteLevel": 3,
-    "rules": [],
+    "rules": [
+      {
+        "type": "onTurnEnd",
+        "heal": "1d6",
+        "whenWeather": "rain"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

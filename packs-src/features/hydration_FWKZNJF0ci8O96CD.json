@@ -10,7 +10,13 @@
     "level": null,
     "prerequisite": "Water-Type Pokémon",
     "prerequisiteLevel": 3,
-    "rules": [],
+    "rules": [
+      {
+        "type": "onTurnEnd",
+        "cure": "any",
+        "whenWeather": "rain"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

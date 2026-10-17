@@ -10,7 +10,12 @@
     "level": null,
     "prerequisite": "Rock-Type & Ground-Type Pokémon",
     "prerequisiteLevel": 3,
-    "rules": [],
+    "rules": [
+      {
+        "type": "onBattleStart",
+        "weather": "sandstorm"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

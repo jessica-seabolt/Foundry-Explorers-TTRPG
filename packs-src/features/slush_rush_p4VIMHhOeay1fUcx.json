@@ -10,7 +10,14 @@
     "level": null,
     "prerequisite": "Ice-Type Pokémon",
     "prerequisiteLevel": 3,
-    "rules": [],
+    "rules": [
+      {
+        "type": "statMultiplier",
+        "stat": "spe",
+        "multiplier": 2,
+        "whenWeather": "snowstorm"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

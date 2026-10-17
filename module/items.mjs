@@ -9,6 +9,7 @@ import { checkAction, recordAction } from './turns.mjs';
 import { includesSelf, tileDistance } from './targeting-geometry.mjs';
 import { getActorToken, pickTargets } from './targeting.mjs';
 import { abilities, typeMatchups } from './types.mjs';
+import { applyFieldEffect } from './weather.mjs';
 
 const { DialogV2 } = foundry.applications.api;
 const { Roll } = foundry.dice;
@@ -31,6 +32,7 @@ export const USE_EFFECTS = {
   revive: '{"type":"revive","hp":"full","restorePP":true}  ("hp" can be "half")',
   damage: '{"type":"damage","formula":"2d6","moveType":"fire"}',
   cleanse: '{"type":"cleanse"}  (un-sticks the Held Item and the Team bag)',
+  field: '{"type":"field","effect":"rain"}  (any Weather or Terrain; "lock":true stops the Weather changing)',
 };
 
 const isHarmfulEffect = ({ effect }) => AFFLICTIONS.has(effect) || effect.endsWith("Down");
@@ -321,6 +323,9 @@ export async function applyUseEffectsLocal(actor, rules, context = {}) {
         lines.push(format("SYSTEM.Items.Cleansed", { count: items.length }));
         break;
       }
+      case "field":
+        await applyFieldEffect(actor, rule.effect, rule.lock === undefined ? {} : { locked: !!rule.lock });
+        break;
     }
   }
   await postAutomationMessage(actor, lines);

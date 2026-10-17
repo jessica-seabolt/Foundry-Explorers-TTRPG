@@ -10,8 +10,15 @@
     "level": null,
     "prerequisite": "",
     "prerequisiteLevel": 6,
-    "rules": [],
-    "manualNote": ""
+    "rules": [
+      {
+        "type": "statModifier",
+        "stat": "highest",
+        "amount": 2,
+        "whenWeather": "harshSunlight"
+      }
+    ],
+    "manualNote": "Tied highest stats: the first of Atk, Def, Sp.Atk, Sp.Def, Spe is raised instead of rolling."
   },
   "effects": [],
   "folder": "UJ5SmygBwDPJ1w2T",

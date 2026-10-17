@@ -4,6 +4,7 @@ import { roomOfToken } from './rooms.mjs';
 import { effectiveRange, hasRule } from './features.mjs';
 import { DIRECTIONS, computeTargets, includesSelf, isSingleTarget, needsDirection, parseLocationMove, tileDistance } from './targeting-geometry.mjs';
 import { ranges, targets } from './types.mjs';
+import { visibilityPenalty } from './weather.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -47,7 +48,7 @@ function buildScene(actor) {
   return {
     userToken, user, others, isBlocked,
     userRoom: user.room,
-    visibility: actor.system.tileVisibility ?? Infinity,
+    visibility: (actor.system.tileVisibility ?? Infinity) - visibilityPenalty(actor),
   };
 }
 

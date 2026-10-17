@@ -9,7 +9,18 @@
     "power": 0,
     "ppLeft": 15,
     "pp": 15,
-    "effects": {},
+    "effects": {
+      "YN1XJ2iFr3ouG917": {
+        "triggerType": "hit",
+        "appliedEffects": {
+          "rWip2XvZBAGt9O29": {
+            "affectsUser": false,
+            "effect": "snowstorm",
+            "effectCount": null
+          }
+        }
+      }
+    },
     "offensiveCheck": null,
     "defensiveCheck": null,
     "tags": {},

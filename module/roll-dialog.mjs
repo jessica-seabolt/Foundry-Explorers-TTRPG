@@ -7,6 +7,7 @@ import { critRangeMin, effectiveMoveType, getRules, hasCondition, hasRule, heldI
 import { stealHeldItem } from './items.mjs';
 import { canAct, checkAction, recordAction } from './turns.mjs';
 import { advantage, effects, skills, typeMatchups } from './types.mjs';
+import { applyFieldEffect, awarenessHindered, fieldLabel, fieldMatchup, fieldPower, noChargeWeather, priorityBlocked } from './weather.mjs';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 const { ChatMessage } = foundry.documents;
@@ -130,7 +131,7 @@ export class SkillRollDialog extends RollDialog {
     this.skill = skill;
     this.statusRoll = options.statusRoll ?? null;
     this.statusMessage = options.statusMessage ?? null;
-    if (isHungry(user)) this.dialogState.advantage = 'disadvantage';
+    if (isHungry(user) || (skill === 'awareness' && awarenessHindered(user))) this.dialogState.advantage = 'disadvantage';
   }
 
   static async #rollSkill() {
@@ -334,12 +335,17 @@ export class MoveRollDialog extends RollDialog {
     if (!await this.#beginUse()) return;
     await recordAction(this.user, kind, { reaction, priority });
     const system = this.move.system;
+    const fieldEffects = this.isBasicAttack ? [] : system.getFieldEffects?.() ?? [];
+    const hit = system.getSplitEffects('hit');
+    const charge = this.isBasicAttack ? null : noChargeWeather(this.user, this.move);
+    if (charge) await postAutomationMessage(this.user, [format("SYSTEM.Field.NoCharge", { move: escape(this.move.name), weather: fieldLabel(charge) })]);
     if (system.power > 0) {
       await this.#rollPower();
-      if (FRIENDLY_TARGETS.has(system.target)) await this.#applyFriendlyEffects(system.getSplitEffects('hit').target);
+      if (FRIENDLY_TARGETS.has(system.target)) await this.#applyFriendlyEffects(hit.target);
     }
-    else if (system.getTriggerTypes().has('hit')) await this.#rollStatusEffects();
+    else if (system.getTriggerTypes().has('hit') && (hit.target.length || hit.user.length || !fieldEffects.length)) await this.#rollStatusEffects();
     else await this.#postDescription();
+    for (const effect of fieldEffects) await applyFieldEffect(this.user, effect, { fromMove: true });
     if (!this.isBasicAttack) await this.#applyUserEffects();
     this.close();
   }
@@ -365,6 +371,7 @@ export class MoveRollDialog extends RollDialog {
       die.modifier += isHealing ? 0 : modifier;
       let additionString = "";
 
+      if (!isHealing && await this.#fieldAvoids(target)) continue;
       const immunity = target && !this.isBasicAttack && !isHealing ? moveImmunity(target, this.move, moveType) : null;
       if (immunity) {
         await this.#resolveImmunity(target, immunity, die);
@@ -374,7 +381,11 @@ export class MoveRollDialog extends RollDialog {
       let matchup = '';
       if (!this.isBasicAttack && !isHealing) {
         matchup = this.dialogState.typeMatchup;
-        if (matchup === '' && target) matchup = target.system.getTypeMatchup?.(moveType) ?? '';
+        if (matchup === '' && target) {
+          const chart = target.system.getTypeMatchup?.(moveType) ?? '';
+          matchup = fieldMatchup(target, moveType, chart);
+          if (matchup !== chart) additionString += note(fieldLabel("strongWinds"), false);
+        }
         const steamroll = getRules(this.user, "steamroll").find(rule => (!rule.moveTypes || rule.moveTypes.includes(moveType))
           && (rule.matchups ?? ['notVeryEffective', 'mostlyIneffective', 'immune']).includes(matchup));
         if (steamroll) {
@@ -405,6 +416,18 @@ export class MoveRollDialog extends RollDialog {
       if (bonus.amount && !isMultistrike) {
         die.sides = Math.max(die.sides + bonus.amount, 1);
         additionString += note(`${bonus.amount > 0 ? "+" : ""}${bonus.amount} ${localize("SYSTEM.Automation.MovePower")} (${bonus.sources.join(", ")})`, bonus.amount > 0);
+      }
+      const field = this.isBasicAttack ? null : fieldPower(this.user, this.move, { target, moveType, isHealing });
+      if (field?.amount && !isMultistrike) {
+        const sides = die.sides + field.amount;
+// Move Power can't drop below 1, so the damage halves instead.
+        if (sides < 1) die.multiplier *= 0.5;
+        die.sides = Math.max(sides, 1);
+        additionString += note(`${field.amount > 0 ? "+" : ""}${field.amount} ${localize("SYSTEM.Automation.MovePower")} (${field.sources.join(", ")})`, field.amount > 0);
+      }
+      if (field && field.multiplier !== 1) {
+        die.multiplier *= field.multiplier;
+        additionString += note(field.halved.join(", "), false);
       }
 
       if (critRangeMin(this.user) <= 5) die.highCrit = true;
@@ -456,6 +479,26 @@ export class MoveRollDialog extends RollDialog {
         await applyEffects(this.user, rule.effects ?? [], { sourceUuid: this.user.uuid, sourceName: this.user.name });
       }
     }
+  }
+
+  async #fieldAvoids(target, { evasion = true } = {}) {
+    if (!target || target === this.user) return false;
+    const name = escape(target.name);
+    if (priorityBlocked(this.user, target, this.move)) {
+      await postAutomationMessage(target, [format("SYSTEM.Field.PriorityBlocked", { name, move: escape(this.move.name) })]);
+      return true;
+    }
+    const rule = evasion ? getRules(target, "evasion")[0] : null;
+    if (!rule) return false;
+    const chance = rule.chance ?? 3;
+    const roll = await new Roll("1d6").evaluate();
+    await roll.toMessage({
+      speaker: ChatMessage.implementation.getSpeaker({ actor: target }),
+      flavor: `${this.move.name} (${target.name}) - ${format("SYSTEM.Field.EvasionCheck", { feature: escape(rule.source), chance })}`
+    });
+    if (roll.total > chance) return false;
+    await postAutomationMessage(target, [format("SYSTEM.Field.Evaded", { name, move: escape(this.move.name), feature: escape(rule.source) })]);
+    return true;
   }
 
   async #resolveImmunity(target, rule, die) {
@@ -559,6 +602,7 @@ export class MoveRollDialog extends RollDialog {
     if (isHungry(this.user)) statusDie.advantage = 'disadvantage';
     if (!system.isStatus) statusDie.sides += getRules(this.user, "statusCheckDice").reduce((sum, rule) => sum + (rule.dice ?? 1), 0);
 
+    if (system.power == 0 && await this.#fieldAvoids(target, { evasion: false })) return;
     const immunity = target && system.power == 0 ? moveImmunity(target, this.move, effectiveMoveType(this.user, this.move)) : null;
     if (immunity) {
       await postAutomationMessage(target, [format("SYSTEM.Automation.FeatureImmune", { name: escape(target.name), move: escape(this.move.name), feature: escape(immunity.source) })]);

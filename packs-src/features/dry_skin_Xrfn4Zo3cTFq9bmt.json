@@ -10,7 +10,18 @@
     "level": null,
     "prerequisite": "",
     "prerequisiteLevel": 3,
-    "rules": [],
+    "rules": [
+      {
+        "type": "onTurnEnd",
+        "damage": "1d6",
+        "whenWeather": "harshSunlight"
+      },
+      {
+        "type": "onTurnEnd",
+        "heal": "1d6",
+        "whenWeather": "rain"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

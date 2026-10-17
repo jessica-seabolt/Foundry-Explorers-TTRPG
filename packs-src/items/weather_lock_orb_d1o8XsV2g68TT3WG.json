@@ -7,7 +7,13 @@
     "category": "orbs",
     "price": 200,
     "rules": [],
-    "onUse": [],
+    "onUse": [
+      {
+        "type": "field",
+        "effect": "clearWeather",
+        "lock": true
+      }
+    ],
     "target": null,
     "range": null,
     "rangeCount": null,
@@ -16,7 +22,7 @@
     "throwType": null,
     "consumable": true,
     "becomes": "",
-    "manualNote": "End the weather; it can't change for the rest of the Floor."
+    "manualNote": ""
   },
   "effects": [],
   "folder": "nslHbFL6H8zczPA6",

@@ -10,7 +10,14 @@
     "level": null,
     "prerequisite": "Electric-Type Pokémon",
     "prerequisiteLevel": 3,
-    "rules": [],
+    "rules": [
+      {
+        "type": "statMultiplier",
+        "stat": "spe",
+        "multiplier": 2,
+        "whenTerrain": "electricTerrain"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

@@ -10,7 +10,19 @@
     "level": null,
     "prerequisite": "",
     "prerequisiteLevel": 3,
-    "rules": [],
+    "rules": [
+      {
+        "type": "onTurnEnd",
+        "damage": "1d6",
+        "whenWeather": "harshSunlight"
+      },
+      {
+        "type": "movePower",
+        "amount": 1,
+        "special": true,
+        "whenWeather": "harshSunlight"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

@@ -7,7 +7,12 @@
     "category": "orbs",
     "price": 200,
     "rules": [],
-    "onUse": [],
+    "onUse": [
+      {
+        "type": "field",
+        "effect": "rain"
+      }
+    ],
     "target": null,
     "range": null,
     "rangeCount": null,
@@ -16,7 +21,7 @@
     "throwType": null,
     "consumable": true,
     "becomes": "",
-    "manualNote": "The weather becomes Rain."
+    "manualNote": ""
   },
   "effects": [],
   "folder": "nslHbFL6H8zczPA6",

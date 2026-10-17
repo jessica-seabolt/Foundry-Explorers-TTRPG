@@ -6,7 +6,12 @@
     "description": "Your Terrain Moves persist for 10 Rounds instead of 5.",
     "category": "battleItems",
     "price": 2000,
-    "rules": [],
+    "rules": [
+      {
+        "type": "terrainRounds",
+        "rounds": 10
+      }
+    ],
     "onUse": [],
     "target": null,
     "range": null,
@@ -16,7 +21,7 @@
     "throwType": null,
     "consumable": false,
     "becomes": "",
-    "manualNote": "Terrain Moves last 10 Rounds."
+    "manualNote": ""
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

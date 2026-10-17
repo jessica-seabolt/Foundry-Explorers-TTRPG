@@ -154,6 +154,15 @@
       <label>{{localize "SYSTEM.Dungeon.AsleepChance"}}</label>
       <div class="form-fields"><input type="number" name="asleepChance" value="{{config.asleepChance}}" min="0" max="100" step="5"></div>
     </div>
+    <div class="form-group">
+      <label>{{localize "SYSTEM.Dungeon.Weather"}}</label>
+      <div class="form-fields">
+        <select name="weather">
+          <option value="" {{#unless config.weather}}selected{{/unless}}>{{localize "SYSTEM.Weathers.ClearWeather"}}</option>
+          {{selectOptions weathers selected=config.weather valueAttr="value" labelAttr="label" localize=true}}
+        </select>
+      </div>
+    </div>
     <p class="hint">{{localize "SYSTEM.Dungeon.MarkersHint"}}</p>
   </fieldset>
 

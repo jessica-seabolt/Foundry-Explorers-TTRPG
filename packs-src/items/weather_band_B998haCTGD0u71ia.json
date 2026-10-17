@@ -6,7 +6,11 @@
     "description": "The user ignores weather effects.",
     "category": "scarvesAndBands",
     "price": null,
-    "rules": [],
+    "rules": [
+      {
+        "type": "ignoreWeather"
+      }
+    ],
     "onUse": [],
     "target": null,
     "range": null,
@@ -16,7 +20,7 @@
     "throwType": null,
     "consumable": false,
     "becomes": "",
-    "manualNote": "Ignores weather effects."
+    "manualNote": ""
   },
   "effects": [],
   "folder": "flTbL5r9BQOlCHFW",

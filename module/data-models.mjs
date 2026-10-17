@@ -5,6 +5,7 @@ import { FAINTED_STATUS, applyDamage, applyEffects, consumeRuleItem, healActor, 
 import { SYSTEM_ID } from '../constants.mjs';
 import { auraOfNature, classData, effectiveProficiencies, featureCategories, getRules, hasCondition, hasRule, heldItemOf, hpPerLevelBonus, statModifierBonus, visibilityBonus } from './features.mjs';
 import { stealHeldItem } from './items.mjs';
+import { fieldStatBonus, isFieldEffect, movementPenalty, statMultiplier } from './weather.mjs';
 
 const sizeToTiles = { tiny: 1, small: 1, medium: 1, large: 2, huge: 3 };
 
@@ -30,6 +31,7 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     if (movement === 'major') result += 4;
     else if (movement === 'minor') result += 2;
     if (statuses.has('paralyzed')) result -= 1;
+    result -= movementPenalty(this.parent);
     return Math.max(result, 0);
   }
 
@@ -150,13 +152,13 @@ export class CharacterDataModel extends foundry.abstract.TypeDataModel {
     const statuses = this.parent?.statuses ?? new Set();
     for (const ability in this.abilities) {
       const abilitySettings = this.abilities[ability];
-      abilitySettings.baseMod = Math.ceil(abilitySettings.raw / 5);
+      abilitySettings.value = abilitySettings.raw * statMultiplier(this.parent, ability);
+      abilitySettings.baseMod = Math.ceil(abilitySettings.value / 5);
       let change = this.statChanges[ability] ?? 0;
       if (ability === 'atk' && statuses.has('burned')) change -= 2;
-      change += statModifierBonus(this.parent, ability);
+      change += statModifierBonus(this.parent, ability) + fieldStatBonus(this.parent, ability);
       abilitySettings.change = change;
       abilitySettings.mod = Math.max(abilitySettings.baseMod + change, 0);
-      abilitySettings.value = abilitySettings.raw;
     }
   }
 
@@ -624,10 +626,16 @@ export class MoveDataModel extends foundry.abstract.TypeDataModel {
     for (const trigger of Object.values(this.effects)) {
       if (trigger.triggerType !== triggerType) continue;
       for (const applied of Object.values(trigger.appliedEffects)) {
+        if (isFieldEffect(applied.effect)) continue;
         result[applied.affectsUser ? 'user' : 'target'].push({ effect: applied.effect, effectCount: applied.effectCount ?? null });
       }
     }
     return result;
+  }
+
+  getFieldEffects(triggerType = 'hit') {
+    return Object.values(this.effects).filter(trigger => trigger.triggerType === triggerType)
+      .flatMap(trigger => Object.values(trigger.appliedEffects).map(applied => applied.effect).filter(isFieldEffect));
   }
 
   get targetsFoe() {

@@ -10,7 +10,16 @@
     "level": null,
     "prerequisite": "",
     "prerequisiteLevel": 6,
-    "rules": [],
+    "rules": [
+      {
+        "type": "movePower",
+        "amount": 1,
+        "physical": true,
+        "special": true,
+        "team": true,
+        "whenWeather": "harshSunlight"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

@@ -6,7 +6,15 @@
     "description": "You are unaffected by Rain and Harsh Sunlight.",
     "category": "battleItems",
     "price": 1500,
-    "rules": [],
+    "rules": [
+      {
+        "type": "ignoreWeather",
+        "weathers": [
+          "harshSunlight",
+          "rain"
+        ]
+      }
+    ],
     "onUse": [],
     "target": null,
     "range": null,
@@ -16,7 +24,7 @@
     "throwType": null,
     "consumable": false,
     "becomes": "",
-    "manualNote": "Unaffected by Rain and Harsh Sunlight."
+    "manualNote": ""
   },
   "effects": [],
   "folder": "Isb1KUmSvCXlrJwp",

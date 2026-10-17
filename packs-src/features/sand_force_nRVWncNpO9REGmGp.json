@@ -10,7 +10,26 @@
     "level": null,
     "prerequisite": "Rock-Type, Ground-Type & Steel-Type Pokémon",
     "prerequisiteLevel": 6,
-    "rules": [],
+    "rules": [
+      {
+        "type": "weatherImmunity",
+        "weathers": [
+          "sandstorm"
+        ]
+      },
+      {
+        "type": "movePower",
+        "amount": 1,
+        "physical": true,
+        "special": true,
+        "moveType": [
+          "rock",
+          "ground",
+          "steel"
+        ],
+        "whenWeather": "sandstorm"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

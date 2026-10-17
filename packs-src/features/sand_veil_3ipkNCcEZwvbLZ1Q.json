@@ -10,7 +10,19 @@
     "level": null,
     "prerequisite": "",
     "prerequisiteLevel": 3,
-    "rules": [],
+    "rules": [
+      {
+        "type": "weatherImmunity",
+        "weathers": [
+          "sandstorm"
+        ]
+      },
+      {
+        "type": "evasion",
+        "chance": 3,
+        "whenWeather": "sandstorm"
+      }
+    ],
     "manualNote": ""
   },
   "effects": [],

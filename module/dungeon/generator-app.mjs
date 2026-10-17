@@ -2,6 +2,8 @@ import { SYSTEM_ID, filePath } from '../../constants.mjs';
 import { floorItemTileData } from '../floor-items.mjs';
 import { trapTileData } from '../traps.mjs';
 import { ROOM_BEHAVIOR } from '../rooms.mjs';
+import { weathers } from '../types.mjs';
+import { newField, weatherVisual } from '../weather.mjs';
 import { FLOOR_LAYOUTS, cropBounds, generateFloor, markersIn, normalizeSettings, roomShapes, wallSegments } from './floor.mjs';
 import { renderFloor } from './render.mjs';
 import { readObjectSheet } from './objects.mjs';
@@ -31,7 +33,7 @@ export const DUNGEON_ITEMS_TABLE = "Compendium.explorers.tables.RollTable.Dungeo
 export const DUNGEON_TRAPS_TABLE = "Compendium.explorers.tables.RollTable.DungeonTrapsTbl1";
 
 const DEFAULT_CONFIG = {
-  dungeon: "", firstFloor: 1, floors: 1, music: "", tileset: "", objects: "", stairs: "down", scale: 3, itemTable: DUNGEON_ITEMS_TABLE, enemyTable: "", asleepChance: 25, trapTable: DUNGEON_TRAPS_TABLE,
+  dungeon: "", firstFloor: 1, floors: 1, music: "", tileset: "", objects: "", stairs: "down", scale: 3, itemTable: DUNGEON_ITEMS_TABLE, enemyTable: "", asleepChance: 25, trapTable: DUNGEON_TRAPS_TABLE, weather: "",
   markers: { stairs: true, items: true, traps: true, pokemon: true }, settings: {}
 };
 
@@ -213,6 +215,7 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
       noTileset: !this.config.tileset,
       objectsError: this.objectsError,
       noObjects: !this.config.objects,
+      weathers: Object.entries(weathers).filter(([value]) => value !== "clearWeather").map(([value, label]) => ({ value, label })),
       stairsDirections: Object.keys(STAIRS_SPRITES).map(value => ({ value, label: `SYSTEM.Dungeon.Stairs.${value}` })),
       rollTables: [
         ...game.tables.map(table => ({ value: table.uuid, label: table.name })),
@@ -287,6 +290,7 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
     this.config.enemyTable = data.enemyTable ?? "";
     this.config.trapTable = data.trapTable ?? "";
     this.config.asleepChance = Math.clamp(Number(data.asleepChance ?? this.config.asleepChance) || 0, 0, 100);
+    this.config.weather = data.weather ?? "";
     this.config.scale = Number(data.scale) || 3;
     this.config.markers = { ...this.config.markers, ...data.markers };
     foundry.utils.mergeObject(this.config.settings.floor_props, data.props ?? {});
@@ -367,7 +371,7 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
           name: this.floorName(number), floor, bounds, rendered, stairs: this.stairsSprite,
           scale: this.config.scale, markers: this.config.markers, settings, tileset: this.config.tileset,
           itemTable: this.config.itemTable, enemyTable: this.config.enemyTable, asleepChance: this.config.asleepChance,
-          trapTable: this.config.trapTable, folder: folder.id, sort: number * 100,
+          trapTable: this.config.trapTable, weather: this.config.weather, folder: folder.id, sort: number * 100,
           playlist: playlist || null, playlistSound: playlistSound || null
         });
         first ??= scene;
@@ -411,7 +415,7 @@ async function uploadPng(surface, fileName) {
 }
 
 export async function buildScene({ name, floor, bounds, rendered, stairs, scale, markers, settings, tileset, itemTable, enemyTable,
-  asleepChance = 0, trapTable, folder = null, sort = 0, playlist = null, playlistSound = null }) {
+  asleepChance = 0, trapTable, weather = "", folder = null, sort = 0, playlist = null, playlistSound = null }) {
   const gridSize = rendered.tileSize * scale;
   const mapPath = await uploadPng(toCanvas(rendered, scale), `${name.slugify({ strict: true }) || "floor"}-${Date.now()}.png`);
   const stairsPath = stairs && markers.stairs
@@ -494,6 +498,7 @@ export async function buildScene({ name, floor, bounds, rendered, stairs, scale,
     environment: { globalLight: { enabled: true } },
     ...(start ? { initial: { x: (start.x + 0.5) * gridSize, y: (start.y + 0.5) * gridSize, scale: 1 } } : {}),
     walls, regions, tiles: [...trapTiles, ...tiles, ...floorItems], tokens,
-    flags: { [SYSTEM_ID]: { dungeon: { settings, tileset, itemTable, enemyTable, trapTable, terrain: terrainData(floor, bounds) } } }
+    weather: weatherVisual(weather),
+    flags: { [SYSTEM_ID]: { dungeon: { settings, tileset, itemTable, enemyTable, trapTable, terrain: terrainData(floor, bounds) }, field: newField(weather) } }
   });
 }
