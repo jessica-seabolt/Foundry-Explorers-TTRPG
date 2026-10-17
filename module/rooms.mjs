@@ -38,6 +38,17 @@ export function offsetPolygons(polygons, delta) {
   return solution.map(path => PIXI.Polygon.fromClipperPoints(path, { scalingFactor }));
 }
 
+export function unionPolygons(polygons) {
+  const scalingFactor = CONST.CLIPPER_SCALING_FACTOR;
+  const clipper = new ClipperLib.Clipper();
+  for (const polygon of polygons) {
+    if (polygon.points.length >= 6) clipper.AddPath(polygon.toClipperPoints({ scalingFactor }), ClipperLib.PolyType.ptSubject, true);
+  }
+  const solution = new ClipperLib.Paths();
+  clipper.Execute(ClipperLib.ClipType.ctUnion, solution, ClipperLib.PolyFillType.pftNonZero, ClipperLib.PolyFillType.pftNonZero);
+  return solution.map(path => PIXI.Polygon.fromClipperPoints(path, { scalingFactor }));
+}
+
 export function polygonContaining(polygons, point) {
   return polygons.find(polygon => polygon.contains(point.x, point.y))
     ?? polygons.reduce((best, polygon) => (!best || Math.abs(polygon.signedArea()) > Math.abs(best.signedArea()) ? polygon : best), null);

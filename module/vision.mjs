@@ -1,5 +1,5 @@
 import { SYSTEM_ID } from '../constants.mjs';
-import { offsetPolygons, polygonContaining, roomOfToken, roomVisionArea } from './rooms.mjs';
+import { offsetPolygons, polygonContaining, roomOfToken, roomVisionArea, unionPolygons } from './rooms.mjs';
 import { visibilityPenalty } from './weather.mjs';
 
 const { PointVisionSource } = foundry.canvas.sources;
@@ -17,32 +17,35 @@ export class ExplorersVisionSource extends PointVisionSource {
     let los = this.los;
     if (revealWalls) los = expandSourcePolygon(los, canvas.grid.size, origin);
 
+    const radius = dungeonRules && this.data.radius > 0
+      ? Math.max(this.data.radius - visibilityPenalty(token.actor) * canvas.grid.size, canvas.grid.size / 2) : null;
+    const nearby = radius ? los.applyConstraint(new PIXI.Circle(origin.x, origin.y, radius)) : null;
     const room = dungeonRules ? roomOfToken(token.document) : null;
-    if (room) {
-      const area = roomVisionArea(room, origin);
-      if (area) {
-        los = los.applyConstraint(area);
-        this.los = this.light = this.shape = los;
-        return;
-      }
+    const area = room ? roomVisionArea(room, origin) : null;
+    if (area) {
+// The whole room, plus whatever is in normal sight range past its edges.
+      const inRoom = los.applyConstraint(area);
+      los = nearby ? withPoints(inRoom, polygonContaining(unionPolygons([inRoom, nearby]), origin)) : inRoom;
+      this.los = this.light = this.shape = los;
+      return;
     }
-    if (dungeonRules && this.data.radius > 0) {
-      const radius = Math.max(this.data.radius - visibilityPenalty(token.actor) * canvas.grid.size, canvas.grid.size / 2);
-      los = los.applyConstraint(new PIXI.Circle(origin.x, origin.y, radius));
-    }
+    if (nearby) los = nearby;
     this.los = los;
     this.light = this._createLightPolygon();
     this.shape = this._createRestrictedPolygon();
   }
 }
 
+function withPoints(polygon, shape) {
+  if (!shape) return polygon;
+  const result = polygon.clone();
+  result.points = shape.points;
+  result.bounds = result.getBounds();
+  return result;
+}
+
 function expandSourcePolygon(polygon, distance, origin) {
-  const grown = polygonContaining(offsetPolygons([polygon], distance), origin);
-  if (!grown) return polygon;
-  const expanded = polygon.clone();
-  expanded.points = grown.points;
-  expanded.bounds = expanded.getBounds();
-  return expanded;
+  return withPoints(polygon, polygonContaining(offsetPolygons([polygon], distance), origin));
 }
 
 export function registerVisionHooks() {
