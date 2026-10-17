@@ -22,6 +22,7 @@ import { registerTurnHooks, registerTurnSettings } from './module/turns.mjs';
 import { registerOpportunityHooks } from './module/targeting.mjs';
 import { registerTrapHooks } from './module/traps.mjs';
 import { openFieldDialog, registerFieldHooks } from './module/weather.mjs';
+import { registerStairsHooks } from './module/stairs.mjs';
 
 const { Localization } = foundry.helpers;
 const { Die } = foundry.dice.terms;
@@ -99,6 +100,7 @@ Hooks.once("init", () => {
   registerOpportunityHooks();
   registerTrapHooks();
   registerFieldHooks();
+  registerStairsHooks();
 });
 
 function registerSettings() {

@@ -17,3 +17,9 @@
   font-size: 13px;
   pointer-events: none;
 }
+
+.stairs-tokens {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}

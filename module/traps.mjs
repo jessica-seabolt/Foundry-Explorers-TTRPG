@@ -1,10 +1,11 @@
 import { SYSTEM_ID, getDieString, getSkillDie, isHungry } from '../constants.mjs';
 import { applyDamage, applyEffects, postAutomationMessage } from './conditions.mjs';
-import { getRules, heldItemOf } from './features.mjs';
+import { heldItemOf } from './features.mjs';
 import { dropItemAt, floorItemOf, spacesPassed, wallBetween } from './floor-items.mjs';
 import { teamOf } from './items.mjs';
 import { getRooms } from './rooms.mjs';
 import { resolveDocument, rollTableDocument, wildTokenData, worldActorFor } from './dungeon/spawns.mjs';
+import { isGrounded } from './weather.mjs';
 
 export const TRAP_FLAG = "trap";
 const USER_MOVEMENT = ["dragging", "keyboard"];
@@ -32,7 +33,7 @@ function terrainOf(scene) {
   return terrain?.cells ? terrain : null;
 }
 
-function isGround(scene, { i, j }) {
+export function isGround(scene, { i, j }) {
   const terrain = terrainOf(scene);
   if (!terrain) {
     const rect = scene.dimensions?.sceneRect;
@@ -43,11 +44,11 @@ function isGround(scene, { i, j }) {
   return terrain.cells[j + i * terrain.width] === "1";
 }
 
-function tokenAt(scene, offset, except = null) {
+export function tokenAt(scene, offset, except = null) {
   return scene.tokens.find(token => token !== except && token.getOccupiedGridSpaceOffsets().some(cell => sameSpace(cell, offset))) ?? null;
 }
 
-function openSpacesNear(scene, origin, radius) {
+export function openSpacesNear(scene, origin, radius) {
   const grid = scene.grid;
   const from = grid.getCenterPoint(origin);
   const spaces = [];
@@ -84,13 +85,7 @@ function openSpacesOnFloor(scene) {
 
 const moveTokenTo = (token, space) => token.update(token.parent.grid.getTopLeftPoint(space), { animate: false });
 
-function isGrounded(actor) {
-  const system = actor.system;
-  if ([system.type1, system.type2].includes('flying') || actor.statuses?.has('levitating')) return false;
-  return !getRules(actor, "typeImmunity").some(rule => rule.moveType === 'ground');
-}
-
-const setsOffTraps = actor => !!actor && actor.type !== "Team" && (actor.hasPlayerOwner || !!teamOf(actor));
+export const setsOffTraps = actor => !!actor && actor.type !== "Team" && (actor.hasPlayerOwner || !!teamOf(actor));
 
 async function onMoveToken(tokenDocument, movement) {
   if (!game.user.isActiveGM || !USER_MOVEMENT.includes(movement.method)) return;

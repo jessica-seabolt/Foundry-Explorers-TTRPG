@@ -710,7 +710,7 @@
     "FloorItems": {
       "PickedUp": "{name} picked up the {item} and put it in {team}'s bag.",
       "PickedUpHeld": "{name} picked up the {item} and is holding it.",
-      "NoRoom": "{name} found the {item}, but the bag is full and their paws are too.",
+      "NoRoom": "{name} found the {item}, but there's no room!",
       "ForSale": "{name} is standing on the {item}. Kecleon is selling it for {price} Poké.",
       "CantDrop": "You can only drop items your Pokémon or Team are carrying.",
       "Dropped": "{name} dropped its {item}!",
@@ -893,6 +893,17 @@
       "PriorityBlocked": "Psychic Terrain protects {name} from {move}.",
       "EvasionCheck": "{feature} (misses on {chance} or lower)",
       "Evaded": "{name}'s {feature} made {move} miss!"
+    },
+    "Stairs": {
+      "Title": "Stairs",
+      "Found": "{name} found the stairs!",
+      "Prompt": "{name} is on the stairs. Take the team to {floor}?",
+      "EndsBattle": "The battle on this floor will end.",
+      "WhoGoes": "Who goes:",
+      "Go": "Go to {floor}",
+      "Stay": "Not yet",
+      "Arrived": "The team arrived on {floor}.",
+      "NoNextFloor": "{name} is on the stairs, but there's no floor after {floor}. Generate it in the same Scene folder."
     },
     "Belly": {
       "Hint": "Belly: a Pokémon needs 2 food items a day. Without food it rolls at Disadvantage and deals half damage.",

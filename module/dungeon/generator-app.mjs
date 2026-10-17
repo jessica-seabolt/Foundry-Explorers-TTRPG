@@ -371,7 +371,7 @@ export class DungeonGenerator extends HandlebarsApplicationMixin(ApplicationV2) 
           name: this.floorName(number), floor, bounds, rendered, stairs: this.stairsSprite,
           scale: this.config.scale, markers: this.config.markers, settings, tileset: this.config.tileset,
           itemTable: this.config.itemTable, enemyTable: this.config.enemyTable, asleepChance: this.config.asleepChance,
-          trapTable: this.config.trapTable, weather: this.config.weather, folder: folder.id, sort: number * 100,
+          trapTable: this.config.trapTable, weather: this.config.weather, floorNumber: number, folder: folder.id, sort: number * 100,
           playlist: playlist || null, playlistSound: playlistSound || null
         });
         first ??= scene;
@@ -415,7 +415,7 @@ async function uploadPng(surface, fileName) {
 }
 
 export async function buildScene({ name, floor, bounds, rendered, stairs, scale, markers, settings, tileset, itemTable, enemyTable,
-  asleepChance = 0, trapTable, weather = "", folder = null, sort = 0, playlist = null, playlistSound = null }) {
+  asleepChance = 0, trapTable, weather = "", floorNumber = null, folder = null, sort = 0, playlist = null, playlistSound = null }) {
   const gridSize = rendered.tileSize * scale;
   const mapPath = await uploadPng(toCanvas(rendered, scale), `${name.slugify({ strict: true }) || "floor"}-${Date.now()}.png`);
   const stairsPath = stairs && markers.stairs
@@ -499,6 +499,6 @@ export async function buildScene({ name, floor, bounds, rendered, stairs, scale,
     ...(start ? { initial: { x: (start.x + 0.5) * gridSize, y: (start.y + 0.5) * gridSize, scale: 1 } } : {}),
     walls, regions, tiles: [...trapTiles, ...tiles, ...floorItems], tokens,
     weather: weatherVisual(weather),
-    flags: { [SYSTEM_ID]: { dungeon: { settings, tileset, itemTable, enemyTable, trapTable, terrain: terrainData(floor, bounds) }, field: newField(weather) } }
+    flags: { [SYSTEM_ID]: { dungeon: { floor: floorNumber, settings, tileset, itemTable, enemyTable, trapTable, terrain: terrainData(floor, bounds) }, field: newField(weather) } }
   });
 }
